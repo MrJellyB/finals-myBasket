@@ -1,0 +1,20 @@
+<div *ngIf="!userName()" class="container">
+  <form id="contact" name="form" (ngSubmit)="f.form.valid && onSubmit(f,$event)" #f="ngForm" novalidate>
+    <h3>התחברות לאתר</h3>
+    <h4>הכנס את פרטיך</h4>
+    <fieldset>
+      <input placeholder="משתמש..." type="text" tabindex="1" required autofocus name="userName" [(ngModel)]="model.userName" #userName="ngModel">
+    </fieldset>
+    <fieldset>
+      <input placeholder="סיסמא..." type="password" tabindex="2" required name="password" [(ngModel)]="model.password" #password="ngModel">
+    </fieldset>
+    <fieldset>
+      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">התחבר לאתר</button>
+    </fieldset>
+    </form>
+</div>
+
+
+<div class="container" *ngIf="userName()">
+  <h1>הינך מחובר כבר לאתר</h1>
+</div>

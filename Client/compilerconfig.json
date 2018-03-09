@@ -1,0 +1,14 @@
+﻿[
+  {
+    "outputFile": "Website/StyleSheet.css",
+    "inputFile": "Website/StyleSheet.scss"
+  },
+  {
+    "outputFile": "Website/src/StyleSheet2.css",
+    "inputFile": "Website/src/StyleSheet2.scss"
+  },
+  {
+    "outputFile": "Website/src/styles.css",
+    "inputFile": "Website/src/styles.scss"
+  }
+]

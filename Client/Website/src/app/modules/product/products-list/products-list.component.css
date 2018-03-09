@@ -1,0 +1,48 @@
+/*table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.title-right {
+  text-align: right;
+}*/
+
+.card .showControl {
+  visibility: visible;
+}
+
+.card .hideControl {
+  visibility: hidden;
+}
+
+.card .item-amount-input {
+  width: 60px;
+  height: 30px;
+  display: inline-block;
+  text-align:center;
+}
+
+.card .feature-title {
+  color: #cacaca;
+}
+
+.card .feature-list {
+  list-style: none;
+  padding-right: 20px;
+}
+
+.card-title {
+  text-align: center;
+  font-size: 25px;
+}

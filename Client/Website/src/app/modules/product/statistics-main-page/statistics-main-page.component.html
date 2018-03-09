@@ -1,0 +1,27 @@
+<div class="row" *ngIf="userName()" style="margin-top:10px">
+  <div class="col-md-2">
+    <div class="box">
+      <h2>היסטוריית מחירים על מוצר</h2>
+      <div style="margin:10px 10px 10px 10px">
+        <form name="form" #f="ngForm">
+          <div class="form-group">
+            <input type="number" class="form-control" placeholder="הקש מוצר" name="a" [(ngModel)]="productId" #a="ngModel" />
+          </div>
+        </form>
+      </div>
+      <button class="btn btn-primary" (click)="HistoryOneView()">לחץ</button>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div (click)="barChart()" class="box"><h2>גרף מחירים ומוצרים</h2>   </div>
+  </div>
+
+  <div class="col-md-2">
+    <div (click)="cheapestProduct()" class="box"><h2>המוצר הזול לפי קטגוריה</h2>   </div>
+  </div>
+
+  <div class="col-md-2">
+    <div (click)="preferredProduct()" class="box"><h2>המוצר המומלץ לפי קטגוריה</h2>   </div>
+  </div>
+</div>

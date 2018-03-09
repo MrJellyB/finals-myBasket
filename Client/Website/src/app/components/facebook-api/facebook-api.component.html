@@ -1,0 +1,40 @@
+
+<!--
+<button class="waves-effect waves-light btn" (click)="getIsraelTweets()">GetTweets</button>
+    -->
+
+<!--
+<ul>
+  <li *ngFor="let tweet of israelTweets">
+    {{ tweet.text }}
+  </li>
+</ul>
+<script>
+
+</script>
+
+    -->
+
+
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="panel panel-default">
+      </div>     
+    </div>
+    <div class="col-sm-6">
+      <div class="panel panel-info">
+        <div class="panel-body" *ngFor="let tweet of israelTweets; let i = index" style="background-color:grey">
+          <div class="media">
+            <div class="media-body">
+              <h4 class="media-heading"> תגובה מספר {{i + 1}}</h4>
+              <p>{{ tweet.text }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

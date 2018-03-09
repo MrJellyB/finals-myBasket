@@ -1,0 +1,32 @@
+
+<table style="background-color:white;" *ngIf="weatherData">
+  <tr>
+    <th class="title-right">מאפיין</th>
+    <th class="title-right">פרטים</th>
+  </tr>
+
+  <tr>
+    <td class="title-right">עיר</td>
+    <td class="title-right">{{weatherData.name}}</td>
+  </tr>
+
+  <tr>
+    <td class="title-right">רוחות</td>
+    <td class="title-right">{{weatherData.wind.deg}}</td>
+  </tr>
+
+  <tr>
+    <td class="title-right">מהירות</td>
+    <td class="title-right">{{weatherData.wind.speed}}</td>
+  </tr>
+
+  <tr *ngFor="let curr of weathers; let i = index">
+    <td class="title-right">  תיאור {{i + 1}}</td>
+    <td class="title-right">{{curr.description}}</td>
+  </tr>
+
+  <tr *ngFor="let curr of weathers; let i = index">
+    <td class="title-right">  ראשי {{i + 1}}</td>
+    <td class="title-right">{{curr.main}}</td>
+  </tr>
+</table>

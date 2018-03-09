@@ -1,0 +1,66 @@
+
+<div class="container" *ngIf="productDetails">
+  <form id="contact" name="form" (ngSubmit)="f.form.valid && onSubmit(f,$event)" #f="ngForm" novalidate>
+    <h3>פרטי מוצר</h3>
+
+    <fieldset class="row">
+      שם מוצר:
+      <input tabindex="1" name="name" type="text" [(ngModel)]="productDetails.name" #name="ngModel" disabled/>
+    </fieldset>
+
+      <fieldset class="row">
+        מחיר:
+        <input tabindex="2" name="price" type="text" [(ngModel)]="productDetails.price" #price="ngModel" disabled />
+      </fieldset>
+
+    <fieldset class="row">
+      קטגוריה:
+      <input tabindex="3" name="categoryValue" type="text" [(ngModel)]="productDetails.categoryValue" #categoryValue="ngModel" disabled />
+    </fieldset>
+
+    <fieldset class="row">
+      קלוריות:
+      <input tabindex="4" name="calories" type="text" [(ngModel)]="productDetails.calories" #calories="ngModel" disabled />
+    </fieldset>
+
+    <fieldset class="row">
+      מדינת יצור:
+      <input tabindex="5" name="createCountry" type="text" [(ngModel)]="productDetails.createCountry" #createCountry="ngModel" disabled />
+    </fieldset>
+
+    <fieldset class="row">
+      יצרן:
+      <input tabindex="6" name="company" type="text" [(ngModel)]="productDetails.company" #company="ngModel" disabled />
+    </fieldset>
+
+    <div *ngIf="productDetails.comments">
+      <fieldset class="row">
+        רשימת תגובות
+        <ul>
+          <li *ngFor="let currComment of productDetails.comments" style="margin-left:50px">
+            תגובה: {{ currComment.comment }} עם ציון {{ currComment.grade}}
+          </li>
+        </ul>
+      </fieldset>
+    </div>
+
+    <fieldset class="row">
+      תגובה על מוצר:
+      <textarea name="comment" [(ngModel)]="comm" #comment="ngModel"></textarea>
+    </fieldset>
+
+    <fieldset class="row">
+      ציון:
+      <div>
+        <select (change)="SelectedGrade($event.target.value)" class="form-control">
+          <option *ngFor="let currGrade of grades" value={{currGrade}}>{{currGrade}}</option>
+        </select>
+      </div>
+     </fieldset>
+
+    <fieldset style="margin-top:5%">
+      <button style="margin-top:5%" class="button-style" (click)="addComment()">הוסף תגובה</button>
+      <button style="margin-top:5%" class="button-style" (click)="addToBasket(productDetails)">הוסף לסל</button>
+    </fieldset>
+  </form>
+</div>

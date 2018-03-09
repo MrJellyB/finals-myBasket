@@ -1,0 +1,6 @@
+1)יש להריץ את mongod בתיקיית ההתקנה.
+2)יש להריץ את mongo בתיקיית ההתקנה.
+3)יש להריץ את הסקריפטים : AllScripts.json and store.json.
+4)יש ללחוץ על node.bat.
+5)יש ללחוץ על angular4.bat
+6)יש להריץ את ההאתר על הכתובת: http://localhost:4200/

@@ -1,0 +1,82 @@
+<!--
+
+<form name="form" #f="ngForm" *ngIf="productIdToShow != 0 && productDetails">
+  <table  style="background-color:white;">
+    <tr>
+      <th class="title-right">מאפיין</th>
+      <th class="title-right">פרטים</th>
+    </tr>
+
+    <tr>
+      <td class="title-right">מזהה מוצר</td>
+      <td class="title-right">{{productDetails.id}}</td>
+    </tr>
+
+    <tr>
+      <td class="title-right">שם המוצר</td>
+      <td class="title-right">{{productDetails.name}}</td>
+    </tr>
+
+    <tr>
+      <td class="title-right">מחיר</td>
+      <td class="title-right">{{productDetails.price}}</td>
+    </tr>
+
+    <tr>
+      <td class="title-right">קטגוריה</td>
+      <td class="title-right">{{productDetails.categoryValue}}</td>
+    </tr>
+
+    <tr>
+      <td class="title-right">קלוריות</td>
+      <td class="title-right">{{productDetails.calories}}</td>
+    </tr>
+
+    <tr>
+      <td class="title-right">מדינת יצור</td>
+      <td class="title-right">{{productDetails.createCountry}}</td>
+    </tr>
+
+    <tr>
+      <td class="title-right">יצרן</td>
+      <td class="title-right">{{productDetails.company}}</td>
+    </tr>
+
+  </table>
+</form>
+    -->
+<div class="container">
+  <form name="form" #f="ngForm" id="contact" *ngIf="productIdToShow != 0 && productDetails">
+    <h3>פרטי מוצר</h3>
+
+    <fieldset class="row">
+      שם מוצר:
+      <input tabindex="1" name="name" type="text" [(ngModel)]="productDetails.name" #name="ngModel" disabled />
+    </fieldset>
+
+    <fieldset class="row">
+      מחיר:
+      <input tabindex="2" name="price" type="text" [(ngModel)]="productDetails.price" #price="ngModel" disabled />
+    </fieldset>
+
+    <fieldset class="row">
+      קטגוריה:
+      <input tabindex="3" name="categoryValue" type="text" [(ngModel)]="productDetails.categoryValue" #categoryValue="ngModel" disabled />
+    </fieldset>
+
+    <fieldset class="row">
+      קלוריות:
+      <input tabindex="4" name="calories" type="text" [(ngModel)]="productDetails.calories" #calories="ngModel" disabled />
+    </fieldset>
+
+    <fieldset class="row">
+      מדינת יצור:
+      <input tabindex="5" name="createCountry" type="text" [(ngModel)]="productDetails.createCountry" #createCountry="ngModel" disabled />
+    </fieldset>
+
+    <fieldset class="row">
+      יצרן:
+      <input tabindex="6" name="company" type="text" [(ngModel)]="productDetails.company" #company="ngModel" disabled />
+    </fieldset>
+  </form>
+</div>

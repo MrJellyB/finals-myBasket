@@ -1,0 +1,275 @@
+/*@import "node_modules/bootstrap/scss/variables";*/
+@import '../node_modules/bootstrap/scss/functions';
+@import "../node_modules/bootstrap/scss/variables";
+
+$nav-color-1: #e3482c;
+$nav-color-2: #ec7523;
+$nav-color-3: #ffed1b;
+$nav-color-4: #c9db53;
+$nav-color-5: #8fc23f;
+$nav-color-6: #1f8b95;
+$nav-color-7: #ea676c;
+$nav-color-8: #dc1c4b;
+$nav-color-9: #6f1e49;
+$nav-color-10: #66342d;
+$nav-color-11: #133340;
+$nav-color-12: #d0ad9a;
+$nav-color-13: #7d8e9e;
+
+body {
+  background: url("https://thenypost.files.wordpress.com/2018/01/grocery-store.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+  position: relative;
+  margin: 0;
+  min-height: 100vh;
+}
+
+i.icon {
+  display: block;
+  text-indent: -9999px;
+  width: 35px;
+  background-repeat: no-repeat;
+  float: right;
+  padding-top: 35px;
+}
+
+.nav-text-container {
+  display: flex;
+  justify-content: center; /* align horizontal */
+  align-items: flex-start; /* align vertical */
+}
+
+i.milk {
+  background-image: url('/assets/icons/milk2.svg');
+}
+
+i.fish {
+  background-image: url('/assets/icons/fish.svg');
+}
+
+i.leaf {
+  background-image: url('/assets/icons/leaf.svg');
+}
+
+i.tomato {
+  background-image: url('/assets/icons/tomato.svg');
+}
+
+i.candy {
+  background-image: url('/assets/icons/candy.svg');
+}
+
+i.wheat {
+  background-image: url('/assets/icons/wheat.svg');
+}
+
+i.cheese {
+  background-image: url('/assets/icons/cheese.svg');
+}
+
+i.candy {
+  background-image: url('/assets/icons/candy.svg');
+}
+
+i.can {
+  background-image: url('/assets/icons/can.svg');
+}
+
+i.bread {
+  background-image: url('/assets/icons/bread.svg');
+}
+
+
+i.toilet-paper {
+  background-image: url('/assets/icons/toilet-paper.svg');
+}
+
+i.house {
+  background-image: url('/assets/icons/house.svg');
+}
+
+i.baby-bottle {
+  background-image: url('/assets/icons/baby-bottle.svg');
+}
+
+i.water-bottle {
+  background-image: url('/assets/icons/water-bottle.svg');
+}
+
+.dropdown:hover > .dropdown-menu {
+  display: block;
+}
+
+.category-navigation {
+  //padding: 0px;
+  .nav-item {
+    @mixin nav-item($nav-color) {
+      text-align: center;
+      vertical-align: central;
+
+      &:hover {
+        background-color: $nav-color;
+
+        a {
+          color: white;
+        }
+
+        a.nav-link svg {
+          fill: white;
+        }
+      }
+
+      a {
+        color: $nav-color;
+      }
+
+      a.nav-link svg {
+        fill: $nav-color;
+      }
+
+      a.nav-link span {
+        margin-left: 5px;
+      }
+
+      .dropdown-menu {
+        border-bottom: solid 8px;
+        border-top: solid 8px;
+        border-color: $nav-color;
+      }
+
+      .dropdown-menu {
+        margin-top: 0px;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 0px;
+      }
+
+      .dropdown-menu:before {
+        content: '';
+        left: 50%;
+        position: absolute;
+        width: 0;
+        height: 0;
+        margin-top: -8px;
+        border-top: solid 8px $nav-color;
+        border-left: solid 8px transparent;
+        border-right: solid 8px transparent;
+      }
+
+      a {
+        cursor: pointer;
+      }
+    }
+
+    &:nth-child(n) {
+      font-weight: bold;
+      font-size: 12px;
+      border-left: 0.1px solid;
+      background-color: white;
+      border-color: lightgray;
+      text-align: center;
+    }
+
+    &:first-child {
+      @include nav-item($nav-color-1);
+    }
+
+    &:nth-child(2) {
+      @include nav-item($nav-color-2);
+    }
+    /*.category-navigation &:nth-child(3) {
+        border-color: #ffed1b;
+      }*/
+    &:nth-child(3) {
+      @include nav-item($nav-color-3);
+    }
+    /*.category-navigation &:nth-child(4) {
+        border-color: #c9db53;
+      }*/
+    &:nth-child(4) {
+      @include nav-item($nav-color-4);
+    }
+
+    &:nth-child(5) {
+      @include nav-item($nav-color-5);
+    }
+
+    &:nth-child(6) {
+      @include nav-item($nav-color-6);
+    }
+
+    &:nth-child(7) {
+      @include nav-item($nav-color-7);
+    }
+
+    &:nth-child(8) {
+      @include nav-item($nav-color-8);
+    }
+
+    &:nth-child(9) {
+      @include nav-item($nav-color-9);
+    }
+
+    &:nth-child(10) {
+      @include nav-item($nav-color-10);
+    }
+
+    &:nth-child(11) {
+      @include nav-item($nav-color-11);
+    }
+
+    &:nth-child(12) {
+      @include nav-item($nav-color-12);
+    }
+
+    &:nth-child(13) {
+      @include nav-item($nav-color-13);
+    }
+    /*.category-navigation &:nth-child(5) {
+        border-color: #8fc23f;
+      }*/
+    /*.category-navigation &:first-child {
+        border-color: #e3482c;
+      }*/
+    &:last-child {
+      border-left: 0;
+    }
+
+    .dropdown {
+      border-bottom: 10px solid;
+      //border-color:
+    }
+  }
+}
+
+.subcategory-cards {
+  column-count: 2;
+}
+
+.subcategory-cards > .card {
+  border: unset;
+}
+
+
+.navbar-nav {
+  border: 0.1px solid;
+  border-color: lightgray;
+}
+
+.products.card-deck {
+
+  .card {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  .product-amount {
+    width: 30%;
+  }
+}
+/*.category-navigation .nav-item:nth-child(2) {
+        border-color: #ec7523;
+      }*/

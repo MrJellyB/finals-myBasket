@@ -1,0 +1,14 @@
+<div class="page-wrap" *ngIf="router.url !== '/page-404'">
+  <header>
+    <app-main-navigator></app-main-navigator>
+  </header>
+  <div>
+    <div id="main" class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+<footer class="footer">
+  <span class="text-muted">כל הזכויות שמורות - 2018</span>
+</footer>
+

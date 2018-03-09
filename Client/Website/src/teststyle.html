@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">-->
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet"
+        href="https://cdn.rtlcss.com/bootstrap/v4.0.0/css/bootstrap.min.css"
+        integrity="sha384-P4uhUIGk/q1gaD/NdgkBIl3a6QywJjlsFJFk7SPRdruoGddvRVSwv5qFnvZ73cpz"
+        crossorigin="anonymous">
+
+  <script src="https://code.jquery.com/jquery-3.3.1.js"
+          integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+          crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>-->
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://cdn.rtlcss.com/bootstrap/v4.0.0/js/bootstrap.min.js"
+          integrity="sha384-54+cucJ4QbVb99v8dcttx/0JRx4FHMmhOWi4W+xrXpKcsKQodCBwAvu3xxkZAwsH"
+          crossorigin="anonymous"></script>
+  <link href="StyleSheet2.css" rel="stylesheet" />
+  <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+
+  <script>
+
+    $(document).ready(function () {
+      //var referenceElement = $(".dropdown");
+      //var onLeftPopper = $(".category-navigation .dropdown-menu");
+      var referenceElement = $(".button-popper");
+      var onLeftPopper = $(".dropdown-hidden");
+      var arrow = $(".popper-arrow");
+      var popper = new Popper(referenceElement, onLeftPopper, {
+        placement: 'bottom',
+        onCreate: (data) => {
+          // data is an object containing all the informations computed
+          // by Popper.js and used to style the popper and its arrow
+          // The complete description is available in Popper.js documentation
+        }
+        //arrowElement: arrow
+      });
+
+      function attachPopper(evt) {
+        position = evt.target.value;
+
+        //Position of the popper
+        $('#example10code').html(code.replace('position', position));
+        $('.currentPosition').text(position);
+
+        popper && popper.destroy();
+        popper = new Popper(example10reference1, example10popper1, {
+          placement: position,
+          boundariesElement: example10reference1.parentNode
+        });
+
+
+      }
+
+      $('body').on('mouseenter mouseleave', '.dropdown', function (e) {
+        var _d = $(e.target).closest('.dropdown'); _d.addClass('show');
+        setTimeout(function () {
+          _d[_d.is(':hover') ? 'addClass' : 'removeClass']('show');
+        }, 300);
+      });
+
+      /*
+* Replace all SVG images with inline SVG
+*/
+      $('i.icon').each(function () {
+        var $img = jQuery(this);
+        var imgID = $img.attr('id');
+        var imgClass = $img.attr('class');
+        var imgURL = $img.css('background-image').replace('url(', '').replace(')', '').replace(/\"/gi, "");;
+
+        $.get(imgURL, function (data) {
+          // Get the SVG tag, ignore the rest
+          var $svg = jQuery(data).find('svg');
+
+          // Add replaced image's ID to the new SVG
+          if (typeof imgID !== 'undefined') {
+            $svg = $svg.attr('id', imgID);
+          }
+          // Add replaced image's classes to the new SVG
+          if (typeof imgClass !== 'undefined') {
+            $svg = $svg.attr('class', imgClass + ' replaced-svg');
+          }
+
+          // Remove any invalid XML tags as per http://validator.w3.org
+          $svg = $svg.removeAttr('xmlns:a');
+
+          // Check if the viewport is set, if the viewport is not set the SVG wont't scale.
+          if (!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
+            $svg.attr('viewBox', '0 0 ' + $svg.attr('height') + ' ' + $svg.attr('width'))
+          }
+
+          $svg.attr('height', $img.css('padding-top'));
+          $svg.attr('float', $img.css('float'));
+
+          // Replace image with new SVG
+          $img.replaceWith($svg);
+
+        }, 'xml');
+
+      });
+    });
+    // popper.options.modifiers.arrow.element = arrow;
+  </script>
+</head>
+<body>
+  <button type="button" class="btn btn-light">לוגו</button>
+  <button type="button" class="btn btn-info"><i class="fas fa-shopping-cart"></i>הסל שלי</button>
+  <button type="button" class="btn btn-warning"><i class="fas fa-chart-bar"></i>סטטיסטיקות</button>
+  <button type="button" class="btn btn-danger"><i class="fas fa-wrench"></i>ממשק ניהול</button>
+  <button type="button" class="btn btn-danger"><i class="fas fa-power-off"></i>התנתקות</button>
+
+  <nav class="navbar navbar-expand category-navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+
+        <li class="nav-item active">
+          <a class="nav-link" href="#">
+            <div class="nav-text-container">
+              <span>
+                <i class="icon milk"></i>
+              </span>
+              <!--<img src="https://image.freepik.com/free-icon/small-truck_318-73242.jpg" style="float:right" />-->
+              <!--<span style="float:right">sdasd</span>-->
+              <span>
+                חלב וביצים
+              </span>
+            </div>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <div class="nav-text-container">
+              <span><i class="icon bread"></i></span>
+              <span> דברי מאפה</span>
+            </div>
+          </a>
+        </li>
+        <li class="nav-item">
+
+          <a class="nav-link" href="#">
+            <div class="nav-text-container">
+              <span> <i class="icon tomato"></i></span>
+              <span>  פירות וירקות</span>
+            </div>
+          </a>
+        </li>
+        <li class="nav-item">
+
+          <a class="nav-link" href="#">
+            <div class="nav-text-container">
+              <span>  <i class="icon fish"></i></span>
+              <span>  בשר ודגים</span>
+            </div>
+          </a>
+
+        </li>
+        <li class="nav-item">
+
+          <a class="nav-link" href="#">
+            <div class="nav-text-container">
+              <span>   <i class="icon candy"></i></span>
+              <span>  חטיפים וממתקים</span>
+            </div>
+          </a>
+
+        </li>
+        <li class="nav-item">
+
+          <a class="nav-link" href="#">
+            <div class="nav-text-container">
+              <span><i class="icon wheat"></i></span>
+              <span>דגנים וקטניות</span>
+            </div>
+          </a>
+
+        </li>
+        <li class="nav-item">
+
+          <a class="nav-link" href="#">
+            <div class="nav-text-container">
+              <span>  <i class="icon cheese"></i></span>
+              <span>  מעדניה וקפואים</span>
+            </div>
+          </a>
+
+        </li>
+        <li class="nav-item">
+
+          <a class="nav-link" href="#">
+            <div class="nav-text-container">
+              <span>  <i class="icon can"></i></span>
+              <span>  שימורים, בישול ואפיה</span>
+            </div>
+          </a>
+
+        </li>
+        <li class="nav-item">
+
+          <a class="nav-link" href="#">
+            <div class="nav-text-container">
+              <span>  <i class="icon toilet-paper"></i></span>
+              <span>  נייר וניקיון</span>
+            </div>
+          </a>
+
+        </li>
+        <li class="nav-item">
+
+          <a class="nav-link" href="#">
+            <div class="nav-text-container">
+              <span>  <i class="icon house"></i></span>
+              <span>  בית ובעלי חיים</span>
+            </div>
+          </a>
+
+        </li>
+        <li class="nav-item">
+
+          <a class="nav-link" href="#">
+            <div class="nav-text-container">
+              <span>  <i class="icon leaf"></i></span>
+              <span>  בריאות ואורגני</span>
+            </div>
+          </a>
+
+        </li>
+        <li class="nav-item">
+
+          <a class="nav-link" href="#">
+            <div class="nav-text-container">
+              <span>   <i class="icon baby-bottle"></i></span>
+              <span>   טיפוח ותינוקות</span>
+            </div>
+          </a>
+
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown link
+          </a>
+          <!--<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>-->
+          <div class="dropdown-menu dropdown-menu-right">
+            <!--<span x-arrow>arrow</span>-->
+            <div class="card-columns subcategory-cards">
+              <div class="card">
+                <div class="card-body">
+                  <h6 class="card-title">sdasdsadasda</h6>
+                  <p class="card-text">sdasdsadasda</p>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-body">
+                  <h6 class="card-title">sdasdsadasda</h6>
+                  <p class="card-text">sdasdsadasda</p>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-body">
+                  <h6 class="card-title">sdasdsadasda</h6>
+                  <p class="card-text">sdasdsadasda</p>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-body">
+                  <h6 class="card-title">sdasdsadasda</h6>
+                  <p class="card-text">sdasdsadasda</p>
+                  <p class="card-text">sdasdsadasda</p>
+                  <p class="card-text">sdasdsadasda</p>
+
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-body">
+                  <h6 class="card-title">sdasdsadasda</h6>
+                  <p class="card-text">sdasdsadasda</p>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-body">
+                  <h6 class="card-title">sdasdsadasda</h6>
+                  <p class="card-text">sdasdsadasda</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="products card-deck">
+      <div class="card">
+        <div class="d-flex justify-content-between align-middle">
+          <div></div>
+          <div class="align-self-center">
+            <i class="fas fa-plus-circle"></i>
+            <input type="text" class="form-control" style="width: 30px; height: 30px; display: inline-block;">
+            <i class="fas fa-minus-circle"></i>
+          </div>
+          <div class="align-self-center">
+            <i class="fas fa-trash-alt"></i>
+          </div>
+        </div>
+        <div>
+        </div>
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Card title that wraps to a new line</h5>
+          <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        </div>
+      </div>
+      <div class="card p-3">
+        <blockquote class="blockquote mb-0 card-body">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+          <footer class="blockquote-footer">
+            <small class="text-muted">
+              Someone famous in <cite title="Source Title">Source Title</cite>
+            </small>
+          </footer>
+        </blockquote>
+      </div>
+      <div class="card">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-deck">
+      <div class="card bg-primary text-white text-center p-3">
+        <blockquote class="blockquote mb-0">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
+          <footer class="blockquote-footer">
+            <small>
+              Someone famous in <cite title="Source Title">Source Title</cite>
+            </small>
+          </footer>
+        </blockquote>
+      </div>
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+      <div class="card">
+        <img class="card-img" src="..." alt="Card image">
+      </div>
+    </div>
+
+    <div class="card-deck">
+      <div class="card p-3 text-right">
+        <blockquote class="blockquote mb-0">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+          <footer class="blockquote-footer">
+            <small class="text-muted">
+              Someone famous in <cite title="Source Title">Source Title</cite>
+            </small>
+          </footer>
+        </blockquote>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn -group">
+      <button type="button" class="btn btn-danger">Action</button>
+      <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="sr-only">Toggle Dropdown</span>
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Separated link</a>
+      </div>
+    </div>
+
+    <span class="button-popper">
+      button
+    </span>
+
+    <span class="dropdown-hidden">
+      content
+      <span x-arrow>arrow</span>
+    </span>
+  </div>
+
+  <canvas id="welcomeCanvas" width="300" height="60" dir="ltr" style="text-align: left;">
+    Your browser does not support the HTML5 canvas tag.
+  </canvas>
+
+  <script>
+    var canvas = document.getElementById("welcomeCanvas");
+    var x = canvas.width;
+    var y = canvas.height;
+
+    var ctx = canvas.getContext('2d');
+    ctx.textAlign = "right"
+    ctx.font = "50px Segoe UI";
+    ctx.shadowColor = "rgb(190, 190, 190)";
+    ctx.shadowOffsetX = 10;
+    ctx.shadowOffsetY = 10
+    ctx.shadowBlur = 10;
+
+    var gradient = ctx.createLinearGradient(x, y, x - 150, y - 100);
+    gradient.addColorStop(0, "rgb(97, 250, 97)");
+    gradient.addColorStop(1, "rgb(110, 129, 255)");
+    ctx.fillStyle = gradient;
+    ctx.fillText("ברוך הבא", x, y / 2);
+  </script>
+</body>
+</html>
