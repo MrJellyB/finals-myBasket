@@ -5,8 +5,9 @@ import { UserLoginComponent } from './user-login-component/user-login.component'
 import { UsersServiceService } from './users-service.service';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { ManagerPageComponent } from './manager-page/manager-page.component';
+import { ProfileBuilderComponent } from './profile-builder/profile-builder.component';
 @NgModule({
-  declarations: [UserLoginComponent, RegisterUserComponent, ManagerPageComponent],
+  declarations: [UserLoginComponent, RegisterUserComponent, ManagerPageComponent, ProfileBuilderComponent],
   imports: [
     CommonModule,
     FormsModule

@@ -85,3 +85,21 @@ export interface CategoryToProduct {
   ListProductsAndGrades: Array<ProductToGrades>
 }
 
+export interface FamilyData {
+  adults: number;
+  kids: number;
+  babies: number;
+}
+
+export interface UserAddress {
+  country: string;
+  city: string;
+  street: string;
+}
+
+export interface UserProfile {
+  address: UserAddress;
+  peopleAmount: FamilyData;
+  preferences: Array<string>;
+  avoidness: Array<string>;
+}

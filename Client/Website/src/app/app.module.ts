@@ -13,9 +13,7 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
 import { FormsModule } from '@angular/forms';
 import { AuthGuardService } from './shared/services/AuthGuard/auth-guard.service';
 import { MainNavigatorComponent } from './components/main-navigator/main-navigator.component';
-import { AboutDataComponent } from './components/about-data/about-data.component'
-
-//import { AgmCoreModule } from '@agm/core';
+import { AboutDataComponent } from './components/about-data/about-data.component';
 
 
 @NgModule({
@@ -26,11 +24,7 @@ import { AboutDataComponent } from './components/about-data/about-data.component
     HttpModule,
     ProductModule,
     BasketModule,
-    FormsModule,
-    /*
-    AgmCoreModule.forRoot({
-      apiKey: 'YOUR_KEY'
-    })*/
+    FormsModule
   ],
   declarations: [
     AppComponent,
