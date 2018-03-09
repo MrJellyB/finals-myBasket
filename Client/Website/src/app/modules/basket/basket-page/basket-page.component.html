@@ -33,8 +33,8 @@
         </tr>
       </tbody>
     </table>
-    <div class="final-price align-bottom" >
-      סך הכל:  {{ getTotalPrice() | currency:'ILS':'symbol':'1.2-2' }}
+    <div class="final-price align-bottom">
+      סך הכל: {{ getTotalPrice() | currency:'ILS':'symbol':'1.2-2' }}
     </div>
   </div>
 
@@ -48,64 +48,20 @@
     <div>
       <img src="https://www.shufersal.co.il/umbracoContent/images/logo_mobile.png" width="200" />
     </div>
-    <!--<div>
-      גולדה מאיר, תחנה מרכזית חדשה ראשון לציון
-    </div>
-    <div>
-      <div>
-        כתובת: גולדה מאיר 1, ראשון לציון
-      </div>
-      <div>
-        טלפון: 03-952-2940
-      </div>
-      <div>
-        שעות פתיחה:
-        <table>
-          <tr>
-            <td>יום ראשון</td>
-            <td>8:00–22:00</td>
-          </tr>
-          <tr>
-            <td>יום שני</td>
-            <td>8:00–22:00</td>
-          </tr>
-          <tr>
-            <td>יום שלישי</td>
-            <td>8:00–22:00</td>
-          </tr>
-          <tr>
-            <td>יום רביעי</td>
-            <td>8:00–22:00</td>
-          </tr>
-          <tr>
-            <td>יום חמישי</td>
-            <td>8:00–22:00</td>
-          </tr>
-          <tr>
-            <td>יום שישי</td>
-            <td>18:30–22:00</td>
-          </tr>
-          <tr>
-            <td>יום שבת</td>
-            <td>7:00–14:00</td>
-          </tr>
-        </table>
-      </div>
-    </div>-->
     <div>
       <div>רשימת חנויות</div>
       <div>
-        <!--[selected]="currCategory.id == currentCategory-->
         <select (change)="selectItem($event.target.value)" class="form-control">
           <option *ngFor="let currStore of stores" [selected]="currStore.Address + ' ' + currStore.City == currentStreetName" value="{{currStore.Address}} {{currStore.City}}">{{currStore.Storename}}</option>
         </select>
-        כתובת:
-        {{ currentStreetName }}
+        כתובת: {{ currentStreetName }}
       </div>
       <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="mapClicked($event)" (mapReady)="mapReady($event)" [zoom]="zoom" [scrollwheel]="false">
         <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
       </agm-map>
-      <button type="button" class="btn btn-primary" style="float:left"><i class="fa fa-print"></i></button>
+      <button type="button" class="btn btn-primary" style="float:left">
+        <i class="fa fa-print"></i>
+      </button>
       <button type="button" class="btn btn-danger" style="float:right" (click)="emptyBasket()">
         <i class="fas fa fa-trash-alt"></i>
       </button>

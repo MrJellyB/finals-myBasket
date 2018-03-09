@@ -6,7 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BasketHandleService } from './basket.service';
 import { AgmCoreModule } from '@agm/core';
 import { BasketItem } from '../../interface/entities.interface';
-import { Product } from '../../shared/entities/Product';
 
 @NgModule({
   imports: [

@@ -6,10 +6,9 @@ import { BasketService } from '../../../services/basketService/basket-service.se
 import { BasketHandleService } from '../basket.service';
 import { ActivatedRoute } from '@angular/router';
 import { EventEmitter, NgZone } from '@angular/core';
-import { Store } from '../../../shared/entities/store';
 import { Observable } from 'rxjs/Observable';
-import { Marker, BasketItem, Basket } from '../../../interface/entities.interface';
-import {} from 'googlemaps';
+import { Marker, BasketItem, Basket, Store } from '../../../interface/entities.interface';
+import { } from 'googlemaps';
 
 @Component({
   selector: 'app-basket-page',
@@ -18,7 +17,6 @@ import {} from 'googlemaps';
 })
 export class BasketPageComponent implements OnInit {
   basketItems: BasketItem[] = BasketService.getBasket();
-
   title: string = 'My first AGM project';
   lat: number = 32.678418;
   lng: number = 35.409007;
@@ -39,10 +37,8 @@ export class BasketPageComponent implements OnInit {
     private ngZone: NgZone) { }
 
   ngOnInit() {
-    // this.marker = <Marker>{};
-    this.marker.lat = this.lat;
-    this.marker.lng = this.lng;
-    // this.basket
+    this.marker = { lat: this.lat, lng: this.lng };
+    this.basket = <Basket>{};
     this.basket.id = 0;
     this.getAllStores();
     this.select = new EventEmitter();
@@ -170,8 +166,9 @@ export class BasketPageComponent implements OnInit {
 
   getAllStores() {
     this.basketHandleService.getAllStores().subscribe(
-      (data) => {
-        this.stores = Store.toStore(data)
+      (data: any) => {
+        //this.stores = Store.toStore(data)
+        this.stores = data
       }
     )
   }

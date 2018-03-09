@@ -1,8 +1,7 @@
 import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
-import { Category } from '../../../shared/entities/Category';
 import { ProductService } from '../product.service';
 import { EventEmitter } from '@angular/core';
-import { Product } from '../../../shared/entities/Product';
+import { Product, Category } from '../../../interface/entities.interface';
 
 @Component({
   selector: 'app-product-details-preview',
@@ -22,7 +21,7 @@ export class ProductDetailsPreviewComponent implements OnInit {
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
-    this.productDetails = new Product();
+    this.productDetails = <Product>{};
     this.getProductDetails(this.productIdToShow);
   }
 

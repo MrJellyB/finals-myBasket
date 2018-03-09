@@ -1,7 +1,7 @@
 import { Component, Renderer2, OnInit, Inject, ViewChild, ElementRef } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { UsersServiceService} from '../../modules/login/users-service.service';
+import { UsersServiceService } from '../../modules/login/users-service.service';
 import { BasketModule } from '../../modules/basket/basket.module';
 import { BasketService } from '../../services/basketService/basket-service.service';
 
@@ -11,7 +11,7 @@ import { BasketService } from '../../services/basketService/basket-service.servi
   styleUrls: ['./main-page.component.css']
 })
 export class MainPageComponent {
-  @ViewChild('supermarketVideo') supermarketVideo: ElementRef; 
+  @ViewChild('supermarketVideo') supermarketVideo: ElementRef;
 
   constructor(private router: Router) { }
 

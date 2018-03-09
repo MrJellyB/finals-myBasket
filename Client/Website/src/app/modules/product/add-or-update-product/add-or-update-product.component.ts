@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../product.service';
-import { Product } from '../../../shared/entities/Product';
-import { Category } from '../../../shared/entities/Category';
+import { Category, Product } from '../../../interface/entities.interface';
 import { EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
@@ -33,10 +32,11 @@ export class AddOrUpdateProductComponent implements OnInit {
     private usersService: UsersServiceService) { }
 
   ngOnInit() {
-    this.product = new Product();
+    this.product = <Product>{};
     this.product.id = 0;
     this.getCategories();
     this.select = new EventEmitter();
+    debugger;
 
     this.route.params.subscribe(params => {
       let id: number = +params['id'];
@@ -55,8 +55,8 @@ export class AddOrUpdateProductComponent implements OnInit {
   }
 
   getCategories() {
-    this.productService.getCategories().subscribe((results) => {
-      this.categories = Category.toCategories(results);
+    this.productService.getCategories().subscribe((results: any) => {
+      this.categories = results
       console.log(this.categories);
     })
   }
@@ -65,7 +65,7 @@ export class AddOrUpdateProductComponent implements OnInit {
     if (this.actionCode == 1) {
       this.saveProduct();
     }
-    else if (this.actionCode == 2){
+    else if (this.actionCode == 2) {
       this.updateTheProduct();
     }
     else if (this.actionCode == 3) {
@@ -111,14 +111,14 @@ export class AddOrUpdateProductComponent implements OnInit {
 
   saveProduct() {
     ;
-      this.product.calories = +this.product.calories;
-      this.product.price = +this.product.price;
-      this.productService.saveProduct(this.product).subscribe((results) => {
-        this.product.id = +results;
-        this.actionCode = 2;
-        alert('שמירת המוצר בוצעה בהצלחה, הינך עובר למסך עריכה');
-        this.router.navigate(['/add-or-update-product/' + this.product.id]);
-   })
+    this.product.calories = +this.product.calories;
+    this.product.price = +this.product.price;
+    this.productService.saveProduct(this.product).subscribe((results) => {
+      this.product.id = +results;
+      this.actionCode = 2;
+      alert('שמירת המוצר בוצעה בהצלחה, הינך עובר למסך עריכה');
+      this.router.navigate(['/add-or-update-product/' + this.product.id]);
+    })
   }
 
   updateTheProduct() {

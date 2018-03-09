@@ -8,7 +8,7 @@ import * as d3Array from 'd3-array';
 import * as d3Axis from 'd3-axis';
 
 declare var jQuery: any;
-import { Product } from '../../../shared/entities/Product';
+import { Product } from '../../../interface/entities.interface';
 import { ProductService } from '../product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 //import { Stocks} from './data';

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Category } from '../../../shared/entities/Category';
+import { Product, Category } from '../../../interface/entities.interface';
 import { ProductService } from '../product.service';
 import { EventEmitter } from '@angular/core';
-import { Product } from '../../../shared/entities/Product';
 import { CategoryToProduct } from './category-to-product';
 import { ProductToGrades } from './ProductAndGrades'
 
@@ -36,8 +35,8 @@ export class PreferredProductComponent implements OnInit {
 
   getCategoryToProductsToGrades() {
     this.productService.getProducts().subscribe(
-      (data) => {
-        this.products = Product.toProductWithComments(data);
+      (data : any) => {
+        this.products = data;
         this.products.forEach(currProduct => {
 
           let curr: CategoryToProduct = new CategoryToProduct();
@@ -70,8 +69,8 @@ export class PreferredProductComponent implements OnInit {
   }
 
   getCategories() {
-    this.productService.getCategories().subscribe((results) => {
-      this.categories = Category.toCategories(results);
+    this.productService.getCategories().subscribe((results: any) => {
+      this.categories = results;
       console.log(this.categories);
     })
   }

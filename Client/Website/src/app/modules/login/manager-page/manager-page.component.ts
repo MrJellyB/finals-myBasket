@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersServiceService } from '../users-service.service';
-import { User } from '../../../shared/entities/User';
+import { User } from '../../../interface/entities.interface';
 
 
 @Component({
@@ -21,8 +21,8 @@ export class ManagerPageComponent implements OnInit {
 
   getUsers(): any {
     this.userService.getAllUsers().subscribe(
-      (data) => {
-        this.users = User.toUser(data);
+      (data: any) => {
+        this.users = data;
         console.log(this.users);
         debugger;
         let userToRemove = this.users.findIndex(x => x.userName == this.getDisplayUserName());
@@ -32,8 +32,7 @@ export class ManagerPageComponent implements OnInit {
           if (this.users[i].userType == 2) {
             this.users[i].isManagerChecked = true;
           }
-          else
-          {
+          else {
             this.users[i].isManagerChecked = false;
           }
         }

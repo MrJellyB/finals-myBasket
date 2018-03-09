@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Category } from '../../../shared/entities/Category';
 import { ProductService } from '../product.service';
 import { EventEmitter } from '@angular/core';
-import { Product } from '../../../shared/entities/Product';
+import { Product, Category } from '../../../interface/entities.interface';
 
 
 
@@ -30,8 +29,8 @@ export class CheapestProdctByCategoryComponent implements OnInit {
   }
 
   getCategories() {
-    this.productService.getCategories().subscribe((results) => {
-      this.categories = Category.toCategories(results);
+    this.productService.getCategories().subscribe((results:any) => {
+      this.categories = results;
       console.log(this.categories);
     })
   }
@@ -54,7 +53,7 @@ export class CheapestProdctByCategoryComponent implements OnInit {
         }
         else
         {
-          this.productDetails = new Product();
+          this.productDetails = <Product>{};
           this.productIdToShow = {};
           this.boolIsShow = false;
         }

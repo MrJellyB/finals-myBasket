@@ -1,9 +1,9 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
-import { Product } from '../../../shared/entities/Product';
-import { Category } from '../../../shared/entities/Category';
+import { Component, OnInit, EventEmitter } from '@angular/core';  ``
 import { ProductService } from '../product.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UsersServiceService } from '../../login/users-service.service';
+import { Product, Category } from '../../../interface/entities.interface';
+
 
 @Component({
   selector: 'app-products-list-filter',
@@ -40,8 +40,8 @@ export class ProductsListFilterComponent implements OnInit {
 
   getProductsPaging(): void {
     this.loading = true;
-    this.productService.getProductsPaging(this.page, this.limit).subscribe(products => {
-      this.productPaging = Product.toProduct(products);
+    this.productService.getProductsPaging(this.page, this.limit).subscribe((products:any) => {
+      this.productPaging = products;
       console.log(products);
       this.getCategories();
       this.loading = false;
@@ -54,8 +54,8 @@ export class ProductsListFilterComponent implements OnInit {
   }
 
   getCategories() {
-    this.productService.getCategories().subscribe((results) => {
-      this.categories = Category.toCategories(results);
+    this.productService.getCategories().subscribe((results : any) => {
+      this.categories = results;
 
       for (var i = 0; i < this.productPaging.length; i++) {
         debugger;

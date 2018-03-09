@@ -45,10 +45,12 @@ export interface User {
     userName: string;
     email: string;
     password: string;
-    gender: 1 | 2;
+    //gender: 1 | 2;
+    gender: number;
     // userTypeValue: string;
     role: string; // TODO: Change in script 
     isManagerChecked: boolean;
+    userType: number;
 }
 
 export interface Marker { // For gmaps

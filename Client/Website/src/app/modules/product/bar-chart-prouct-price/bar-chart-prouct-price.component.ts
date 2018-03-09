@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../product.service';
-import { Product } from '../../../shared/entities/Product';
+import { Product } from '../../../interface/entities.interface';
 
 
 import * as d3 from 'd3-selection';
@@ -41,8 +41,8 @@ export class BarChartProuctPriceComponent implements OnInit {
 
   getProducts(): any {
     this.productService.getProducts().subscribe(
-      (data) => {
-        this.products = Product.toProduct(data);
+      (data:any) => {
+        this.products = data;
         console.log(this.products);
 
         this.minPrice = this.products[0].price;

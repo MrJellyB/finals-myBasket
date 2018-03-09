@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsersServiceService } from '../users-service.service';
 import { FormGroup } from '@angular/forms';
-import { User } from '../../../shared/entities/User';
+import { User } from '../../../interface/entities.interface';
 import { EeUserType} from '../../../shared/enums/eUserType'
 
 
@@ -35,7 +35,7 @@ export class RegisterUserComponent implements OnInit {
     if (this.model.password == this.model.repeatPassword) {
       this.passIndication = false;
       this.loading = true;
-      this.user = new User();
+      this.user = <User>{};
       this.user.id = this.model.id;
       this.user.firstName = this.model.firstName;
       this.user.lastName = this.model.lastName;

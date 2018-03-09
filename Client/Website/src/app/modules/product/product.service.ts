@@ -4,8 +4,7 @@ import { HttpService } from '../../services/httpService/http.service';
 import { url } from '../../shared/Constants';
 import { HttpHeaders } from '@angular/common/http';
 import { Headers, Http, Response, RequestOptions, RequestOptionsArgs } from '@angular/http';
-import { Product } from '../../shared/entities/Product';
-import { CommentToProduct } from '../../shared/entities/comment-to-prodct';
+import { Product, CommentToProduct, Category } from '../../interface/entities.interface';
 
 
 @Injectable()
