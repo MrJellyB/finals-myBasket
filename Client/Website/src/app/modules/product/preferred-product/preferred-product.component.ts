@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Product, Category } from '../../../interface/entities.interface';
 import { ProductService } from '../product.service';
 import { EventEmitter } from '@angular/core';
-import { CategoryToProduct } from './category-to-product';
-import { ProductToGrades } from './ProductAndGrades'
+import { CategoryToProduct, ProductToGrades} from '../../../interface/entities.interface';
+
 
 @Component({
   selector: 'app-preferred-product',
@@ -39,11 +39,11 @@ export class PreferredProductComponent implements OnInit {
         this.products = data;
         this.products.forEach(currProduct => {
 
-          let curr: CategoryToProduct = new CategoryToProduct();
+          let curr: CategoryToProduct = <CategoryToProduct>{};
           curr.category = currProduct.category;
           curr.ListProductsAndGrades = new Array<ProductToGrades>();
 
-          let productAndGrades = new ProductToGrades();
+          let productAndGrades = <ProductToGrades>{};
           productAndGrades.productId = currProduct.id;
 
           // get the total grade of the current product

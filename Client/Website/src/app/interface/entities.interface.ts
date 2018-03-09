@@ -74,3 +74,14 @@ export interface BasketItem {
     amount: number;
 }
 
+export interface ProductToGrades {
+  productId: number;
+  TotalGrades: number
+}
+
+
+export interface CategoryToProduct {
+  category: number;
+  ListProductsAndGrades: Array<ProductToGrades>
+}
+
