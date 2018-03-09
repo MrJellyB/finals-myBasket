@@ -9,7 +9,6 @@ import { ManagerPageComponent } from '../modules/login/manager-page/manager-page
 
 import { ProductDetailsComponent } from '../modules/product/product-details/product-details.component';
 import { AddOrUpdateProductComponent } from '../modules/product/add-or-update-product/add-or-update-product.component';
-import { DeleteProductComponent } from '../modules/product/delete-product/delete-product.component';
 import { ProductsListComponent } from '../modules/product/products-list/products-list.component';
 import { MainPageComponent } from '../components/main-page/main-page.component';
 import { AppComponent } from '../app.component'
@@ -30,7 +29,6 @@ export const routes: Routes = [
   { path: 'product-details/:id', component: ProductDetailsComponent },
   { path: 'add-or-update-product', component: AddOrUpdateProductComponent },
   { path: 'add-or-update-product/:id', component: AddOrUpdateProductComponent },
-  { path: 'delete-product', component: DeleteProductComponent },
   { path: 'product-list', component: ProductsListComponent },
   { path: 'product-list/:id', component: ProductsListComponent },
   { path: 'main-page', component: MainPageComponent },

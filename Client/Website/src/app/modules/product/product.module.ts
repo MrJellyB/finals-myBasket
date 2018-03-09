@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { AddOrUpdateProductComponent } from './add-or-update-product/add-or-update-product.component';
-import { DeleteProductComponent } from './delete-product/delete-product.component';
 import { ProductService } from './product.service';
 import { FormsModule } from '@angular/forms';
 import { ProductsListComponent } from './products-list/products-list.component'
@@ -28,7 +27,6 @@ import { StatisticsMainPageComponent } from './statistics-main-page/statistics-m
   declarations: [
     ProductDetailsComponent,
     AddOrUpdateProductComponent,
-    DeleteProductComponent,
     ProductsListComponent,
     PaginationComponent,
     CategoryPipe,
@@ -48,6 +46,6 @@ import { StatisticsMainPageComponent } from './statistics-main-page/statistics-m
     FormsModule
   ],
   providers: [ProductService, PagerService],
-  exports: [ProductDetailsComponent, AddOrUpdateProductComponent, DeleteProductComponent, ProductsListComponent, PaginationComponent]
+  exports: [ProductDetailsComponent, AddOrUpdateProductComponent, ProductsListComponent, PaginationComponent]
 })
 export class ProductModule { }

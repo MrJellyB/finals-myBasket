@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
-import { User } from './user-login-component/User';
 import { Headers, Http, Response, RequestOptions, RequestOptionsArgs } from '@angular/http';
 import { environment } from '../../../environments/environment'
 import { Observable } from 'rxjs/Observable';
