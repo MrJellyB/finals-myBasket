@@ -1,47 +1,5 @@
 <div class="row">
   <div class="col-md-8 card-styling" *ngIf="!isBasketEmpty()">
-    <!--<div class="row">
-      <div class="col-md-2 col-md-offset-0">
-        שם המוצר
-      </div>
-      <div class="col-md-2">
-        מחיר ליחידה
-      </div>
-      <div class="col-md-2">
-        כמות
-      </div>
-      <div class="col-md-2">
-        מחיר מלא
-      </div>
-      <div class="col-md-2">
-        מחיקה
-      </div>
-    </div>-->
-    <!--<div class="row" *ngFor="let basketItem of basketItems; let i = index">
-      <div class="col-md-0">
-        <img src="{{ basketItem.image }}" width="80" />
-      </div>
-      <div class="col-md-2">
-        {{ basketItem.name }}
-      </div>
-      <div class="col-md-2">
-        {{ basketItem.price | currency:'ILS':'symbol':'1.2-2' }}
-      </div>
-      <div class="col-md-2">
-        <input type="number" name="quantity" min="1" max="5" [(ngModel)]="basketItem.amount" (input)="setItemAmount(basketItem.id, basketItem.amount)">
-      </div>
-      <div class="col-md-2">
-        {{ basketItem.price*basketItem.amount | currency:'ILS':'symbol':'1.2-2' }}
-      </div>
-      <div class="col-md-2">
-        <button type="button" class="btn btn-danger" (click)="removeItem(i)">
-          <i class="fas fa fa-trash-alt"></i>
-        </button>
-      </div>
-    </div>
-    <div class="final-price">
-      סך הכל:  {{ getTotalPrice() | currency:'ILS':'symbol':'1.2-2' }}
-    </div>-->
     <table class="table" *ngIf="!isBasketEmpty()">
       <thead>
         <tr>
@@ -147,8 +105,6 @@
       <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="mapClicked($event)" (mapReady)="mapReady($event)" [zoom]="zoom" [scrollwheel]="false">
         <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
       </agm-map>
-
-      <!--{{markers.lat }} {{markers.lng}}-->
       <button type="button" class="btn btn-primary" style="float:left"><i class="fa fa-print"></i></button>
       <button type="button" class="btn btn-danger" style="float:right" (click)="emptyBasket()">
         <i class="fas fa fa-trash-alt"></i>

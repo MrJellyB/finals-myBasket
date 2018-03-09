@@ -54,7 +54,21 @@ export interface User {
 export interface Marker { // For gmaps
     lat: number;
     lng: number;
-    label?: string; 
-  }
-  
+    label?: string;
+}
+
+export interface Basket {
+    basketItems: BasketItem[];
+    totalPrice: number;
+    id: number;
+    streetName: string;
+}
+
+export interface BasketItem {
+    id: number;
+    name: string;
+    image: string;
+    price: number;
+    amount: number;
+}
 

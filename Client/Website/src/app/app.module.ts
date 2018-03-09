@@ -11,7 +11,6 @@ import { MainService } from './components/main.service';
 import { BasketModule } from './modules/basket/basket.module';
 import { ErrorPageComponent } from './components/error-page/error-page.component'
 import { FormsModule } from '@angular/forms';
-import { SocketsComponent } from './components/sockets/sockets.component';
 import { AuthGuardService } from './shared/services/AuthGuard/auth-guard.service';
 import { MainNavigatorComponent } from './components/main-navigator/main-navigator.component';
 import { AboutDataComponent } from './components/about-data/about-data.component'
@@ -37,7 +36,6 @@ import { AboutDataComponent } from './components/about-data/about-data.component
     AppComponent,
     MainPageComponent,
     ErrorPageComponent,
-    SocketsComponent,
     MainNavigatorComponent,
     AboutDataComponent
   ],

@@ -1,19 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BasketItemModule } from '../basket-item.module';
 import { CurrencyPipe } from '@angular/common';
 import { BasketService } from '../../../services/basketService/basket-service.service';
-import { Basket } from '../basket';
 import { BasketHandleService } from '../basket.service';
 import { ActivatedRoute } from '@angular/router';
 import { EventEmitter, NgZone } from '@angular/core';
 import { Store } from '../../../shared/entities/store';
 import { Observable } from 'rxjs/Observable';
-import { Marker } from '../../../interface/entities.interface';
-import { } from 'googlemaps';
-
-//declare var google;
+import { Marker, BasketItem, Basket } from '../../../interface/entities.interface';
+import {} from 'googlemaps';
 
 @Component({
   selector: 'app-basket-page',
@@ -21,21 +17,44 @@ import { } from 'googlemaps';
   styleUrls: ['./basket-page.component.css']
 })
 export class BasketPageComponent implements OnInit {
-  basketItems: BasketItemModule[] = BasketService.getBasket();
+  basketItems: BasketItem[] = BasketService.getBasket();
 
   title: string = 'My first AGM project';
   lat: number = 32.678418;
   lng: number = 35.409007;
   zoom: number = 15;
-  public currentStreetName: string;
-  public markers: Marker;
-  public currStore: Store;
+  currentStreetName: string;
+  marker: Marker;
+  currStore: Store;
   select: EventEmitter<string>;
   stores: Store[];
-  public bAfterBasketLoaded = false;
-
-
+  bAfterBasketLoaded = false;
   basket: Basket;
+  map: any;
+
+  constructor(
+    private basketHandleService: BasketHandleService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private ngZone: NgZone) { }
+
+  ngOnInit() {
+    // this.marker = <Marker>{};
+    this.marker.lat = this.lat;
+    this.marker.lng = this.lng;
+    // this.basket
+    this.basket.id = 0;
+    this.getAllStores();
+    this.select = new EventEmitter();
+
+    this.route.params.subscribe(params => {
+      let id: number = +params['id'];
+      if (id) {
+        this.getBasket(id);
+      }
+    })
+  }
+
   getTotalPrice() {
     var totalPrice: number = 0;
     for (var i = 0; i < this.basketItems.length; i++) {
@@ -49,18 +68,11 @@ export class BasketPageComponent implements OnInit {
   }
 
   changeMarker(lat, lng) {
-    this.markers = {
+    this.marker = {
       lat: lat,
       lng: lng
     }
   }
-
-  constructor(
-    private basketHandleService: BasketHandleService,
-    private router: Router,
-    private route: ActivatedRoute,
-    private ngZone: NgZone) { }
-
 
   removeItem(index: number) {
     BasketService.removeItemIndex(index);
@@ -90,7 +102,6 @@ export class BasketPageComponent implements OnInit {
     });
   }
 
-  map: any;
   mapReady($event: any) {
     // here $event will be of type google.maps.Map 
     // and you can put your logic here to get lat lng for marker. I have just put a sample code. You can refactor it the way you want.
@@ -155,23 +166,6 @@ export class BasketPageComponent implements OnInit {
         alert("סל " + this.basket.id + " נשמר עודכן ")
       })
     }
-  }
-  ngOnInit() {
-    debugger;
-    this.markers = <Marker>{};
-    this.markers.lat = this.lat;
-    this.markers.lng = this.lng;
-    this.basket = new Basket();
-    this.basket.id = 0;
-    this.getAllStores();
-    this.select = new EventEmitter();
-
-    this.route.params.subscribe(params => {
-      let id: number = +params['id'];
-      if (id) {
-        this.getBasket(id);
-      }
-    })
   }
 
   getAllStores() {

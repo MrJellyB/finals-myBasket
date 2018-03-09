@@ -5,7 +5,7 @@ import { BasketPageComponent } from './basket-page/basket-page.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BasketHandleService } from './basket.service';
 import { AgmCoreModule } from '@agm/core';
-import { BasketItemModule } from './basket-item.module';
+import { BasketItem } from '../../interface/entities.interface';
 import { Product } from '../../shared/entities/Product';
 
 @NgModule({
@@ -18,7 +18,8 @@ import { Product } from '../../shared/entities/Product';
       libraries: ["places"]
     })
   ],
-  providers: [BasketService, BasketHandleService],
+  providers: [BasketService,
+    BasketHandleService],
   declarations: [BasketPageComponent]
 })
 export class BasketModule {

@@ -1,11 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { ProductService } from '../product.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup } from '@angular/forms';
-import { Product } from '../../../shared/entities/Product';
-import { CommentToProduct } from '../../../shared/entities/comment-to-prodct';
-import { BasketItemModule } from "../../basket/basket-item.module";
-import { EventEmitter } from '@angular/core';
+import { Product, BasketItem, CommentToProduct } from '../../../interface/entities.interface';
 
 
 @Component({
@@ -25,12 +22,12 @@ export class ProductDetailsComponent implements OnInit {
     public currGrade: number = 1;
     public commentToSave: CommentToProduct;
     @Input() productIdToShow: number;
-    public grades = [1,2,3,4,5]
+    public grades = [1, 2, 3, 4, 5]
 
     ngOnInit() {
         this.select = new EventEmitter();
         this.comm = "";
-        this.commentToSave = new CommentToProduct();
+        // this.commentToSave = new CommentToProduct();
         this.sub = this.route.params.subscribe(params => {
             this.id = +params['id'];
             this.getProductDetails(this.id);
@@ -62,9 +59,9 @@ export class ProductDetailsComponent implements OnInit {
     }
 
     SelectedGrade(value) {
-      this.currGrade = +value;
-      this.select.emit(value);
-      console.log(value);
+        this.currGrade = +value;
+        this.select.emit(value);
+        console.log(value);
     }
 
     onSubmit(f: any, event: Event) {
@@ -75,20 +72,30 @@ export class ProductDetailsComponent implements OnInit {
         this.commentToSave.comment = this.comm;
         this.commentToSave.grade = this.currGrade;
         this.productService.addCommentToProduct(this.commentToSave).subscribe(
-          (data) => {
-            this.getProductDetails(this.id);
+            (data) => {
+                this.getProductDetails(this.id);
             }
         );
     }
 
     addToBasket(product: Product) {
         //this.module.addToBaket(product);
-        let tmpBasket: BasketItemModule[] = JSON.parse(localStorage.getItem("basket"));
+        let tmpBasket: BasketItem[] = JSON.parse(localStorage.getItem("basket"));
         let index = tmpBasket.map((i) => i.id).indexOf(product.id)
-        if (index != -1)
+        if (index != -1) {
             tmpBasket[index].amount += 1;
-        else
-            tmpBasket.push(new BasketItemModule(this.productDetails.id, this.productDetails.name, "", this.productDetails.price, 1));
+        }
+        else {
+            const basketItem: BasketItem =
+                {
+                    id: this.productDetails.id,
+                    name: this.productDetails.name,
+                    image: "",
+                    price: this.productDetails.price,
+                    amount: 1
+                }
+            tmpBasket.push(basketItem);
+        }
 
         localStorage.setItem("basket", JSON.stringify(tmpBasket));
     }

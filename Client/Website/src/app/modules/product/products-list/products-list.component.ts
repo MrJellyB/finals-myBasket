@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../product.service';
-import { Product } from '../../../shared/entities/Product';
-import { Category } from '../../../shared/entities/Category';
+import { Product, Category, BasketItem } from '../../../interface/entities.interface';
 import { EventEmitter } from '@angular/core';
 import { Pipe, PipeTransform } from '@angular/core';
 import { CategoryPipe } from '../pipes/category-pipe/category.pipe';
 import { SmallerThenPipe } from '../pipes/smaller-then/smaller-then.pipe';
 import { Router } from "@angular/router";
-import { BasketItemModule } from "../../basket/basket-item.module";
 import * as _ from "lodash";
 import { BasketModule } from '../../basket/basket.module';
 import { BasketService } from '../../../services/basketService/basket-service.service';
@@ -38,10 +36,10 @@ export class ProductsListComponent implements OnInit {
 
   getProducts(): any {
     this.productService.getProducts().subscribe(
-      (data) => {
-        this.products = Product.toProduct(data);
-        this.productsByCategory = Product.toProduct(data);
-        this.productsGroups = _.chunk(Product.toProduct(data), 3);
+      (data: any) => {
+        this.products = data;
+        this.productsByCategory = data;
+        this.productsGroups = _.chunk(data, 3);
 
         console.log(this.products);
         this.route.params.subscribe(params => {

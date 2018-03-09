@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import { HttpService } from '../../services/httpService/http.service';
 import { url } from '../../shared/Constants'
-import { Basket } from './basket';
+import { Basket } from '../../interface/entities.interface';
 
 @Injectable()
 export class BasketHandleService {
