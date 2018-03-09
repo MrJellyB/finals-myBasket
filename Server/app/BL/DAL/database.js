@@ -209,6 +209,8 @@ exports.updateBasket = function (data, callback) {
     console.log(data.id);
 }
 
+// STORES METHODS
+// =============================================
 exports.getAllStores = function (callback) {
     db.store.find({}).toArray(callback);
 }

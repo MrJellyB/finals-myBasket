@@ -10,6 +10,10 @@ exports.setup = function (db) {
     dbUtils = db;
 }
 
+
+// USERS
+// =============================================
+
 exports.getUsers = function (req, res) {
     dbUtils.getUsers(function (err, results) {
         res.send(results);
@@ -24,7 +28,6 @@ exports.login = function (req, res) {
         res.send((data && Object.keys(data).length !== 0));
     })
 }
-
 
 exports.loginWithAuthenticate = function (req, res) {
     var email = req.body.email;
@@ -41,18 +44,63 @@ exports.loginWithAuthenticate = function (req, res) {
     })
 }
 
-
-
-
 exports.register = function (req, res) {
     var data = req.body.data;
     dbUtils.register(data, function (err, data) { res.send(true) });
 }
 
+exports.getUserByUserName = function (req, res) {
+    var userName = req.params.userName;
+    console.log(userName);
+    dbUtils.getUserByUserName(userName, function (err, data) {
+        res.send(data);
+    })
+}
+
+exports.removeUser = function (req, res) {
+    var data = req.body.data;
+
+    dbUtils.removeUser(data, function (err, data) {
+        res.send(true);
+    })
+}
+
+exports.changeUserTypeStatus = function (req, res) {
+    var userName = req.body.userName;
+    var statusToChange = req.body.statusToChange;
+    console.log("user = " + userName + " and status =" + statusToChange)
+
+    dbUtils.changeUserTypeStatus(userName, statusToChange, function (err, data) {
+        res.send(true);
+    })
+}
+
+exports.resetPassword = function (req, res) {
+    var userName = req.body.userName;
+    console.log("user = " + userName)
+
+    dbUtils.resetPassword(userName, function (err, data) {
+        res.send(true);
+    })
+}
+// =============================================
+
+// CATEGORIES
+// =============================================
 exports.getCategories = function (req, res) {
     dbUtils.getCategories(function (err, data) { res.send(data); });
 }
 
+exports.getCategoryById = function (req, res) {
+    var id = req.params.id;
+    dbUtils.getCategoryById(id, function (err, data) {
+        res.send(data);
+    })
+}
+// =============================================
+
+// PRODUCTS
+// =============================================
 exports.getProductDetails = function (req, res) {
     var id = req.params.id;
     dbUtils.getProductDetails(id, function (err, data) {
@@ -60,13 +108,6 @@ exports.getProductDetails = function (req, res) {
         console.log("product-details: " + data)
 
         var dataToSend = data;
-        res.send(data);
-    })
-}
-
-exports.getCategoryById = function (req, res) {
-    var id = req.params.id;
-    dbUtils.getCategoryById(id, function (err, data) {
         res.send(data);
     })
 }
@@ -144,6 +185,8 @@ exports.getCheapestProductByCategory = function (req, res) {
     })
 }
 
+// BASKETS METHODS
+// =============================================
 exports.saveBasket = function (req, res) {
     var details = req.body.data;
     dbUtils.getNextSequence("basketId", function (err, nextSeqId) {
@@ -164,41 +207,6 @@ exports.getBasket = function (req, res) {
     })
 }
 
-exports.getUserByUserName = function (req, res) {
-    var userName = req.params.userName;
-    console.log(userName);
-    dbUtils.getUserByUserName(userName, function (err, data) {
-        res.send(data);
-    })
-}
-
-exports.removeUser = function (req, res) {
-    var data = req.body.data;
-
-    dbUtils.removeUser(data, function (err, data) {
-        res.send(true);
-    })
-}
-
-exports.changeUserTypeStatus = function (req, res) {
-    var userName = req.body.userName;
-    var statusToChange = req.body.statusToChange;
-    console.log("user = " + userName + " and status =" + statusToChange)
-
-    dbUtils.changeUserTypeStatus(userName, statusToChange, function (err, data) {
-        res.send(true);
-    })
-}
-
-exports.resetPassword = function (req, res) {
-    var userName = req.body.userName;
-    console.log("user = " + userName)
-
-    dbUtils.resetPassword(userName, function (err, data) {
-        res.send(true);
-    })
-}
-
 exports.updateBasket = function (req, res) {
     var data = req.body.data;
     console.log("data = " + data)
@@ -207,7 +215,10 @@ exports.updateBasket = function (req, res) {
         res.send(true);
     });
 }
+// =============================================
 
+// STORES METHODS
+// =============================================
 exports.getAllStores = function (req, res) {
     console.log("before update")
     dbUtils.getAllStores(function (err, data) {
@@ -216,7 +227,11 @@ exports.getAllStores = function (req, res) {
         res.send(data);
     });
 }
+// =============================================
 
+
+// FOR DELETES
+// =============================================
 var twitterSettings = {
     consumerkey: 'm5wDu8TeKAEiW743bR2dE8QJw',
     consumersecret: 'uh6QbbWQXJ84PgLnEKMZam6adMu0Im1HnocEjlS0jCaDuhP0Q7',
@@ -260,3 +275,4 @@ exports.getIsraelTweets = function (req, res) {
             }
         });
 }
+// =============================================
