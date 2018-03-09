@@ -157,7 +157,8 @@ export class BasketPageComponent implements OnInit {
     }
   }
   ngOnInit() {
-    this.markers;
+    debugger;
+    this.markers = <Marker>{};
     this.markers.lat = this.lat;
     this.markers.lng = this.lng;
     this.basket = new Basket();
