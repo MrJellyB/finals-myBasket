@@ -4,6 +4,7 @@
   "description": "Server",
   "scripts": {
     "start": "node server"
+    
   },
   "engines": {
     "node": "~6.10.x"

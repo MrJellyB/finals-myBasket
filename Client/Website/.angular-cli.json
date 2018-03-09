@@ -27,8 +27,8 @@
         "styles.css"
       ],
       "scripts": [
-        "assets/scripts/website.js",
-        "app/modules/product/price-history-chart-with-d3js/chart.js"
+        "../node_modules/jquery/dist/jquery.min.js",
+        "assets/scripts/website.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

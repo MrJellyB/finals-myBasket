@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 import { EventEmitter, NgZone } from '@angular/core';
 import { Store } from '../../../shared/entities/store';
 import { Observable } from 'rxjs/Observable';
-import { Marker } from './Market';
+import { Marker } from '../../../interface/entities.interface';
 import { } from 'googlemaps';
 
 //declare var google;
@@ -28,7 +28,7 @@ export class BasketPageComponent implements OnInit {
   lng: number = 35.409007;
   zoom: number = 15;
   public currentStreetName: string;
-  public markers: Marker
+  public markers: Marker;
   public currStore: Store;
   select: EventEmitter<string>;
   stores: Store[];
@@ -157,7 +157,7 @@ export class BasketPageComponent implements OnInit {
     }
   }
   ngOnInit() {
-    this.markers = new Marker();
+    this.markers;
     this.markers.lat = this.lat;
     this.markers.lng = this.lng;
     this.basket = new Basket();

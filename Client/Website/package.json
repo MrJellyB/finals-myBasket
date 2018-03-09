@@ -36,7 +36,6 @@
     "lodash": "^4.17.5",
     "moment": "^2.20.1",
     "ng2-charts": "^1.6.0",
-    "ngx-facebook": "^2.4.0",
     "primeng": "^5.2.0",
     "rtlcss": "^2.2.1",
     "rxjs": "^5.4.2",

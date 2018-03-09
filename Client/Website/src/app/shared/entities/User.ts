@@ -16,7 +16,7 @@ export class User {
   // define user type
   // 1 - for regular user
   // 2 - for manager user
-  userType: number;
+  userType: 1 | 2;
 
   public static toUser(data: any) {
     // let jsonData = JSON.parse(data); We don't need to parse this
