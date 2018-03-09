@@ -27,7 +27,7 @@ export class ProductDetailsComponent implements OnInit {
     ngOnInit() {
         this.select = new EventEmitter();
         this.comm = "";
-        // this.commentToSave = new CommentToProduct();
+        this.commentToSave = <CommentToProduct > {};
         this.sub = this.route.params.subscribe(params => {
             this.id = +params['id'];
             this.getProductDetails(this.id);

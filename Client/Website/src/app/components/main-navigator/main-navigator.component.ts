@@ -54,11 +54,6 @@ export class MainNavigatorComponent implements OnInit {
     this.router.navigate(['/register'])
   }
 
-  weatherView() {
-
-    this.router.navigate(['/weather'])
-  }
-
   productListView() {
 
     this.router.navigate(['/product-list'])
@@ -103,11 +98,6 @@ export class MainNavigatorComponent implements OnInit {
   setMainPage() {
 
     this.router.navigate(['/'])
-  }
-
-  facebookView() {
-
-    this.router.navigate(['/facebook-api'])
   }
 
   cheapestProduct() {

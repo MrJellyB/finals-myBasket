@@ -1,40 +1,4 @@
-<!--<div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
-  <div *ngIf="userName()">
-    <div *ngIf="getUserStatus() == 2">
-      <div class="w3-button" (click)="setMainPage()">דף ראשי</div>
-      <div class="w3-button" (click)="addProductView()">הוספת מוצר</div>
-      <div class="w3-button" (click)="managerView()">ממשק מנהל</div>
-    </div>
-    <div class="w3-button" (click)="productListView()">רשימת מוצרים</div>
-    <div class="w3-button" (click)="cheapestProduct()">המוצר הזול</div>
-    <div class="w3-button" (click)="preferredProduct()">המוצר המומלץ</div>
-    <div class="w3-button" (click)="basketView()">הסל שלי</div>
-    <div class="w3-button" (click)="facebookView()">טוויטר חדשות</div>
-    <div class="w3-button" (click)="weatherView()">מזג אוויר</div>
-    <div class="w3-button" (click)="logOff()">התנתקות</div>
-   </div>
-</div>-->
-<!--<div class="teal">
-  <span style="font-size:30px;cursor:pointer" (click)="openNav()" class="teal w3-button">&#9776; open</span>
-</div>-->
-<!--
-  <div class="w3-sidebar w3-bar-block w3-border-right" style="display:none" id="mySidebar">
-    <button (click)="w3_close()" class="w3-bar-item w3-large">סגור תפריט&times;</button>
-    <div class="w3-bar-item w3-button" (click)="setMainPage()">דף ראשי</div>
-    <div *ngIf="userName()">
-      <div *ngIf="getUserStatus() == 2">
-        <div class="w3-bar-item w3-button" (click)="addProductView()">הוספת מוצר</div>
-        <div class="w3-bar-item w3-button" (click)="managerView()">ממשק מנהל</div>
-      </div>
-      <div class="w3-bar-item w3-button" (click)="productListView()">רשימת מוצרים</div>
-      <div class="w3-bar-item w3-button" (click)="cheapestProduct()">המוצר הזול</div>
-      <div class="w3-bar-item w3-button" (click)="preferredProduct()">המוצר המומלץ</div>
-      <div class="w3-bar-item w3-button" (click)="basketView()">הסל שלי</div>
-      <div class="w3-bar-item w3-button" (click)="logOff()">התנתקות</div>
-  </div>
-</div>
-    -->
+
 
 <div class="container-fluid">
   <div class="row">
@@ -44,8 +8,6 @@
       </canvas>
       <button type="button" class="btn btn-info" (click)="basketView()"><i class="fas fa-shopping-cart"></i>הסל שלי ({{getAmountInBasket()}})</button>
       <button type="button" class="btn btn-warning" routerLink="/statistics"><i class="fas fa-chart-bar"></i>סטטיסטיקות</button>
-      <button type="button" class="btn btn-info" (click)="facebookView()"><i class="fab fa-twitter"></i>טוויטר</button>
-      <button type="button" class="btn btn-info" (click)="weatherView()"><i class="fas fa-sun"></i>מזג אוויר</button>
       <button type="button" class="btn btn-info" (click)="aboutView()"><i class="fas fa-sun"></i>אודות</button>
     </div>
     <div class="col-md-4 d-flex align-items-end">
