@@ -8,7 +8,6 @@
       </canvas>
       <button type="button" class="btn btn-info" (click)="basketView()"><i class="fas fa-shopping-cart"></i>הסל שלי ({{getAmountInBasket()}})</button>
       <button type="button" class="btn btn-warning" routerLink="/statistics"><i class="fas fa-chart-bar"></i>סטטיסטיקות</button>
-      <button type="button" class="btn btn-info" (click)="aboutView()"><i class="fas fa-sun"></i>אודות</button>
     </div>
     <div class="col-md-4 d-flex align-items-end">
       <div class="ml-auto" *ngIf="!userName()">

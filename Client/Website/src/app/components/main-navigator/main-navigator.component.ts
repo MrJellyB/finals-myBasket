@@ -55,17 +55,11 @@ export class MainNavigatorComponent implements OnInit {
   }
 
   productListView() {
-
     this.router.navigate(['/product-list'])
   }
 
   basketView() {
-
     this.router.navigate(['/basket'])
-  }
-
-  aboutView() {
-    this.router.navigate(['/about-data'])
   }
 
   getDisplayUserName() {
@@ -81,8 +75,7 @@ export class MainNavigatorComponent implements OnInit {
     this.router.navigate(['/manager-page'])
   }
 
-  logOff() {
-
+  logOff() {  
     this.usersServiceService.logout();
   }
 
@@ -91,22 +84,18 @@ export class MainNavigatorComponent implements OnInit {
   }
 
   barChart() {
-
     this.router.navigate(['/history-two-chart-bar'])
   }
 
   setMainPage() {
-
     this.router.navigate(['/'])
   }
 
   cheapestProduct() {
-
     this.router.navigate(['/cheapest-product'])
   }
 
   preferredProduct() {
-
     this.router.navigate(['/preferred-product'])
   }
 
@@ -115,7 +104,6 @@ export class MainNavigatorComponent implements OnInit {
   }
 
   getProductsByCategory(id) {
-
     this.router.navigate(['/product-list/' + id])
   }
 

@@ -20,7 +20,6 @@ import { BarChartProuctPriceComponent} from '../modules/product/bar-chart-prouct
 import { PreferredProductComponent } from '../modules/product/preferred-product/preferred-product.component';
 import { ProductsListFilterComponent } from '../modules/product/products-list-filter/products-list-filter.component';
 import { StatisticsMainPageComponent } from '../modules/product/statistics-main-page/statistics-main-page.component';
-import { AboutDataComponent } from '../components/about-data/about-data.component';
 import { ProfileBuilderComponent } from '../modules/login/profile-builder/profile-builder.component';
 
 export const routes: Routes = [
@@ -43,7 +42,6 @@ export const routes: Routes = [
   { path: 'preferred-product', component: PreferredProductComponent },
   { path: 'product-list-filter', component: ProductsListFilterComponent },
   { path: 'statistics', component: StatisticsMainPageComponent },
-  { path: 'about-data', component: AboutDataComponent },
   { path: 'profile-builder', component: ProfileBuilderComponent  }
 ];
 
