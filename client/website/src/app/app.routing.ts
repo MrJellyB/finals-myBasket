@@ -2,21 +2,21 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainPageComponent } from './components/main-page/main-page.component';
-import { UserLoginComponent } from './modules/login/user-login-component/user-login.component';
-import { RegisterUserComponent } from './modules/login/register-user/register-user.component';
-import { ProductDetailsComponent } from './modules/product/product-details/product-details.component';
-import { AddOrUpdateProductComponent } from './modules/product/add-or-update-product/add-or-update-product.component';
-import { ProductsListComponent } from './modules/product/products-list/products-list.component';
-import { BasketPageComponent } from './modules/basket/basket-page/basket-page.component';
-import { CheapestProdctByCategoryComponent } from './modules/product/cheapest-prodct-by-category/cheapest-prodct-by-category.component';
-import { ErrorPageComponent } from './components/error-page/error-page.component';
-import { PriceHistoryChartWithD3jsComponent } from './modules/product/price-history-chart-with-d3js/price-history-chart-with-d3js.component';
-import { BarChartProuctPriceComponent } from './modules/product/bar-chart-prouct-price/bar-chart-prouct-price.component';
-import { PreferredProductComponent } from './modules/product/preferred-product/preferred-product.component';
-import { ManagerPageComponent } from './modules/login/manager-page/manager-page.component';
-import { ProductsListFilterComponent } from './modules/product/products-list-filter/products-list-filter.component';
-import { ProfileBuilderComponent } from './modules/login/profile-builder/profile-builder.component';
-import { StatisticsMainPageComponent } from './modules/product/statistics-main-page/statistics-main-page.component';
+import { UserLoginComponent } from 'app/components/login/user-login/user-login.component';
+import { RegisterUserComponent } from 'app/components/login/register-user/register-user.component';
+import { ProductDetailsComponent } from 'app/components/product/product-details/product-details.component';
+import { AddOrUpdateProductComponent } from 'app/components/product/add-or-update-product/add-or-update-product.component';
+import { ProductsListComponent } from 'app/components/product/products-list/products-list.component';
+import { BasketPageComponent } from 'app/components/basket/basket-page/basket-page.component';
+import { CheapestProdctByCategoryComponent } from 'app/components/product/cheapest-prodct-by-category/cheapest-prodct-by-category.component';
+import { ErrorPageComponent } from 'app/components/error-page/error-page.component';
+import { PriceHistoryChartWithD3jsComponent } from 'app/components/product/price-history-chart-with-d3js/price-history-chart-with-d3js.component';
+import { BarChartProuctPriceComponent } from 'app/components/product/bar-chart-prouct-price/bar-chart-prouct-price.component';
+import { ManagerPageComponent } from 'app/components/login/manager-page/manager-page.component';
+import { PreferredProductComponent } from 'app/components/product/preferred-product/preferred-product.component';
+import { ProductsListFilterComponent } from 'app/components/product/products-list-filter/products-list-filter.component';
+import { StatisticsMainPageComponent } from 'app/components/product/statistics-main-page/statistics-main-page.component';
+import { ProfileBuilderComponent } from 'app/components/login/profile-builder/profile-builder.component';
 
 export const routes: Routes = [
     { path: '', component: MainPageComponent },
