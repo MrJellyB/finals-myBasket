@@ -13,6 +13,7 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
 import { FormsModule } from '@angular/forms';
 import { AuthGuardService } from './shared/services/AuthGuard/auth-guard.service';
 import { MainNavigatorComponent } from './components/main-navigator/main-navigator.component';
+import { HiComponent } from './hi/hi.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { MainNavigatorComponent } from './components/main-navigator/main-navigat
     AppComponent,
     MainPageComponent,
     ErrorPageComponent,
-    MainNavigatorComponent
+    MainNavigatorComponent,
+    HiComponent
   ],
   providers: [HttpService,
               MainService,
