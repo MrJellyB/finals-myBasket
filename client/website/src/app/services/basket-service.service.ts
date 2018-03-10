@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BasketItem, Product } from "../../interface/entities.interface";
+import { BasketItem, Product } from 'app/interface/entities.interface';
 
+// TODO: Merge with the other service / get rid
 @Injectable()
 export class BasketService {
   constructor() { }

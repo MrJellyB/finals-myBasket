@@ -4,7 +4,6 @@ import { FormGroup } from '@angular/forms';
 import { Product, BasketItem, CommentToProduct } from '../../../interface/entities.interface';
 import { ProductService } from 'app/services/product.service';
 
-
 @Component({
     selector: 'app-product-details',
     templateUrl: './product-details.component.html',
