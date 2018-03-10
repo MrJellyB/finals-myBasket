@@ -1,7 +1,7 @@
 import { Component, Input, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup } from '@angular/forms';
-import { Product, BasketItem, CommentToProduct } from '../../../interface/entities.interface';
+import { Product, BasketItem, CommentToProduct } from 'app/interface/entities.interface';
 import { ProductService } from 'app/services/product.service';
 
 @Component({
