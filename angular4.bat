@@ -1,2 +1,2 @@
-cd Client/Website
+cd client/
 ng serve
