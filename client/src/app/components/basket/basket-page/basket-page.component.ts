@@ -62,7 +62,7 @@ export class BasketPageComponent {
   mapClicked($event: any) {
     this.changeMarker($event.coords.lat, $event.coords.lng);
   }
-
+  // change marker
   changeMarker(lat, lng) {
     this.marker = {
       lat: lat,
