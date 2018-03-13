@@ -92,12 +92,12 @@ export interface FamilyData {
 }
 
 export interface UserAddress {
-  country: string;
   city: string;
   street: string;
 }
 
-export interface UserProfile {
+export interface ProfileBuilder {
+  birthdate: Date;
   address: UserAddress;
   peopleAmount: FamilyData;
   preferences: Array<string>;

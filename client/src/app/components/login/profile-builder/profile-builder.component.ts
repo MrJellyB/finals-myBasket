@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ProfileBuilder } from '../../../interface/entities.interface';
 
 @Component({
   selector: 'app-profile-builder',
@@ -6,10 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./profile-builder.component.scss']
 })
 export class ProfileBuilderComponent {
-
+  public profileBuilder: ProfileBuilder;
   constructor() { }
 
   ngOnInit() {
+    debugger;
+    this.profileBuilder = <ProfileBuilder>{};
   }
 
+  saveProfileBuilder() {
+  }
 }

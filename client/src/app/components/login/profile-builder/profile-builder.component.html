@@ -11,7 +11,7 @@
 <div class="col-md-4 col-md-offset-2">
   <form>
     <div class="form-group">
-      תאריך לידה:<input name="birthday" class="form-control" type="date">
+      תאריך לידה:<input class="form-control" type="date" name="birthdate" [(ngModel)]="profileBuilder.birthdate" #birthdate="ngModel">
     </div>
     <br>
     <div class="form-group">
@@ -265,6 +265,6 @@
 
     </div>
     <br>
-    <button name="save" class="btn btn-primary">שמור פרטים</button>
+    <button name="save" (click)="saveProfileBuilder()" class="btn btn-primary">שמור פרטים</button>
   </form>
 </div>
