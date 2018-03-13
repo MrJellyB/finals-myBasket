@@ -51,7 +51,6 @@ exports.register = function (req, res) {
 
 exports.getUserByUserName = function (req, res) {
     var userName = req.params.userName;
-    console.log(userName);
     dbUtils.getUserByUserName(userName, function (err, data) {
         res.send(data);
     })
@@ -68,7 +67,6 @@ exports.removeUser = function (req, res) {
 exports.changeUserTypeStatus = function (req, res) {
     var userName = req.body.userName;
     var statusToChange = req.body.statusToChange;
-    console.log("user = " + userName + " and status =" + statusToChange)
 
     dbUtils.changeUserTypeStatus(userName, statusToChange, function (err, data) {
         res.send(true);
@@ -77,7 +75,6 @@ exports.changeUserTypeStatus = function (req, res) {
 
 exports.resetPassword = function (req, res) {
     var userName = req.body.userName;
-    console.log("user = " + userName)
 
     dbUtils.resetPassword(userName, function (err, data) {
         res.send(true);
@@ -104,9 +101,6 @@ exports.getCategoryById = function (req, res) {
 exports.getProductDetails = function (req, res) {
     var id = req.params.id;
     dbUtils.getProductDetails(id, function (err, data) {
-
-        console.log("product-details: " + data)
-
         var dataToSend = data;
         res.send(data);
     })
@@ -143,13 +137,11 @@ exports.updateProduct = function (req, res) {
     var productToUpdate = req.body.data;
     var productId = req.body.data.id;
     var oldPrice = req.body.data.oldPrice;
-    console.log(req.body);
     dbUtils.updateProduct(productId, productToUpdate, function (err, data) {
 
         // the price is changed
         if (oldPrice != productToUpdate.price) {
             dbUtils.addOldPriceToArray(productId, oldPrice, function (err, data) {
-                console.log("after 2 updated");
                 //res.send(true);
             })
         }
@@ -171,7 +163,6 @@ exports.addCommentToProduct = function (req, res) {
     var productId = req.body.data.prodctId;
     var comment = req.body.data.comment;
     var grade = req.body.data.grade;
-    debugger;
     dbUtils.addCommentToProduct(productId, comment, grade, function (err, data) {
         res.send(true);
     })
@@ -209,7 +200,6 @@ exports.getBasket = function (req, res) {
 
 exports.updateBasket = function (req, res) {
     var data = req.body.data;
-    console.log("data = " + data)
 
     dbUtils.updateBasket(data, function (err, data) {
         res.send(true);
@@ -220,9 +210,7 @@ exports.updateBasket = function (req, res) {
 // STORES METHODS
 // =============================================
 exports.getAllStores = function (req, res) {
-    console.log("before update")
     dbUtils.getAllStores(function (err, data) {
-        console.log("after update")
 
         res.send(data);
     });
@@ -239,7 +227,6 @@ var twitterSettings = {
 };
 
 exports.authorizeTwitter = function (req, res) {
-    console.log("twitter web api");
 
     var header = twitterSettings.consumerkey + ':' + twitterSettings.consumersecret;
     var encheader = new Buffer(header).toString('base64');
@@ -268,7 +255,6 @@ exports.getIsraelTweets = function (req, res) {
     request.get('https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=Israel&count=10' + encsearchquery +
         '&result_type=recent', { headers: { Authorization: bearerheader } }, function (error, body, response) {
             if (error) {
-                console.log(error);
             }
             else {
                 res.json({ success: true, data: JSON.parse(body.body) });

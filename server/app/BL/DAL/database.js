@@ -44,7 +44,6 @@ exports.login = function (email, password, callback) {
 }
 
 exports.loginWithAuthenticate = function (email, password, callback) {
-    console.log("bbbbbbbbbbbbbbbbbbbb")
     db.users.findOne(
         {
             "email": email,
@@ -151,7 +150,6 @@ exports.addCommentToProduct = function (productId, comment, grade ,callback) {
 }
 
 exports.getCheapestProductByCategory = function(categoryId, callback) {
-    console.log(categoryId);
     db.product.aggregate([
             { '$sort': { 'price': 1 } },
             {
@@ -179,9 +177,7 @@ exports.getUserByUserName = function (userName, callback) {
 
 
 exports.removeUser = function (data, callback) {
-    console.log(data);
     db.users.remove({ "userName": data }, callback);
-
 }
 
 exports.changeUserTypeStatus = function (userName, statusToChange, callback) {
@@ -205,8 +201,6 @@ exports.updateBasket = function (data, callback) {
         upsert: true
     };
     db.basket.update(filterQuery, { $set: updateQuery }, options, callback);
-    
-    console.log(data.id);
 }
 
 // STORES METHODS
