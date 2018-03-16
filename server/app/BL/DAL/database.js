@@ -165,7 +165,7 @@ exports.getCheapestProductByCategory = function (categoryId, callback) {
 
 exports.saveBasket = function (data, callback) {
     db.basket.insert(data, callback);
-    db.users.update({ id: data.user }, { $addToSet: { baskets: data.basket.id } });
+    db.users.update({ id: data.user }, { $addToSet: { baskets: data.id } }, callback);
 }
 
 exports.getBasket = function (id, callback) {

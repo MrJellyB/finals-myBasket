@@ -37,8 +37,7 @@ exports.loginWithAuthenticate = function (req, res) {
             data.token = jwt.sign({ sub: data._id }, 'darksecret')
             res.send(data);
         }
-        else
-        {
+        else {
             res.send(false);
         }
     })
@@ -179,10 +178,11 @@ exports.getCheapestProductByCategory = function (req, res) {
 // BASKETS METHODS
 // =============================================
 exports.saveBasket = function (req, res) {
-    var details = req.body.data;
+    var details = req.body;
+    console.log(details);
     dbUtils.getNextSequence("basketId", function (err, nextSeqId) {
         dbUtils.getCurrentSeq("basketId", function (err, currSeqId) {
-            details.id = currSeqId[0].seq;
+            details.basket.id = currSeqId[0].seq;
 
             dbUtils.saveBasket(details, function (err, data) {
                 res.send(JSON.stringify(details.id));
