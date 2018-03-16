@@ -8,7 +8,7 @@ var jwt = require('jsonwebtoken');
 
 var consts = null;
 
-var collections = ['users', 'category','product', 'counters', 'basket', 'store'];
+var collections = ['users', 'category', 'product', 'counters', 'basket', 'store'];
 
 // log on to db
 exports.setupDB = function (dbUrl, con, p_db, callback) {
@@ -26,7 +26,7 @@ exports.setupDB = function (dbUrl, con, p_db, callback) {
         for (col = 0; col < collections.length; col++) {
             database[collections[col]] = database.collection(collections[col]);
         }
-        
+
         db = database;
 
         p_db = database;
@@ -51,9 +51,9 @@ exports.loginWithAuthenticate = function (email, password, callback) {
         },
         {
             projection:
-            {
-                "userName": 1
-            }
+                {
+                    "userName": 1
+                }
         }, callback);
 }
 
@@ -61,13 +61,13 @@ exports.register = function (data, callback) {
     db.users.insert(data, callback);
 }
 
-exports.getCategories = function(callback) {
+exports.getCategories = function (callback) {
     db.category.find({}).toArray(callback);
 }
 
 exports.getProductDetails = function (id, callback) {
     var idToSearch = +id;
-    db.product.find({ "id": idToSearch}).toArray(callback);
+    db.product.find({ "id": idToSearch }).toArray(callback);
 }
 
 exports.getCategoryById = function (id, callback) {
@@ -79,13 +79,13 @@ exports.saveProduct = function (data, callback) {
     db.product.insert(data, callback);
 }
 
-exports.getNextSequence = function(name,callback) {
+exports.getNextSequence = function (name, callback) {
     var filter = { _id: name };
     var updateQuery = { $inc: { seq: 1 } };
     var ret = db.counters.findAndModify(
         { _id: name },
         [['_id', 'asc']],
-        { $inc: { seq: 1 } },callback);
+        { $inc: { seq: 1 } }, callback);
 }
 
 exports.getCurrentSeq = function (name, callback) {
@@ -118,7 +118,7 @@ exports.updateProduct = function (idProduct, productToUpdate, callback) {
     var options = {
         upsert: true
     };
-    db.product.update(filterQuery,{ $set: updateQuery },options, callback);
+    db.product.update(filterQuery, { $set: updateQuery }, options, callback);
 }
 
 exports.addOldPriceToArray = function (idProduct, oldPrice, callback) {
@@ -137,7 +137,7 @@ exports.deleteProduct = function (idProduct, callback) {
     db.product.remove(filterQuery, callback);
 }
 
-exports.addCommentToProduct = function (productId, comment, grade ,callback) {
+exports.addCommentToProduct = function (productId, comment, grade, callback) {
 
     var filterQuery = { 'id': productId };
     query = {
@@ -149,22 +149,23 @@ exports.addCommentToProduct = function (productId, comment, grade ,callback) {
     db.product.update(filterQuery, { $push: query }, callback);
 }
 
-exports.getCheapestProductByCategory = function(categoryId, callback) {
+exports.getCheapestProductByCategory = function (categoryId, callback) {
     db.product.aggregate([
-            { '$sort': { 'price': 1 } },
-            {
-                "$group": {
-                    "_id": "$category",
-                    "value": { $min: "$price" },
-                    "_productId": { $first: '$id' }
-                }
-            },
-            { "$match": { "_id": +categoryId } }
-        ]).toArray(callback);
+        { '$sort': { 'price': 1 } },
+        {
+            "$group": {
+                "_id": "$category",
+                "value": { $min: "$price" },
+                "_productId": { $first: '$id' }
+            }
+        },
+        { "$match": { "_id": +categoryId } }
+    ]).toArray(callback);
 }
 
 exports.saveBasket = function (data, callback) {
     db.basket.insert(data, callback);
+    db.users.update({ id: data.user }, { $addToSet: { baskets: data.basket.id } });
 }
 
 exports.getBasket = function (id, callback) {
@@ -190,7 +191,7 @@ exports.resetPassword = function (userName, callback) {
 }
 
 exports.updateBasket = function (data, callback) {
-    
+
     var filterQuery = { 'id': data.id }
     var updateQuery = {
         "basketItems": data.basketItems,
