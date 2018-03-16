@@ -6,15 +6,18 @@ import 'rxjs/Rx';
 import { Basket } from 'app/interface/entities.interface';
 import { url } from 'app/utils/consts';
 import { HttpService } from 'app/services/http.service';
+import { UsersService } from './users.service';
 
 
 @Injectable()
 export class BasketHandleService {
 
-  constructor(private httpService: HttpService, private http: Http) { }
+  constructor(private httpService: HttpService, private http: Http, private userService: UsersService) { }
 
   saveBasket(data: Basket): Observable<Response> {
-    return this.httpService.http.post(url + '/saveBasket', { data }, this.httpService.getOptions()).map((data) => data.json());
+    let currentUser = this.userService.userName();
+
+    return this.httpService.http.post(url + '/saveBasket', { basket: data, user: currentUser }, this.httpService.getOptions()).map((data) => data.json());
   }
 
   updateBasket(data: Basket): Observable<Response> {

@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import { url } from 'app/utils/consts';
 import { HttpService } from 'app/services/http.service';
+import { Basket } from 'app/interface/entities.interface';
 
 @Injectable()
 export class UsersService {
@@ -90,5 +91,10 @@ export class UsersService {
 
   getUserStatus() {
     return localStorage.getItem('userType');
+  }
+
+  addBasket(basketId) {
+    return localStorage.setItem('userBaskets',
+      JSON.stringify(basketId));
   }
 }
