@@ -14,7 +14,7 @@ export class MainNavigatorComponent {
 
   constructor(private router: Router,
     private _renderer2: Renderer2,
-    private UsersService: UsersService,
+    private usersService: UsersService,
     private basketService: BasketService,
     @Inject(DOCUMENT) private _document,
   ) { }
@@ -77,7 +77,7 @@ export class MainNavigatorComponent {
   }
 
   logOff() {
-    this.UsersService.logout();
+    this.usersService.logout();
   }
 
   HistoryOneView() {
@@ -109,11 +109,11 @@ export class MainNavigatorComponent {
   }
 
   userName() {
-    return this.UsersService.userName();
+    return this.usersService.userName();
   }
 
   userType() {
-    return this.UsersService.getUserStatus();
+    return this.usersService.getUserStatus();
   }
 
   checkManager() {
