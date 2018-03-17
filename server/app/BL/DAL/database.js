@@ -165,14 +165,13 @@ exports.getCheapestProductByCategory = function (categoryId, callback) {
 
 exports.saveBasket = function (data, callback) {
     db.basket.insert(data, callback);
-    db.users.update({ id: data.user }, { $addToSet: { baskets: data.id } }, callback);
 }
 
 exports.getBasket = function (id, callback) {
     db.basket.find({ "id": +id }).toArray(callback);
 }
 
-exports.getUserByUserName = function (userName, callback) {
+exports.getUserByUser = function (userName, callback) {
     db.users.find({ "userName": userName }).toArray(callback);
 }
 
@@ -191,7 +190,6 @@ exports.resetPassword = function (userName, callback) {
 }
 
 exports.updateBasket = function (data, callback) {
-
     var filterQuery = { 'id': data.id }
     var updateQuery = {
         "basketItems": data.basketItems,
@@ -202,6 +200,11 @@ exports.updateBasket = function (data, callback) {
         upsert: true
     };
     db.basket.update(filterQuery, { $set: updateQuery }, options, callback);
+}
+
+exports.getBasketByUser = function (data, callback) {
+    db.user.find({ userName: userName })
+    db.basket.find()
 }
 
 // STORES METHODS

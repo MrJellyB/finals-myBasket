@@ -64,6 +64,7 @@ export interface Basket {
     totalPrice: number;
     id: number;
     streetName: string;
+    userName?: string;
 }
 
 export interface BasketItem {
@@ -75,31 +76,31 @@ export interface BasketItem {
 }
 
 export interface ProductToGrades {
-  productId: number;
-  TotalGrades: number
+    productId: number;
+    TotalGrades: number
 }
 
 
 export interface CategoryToProduct {
-  category: number;
-  ListProductsAndGrades: Array<ProductToGrades>
+    category: number;
+    ListProductsAndGrades: Array<ProductToGrades>
 }
 
 export interface FamilyData {
-  adults: number;
-  kids: number;
-  babies: number;
+    adults: number;
+    kids: number;
+    babies: number;
 }
 
 export interface UserAddress {
-  city: string;
-  street: string;
+    city: string;
+    street: string;
 }
 
 export interface ProfileBuilder {
-  birthdate: Date;
-  address: UserAddress;
-  peopleAmount: FamilyData;
-  preferences: Array<string>;
-  avoidness: Array<string>;
+    birthdate: Date;
+    address: UserAddress;
+    peopleAmount: FamilyData;
+    preferences: Array<string>;
+    avoidness: Array<string>;
 }

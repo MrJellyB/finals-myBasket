@@ -85,6 +85,7 @@ export class UsersService {
           localStorage.setItem('currentUser', JSON.stringify({ userName: userName, token: token }));
 
           // return true to indicate successful login
+          // this.http.get('/getBasketByUser', ).subscribe(data)
           return true;
         }
         else {
@@ -104,11 +105,11 @@ export class UsersService {
   }
 
   userName() {
-    return localStorage.getItem('currentUser');
+    return JSON.parse(localStorage.getItem('currentUser'));
   }
 
   getUserStatus() {
-    return localStorage.getItem('userType');
+    return JSON.parse(localStorage.getItem('userType'));
   }
 
   addBasket(basketId) {

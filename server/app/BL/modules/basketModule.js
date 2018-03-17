@@ -179,10 +179,9 @@ exports.getCheapestProductByCategory = function (req, res) {
 // =============================================
 exports.saveBasket = function (req, res) {
     var details = req.body;
-    console.log(details);
     dbUtils.getNextSequence("basketId", function (err, nextSeqId) {
         dbUtils.getCurrentSeq("basketId", function (err, currSeqId) {
-            details.basket.id = currSeqId[0].seq;
+            details.id = currSeqId[0].seq;
 
             dbUtils.saveBasket(details, function (err, data) {
                 res.send(JSON.stringify(details.id));
@@ -202,6 +201,13 @@ exports.updateBasket = function (req, res) {
     var data = req.body.data;
 
     dbUtils.updateBasket(data, function (err, data) {
+        res.send(true);
+    });
+}
+
+exports.getBasketByUser = function (req, res) {
+    const userName = req.params.userName;
+    dbUtils.getBasketByUser(userName, function (err, data) {
         res.send(true);
     });
 }

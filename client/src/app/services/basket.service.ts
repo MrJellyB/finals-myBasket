@@ -18,9 +18,15 @@ export class BasketHandleService {
 
   saveBasket(data: Basket): Observable<Response> {
     let currentUser = this.userService.userName();
+    data.userName = currentUser;
 
-    if (currentUser != null)
-      return this.httpService.http.post(url + '/saveBasket', { basket: data, user: currentUser }, this.httpService.getOptions()).map((data) => data.json());
+    if (currentUser != null) {
+      return this.httpService.http.post(url + '/saveBasket', { data },
+        // TODO: Should be json.parse
+        this.httpService.getOptions()).map(
+          data => data.json()
+        );
+    }
   }
 
   updateBasket(data: Basket): Observable<Response> {

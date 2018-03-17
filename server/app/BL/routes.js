@@ -14,9 +14,9 @@
     app.post('/addCommentToProduct', basketModule.addCommentToProduct);
     app.post('/saveBasket', basketModule.saveBasket);
     app.post('/updateBasket', basketModule.updateBasket);
-    app.post('/removeUser', basketModule.removeUser); 
-    app.post('/changeUserTypeStatus', basketModule.changeUserTypeStatus); 
-    app.post('/resetPassword', basketModule.resetPassword); 
+    app.post('/removeUser', basketModule.removeUser);
+    app.post('/changeUserTypeStatus', basketModule.changeUserTypeStatus);
+    app.post('/resetPassword', basketModule.resetPassword);
     app.post('/authorize', basketModule.authorizeTwitter);
     app.get('/getCategories', basketModule.getCategories);
     app.get('/getProductDetails/:id', basketModule.getProductDetails);
@@ -25,8 +25,9 @@
     app.get('/getProductsPaging/:page/:limit', basketModule.getProductsPaging);
     app.get('/getCheapestProductByCategory/:id', basketModule.getCheapestProductByCategory);
     app.get('/getBasket/:id', basketModule.getBasket);
-    app.get('/getUserByUserName/:userName', basketModule.getUserByUserName); 
+    app.get('/getUserByUserName/:userName', basketModule.getUserByUserName);
     app.get('/getAllStores', basketModule.getAllStores);
     app.get('/getIsraelTweets', basketModule.getIsraelTweets);
+    app.get('/getBasketByUser', basketModule.getBasketByUser);
 
 }
