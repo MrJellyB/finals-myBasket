@@ -3,6 +3,8 @@ import { DOCUMENT } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { UsersService } from 'app/services/users.service';
 import { BasketService } from 'app/services/basket-service.service';
+import { EventService } from 'app/services/event.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-main-navigator',
@@ -10,13 +12,16 @@ import { BasketService } from 'app/services/basket-service.service';
   styleUrls: ['./main-navigator.component.css']
 })
 export class MainNavigatorComponent {
-  public productId: string;
+  productId: string;
+  basketItemsAmount: number;
+  subs: Subscription[] = [];
 
   constructor(private router: Router,
     private _renderer2: Renderer2,
     private usersService: UsersService,
     private basketService: BasketService,
-    @Inject(DOCUMENT) private _document,
+    private eventService: EventService,
+    @Inject(DOCUMENT) private _document
   ) { }
 
   ngOnInit() {
@@ -43,6 +48,15 @@ export class MainNavigatorComponent {
         `;
 
     this._renderer2.appendChild(this._document.body, script);
+    this.basketItemsAmount = BasketService.getAllAmount();
+    this.subs.push(
+      this.eventService.observe('BASKET_ITEMS').subscribe(() => {
+        this.basketItemsAmount = BasketService.getAllAmount();
+      }));
+  }
+
+  ngOnDestroy() {
+    this.subs.forEach(sub => sub.unsubscribe());
   }
 
   addProductView() {
@@ -98,10 +112,6 @@ export class MainNavigatorComponent {
 
   preferredProduct() {
     this.router.navigate(['/preferred-product'])
-  }
-
-  getAmountInBasket(): number {
-    return BasketService.getAllAmount();
   }
 
   getProductsByCategory(id) {
