@@ -93,6 +93,17 @@ export class BasketService {
     }
   }
 
+  getAllAmount(): any {
+    let tmpBasket: BasketItem[] = JSON.parse(localStorage.getItem("basket"));
+
+    if (typeof tmpBasket === 'undefined' || tmpBasket.length == 0) {
+      return 0;
+    }
+    else {
+      return tmpBasket.map(item => item.amount).reduce((prev, next) => prev + next);
+    }
+  }
+
   static getItemAmount(productID: number): any {
     let tmpBasket: BasketItem[] = this.getBasket();
     let index = tmpBasket.map((i) => i.id).indexOf(productID);

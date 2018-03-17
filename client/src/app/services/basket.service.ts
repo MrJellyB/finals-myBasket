@@ -12,12 +12,21 @@ import { UsersService } from './users.service';
 @Injectable()
 export class BasketHandleService {
 
-  constructor(private httpService: HttpService, private http: Http, private userService: UsersService) { }
+  isUserLoggedIn: boolean;
+
+  constructor(private httpService: HttpService, private http: Http, private userService: UsersService) {
+
+  }
+
+  ngOnInit() {
+
+  }
 
   saveBasket(data: Basket): Observable<Response> {
     let currentUser = this.userService.userName();
 
-    return this.httpService.http.post(url + '/saveBasket', { basket: data, user: currentUser }, this.httpService.getOptions()).map((data) => data.json());
+    if (currentUser != null)
+      return this.httpService.http.post(url + '/saveBasket', { basket: data, user: currentUser }, this.httpService.getOptions()).map((data) => data.json());
   }
 
   updateBasket(data: Basket): Observable<Response> {

@@ -101,7 +101,7 @@ export class MainNavigatorComponent {
   }
 
   getAmountInBasket(): number {
-    return BasketService.getAllAmount();
+    return this.basketService.getAllAmount();
   }
 
   getProductsByCategory(id) {
