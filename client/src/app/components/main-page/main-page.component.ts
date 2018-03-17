@@ -8,14 +8,5 @@ import { Router } from '@angular/router';
   styleUrls: ['./main-page.component.css']
 })
 export class MainPageComponent {
-  @ViewChild('supermarketVideo') supermarketVideo: ElementRef;
-
-  constructor(private router: Router) { }
-
-  ngOnInit() {
-  }
-
-  ngAfterViewInit() {
-    this.supermarketVideo.nativeElement.muted = false;
-  }
+  constructor() { }
 }
