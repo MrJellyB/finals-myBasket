@@ -29,6 +29,7 @@ export class BasketPageComponent {
   bAfterBasketLoaded = false;
   basket: Basket;
   map: any;
+  isUserLoggedIn: boolean;
 
   constructor(
     private basketHandleService: BasketHandleService,
@@ -99,7 +100,7 @@ export class BasketPageComponent {
   }
 
   mapReady($event: any) {
-    // here $event will be of type google.maps.Map 
+    // here $event will be of type google.maps.Map
     // and you can put your logic here to get lat lng for marker. I have just put a sample code. You can refactor it the way you want.
     this.map = $event;
 

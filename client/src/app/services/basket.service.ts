@@ -12,12 +12,15 @@ import { UsersService } from './users.service';
 @Injectable()
 export class BasketHandleService {
 
-  constructor(private httpService: HttpService, private http: Http, private userService: UsersService) { }
+  constructor(private httpService: HttpService, private http: Http, private userService: UsersService) {
+
+  }
 
   saveBasket(data: Basket): Observable<Response> {
     let currentUser = this.userService.userName();
 
-    return this.httpService.http.post(url + '/saveBasket', { basket: data, user: currentUser }, this.httpService.getOptions()).map((data) => data.json());
+    if (currentUser != null)
+      return this.httpService.http.post(url + '/saveBasket', { basket: data, user: currentUser }, this.httpService.getOptions()).map((data) => data.json());
   }
 
   updateBasket(data: Basket): Observable<Response> {

@@ -114,6 +114,10 @@ export class MainNavigatorComponent {
     this.router.navigate(['/preferred-product'])
   }
 
+  getAmountInBasket(): number {
+    return this.basketService.getAllAmount();
+  }
+
   getProductsByCategory(id) {
     this.router.navigate(['/product-list/' + id])
   }
