@@ -9,6 +9,7 @@ import { Marker, BasketItem, Basket, Store } from '../../../interface/entities.i
 import { } from 'googlemaps';
 import { BasketHandleService } from 'app/services/basket.service';
 import { BasketService } from 'app/services/basket-service.service';
+import { EventService } from '../../../services/event.service';
 
 @Component({
   selector: 'app-basket-page',
@@ -35,7 +36,8 @@ export class BasketPageComponent {
     private basketHandleService: BasketHandleService,
     private router: Router,
     private route: ActivatedRoute,
-    private ngZone: NgZone) { }
+    private ngZone: NgZone,
+    private eventService: EventService) { }
 
   ngOnInit() {
     this.marker = { lat: this.lat, lng: this.lng };
@@ -73,7 +75,8 @@ export class BasketPageComponent {
 
   removeItem(index: number) {
     BasketService.removeItemIndex(index);
-    this.basketItems = BasketService.getBasket()
+    this.basketItems = BasketService.getBasket();
+    this.eventService.emit('BASKET_ITEMS');
   }
 
   callback(results, status) {

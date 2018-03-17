@@ -103,7 +103,6 @@ export class ProductDetailsComponent {
 
       tmpBasket.push(basketItem);
       this.usersService.addBasket(basketItem.id);
-      this.eventService.emit('BASKET_ITEMS');
     }
 
     localStorage.setItem("basket", JSON.stringify(tmpBasket));

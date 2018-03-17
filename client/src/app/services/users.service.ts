@@ -1,9 +1,11 @@
+import 'rxjs/Rx';
+import { BehaviorSubject } from 'rxjs/Rx';
+import { tap, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Headers, Http, Response, RequestOptions, RequestOptionsArgs } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/Rx';
 import { url } from 'app/utils/consts';
 import { HttpService } from 'app/services/http.service';
 import { Basket } from 'app/interface/entities.interface';
@@ -12,7 +14,8 @@ import { EventService } from './event.service';
 @Injectable()
 export class UsersService {
 
-  public token: string;
+  token: string;
+  readonly isLoggedIn$ = new BehaviorSubject<boolean>(false);
 
   constructor(private http: Http,
     private httpService: HttpService,
@@ -32,7 +35,10 @@ export class UsersService {
         "password": password
       },
       this.httpService.getOptions()
-    ).map((data) => data.json());
+    ).pipe(
+      tap(data => this.isLoggedIn$.next(true)),
+      map(data => data.json())
+    );
   }
 
   register(data: any): Observable<Response> {
@@ -59,6 +65,7 @@ export class UsersService {
     return this.http.post(url + '/resetPassword', { userName }, this.httpService.getOptions()).map((data) => data.json());
   }
 
+  // TODO: Complete
   loginWithAuthenticate(userName: string, password: string): Observable<boolean> {
     return this.http.post(url + '/loginWithAuthenticate', { "email": userName, "password": password }, this.httpService.getOptions())
       .map((response: Response) => {
