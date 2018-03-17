@@ -65,7 +65,7 @@
       <button type="button" class="btn btn-danger" style="float:right" (click)="emptyBasket()">
         <i class="fas fa fa-trash-alt"></i>
       </button>
-      <button *ngIf="this.isUserLoggedIn" type="button" class="btn btn-warning" style="float:left" (click)="saveBasket()">
+      <button *ngIf="this.isLoggedIn" type="button" class="btn btn-warning" style="float:left" (click)="saveBasket()">
         <i class="fas fa fa-save"></i>
       </button>
     </div>

@@ -19,32 +19,24 @@ export class UserLoginComponent {
     this.errorConnecting = false;
   }
 
-  ngOnInit() {
-  }
-
-  userName() {
-    return this.userService.userName();
-  }
+  // get userName() {
+  //   return this.userService.userName();
+  // }
 
   onSubmit(userloginForm: any, event: Event) {
     event.preventDefault();
     this.userService.loginWithAuthenticate(this.model.userName, this.model.password).subscribe(
       (result) => {
         if (result) {
-          if (result === true) {
-            this.userService.getUserTypeByUserName(this.model.userName).subscribe(
-              (userData) => {
-                if (userData != null) {
-                  if (userData[0].userType) {
-                    localStorage.setItem('userType', userData[0].userType.toString());
-                    this.router.navigate(['/']);
-                  }
-                }
-              }
-            )
-          }
-        }
-        else {
+          this.userService.getUserTypeByUserName(this.model.userName).subscribe(
+            (userData) => {
+              // if (userData && userData[0].userType) {
+              // localStorage.setItem('userType', userData[0].userType.toString());
+              this.router.navigate(['/']);
+              // }
+            }
+          )
+        } else {
           // login failed
           alert('פרטי המשתמש שגויים');
           this.isCurrentDetails = "פרטי המשתמש שגויים";

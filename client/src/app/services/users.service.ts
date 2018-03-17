@@ -15,7 +15,7 @@ import { EventService } from './event.service';
 export class UsersService {
 
   token: string;
-  readonly isLoggedIn$ = new BehaviorSubject<boolean>(false);
+  readonly isLoggedIn$;
 
   constructor(private http: Http,
     private httpService: HttpService,
@@ -23,9 +23,15 @@ export class UsersService {
     private eventService: EventService) {
 
     // set token if saved in local storage
-    var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.token = currentUser && currentUser.token;
+    this.isLoggedIn$ = new BehaviorSubject<boolean>(!!this.token);
   }
+
+  // Snapshot of login state right now, if you want realtime updates you should subscribe isLoggedIn$
+  get isLoggedIn() {
+    return this.isLoggedIn$.value;
+  };
 
   login(userName: string, password: string): Observable<Response> {
     return this.http.post(
@@ -68,7 +74,7 @@ export class UsersService {
   // TODO: Complete
   loginWithAuthenticate(userName: string, password: string): Observable<boolean> {
     return this.http.post(url + '/loginWithAuthenticate', { "email": userName, "password": password }, this.httpService.getOptions())
-      .map((response: Response) => {
+      .pipe(map((response: Response) => {
         // login successful if there's a jwt token in the response
         let token = response.json() && response.json().token;
         if (token) {
@@ -85,15 +91,16 @@ export class UsersService {
           // return false to indicate failed login
           return false;
         }
-      });
+      }), tap(data => this.isLoggedIn$.next(true)));
   }
 
   logout(): void {
     // clear token remove user from local storage to log user out
     this.token = null;
+    this.router.navigate(['/'])
     localStorage.clear();
     this.eventService.emit('BASKET_ITEMS');
-    this.router.navigate(['/'])
+    this.isLoggedIn$.next(false);
   }
 
   userName() {

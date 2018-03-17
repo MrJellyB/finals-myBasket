@@ -85,7 +85,7 @@ export class BasketService {
   static getAllAmount(): any {
     let tmpBasket: BasketItem[] = JSON.parse(localStorage.getItem("basket"));
 
-    if (typeof tmpBasket === 'undefined' || tmpBasket.length == 0) {
+    if (!tmpBasket || tmpBasket.length == 0) {
       return 0;
     }
     else {
@@ -96,7 +96,7 @@ export class BasketService {
   getAllAmount(): any {
     let tmpBasket: BasketItem[] = JSON.parse(localStorage.getItem("basket"));
 
-    if (typeof tmpBasket === 'undefined' || tmpBasket.length == 0) {
+    if (!tmpBasket || tmpBasket.length == 0) {
       return 0;
     }
     else {

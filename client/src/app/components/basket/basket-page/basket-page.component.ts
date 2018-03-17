@@ -10,6 +10,8 @@ import { } from 'googlemaps';
 import { BasketHandleService } from 'app/services/basket.service';
 import { BasketService } from 'app/services/basket-service.service';
 import { EventService } from '../../../services/event.service';
+import { Subscription } from 'rxjs';
+import { UsersService } from '../../../services/users.service';
 
 @Component({
   selector: 'app-basket-page',
@@ -30,14 +32,15 @@ export class BasketPageComponent {
   bAfterBasketLoaded = false;
   basket: Basket;
   map: any;
-  isUserLoggedIn: boolean;
+  isLoggedIn: boolean = this.userService.isLoggedIn;
 
   constructor(
     private basketHandleService: BasketHandleService,
     private router: Router,
     private route: ActivatedRoute,
     private ngZone: NgZone,
-    private eventService: EventService) { }
+    private eventService: EventService,
+    private userService: UsersService) { }
 
   ngOnInit() {
     this.marker = { lat: this.lat, lng: this.lng };
@@ -51,7 +54,7 @@ export class BasketPageComponent {
       if (id) {
         this.getBasket(id);
       }
-    })
+    });
   }
 
   getTotalPrice() {

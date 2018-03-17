@@ -1,4 +1,4 @@
-<div *ngIf="!userName()" class="container">
+<div class="container">
   <form id="contact" name="form" (ngSubmit)="f.form.valid && onSubmit(f,$event)" #f="ngForm" novalidate>
     <h3>התחברות לאתר</h3>
     <h4>הכנס את פרטיך</h4>
@@ -14,7 +14,6 @@
     </form>
 </div>
 
-
-<div class="container" *ngIf="userName()">
+<!-- <div class="container" *ngIf="userName()">
   <h1>הינך מחובר כבר לאתר</h1>
-</div>
+</div> -->
