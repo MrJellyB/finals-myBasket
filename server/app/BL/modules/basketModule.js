@@ -208,7 +208,7 @@ exports.updateBasket = function (req, res) {
 exports.getBasketByUser = function (req, res) {
     const userName = req.params.userName;
     dbUtils.getBasketByUser(userName, function (err, data) {
-        res.send(true);
+        res.send(data);
     });
 }
 // =============================================
