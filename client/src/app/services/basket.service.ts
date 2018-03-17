@@ -12,13 +12,7 @@ import { UsersService } from './users.service';
 @Injectable()
 export class BasketHandleService {
 
-  isUserLoggedIn: boolean;
-
   constructor(private httpService: HttpService, private http: Http, private userService: UsersService) {
-
-  }
-
-  ngOnInit() {
 
   }
 
