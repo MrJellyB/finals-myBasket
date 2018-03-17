@@ -4,6 +4,7 @@ import { FormGroup } from '@angular/forms';
 import { Product, BasketItem, CommentToProduct } from 'app/interface/entities.interface';
 import { ProductService } from 'app/services/product.service';
 import { UsersService } from '../../../services/users.service';
+import { EventService } from 'app/services/event.service';
 
 @Component({
   selector: 'app-product-details',
@@ -25,7 +26,8 @@ export class ProductDetailsComponent {
 
   constructor(private productService: ProductService,
     private usersService: UsersService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private eventService: EventService,
   ) { }
 
   ngOnInit() {
@@ -99,10 +101,12 @@ export class ProductDetailsComponent {
           amount: 1
         }
 
-      this.usersService.addBasket(basketItem.id);
       tmpBasket.push(basketItem);
+      this.usersService.addBasket(basketItem.id);
+      this.eventService.emit('BASKET_ITEMS');
     }
 
     localStorage.setItem("basket", JSON.stringify(tmpBasket));
+    this.eventService.emit('BASKET_ITEMS');
   }
 }
