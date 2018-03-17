@@ -7,6 +7,7 @@ import 'rxjs/Rx';
 import { url } from 'app/utils/consts';
 import { HttpService } from 'app/services/http.service';
 import { Basket } from 'app/interface/entities.interface';
+import { EventService } from './event.service';
 
 @Injectable()
 export class UsersService {
@@ -15,7 +16,9 @@ export class UsersService {
 
   constructor(private http: Http,
     private httpService: HttpService,
-    private router: Router) {
+    private router: Router,
+    private eventService: EventService) {
+
     // set token if saved in local storage
     var currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.token = currentUser && currentUser.token;
@@ -82,6 +85,7 @@ export class UsersService {
     // clear token remove user from local storage to log user out
     this.token = null;
     localStorage.clear();
+    this.eventService.emit('BASKET_ITEMS');
     this.router.navigate(['/'])
   }
 

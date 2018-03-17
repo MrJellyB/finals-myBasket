@@ -6,7 +6,7 @@
       <canvas id="welcomeCanvas" width="400" height="60" dir="rtl" (click)="setMainPage()" style="vertical-align: bottom;">
         Your browser does not support the HTML5 canvas tag.
       </canvas>
-      <button type="button" class="btn btn-info" (click)="basketView()"><i class="fas fa-shopping-cart"></i>הסל שלי ({{getAmountInBasket()}})</button>
+      <button type="button" class="btn btn-info" (click)="basketView()"><i class="fas fa-shopping-cart"></i>הסל שלי ({{basketItemsAmount}})</button>
       <button type="button" class="btn btn-warning" routerLink="/statistics"><i class="fas fa-chart-bar"></i>סטטיסטיקות</button>
       <button type="button" class="btn btn-warning" routerLink="/profile-builder"><i class="fas fa-chart-bar"></i>הרכבת פרופיל</button>
 
