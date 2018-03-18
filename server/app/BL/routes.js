@@ -29,5 +29,4 @@
     app.get('/getAllStores', basketModule.getAllStores);
     app.get('/getIsraelTweets', basketModule.getIsraelTweets);
     app.get('/getBasketByUser', basketModule.getBasketByUser);
-
 }
