@@ -24,16 +24,18 @@ export class UserLoginComponent {
   // }
 
   onSubmit(userloginForm: any, event: Event) {
+    debugger;
     event.preventDefault();
     this.userService.loginWithAuthenticate(this.model.userName, this.model.password).subscribe(
       (result) => {
         if (result) {
           this.userService.getUserTypeByUserName(this.model.userName).subscribe(
             (userData) => {
-              // if (userData && userData[0].userType) {
-              // localStorage.setItem('userType', userData[0].userType.toString());
+              debugger;
+               if (userData && userData[0].userType) {
+               localStorage.setItem('userType', userData[0].userType.toString());
               this.router.navigate(['/']);
-              // }
+               }
             }
           )
         } else {
