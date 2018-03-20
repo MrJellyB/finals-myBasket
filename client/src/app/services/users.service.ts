@@ -116,4 +116,8 @@ export class UsersService {
     return localStorage.setItem('userBaskets',
       JSON.stringify(basketId));
   }
+
+  getCities() {
+    return this.httpService.http.get(url + '/getCities').map((data) => data.json());
+  }
 }

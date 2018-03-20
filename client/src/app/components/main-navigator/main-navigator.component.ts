@@ -131,7 +131,6 @@ export class MainNavigatorComponent {
   }
 
   checkManager() {
-    debugger;
     return this.userName() != null && this.userType() == "2";
   }
 }

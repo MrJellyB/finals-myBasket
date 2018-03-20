@@ -224,6 +224,22 @@ exports.getAllStores = function (req, res) {
 // =============================================
 
 
+// =============================================
+
+
+
+// STORES CITIES
+// =============================================
+exports.getCities = function (req, res) {
+    dbUtils.getCities(function (err, data) {
+        res.send(data);
+    });
+}
+// =============================================
+
+
+
+
 // FOR DELETES
 // =============================================
 var twitterSettings = {

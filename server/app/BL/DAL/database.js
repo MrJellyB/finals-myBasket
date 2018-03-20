@@ -8,7 +8,7 @@ var jwt = require('jsonwebtoken');
 
 var consts = null;
 
-var collections = ['users', 'category', 'product', 'counters', 'basket', 'store'];
+var collections = ['users', 'category', 'product', 'counters', 'basket', 'store', 'city'];
 
 // log on to db
 exports.setupDB = function (dbUrl, con, p_db, callback) {
@@ -204,6 +204,10 @@ exports.updateBasket = function (data, callback) {
 exports.getBasketByUser = function (data, callback) {
     db.user.find({ userName: userName })
     db.basket.find()
+}
+
+exports.getCities = function (callback) {
+    db.city.find({}).toArray(callback);
 }
 
 // STORES METHODS

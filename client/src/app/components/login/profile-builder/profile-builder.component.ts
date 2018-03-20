@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ProfileBuilder } from '../../../interface/entities.interface';
+import { ProfileBuilder, City } from '../../../interface/entities.interface';
+import { UsersService } from '../../../services/users.service';
 
 @Component({
   selector: 'app-profile-builder',
@@ -8,13 +9,24 @@ import { ProfileBuilder } from '../../../interface/entities.interface';
 })
 export class ProfileBuilderComponent {
   public profileBuilder: ProfileBuilder;
-  constructor() { }
+  cities: City[];
+  constructor(private usersService: UsersService) { }
 
   ngOnInit() {
     debugger;
     this.profileBuilder = <ProfileBuilder>{};
+    this.getAllCities();
   }
 
   saveProfileBuilder() {
+  }
+
+  getAllCities() {
+    this.usersService.getCities().subscribe(
+      (data: any) => {
+        debugger;
+        this.cities = data
+      }
+    )
   }
 }

@@ -104,3 +104,8 @@ export interface ProfileBuilder {
     preferences: Array<string>;
     avoidness: Array<string>;
 }
+
+export interface City {
+  _id: number;
+  cityName: string;
+}
