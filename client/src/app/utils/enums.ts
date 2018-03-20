@@ -19,4 +19,21 @@ export enum UserType {
     Manager = 2
 };
 
+export enum ePreferences {
+    Kosher = 1,
+    Vegan = 2,
+    Veggie = 3
+};
+
+
+export enum eAvoidness {
+    Eggs = 1,
+    Milk = 2,
+    Gluten = 3,
+    Soy = 4,
+    Nuts = 5,
+    Peanuts = 6,
+    Ful = 7
+};
+
 

@@ -92,8 +92,24 @@ export interface FamilyData {
     babies: number;
 }
 
+export interface Preferences {
+    kosher: boolean;
+    vegan: boolean;
+    veggie: boolean;
+}
+
+export interface Avoidness {
+    eggs: boolean;
+    milk: boolean;
+    gluten: boolean;
+    soy: boolean;
+    nuts: boolean;
+    peanuts: boolean;
+    ful: boolean;
+}
+
 export interface UserAddress {
-    city: string;
+    city: number;
     street: string;
 }
 
@@ -101,11 +117,11 @@ export interface ProfileBuilder {
     birthdate: Date;
     address: UserAddress;
     peopleAmount: FamilyData;
-    preferences: Array<string>;
-    avoidness: Array<string>;
+    preferences: Preferences;
+    avoidness: Avoidness;
 }
 
 export interface City {
-  _id: number;
-  cityName: string;
+    _id: number;
+    cityName: string;
 }
