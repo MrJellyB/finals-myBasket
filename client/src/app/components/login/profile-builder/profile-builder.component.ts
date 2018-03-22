@@ -1,5 +1,5 @@
 import { Component, EventEmitter } from '@angular/core';
-import { ProfileBuilder, City, UserAddress, FamilyData, Preferences, Avoidness } from '../../../interface/entities.interface';
+import { ProfileBuilder, City, UserAddress, FamilyData, Preferences, Avoidness, User } from '../../../interface/entities.interface';
 import { UsersService } from '../../../services/users.service';
 import { ePreferences, eAvoidness } from '../../../utils/enums';
 @Component({
@@ -10,6 +10,8 @@ import { ePreferences, eAvoidness } from '../../../utils/enums';
 export class ProfileBuilderComponent {
   public profileBuilder: ProfileBuilder;
   cities: City[];
+  user: User;
+  userName: string;
   select: EventEmitter<string>;
   selectedCity: number;
   public ePreferencesEnum = ePreferences;
@@ -20,6 +22,13 @@ export class ProfileBuilderComponent {
     this.select = new EventEmitter();
     this.createProfileBuilderObject();
     this.getAllCities();
+    debugger;
+    this.userName = this.getDisplayUserName();
+  }
+
+  getDisplayUserName() {
+    let displayValue = JSON.parse(localStorage.getItem('currentUser')).userName;
+    return displayValue;
   }
 
   createProfileBuilderObject() {
@@ -41,6 +50,12 @@ export class ProfileBuilderComponent {
   }
 
   saveProfileBuilder() {
+    debugger;
+    this.usersService.saveProfileBuilder(this.profileBuilder).subscribe(
+      (data: any) => {
+
+      }
+    )
   }
 
   getAllCities() {

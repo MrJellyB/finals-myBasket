@@ -26,6 +26,7 @@
     app.get('/getCheapestProductByCategory/:id', basketModule.getCheapestProductByCategory);
     app.get('/getBasket/:id', basketModule.getBasket);
     app.get('/getUserByUserName/:userName', basketModule.getUserByUserName);
+    //  app.get('/getCurrentUser/:userName', basketModule.getCurrentUser);
     app.get('/getAllStores', basketModule.getAllStores);
     app.get('/getIsraelTweets', basketModule.getIsraelTweets);
     app.get('/getBasketByUser', basketModule.getBasketByUser);
