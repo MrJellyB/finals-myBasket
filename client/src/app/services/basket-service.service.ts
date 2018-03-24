@@ -6,10 +6,8 @@ import { BasketItem, Product } from 'app/interface/entities.interface';
 export class BasketService {
   static getBasket(): BasketItem[] {
     if (!localStorage.getItem("basket")) {
-      console.log("null")
       return [];
     } else {
-      console.log("not null");
       JSON.parse(localStorage.getItem("basket"));
     }
   }
