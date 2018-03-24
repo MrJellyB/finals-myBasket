@@ -86,10 +86,15 @@ export class ProductDetailsComponent {
 
   addToBasket(product: Product) {
     //this.module.addToBaket(product);
-    let tmpBasket: BasketItem[] = JSON.parse(localStorage.getItem("basket"));
-    let index = tmpBasket.map((i) => i.id).indexOf(product.id)
+    let basketItems: BasketItem[] = [];
+
+    if (localStorage.getItem("basket")) {
+      basketItems = JSON.parse(localStorage.getItem("basket"));
+    }
+
+    let index = basketItems.map((i) => i.id).indexOf(product.id)
     if (index != -1) {
-      tmpBasket[index].amount += 1;
+      basketItems[index].amount += 1;
     }
     else {
       const basketItem: BasketItem =
@@ -100,12 +105,10 @@ export class ProductDetailsComponent {
           price: this.productDetails.price,
           amount: 1
         }
-
-      tmpBasket.push(basketItem);
-      this.usersService.addBasket(basketItem.id);
+      basketItems.push(basketItem);
     }
 
-    localStorage.setItem("basket", JSON.stringify(tmpBasket));
+    localStorage.setItem("basket", JSON.stringify(basketItems));
     this.eventService.emit('BASKET_ITEMS');
   }
 }

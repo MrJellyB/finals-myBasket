@@ -45,7 +45,6 @@ export class BasketPageComponent {
   ngOnInit() {
     this.marker = { lat: this.lat, lng: this.lng };
     this.basket = <Basket>{};
-    this.basket.id = 0;
     this.getAllStores();
     this.select = new EventEmitter();
 
@@ -149,6 +148,7 @@ export class BasketPageComponent {
 
   setItemAmount(productId: number, amount: number) {
     BasketService.setItemAmount(productId, amount);
+    this.eventService.emit('BASKET_ITEMS');
   }
 
   saveBasket() {
@@ -156,18 +156,15 @@ export class BasketPageComponent {
     this.basket.totalPrice = this.getTotalPrice();
     this.basket.streetName = this.currentStreetName;
 
-    if (!this.basket.id) {
-      this.basket.id = 0;
-    }
-    if (this.basket.id == 0) {
-      this.basketHandleService.saveBasket(this.basket).subscribe((results) => {
-        alert('סל מספר ' + results + ' נשמר בהצלחה');
-      })
-    }
-    else {
-      this.basketHandleService.updateBasket(this.basket).subscribe((results) => {
-        alert("סל " + this.basket.id + " נשמר עודכן ")
-      })
+    if (!localStorage.getItem("hasBasketInDB")) {
+      this.basketHandleService.saveBasket(this.basket).subscribe((res) => {
+        localStorage.setItem("hasBasketInDB", "true");
+        alert('הסל נשמר בהצלחה');
+      });
+    } else {
+      this.basketHandleService.updateBasket(this.basket).subscribe((res) => {
+        alert('הסל עודכן בהצלחה');
+      });
     }
   }
 

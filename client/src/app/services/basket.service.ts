@@ -17,12 +17,11 @@ export class BasketHandleService {
   }
 
   saveBasket(data: Basket): Observable<Response> {
-    let currentUser = this.userService.userName();
+    let currentUser = this.userService.userName().userName;
     data.userName = currentUser;
 
     if (currentUser != null) {
       return this.httpService.http.post(url + '/saveBasket', { data },
-        // TODO: Should be json.parse
         this.httpService.getOptions()).map(
           data => data.json()
         );
@@ -35,6 +34,14 @@ export class BasketHandleService {
 
   getBasket(id: number): Observable<Response> {
     return this.httpService.http.get(url + '/getBasket/' + id).map((data) => data.json());
+  }
+
+  getBasketByUser(userName: string): Observable<Response> {
+    return this.httpService.http.get(url + '/getBasketByUser', {
+      params: {
+        user: (userName)
+      },
+    }).map((data) => data && data.json());
   }
 
   getAllStores(): Observable<Response> {

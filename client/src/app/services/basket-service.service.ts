@@ -4,8 +4,6 @@ import { BasketItem, Product } from 'app/interface/entities.interface';
 // TODO: Merge with the other service / get rid
 @Injectable()
 export class BasketService {
-  constructor() { }
-
   static getBasket(): BasketItem[] {
     return JSON.parse(localStorage.getItem("basket"));
   }
@@ -45,10 +43,7 @@ export class BasketService {
 
   static setItemAmount(productID: number, amount: number) {
     let tmpBasket: BasketItem[] = JSON.parse(localStorage.getItem("basket"));
-
     let index = tmpBasket.map((i) => i.id).indexOf(productID);
-
-    console.log(index);
     if (index != -1)
       tmpBasket[index].amount = amount;
 

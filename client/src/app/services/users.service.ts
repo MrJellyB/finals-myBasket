@@ -51,9 +51,9 @@ export class UsersService {
     return this.http.post(url + '/register', { data }, this.httpService.getOptions()).map((data) => data.json());
   }
 
-  getUserTypeByUserName(data: any): Observable<Response> {
-    return this.httpService.http.get(url + '/getUserByUserName/' + data).map((data) => data.json());
-  }
+  // getUserTypeByUserName(data: any): Observable<Response> {
+  //   return this.httpService.http.get(url + '/getUserTypeByUserName/' + data).map((data) => data.json());
+  // }
 
   getCurrentUser(userName: any): Observable<Response> {
     return this.httpService.http.get(url + '/getCurrentUser/' + userName).map((data) => data.json());
@@ -93,7 +93,6 @@ export class UsersService {
           localStorage.setItem('currentUser', JSON.stringify({ userName: userName, token: token }));
 
           // return true to indicate successful login
-          // this.http.get('/getBasketByUser', ).subscribe(data)
           return true;
         }
         else {
@@ -118,11 +117,6 @@ export class UsersService {
 
   getUserStatus() {
     return JSON.parse(localStorage.getItem('userType'));
-  }
-
-  addBasket(basketId) {
-    return localStorage.setItem('userBaskets',
-      JSON.stringify(basketId));
   }
 
   getCities() {

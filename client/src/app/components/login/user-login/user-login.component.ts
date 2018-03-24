@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from 'app/services/users.service';
+import { BasketHandleService } from '../../../services/basket.service';
+import { EventService } from 'app/services/event.service';
 
 @Component({
   selector: 'app-user-login',
@@ -15,6 +17,8 @@ export class UserLoginComponent {
   isCurrentDetails: string;
 
   constructor(private userService: UsersService,
+    private basketService: BasketHandleService,
+    private eventService: EventService,
     private router: Router) {
     this.errorConnecting = false;
   }
@@ -24,20 +28,23 @@ export class UserLoginComponent {
   // }
 
   onSubmit(userloginForm: any, event: Event) {
-    debugger;
     event.preventDefault();
     this.userService.loginWithAuthenticate(this.model.userName, this.model.password).subscribe(
       (result) => {
         if (result) {
-          this.userService.getUserTypeByUserName(this.model.userName).subscribe(
-            (userData) => {
-              debugger;
-               if (userData && userData[0].userType) {
-               localStorage.setItem('userType', userData[0].userType.toString());
-              this.router.navigate(['/']);
-               }
-            }
-          )
+          this.basketService.getBasketByUser(this.model.userName).subscribe((b: any) => {
+            localStorage.setItem("basket", JSON.stringify(b.basketItems));
+            localStorage.setItem("hasBasketInDB", "true");
+            this.eventService.emit('BASKET_ITEMS');
+          });
+          // this.userService.getUserTypeByUserName(this.model.userName).subscribe(
+          //   (userData) => {
+          //     if (userData && userData[0].userType) {
+          //       localStorage.setItem('userType', userData[0].userType.toString());
+          //       this.router.navigate(['/']);
+          //     }
+          //   }
+          // )
         } else {
           // login failed
           alert('פרטי המשתמש שגויים');

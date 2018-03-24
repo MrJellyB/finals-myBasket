@@ -8,16 +8,12 @@ import * as $ from "jquery";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'app';
   Snap: any;
   @ViewChild('myCanvas') myCanvas: ElementRef;
   public context: CanvasRenderingContext2D;
   constructor(private router: Router) { }
-
-  ngOnInit() {
-    localStorage.setItem("basket", "[]");
-  }
 
   logonPage() {
     this.router.navigate(['/login']);

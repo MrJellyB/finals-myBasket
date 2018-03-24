@@ -48,13 +48,6 @@ exports.register = function (req, res) {
     dbUtils.register(data, function (err, data) { res.send(true) });
 }
 
-exports.getUserByUserName = function (req, res) {
-    var userName = req.params.userName;
-    dbUtils.getUserByUserName(userName, function (err, data) {
-        res.send(data);
-    })
-}
-
 exports.removeUser = function (req, res) {
     var data = req.body.data;
 
@@ -178,7 +171,7 @@ exports.getCheapestProductByCategory = function (req, res) {
 // BASKETS METHODS
 // =============================================
 exports.saveBasket = function (req, res) {
-    var details = req.body;
+    var details = req.body.data;
     dbUtils.getNextSequence("basketId", function (err, nextSeqId) {
         dbUtils.getCurrentSeq("basketId", function (err, currSeqId) {
             details.id = currSeqId[0].seq;
@@ -206,7 +199,7 @@ exports.updateBasket = function (req, res) {
 }
 
 exports.getBasketByUser = function (req, res) {
-    const userName = req.params.userName;
+    const userName = req.query.user;
     dbUtils.getBasketByUser(userName, function (err, data) {
         res.send(data);
     });
