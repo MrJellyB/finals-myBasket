@@ -171,6 +171,10 @@ exports.getBasket = function (id, callback) {
     db.basket.find({ "id": +id }).toArray(callback);
 }
 
+exports.getUserByUserName = function (userName, callback) {
+    db.users.find({ "userName": userName }).toArray(callback);
+}
+
 exports.removeUser = function (data, callback) {
     db.users.remove({ "userName": data }, callback);
 }

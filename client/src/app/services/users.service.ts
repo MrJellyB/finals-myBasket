@@ -51,9 +51,9 @@ export class UsersService {
     return this.http.post(url + '/register', { data }, this.httpService.getOptions()).map((data) => data.json());
   }
 
-  // getUserTypeByUserName(data: any): Observable<Response> {
-  //   return this.httpService.http.get(url + '/getUserTypeByUserName/' + data).map((data) => data.json());
-  // }
+  getUserTypeByUserName(data: any): Observable<Response> {
+    return this.httpService.http.get(url + '/getUserByUserName/' + data).map((data) => data.json());
+  }
 
   getCurrentUser(userName: any): Observable<Response> {
     return this.httpService.http.get(url + '/getCurrentUser/' + userName).map((data) => data.json());

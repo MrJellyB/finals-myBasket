@@ -48,6 +48,13 @@ exports.register = function (req, res) {
     dbUtils.register(data, function (err, data) { res.send(true) });
 }
 
+exports.getUserByUserName = function (req, res) {
+    var userName = req.params.userName;
+    dbUtils.getUserByUserName(userName, function (err, data) {
+        res.send(data);
+    })
+}
+
 exports.removeUser = function (req, res) {
     var data = req.body.data;
 
