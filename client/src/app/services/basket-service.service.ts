@@ -5,11 +5,7 @@ import { BasketItem, Product } from 'app/interface/entities.interface';
 @Injectable()
 export class BasketService {
   static getBasket(): BasketItem[] {
-    if (!localStorage.getItem("basket")) {
-      return [];
-    } else {
-      JSON.parse(localStorage.getItem("basket"));
-    }
+    return JSON.parse(localStorage.getItem("basket"));
   }
 
   static setBasket(basket: BasketItem[]) {
@@ -104,7 +100,7 @@ export class BasketService {
   }
 
   static getItemAmount(productID: number): any {
-    let tmpBasket: BasketItem[] = this.getBasket();
+    let tmpBasket: BasketItem[] = this.getBasket() || [];
     let index = tmpBasket.map((i) => i.id).indexOf(productID);
     if (index != -1)
       return tmpBasket[index].amount;
