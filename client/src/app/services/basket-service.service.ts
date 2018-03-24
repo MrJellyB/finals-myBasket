@@ -5,7 +5,13 @@ import { BasketItem, Product } from 'app/interface/entities.interface';
 @Injectable()
 export class BasketService {
   static getBasket(): BasketItem[] {
-    return JSON.parse(localStorage.getItem("basket"));
+    if (!localStorage.getItem("basket")) {
+      console.log("null")
+      return [];
+    } else {
+      console.log("not null");
+      JSON.parse(localStorage.getItem("basket"));
+    }
   }
 
   static setBasket(basket: BasketItem[]) {
@@ -13,7 +19,7 @@ export class BasketService {
   }
 
   static addItem(product: Product) {
-    let tmpBasket: BasketItem[] = JSON.parse(localStorage.getItem("basket"));
+    let tmpBasket: BasketItem[] = this.getBasket();
     let index = tmpBasket.map((i) => i.id).indexOf(product.id)
     if (index != -1)
       tmpBasket[index].amount = +tmpBasket[index].amount + 1;
@@ -78,7 +84,7 @@ export class BasketService {
   }
 
   static getAllAmount(): any {
-    let tmpBasket: BasketItem[] = JSON.parse(localStorage.getItem("basket"));
+    let tmpBasket: BasketItem[] = this.getBasket();
 
     if (!tmpBasket || tmpBasket.length == 0) {
       return 0;

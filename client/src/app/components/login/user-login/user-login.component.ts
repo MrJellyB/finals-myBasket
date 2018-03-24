@@ -33,9 +33,11 @@ export class UserLoginComponent {
       (result) => {
         if (result) {
           this.basketService.getBasketByUser(this.model.userName).subscribe((b: any) => {
-            localStorage.setItem("basket", JSON.stringify(b.basketItems));
-            localStorage.setItem("hasBasketInDB", "true");
-            this.eventService.emit('BASKET_ITEMS');
+            if (b.length) {
+              localStorage.setItem("basket", JSON.stringify(b.basketItems));
+              localStorage.setItem("hasBasketInDB", "true");
+              this.eventService.emit('BASKET_ITEMS');
+            }
           });
           this.userService.getUserTypeByUserName(this.model.userName).subscribe(
             (userData) => {

@@ -41,7 +41,7 @@ export class BasketHandleService {
       params: {
         user: (userName)
       },
-    }).map((data) => data && data.json());
+    }).map((data) => data.json());
   }
 
   getAllStores(): Observable<Response> {

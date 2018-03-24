@@ -202,7 +202,7 @@ exports.updateBasket = function (data, callback) {
 }
 
 exports.getBasketByUser = function (userName, callback) {
-    db.basket.findOne({ userName: userName }, callback);
+    db.basket.find({ userName: userName }).toArray(callback);
 }
 
 exports.getCities = function (callback) {
