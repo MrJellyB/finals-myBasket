@@ -67,7 +67,7 @@ export class UsersService {
     return this.http.post(url + '/removeUser', { data }, this.httpService.getOptions()).map((data) => data.json());
   }
 
-  saveProfileBuilder(data: any) {
+  saveProfileBuilder(data: any, userName: string) {
     return this.http.post(url + '/saveProfileBuilder', { data }, this.httpService.getOptions()).map((data) => data.json());
   }
 

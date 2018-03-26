@@ -46,7 +46,7 @@ exports.login = function (email, password, callback) {
 exports.loginWithAuthenticate = function (email, password, callback) {
     db.users.findOne(
         {
-            "email": email,
+            "userName": email,
             "password": password
         },
         {

@@ -54,7 +54,7 @@ export class ProfileBuilderComponent {
 
   saveProfileBuilder() {
     debugger;
-    this.usersService.saveProfileBuilder(this.profileBuilder).subscribe(
+    this.usersService.saveProfileBuilder(this.profileBuilder, this.userName).subscribe(
       (data: any) => {
 
       }

@@ -38,7 +38,7 @@ export class UserLoginComponent {
               localStorage.setItem("hasBasketInDB", "true");
               this.eventService.emit('BASKET_ITEMS');
             }
-          });
+          }); 
           this.userService.getUserTypeByUserName(this.model.userName).subscribe(
             (userData) => {
               if (userData && userData[0].userType) {
