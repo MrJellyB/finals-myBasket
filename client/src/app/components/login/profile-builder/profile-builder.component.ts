@@ -47,6 +47,9 @@ export class ProfileBuilderComponent {
     this.profileBuilder.preferences.kosher = false;
     this.profileBuilder.preferences.vegan = false;
     this.profileBuilder.preferences.veggie = false;
+    this.profileBuilder.peopleAmount.adults = 0
+    this.profileBuilder.peopleAmount.babies = 0;
+    this.profileBuilder.peopleAmount.kids = 0;
   }
 
   saveProfileBuilder() {
@@ -62,11 +65,23 @@ export class ProfileBuilderComponent {
     this.usersService.getCities().subscribe(
       (data: any) => {
         this.cities = data
+        this.selectedCity = this.cities[0]._id;
       }
     )
   }
 
+  _keyPress(event: any) {
+    const pattern = /[0-9\+\ ]/;
+    let inputChar = String.fromCharCode(event.charCode);
+
+    if (!pattern.test(inputChar)) {
+      // invalid character, prevent input
+      event.preventDefault();
+    }
+  }
+
   selectItem(value) {
+    debugger;
     this.select.emit(value);
     this.selectedCity = +value;
     this.profileBuilder.address.city = +value;

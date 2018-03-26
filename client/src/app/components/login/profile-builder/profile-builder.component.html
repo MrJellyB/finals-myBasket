@@ -9,19 +9,19 @@
   </form>
 </div>
 <div class="col-md-4 col-md-offset-2">
-  <form>
+  <form name="form" (ngSubmit)="f.form.valid && onSubmit(f,$event)" #f="ngForm" novalidate>
     <div class="form-group">
-      תאריך לידה:<input class="form-control" type="date" name="birthdate" [(ngModel)]="profileBuilder.birthdate" #birthdate="ngModel">
+      תאריך לידה:<input class="form-control" type="date" name="birthdate" [(ngModel)]="profileBuilder.birthdate" #birthdate="ngModel" required>
     </div>
     <br>
     <div class="form-group">
       <b>כתובת מגורים</b>
     </div>
-    רחוב: <input class="form-control" name="street">
+    רחוב: <input class="form-control" name="street" [(ngModel)]="profileBuilder.address.street" #street="ngModel" required>
     <br>
     עיר: 
     <select (change)="selectItem($event.target.value)" class="form-control">
-      <option *ngFor="let currCity of cities" [selected]="currCity._id == currentCategory" value={{currCity._id}}>{{currCity.cityName}}</option>
+      <option *ngFor="let currCity of cities" [selected]="currCity._id == selectedCity" value={{currCity._id}}>{{currCity.cityName}}</option>
     </select>
     <br>
     <br>
@@ -29,13 +29,13 @@
       <b>כמה אנשים מתגוררים בבית?</b>
       <br>
       מבוגרים
-      <input  type="number" placeholder="0" name="adults" [(ngModel)]="profileBuilder.peopleAmount.adults" #adults="ngModel" required/>
+      <input  type="number" name="adults" [(ngModel)]="profileBuilder.peopleAmount.adults" #adults="ngModel" min="0" (keypress)="_keyPress($event)" required/>
       <br>
       ילדים 
-      <input  type="number" name="kids" [(ngModel)]="profileBuilder.peopleAmount.kids" #kids="ngModel" required/>
+      <input  type="number" name="kids" [(ngModel)]="profileBuilder.peopleAmount.kids" #kids="ngModel" min="0" (keypress)="_keyPress($event)" required/>
       <br>
       תינוקות
-      <input  type="number" name="babies" [(ngModel)]="profileBuilder.peopleAmount.babies" #babies="ngModel" required/>
+      <input  type="number" name="babies" [(ngModel)]="profileBuilder.peopleAmount.babies" #babies="ngModel" min="0" (keypress)="_keyPress($event)" required/>
     </div>
     <br>
     <div class="form-group">
@@ -60,6 +60,6 @@
       פול <input name="ful" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Ful)">
     </div>
     <br>
-    <button name="save" (click)="saveProfileBuilder()" class="btn btn-primary">שמור פרטים</button>
+    <button name="save" (click)="saveProfileBuilder()" [disabled]="!f.valid || selectedCity == 0 || (profileBuilder.peopleAmount.adults + profileBuilder.peopleAmount.kids + profileBuilder.peopleAmount.babies) < 1" class="btn btn-primary">שמור פרטים</button>
   </form>
 </div>
