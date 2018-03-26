@@ -5,6 +5,7 @@ import { BasketItem, Product } from 'app/interface/entities.interface';
 @Injectable()
 export class BasketService {
   static getBasket(): BasketItem[] {
+    debugger;
     return JSON.parse(localStorage.getItem("basket"));
   }
 
