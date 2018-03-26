@@ -8,7 +8,7 @@ var jwt = require('jsonwebtoken');
 
 var consts = null;
 
-var collections = ['users', 'category', 'product', 'counters', 'basket', 'store', 'city'];
+var collections = ['users', 'category', 'product', 'counters', 'basket', 'store', 'city', 'gender'];
 
 // log on to db
 exports.setupDB = function (dbUrl, con, p_db, callback) {
@@ -37,6 +37,10 @@ exports.setupDB = function (dbUrl, con, p_db, callback) {
 
 exports.getUsers = function (callback) {
     db.users.find({}).toArray(callback);
+}
+
+exports.getGenders = function (callback) {
+    db.gender.find({}).toArray(callback);
 }
 
 exports.login = function (email, password, callback) {

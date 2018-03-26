@@ -16,7 +16,23 @@ exports.setup = function (db) {
 
 exports.getUsers = function (req, res) {
     dbUtils.getUsers(function (err, results) {
-        res.send(results);
+        dbUtils.getGenders(function (err, genders) {
+            for (var index = 0; index < results.length; index++) {
+                if (results[index].gender == genders[0].id) {
+                    results[index].genderValue = genders[0].value;
+                }
+                else if (results[index].gender == genders[1].id) {
+                    results[index].genderValue = genders[1].value;
+                }
+                if (results[index].userType == 1) {
+                    results[index].userTypeValue = "אורח"
+                }
+                else if (results[index].userType == 2) {
+                    results[index].userTypeValue = "מנהל"
+                }
+            }
+            res.send(results);
+        })
     })
 }
 

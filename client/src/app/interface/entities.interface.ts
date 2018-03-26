@@ -47,7 +47,8 @@ export interface User {
     password: string;
     //gender: 1 | 2;
     gender: number;
-    // userTypeValue: string;
+    userTypeValue: string;
+    genderValue: string;
     role: string; // TODO: Change in script 
     isManagerChecked: boolean;
     userType: number;
