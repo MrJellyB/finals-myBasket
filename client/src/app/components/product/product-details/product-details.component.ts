@@ -85,7 +85,7 @@ export class ProductDetailsComponent {
   }
 
   addToBasket(product: Product) {
-    //this.module.addToBaket(product);
+    debugger;
     let basketItems: BasketItem[] = [];
 
     if (localStorage.getItem("basket")) {

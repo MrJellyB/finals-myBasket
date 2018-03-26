@@ -59,6 +59,7 @@ export class ProductsListComponent {
 
   addToBasket(product: Product, input: any) {
     //BasketService.setItemAmountStable(product, +(input.value || 0) + 1);
+    debugger;
     BasketService.addItem(product);
   }
 

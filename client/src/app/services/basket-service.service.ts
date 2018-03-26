@@ -14,13 +14,21 @@ export class BasketService {
 
   static addItem(product: Product) {
     let tmpBasket: BasketItem[] = this.getBasket();
-    let index = tmpBasket.map((i) => i.id).indexOf(product.id)
-    if (index != -1)
-      tmpBasket[index].amount = +tmpBasket[index].amount + 1;
-    else
-      tmpBasket.push({ id: product.id, name: product.name, image: "", price: product.price, amount: 1 });
 
-    localStorage.setItem("basket", JSON.stringify(tmpBasket));
+    if (tmpBasket) {
+      let index = tmpBasket.map((i) => i.id).indexOf(product.id)
+      if (index != -1)
+        tmpBasket[index].amount = +tmpBasket[index].amount + 1;
+      else
+        tmpBasket.push({ id: product.id, name: product.name, image: "", price: product.price, amount: 1 });
+
+      localStorage.setItem("basket", JSON.stringify(tmpBasket));
+    }
+    else {
+      let tmpBasket : BasketItem[] = [];
+      tmpBasket.push({ id: product.id, name: product.name, image: "", price: product.price, amount: 1 });
+      localStorage.setItem("basket", JSON.stringify(tmpBasket));
+    }
   }
 
   static removeItem(product: Product) {
