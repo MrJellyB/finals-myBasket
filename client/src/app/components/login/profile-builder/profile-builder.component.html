@@ -9,7 +9,7 @@
   </form>
 </div>
 <div class="col-md-4 col-md-offset-2">
-  <form name="form" (ngSubmit)="f.form.valid && onSubmit(f,$event)" #f="ngForm" novalidate>
+  <form name="form" #f="ngForm" novalidate>
     <div class="form-group">
       תאריך לידה:<input class="form-control" type="date" name="birthdate" [(ngModel)]="profileBuilder.birthdate" #birthdate="ngModel" required>
     </div>
@@ -41,23 +41,23 @@
     <div class="form-group">
       <b>העדפות והמנעויות</b>
       <br>
-      מוצרים כשרים בלבד? <input name="kosher" type="checkbox" (change)="checkPreferences($event, ePreferencesEnum.Kosher)">
+      מוצרים כשרים בלבד? <input name="kosher" type="checkbox" (change)="checkPreferences($event, ePreferencesEnum.Kosher)" [checked]="profileBuilder.preferences.kosher">
       <br>
-      מוצרים טבעוניים בלבד? <input name="vegan" type="checkbox" (change)="checkPreferences($event, ePreferencesEnum.Vegan)">
+      מוצרים טבעוניים בלבד? <input name="vegan" type="checkbox" (change)="checkPreferences($event, ePreferencesEnum.Vegan)" [checked]="profileBuilder.preferences.vegan">
       <br>
-      מוצרים צמחוניים בלבד? <input name="veggie" type="checkbox" (change)="checkPreferences($event, ePreferencesEnum.Veggie)">
+      מוצרים צמחוניים בלבד? <input name="veggie" type="checkbox" (change)="checkPreferences($event, ePreferencesEnum.Veggie)" [checked]="profileBuilder.preferences.veggie">
     </div>
     <br>
     <div class="form-group">
       <b>הסל שלי יהיה ללא המוצרים הבאים:</b>
       <br>
-      ביצים <input name="eggs" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Eggs)">
-      מוצרי חלב <input name="milk" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Milk)">
-      גלוטן <input name="gluten" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Gluten)">
-      סויה <input name="soy" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Soy)">
-      אגוזים <input name="nuts" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Nuts)">
-      בוטנים <input name="peanuts" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Peanuts)">
-      פול <input name="ful" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Ful)">
+      ביצים <input name="eggs" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Eggs)" [checked]="profileBuilder.avoidness.eggs">
+      מוצרי חלב <input name="milk" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Milk)" [checked]="profileBuilder.avoidness.milk">
+      גלוטן <input name="gluten" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Gluten)" [checked]="profileBuilder.avoidness.gluten">
+      סויה <input name="soy" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Soy)" [checked]="profileBuilder.avoidness.soy">
+      אגוזים <input name="nuts" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Nuts)" [checked]="profileBuilder.avoidness.nuts">
+      בוטנים <input name="peanuts" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Peanuts)" [checked]="profileBuilder.avoidness.peanuts">
+      פול <input name="ful" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Ful)" [checked]="profileBuilder.avoidness.ful">
     </div>
     <br>
     <button name="save" (click)="saveProfileBuilder()" [disabled]="!f.valid || selectedCity == 0 || (profileBuilder.peopleAmount.adults + profileBuilder.peopleAmount.kids + profileBuilder.peopleAmount.babies) < 1" class="btn btn-primary">שמור פרטים</button>

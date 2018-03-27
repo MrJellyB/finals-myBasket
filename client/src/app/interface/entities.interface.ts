@@ -52,6 +52,7 @@ export interface User {
     role: string; // TODO: Change in script 
     isManagerChecked: boolean;
     userType: number;
+    profile: ProfileBuilder;
 }
 
 export interface Marker { // For gmaps

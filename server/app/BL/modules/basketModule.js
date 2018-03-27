@@ -104,10 +104,9 @@ exports.createProfileToUser = function (req, res) {
     //    var user = data[0];
 
     dbUtils.addProfileToUser(userName, profile, function (err, data) {
-        console.log("after inserted to mongodb");
-        if (err) return false;
-        if (data) return true;
-        return false;
+        if (err) return res.send(false);
+        if (data) return res.send(true);
+        return res.send(false);
     })
     //})
 }

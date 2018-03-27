@@ -23,6 +23,25 @@ export class ProfileBuilderComponent {
     this.createProfileBuilderObject();
     this.getAllCities();
     this.userName = this.getDisplayUserName();
+    this.getUserProfile();
+  }
+
+  getUserProfile() {
+    this.usersService.getUserTypeByUserName(this.userName).subscribe(
+      (userData: any) => {
+        debugger;
+        this.user = userData[0];
+        if (this.user && this.user.profile) {
+          this.profileBuilder = this.user.profile;
+
+          if (this.profileBuilder &&
+            this.profileBuilder.address &&
+            this.profileBuilder.address.city) {
+            this.selectedCity = this.profileBuilder.address.city;
+          }
+        }
+      }
+    )
   }
 
   getDisplayUserName() {
@@ -54,7 +73,8 @@ export class ProfileBuilderComponent {
   saveProfileBuilder() {
     this.usersService.saveProfileBuilder(this.profileBuilder, this.userName).subscribe(
       (data: any) => {
-
+        debugger;
+        alert("הרכבת פרופיל נשמר בהצלחה");
       }
     )
   }
