@@ -5,6 +5,8 @@ import { UsersService } from 'app/services/users.service';
 import { BasketService } from 'app/services/basket-service.service';
 import { EventService } from 'app/services/event.service';
 import { Subscription } from 'rxjs';
+import { LocalStorageService } from 'app/services/localStorageService';
+
 
 @Component({
   selector: 'app-main-navigator',
@@ -21,6 +23,7 @@ export class MainNavigatorComponent {
     private usersService: UsersService,
     private basketService: BasketService,
     private eventService: EventService,
+    private localStorageService: LocalStorageService,
     @Inject(DOCUMENT) private _document
   ) { }
 
@@ -48,10 +51,10 @@ export class MainNavigatorComponent {
         `;
 
     this._renderer2.appendChild(this._document.body, script);
-    this.basketItemsAmount = BasketService.getAllAmount();
+    this.basketItemsAmount = this.basketService.getAllAmount();
     this.subs.push(
       this.eventService.observe('BASKET_ITEMS').subscribe(() => {
-        this.basketItemsAmount = BasketService.getAllAmount();
+        this.basketItemsAmount = this.basketService.getAllAmount();
       }));
   }
 
@@ -78,12 +81,12 @@ export class MainNavigatorComponent {
   }
 
   getDisplayUserName() {
-    let displayValue = JSON.parse(localStorage.getItem('currentUser')).userName;
+    let displayValue = this.localStorageService.get('currentUser').userName;
     return displayValue;
   }
 
   getUserStatus() {
-    return localStorage.getItem('userType');
+    return this.localStorageService.get('userType');
   }
 
   managerView() {

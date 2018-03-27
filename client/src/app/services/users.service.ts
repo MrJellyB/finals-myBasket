@@ -10,6 +10,7 @@ import { url } from 'app/utils/consts';
 import { HttpService } from 'app/services/http.service';
 import { Basket } from 'app/interface/entities.interface';
 import { EventService } from './event.service';
+import { LocalStorageService } from './localStorageService';
 
 @Injectable()
 export class UsersService {
@@ -20,10 +21,11 @@ export class UsersService {
   constructor(private http: Http,
     private httpService: HttpService,
     private router: Router,
-    private eventService: EventService) {
+    private eventService: EventService,
+    private localStorageService: LocalStorageService) {
 
     // set token if saved in local storage
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const currentUser = this.localStorageService.get('currentUser');
     this.token = currentUser && currentUser.token;
     this.isLoggedIn$ = new BehaviorSubject<boolean>(!!this.token);
   }
@@ -52,15 +54,15 @@ export class UsersService {
   }
 
   getUserTypeByUserName(data: any): Observable<Response> {
-    return this.httpService.http.get(url + '/getUserByUserName/' + data).map((data) => data.json());
+    return this.http.get(url + '/getUserByUserName/' + data).map((data) => data.json());
   }
 
   getCurrentUser(userName: any): Observable<Response> {
-    return this.httpService.http.get(url + '/getCurrentUser/' + userName).map((data) => data.json());
+    return this.http.get(url + '/getCurrentUser/' + userName).map((data) => data.json());
   }
 
   getAllUsers(): Observable<Response> {
-    return this.httpService.http.get(url + '/getUsers').map((data) => data.json());
+    return this.http.get(url + '/getUsers').map((data) => data.json());
   }
 
   removeUser(data: any): Observable<Response> {
@@ -90,7 +92,7 @@ export class UsersService {
           this.token = token;
 
           // store username and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify({ userName: userName, token: token }));
+          this.localStorageService.set('currentUser', { userName: userName, token: token });
 
           // return true to indicate successful login
           return true;
@@ -106,20 +108,20 @@ export class UsersService {
     // clear token remove user from local storage to log user out
     this.token = null;
     this.router.navigate(['/'])
-    localStorage.clear();
+    this.localStorageService.clear();
     this.eventService.emit('BASKET_ITEMS');
     this.isLoggedIn$.next(false);
   }
 
   userName() {
-    return JSON.parse(localStorage.getItem('currentUser'));
+    return this.localStorageService.get('currentUser');
   }
 
   getUserStatus() {
-    return JSON.parse(localStorage.getItem('userType'));
+    return this.localStorageService.get('userType');
   }
 
   getCities() {
-    return this.httpService.http.get(url + '/getCities').map((data) => data.json());
+    return this.http.get(url + '/getCities').map((data) => data.json());
   }
 }

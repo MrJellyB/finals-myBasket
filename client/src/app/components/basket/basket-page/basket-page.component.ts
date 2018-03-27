@@ -5,13 +5,14 @@ import { CurrencyPipe } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { EventEmitter, NgZone } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Marker, BasketItem, Basket, Store } from '../../../interface/entities.interface';
+import { Marker, BasketItem, Basket, Store } from 'app/interface/entities.interface';
 import { } from 'googlemaps';
 import { BasketHandleService } from 'app/services/basket.service';
 import { BasketService } from 'app/services/basket-service.service';
-import { EventService } from '../../../services/event.service';
+import { EventService } from 'app/services/event.service';
 import { Subscription } from 'rxjs';
-import { UsersService } from '../../../services/users.service';
+import { UsersService } from 'app/services/users.service';
+import { LocalStorageService } from 'app/services/localStorageService';
 
 @Component({
   selector: 'app-basket-page',
@@ -19,7 +20,7 @@ import { UsersService } from '../../../services/users.service';
   styleUrls: ['./basket-page.component.css']
 })
 export class BasketPageComponent {
-  basketItems: BasketItem[] = BasketService.getBasket();
+  basketItems: BasketItem[] = this.basketService.getBasket();
   title: string = 'My first AGM project';
   lat: number = 32.678418;
   lng: number = 35.409007;
@@ -40,6 +41,8 @@ export class BasketPageComponent {
     private route: ActivatedRoute,
     private ngZone: NgZone,
     private eventService: EventService,
+    private basketService: BasketService,
+    private localStorageService: LocalStorageService,
     private userService: UsersService) { }
 
   ngOnInit() {
@@ -76,8 +79,8 @@ export class BasketPageComponent {
   }
 
   removeItem(index: number) {
-    BasketService.removeItemIndex(index);
-    this.basketItems = BasketService.getBasket();
+    this.basketService.removeItemIndex(index);
+    this.basketItems = this.basketService.getBasket();
     this.eventService.emit('BASKET_ITEMS');
   }
 
@@ -136,8 +139,8 @@ export class BasketPageComponent {
   }
 
   emptyBasket() {
-    BasketService.setBasket([]);
-    this.basketItems = BasketService.getBasket()
+    this.basketService.setBasket([]);
+    this.basketItems = this.basketService.getBasket()
   }
 
   selectItem(value) {
@@ -147,7 +150,7 @@ export class BasketPageComponent {
   }
 
   setItemAmount(productId: number, amount: number) {
-    BasketService.setItemAmount(productId, amount);
+    this.basketService.setItemAmount(productId, amount);
     this.eventService.emit('BASKET_ITEMS');
   }
 
@@ -156,17 +159,15 @@ export class BasketPageComponent {
     this.basket.totalPrice = this.getTotalPrice();
     this.basket.streetName = this.currentStreetName;
 
-    const basketId = localStorage.getItem("basketId");
+    const basketId = this.localStorageService.get("basketId");
     if (!basketId) {
       this.basketHandleService.saveBasket(this.basket).subscribe((res) => {
-        localStorage.setItem("hasBasketInDB", "true");
+        this.localStorageService.set("basketId", res);
         alert('הסל נשמר בהצלחה');
-        console.log(res);
       });
     } else {
       this.basket.id = +basketId;
       this.basketHandleService.updateBasket(this.basket).subscribe((res) => {
-        console.log(res);
         alert('הסל עודכן בהצלחה');
       });
     }
@@ -188,8 +189,7 @@ export class BasketPageComponent {
         if (this.basket) {
           this.basketItems = this.basket.basketItems;
           this.currentStreetName = this.basket.streetName
-          localStorage.setItem("basketItems", JSON.stringify(this.basketItems));
-
+          this.localStorageService.set("basketItems", this.basketItems);
           this.bAfterBasketLoaded = true;
 
         } else {
@@ -200,6 +200,6 @@ export class BasketPageComponent {
   }
 
   isBasketEmpty(): boolean {
-    return BasketService.isBasketEmpty()
+    return this.basketService.isBasketEmpty()
   }
 }

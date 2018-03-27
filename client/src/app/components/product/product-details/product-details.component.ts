@@ -5,6 +5,7 @@ import { Product, BasketItem, CommentToProduct } from 'app/interface/entities.in
 import { ProductService } from 'app/services/product.service';
 import { UsersService } from '../../../services/users.service';
 import { EventService } from 'app/services/event.service';
+import { LocalStorageService } from 'app/services/localStorageService';
 
 @Component({
   selector: 'app-product-details',
@@ -28,6 +29,7 @@ export class ProductDetailsComponent {
     private usersService: UsersService,
     private route: ActivatedRoute,
     private eventService: EventService,
+    private localStorageService: LocalStorageService
   ) { }
 
   ngOnInit() {
@@ -85,8 +87,8 @@ export class ProductDetailsComponent {
   addToBasket(product: Product) {
     let basketItems: BasketItem[] = [];
 
-    if (localStorage.getItem("basketItems")) {
-      basketItems = JSON.parse(localStorage.getItem("basketItems"));
+    if (this.localStorageService.get("basketItems")) {
+      basketItems = this.localStorageService.get("basketItems");
     }
 
     let index = basketItems.map((i) => i.id).indexOf(product.id)
@@ -105,7 +107,7 @@ export class ProductDetailsComponent {
       basketItems.push(basketItem);
     }
 
-    localStorage.setItem("basketItems", JSON.stringify(basketItems));
+    this.localStorageService.set("basketItems", basketItems);
     this.eventService.emit('BASKET_ITEMS');
   }
 }

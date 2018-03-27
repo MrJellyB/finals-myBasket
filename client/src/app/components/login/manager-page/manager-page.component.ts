@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { User } from 'app/interface/entities.interface';
 import { UsersService } from 'app/services/users.service';
-
+import { LocalStorageService } from 'app/services/localStorageService';
 
 @Component({
   selector: 'app-manager-page',
@@ -9,10 +9,10 @@ import { UsersService } from 'app/services/users.service';
   styleUrls: ['./manager-page.component.css']
 })
 export class ManagerPageComponent {
+  users: User[];
 
-  constructor(private userService: UsersService) { }
-
-  public users: User[];
+  constructor(private userService: UsersService,
+    private localStorageService: LocalStorageService) { }
 
   ngOnInit() {
     this.getUsers();
@@ -67,7 +67,7 @@ export class ManagerPageComponent {
   }
 
   getDisplayUserName() {
-    let displayValue = JSON.parse(localStorage.getItem('currentUser')).userName;
+    let displayValue = this.localStorageService.get('currentUser').userName;
     return displayValue;
   }
 

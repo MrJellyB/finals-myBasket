@@ -13,6 +13,7 @@ import { ProductModule } from 'app/modules/product.module';
 import { HttpService } from 'app/services/http.service';
 import { BasketModule } from 'app/modules/basket.module';
 import { EventService } from './services/event.service';
+import { LocalStorageService } from './services/localStorageService';
 
 @NgModule({
   imports: [
@@ -34,6 +35,7 @@ import { EventService } from './services/event.service';
     HttpService,
     AuthGuardService,
     EventService,
+    LocalStorageService,
   ],
   bootstrap: [
     AppComponent

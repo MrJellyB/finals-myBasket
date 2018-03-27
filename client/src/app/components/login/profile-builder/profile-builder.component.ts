@@ -1,22 +1,25 @@
 import { Component, EventEmitter } from '@angular/core';
-import { ProfileBuilder, City, UserAddress, FamilyData, Preferences, Avoidness, User } from '../../../interface/entities.interface';
-import { UsersService } from '../../../services/users.service';
-import { ePreferences, eAvoidness } from '../../../utils/enums';
+import { ProfileBuilder, City, UserAddress, FamilyData, Preferences, Avoidness, User } from 'app/interface/entities.interface';
+import { UsersService } from 'app/services/users.service';
+import { ePreferences, eAvoidness } from 'app/utils/enums';
+import { LocalStorageService } from 'app/services/localStorageService';
+
 @Component({
   selector: 'app-profile-builder',
   templateUrl: './profile-builder.component.html',
   styleUrls: ['./profile-builder.component.scss']
 })
 export class ProfileBuilderComponent {
-  public profileBuilder: ProfileBuilder;
+  profileBuilder: ProfileBuilder;
   cities: City[];
   user: User;
   userName: string;
   select: EventEmitter<string>;
   selectedCity: number;
-  public ePreferencesEnum = ePreferences;
-  public eAvoidnessEnum = eAvoidness;
-  constructor(private usersService: UsersService) { }
+  ePreferencesEnum = ePreferences;
+  eAvoidnessEnum = eAvoidness;
+  constructor(private usersService: UsersService,
+    private localStorageService: LocalStorageService) { }
 
   ngOnInit() {
     this.select = new EventEmitter();
@@ -45,7 +48,7 @@ export class ProfileBuilderComponent {
   }
 
   getDisplayUserName() {
-    let displayValue = JSON.parse(localStorage.getItem('currentUser')).userName;
+    let displayValue = this.localStorageService.get('currentUser').userName;
     return displayValue;
   }
 

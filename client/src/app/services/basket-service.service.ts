@@ -1,77 +1,80 @@
 import { Injectable } from '@angular/core';
 import { BasketItem, Product } from 'app/interface/entities.interface';
+import { LocalStorageService } from './localStorageService';
 
 // TODO: Merge with the other service / get rid
 @Injectable()
 export class BasketService {
-  static getBasket(): BasketItem[] {
-    return JSON.parse(localStorage.getItem("basketItems"));
+  constructor(private localStorageService: LocalStorageService) {
+
   }
 
-  static setBasket(basket: BasketItem[]) {
-    localStorage.setItem("basketItems", JSON.stringify(basket));
+  getBasket() {
+    return this.localStorageService.get("basketItems");
   }
 
-  static addItem(product: Product) {
+  setBasket(basket: BasketItem[]) {
+    this.localStorageService.set("basketItems", basket);
+  }
+
+  addItem(product: Product) {
     let tmpBasket: BasketItem[] = this.getBasket();
 
     if (tmpBasket) {
       let index = tmpBasket.map((i) => i.id).indexOf(product.id)
-      if (index != -1)
+      if (index != -1) {
         tmpBasket[index].amount = +tmpBasket[index].amount + 1;
-      else
+      }
+      else {
         tmpBasket.push({ id: product.id, name: product.name, image: "", price: product.price, amount: 1 });
-
-      localStorage.setItem("basketItems", JSON.stringify(tmpBasket));
+      }
+      this.setBasket(tmpBasket);
     }
     else {
       let tmpBasket: BasketItem[] = [];
       tmpBasket.push({ id: product.id, name: product.name, image: "", price: product.price, amount: 1 });
-      localStorage.setItem("basketItems", JSON.stringify(tmpBasket));
+      this.setBasket(tmpBasket);
     }
   }
 
-  static removeItem(product: Product) {
-    let tmpBasket: BasketItem[] = JSON.parse(localStorage.getItem("basketItems"));
+  removeItem(product: Product) {
+    let tmpBasket: BasketItem[] = this.getBasket();
     let index = tmpBasket.map((i) => i.id).indexOf(product.id)
-    if (index != -1)
+    if (index != -1) {
       tmpBasket[index].amount -= 1;
-    else
-      tmpBasket.splice(index, 1);
-
-    localStorage.setItem("basketItems", JSON.stringify(tmpBasket));
-  }
-
-  static removeItemIndex(index: number) {
-    let tmpBasket: BasketItem[] = JSON.parse(localStorage.getItem("basketItems"));
-    tmpBasket.splice(index, 1);
-
-    localStorage.setItem("basketItems", JSON.stringify(tmpBasket));
-  }
-
-  static setItemAmount(productID: number, amount: number) {
-    let tmpBasket: BasketItem[] = JSON.parse(localStorage.getItem("basketItems"));
-    let index = tmpBasket.map((i) => i.id).indexOf(productID);
-    if (index != -1)
-      tmpBasket[index].amount = amount;
-
-    localStorage.setItem("basketItems", JSON.stringify(tmpBasket));
-  }
-
-  static setItemAmountStable(product: Product, amount: number) {
-    let tmpBasket: BasketItem[] = JSON.parse(localStorage.getItem("basketItems"));
-
-    let index = tmpBasket.map((i) => i.id).indexOf(product.id);
-
-    console.log(index);
-    if (amount == 0) {
-      if (index != -1)
-        tmpBasket.splice(index, 1);
     }
     else {
-      if (index != -1)
+      tmpBasket.splice(index, 1);
+    }
+    this.setBasket(tmpBasket);
+  }
+
+  removeItemIndex(index: number) {
+    let tmpBasket: BasketItem[] = this.getBasket();
+    tmpBasket.splice(index, 1);
+
+    this.setBasket(tmpBasket);
+  }
+
+  setItemAmount(productID: number, amount: number) {
+    let tmpBasket: BasketItem[] = this.getBasket();
+    let index = tmpBasket.map((i) => i.id).indexOf(productID);
+    if (index != -1) {
+      tmpBasket[index].amount = amount;
+    }
+    this.setBasket(tmpBasket);
+  }
+
+  setItemAmountStable(product: Product, amount: number) {
+    let tmpBasket: BasketItem[] = this.getBasket();
+    let index = tmpBasket.map((i) => i.id).indexOf(product.id);
+    if (amount == 0 && index != -1) {
+      tmpBasket.splice(index, 1);
+    }
+    else {
+      if (index != -1) {
         tmpBasket[index].amount = amount;
-      else
+      } else
         tmpBasket.push(
           {
             id: product.id,
@@ -82,23 +85,11 @@ export class BasketService {
           });
     }
 
-    localStorage.setItem("basketItems", JSON.stringify(tmpBasket));
-  }
-
-  static getAllAmount(): any {
-    let tmpBasket: BasketItem[] = this.getBasket();
-
-    if (!tmpBasket || tmpBasket.length == 0) {
-      return 0;
-    }
-    else {
-      return tmpBasket.map(item => item.amount).reduce((prev, next) => prev + next);
-    }
+    this.setBasket(tmpBasket);
   }
 
   getAllAmount(): any {
-    let tmpBasket: BasketItem[] = JSON.parse(localStorage.getItem("basketItems"));
-
+    let tmpBasket: BasketItem[] = this.getBasket();
     if (!tmpBasket || tmpBasket.length == 0) {
       return 0;
     }
@@ -107,18 +98,17 @@ export class BasketService {
     }
   }
 
-  static getItemAmount(productID: number): any {
+  getItemAmount(productID: number): any {
     let tmpBasket: BasketItem[] = this.getBasket() || [];
     let index = tmpBasket.map((i) => i.id).indexOf(productID);
-    if (index != -1)
+    if (index != -1) {
       return tmpBasket[index].amount;
-
+    }
     return 0;
   }
 
-  static addToBasket(product: Product) {
-    //this.module.addToBaket(product);
-    let tmpBasket: BasketItem[] = JSON.parse(localStorage.getItem("basketItems"));
+  addToBasket(product: Product) {
+    let tmpBasket: BasketItem[] = this.getBasket();
     let index = tmpBasket.map((i) => i.id).indexOf(product.id)
     if (index != -1)
       tmpBasket[index].amount += 1;
@@ -131,26 +121,24 @@ export class BasketService {
         amount: 1
       });
 
-    localStorage.setItem("basketItems", JSON.stringify(tmpBasket));
+    this.setBasket(tmpBasket);
   }
 
-  static removeItemByID(id: number) {
-    let tmpBasket: BasketItem[] = JSON.parse(localStorage.getItem("basketItems"));
+  removeItemByID(id: number) {
+    let tmpBasket: BasketItem[] = this.getBasket();
     let index = tmpBasket.map((i) => i.id).indexOf(id)
-    if (index != -1)
+    if (index != -1) {
       tmpBasket[index].amount -= 1;
-    else
+    } else {
       tmpBasket.splice(index, 1);
-
-    localStorage.setItem("basketItems", JSON.stringify(tmpBasket));
+    }
+    this.setBasket(tmpBasket);
   }
 
-  static isBasketEmpty() {
-    if (BasketService.getBasket() == null)
+  isBasketEmpty() {
+    if (this.getBasket() == null || !this.getBasket() || this.getBasket().length == 0) {
       return true;
-
-    if (typeof BasketService.getBasket() === 'undefined' || BasketService.getBasket().length == 0)
-      return true;
+    }
 
     return false;
   }

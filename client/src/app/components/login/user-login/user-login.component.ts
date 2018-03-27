@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from 'app/services/users.service';
-import { BasketHandleService } from '../../../services/basket.service';
+import { BasketHandleService } from 'app/services/basket.service';
 import { EventService } from 'app/services/event.service';
+import { LocalStorageService } from 'app/services/localStorageService';
+
 
 @Component({
   selector: 'app-user-login',
@@ -19,6 +21,7 @@ export class UserLoginComponent {
   constructor(private userService: UsersService,
     private basketService: BasketHandleService,
     private eventService: EventService,
+    private localStorageService: LocalStorageService,
     private router: Router) {
     this.errorConnecting = false;
   }
@@ -34,16 +37,15 @@ export class UserLoginComponent {
         if (result) {
           this.basketService.getBasketByUser(this.model.userName).subscribe((b: any) => {
             if (b && b.basketItems) {
-              console.log(b.id);
-              localStorage.setItem("basketItems", JSON.stringify(b.basketItems));
-              localStorage.setItem("basketId", b.id);
+              this.localStorageService.set("basketItems", b.basketItems);
+              this.localStorageService.set("basketId", b.id);
               this.eventService.emit('BASKET_ITEMS');
             }
           });
           this.userService.getUserTypeByUserName(this.model.userName).subscribe(
             (userData) => {
               if (userData && userData[0].userType) {
-                localStorage.setItem('userType', userData[0].userType.toString());
+                this.localStorageService.set('userType', userData[0].userType);
                 this.router.navigate(['/']);
               }
             }
@@ -57,43 +59,4 @@ export class UserLoginComponent {
       }
     )
   }
-
-  /*
-  onSubmit(userloginForm:any, event:Event) {
-    event.preventDefault();
-
-    console.log(this.model);
-
-    this.userService.login(this.model.userName, this.model.password).subscribe(
-      (result) => {
-        // TODO: add here a router redirection to main page with the user credentials
-        if (result) {
-          this.isCurrentDetails = "התחבר למשתמש";
-          this.errorConnecting = false;
-          alert('התחברת לאתר בהצלחה');
-          localStorage.setItem('currentUser', this.model.userName);
-          ;
-
-          this.userService.getUserTypeByUserName(this.model.userName).subscribe(
-            (userData) => {
-              if (userData != null) {
-                if (userData[0].userType)
-                localStorage.setItem('userType', userData[0].userType.toString());
-                this.router.navigate(['/']);
-              }
-            }
-          )
-
-        }
-        else {
-          alert('פרטי המשתמש שגויים');
-          this.isCurrentDetails = "פרטי המשתמש שגויים";
-          this.errorConnecting = true;
-        }
-      },
-    (err) => {
-      console.log('error:' + err);
-      this.errorConnecting = true;
-    });
-  }*/
 }

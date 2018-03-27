@@ -21,7 +21,7 @@ export class BasketHandleService {
     data.userName = currentUser;
 
     if (currentUser != null) {
-      return this.httpService.http.post(url + '/saveBasket', { data },
+      return this.http.post(url + '/saveBasket', { data },
         this.httpService.getOptions()).map(
           data => data.json()
         );
@@ -29,15 +29,15 @@ export class BasketHandleService {
   }
 
   updateBasket(data: Basket): Observable<Response> {
-    return this.httpService.http.post(url + '/updateBasket', { data }).map((res) => res.json());
+    return this.http.post(url + '/updateBasket', { data }).map((res) => res.json());
   }
 
   getBasket(id: number): Observable<Response> {
-    return this.httpService.http.get(url + '/getBasket/' + id).map((res) => res.json());
+    return this.http.get(url + '/getBasket/' + id).map((res) => res.json());
   }
 
   getBasketByUser(userName: string): Observable<Response> {
-    return this.httpService.http.get(url + '/getBasketByUser', {
+    return this.http.get(url + '/getBasketByUser', {
       params: {
         user: (userName)
       },
@@ -45,7 +45,7 @@ export class BasketHandleService {
   }
 
   getAllStores(): Observable<Response> {
-    return this.httpService.http.get(url + '/getAllStores').map((data) => data.json());
+    return this.http.get(url + '/getAllStores').map((data) => data.json());
   }
 }
 

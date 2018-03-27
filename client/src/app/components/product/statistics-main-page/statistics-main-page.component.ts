@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { DOCUMENT } from '@angular/platform-browser';
 import { UsersService } from 'app/services/users.service';
 import { BasketService } from 'app/services/basket-service.service';
-
+import { LocalStorageService } from 'app/services/localStorageService';
 @Component({
   selector: 'app-statistics-main-page',
   templateUrl: './statistics-main-page.component.html',
@@ -14,8 +14,10 @@ export class StatisticsMainPageComponent {
 
   constructor(private router: Router,
     private _renderer2: Renderer2,
-    @Inject(DOCUMENT) private _document,
-    private UsersService: UsersService) { }
+    private usersService: UsersService,
+    private basketService: BasketService,
+    private localStorageService: LocalStorageService,
+    @Inject(DOCUMENT) private _document) { }
 
   ngOnInit() {
   }
@@ -63,16 +65,16 @@ export class StatisticsMainPageComponent {
   }
 
   userName() {
-    return localStorage.getItem('currentUser');
+    return this.localStorageService.get('currentUser');
   }
 
   getDisplayUserName() {
-    let displayValue = JSON.parse(localStorage.getItem('currentUser')).userName;
+    let displayValue = this.localStorageService.get('currentUser').userName;
     return displayValue;
   }
 
   getUserStatus() {
-    return localStorage.getItem('userType');
+    return this.localStorageService.get('userType');
   }
 
   managerView() {
@@ -82,7 +84,7 @@ export class StatisticsMainPageComponent {
 
   logOff() {
     this.closeNav();
-    this.UsersService.logout();
+    this.usersService.logout();
   }
 
   HistoryOneView() {
@@ -116,7 +118,7 @@ export class StatisticsMainPageComponent {
   }
 
   getAmountInBasket(): number {
-    return BasketService.getAllAmount();
+    return this.basketService.getAllAmount();
   }
 
   getProductsByCategory(id) {
