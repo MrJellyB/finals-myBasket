@@ -91,7 +91,6 @@ export class PriceHistoryChartWithD3jsComponent {
           }
         }
       }
-      debugger;
       // setting the data
       for (; nIndex < pricesArray.length; nIndex++) {
         this.data.push({ "date": nIndex + 1, "value": pricesArray[nIndex].curr })

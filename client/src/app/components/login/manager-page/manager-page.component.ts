@@ -14,7 +14,6 @@ export class ManagerPageComponent {
 
   public users: User[];
 
-
   ngOnInit() {
     this.getUsers();
   }
@@ -23,8 +22,6 @@ export class ManagerPageComponent {
     this.userService.getAllUsers().subscribe(
       (data: any) => {
         this.users = data;
-        console.log(this.users);
-        debugger;
         let userToRemove = this.users.findIndex(x => x.userName == this.getDisplayUserName());
         this.users.splice(userToRemove, 1);
 

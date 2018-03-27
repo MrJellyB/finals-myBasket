@@ -1,2 +1,2 @@
 cd server
-node MainServer.js
+npm start

@@ -33,12 +33,13 @@ export class UserLoginComponent {
       (result) => {
         if (result) {
           this.basketService.getBasketByUser(this.model.userName).subscribe((b: any) => {
-            if (b.length) {
-              localStorage.setItem("basket", JSON.stringify(b.basketItems));
-              localStorage.setItem("hasBasketInDB", "true");
+            if (b && b.basketItems) {
+              console.log(b.id);
+              localStorage.setItem("basketItems", JSON.stringify(b.basketItems));
+              localStorage.setItem("basketId", b.id);
               this.eventService.emit('BASKET_ITEMS');
             }
-          }); 
+          });
           this.userService.getUserTypeByUserName(this.model.userName).subscribe(
             (userData) => {
               if (userData && userData[0].userType) {

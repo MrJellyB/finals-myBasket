@@ -232,7 +232,6 @@ exports.getBasket = function (req, res) {
 
 exports.updateBasket = function (req, res) {
     var data = req.body.data;
-
     dbUtils.updateBasket(data, function (err, data) {
         res.send(true);
     });
