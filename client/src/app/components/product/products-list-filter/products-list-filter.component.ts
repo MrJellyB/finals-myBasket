@@ -56,7 +56,6 @@ export class ProductsListFilterComponent {
       this.categories = results;
 
       for (var i = 0; i < this.productPaging.length; i++) {
-        debugger;
         let currValue = this.categories.find(x => +x.id == this.productPaging[i].category).name
         this.productPaging[i].categoryValue = currValue;
       }

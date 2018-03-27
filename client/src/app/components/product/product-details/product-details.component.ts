@@ -45,7 +45,6 @@ export class ProductDetailsComponent {
       (data) => {
         this.productDetails = data[0];
         this.getCategoryById(this.productDetails.category);
-        console.log(this.productDetails);
       }
     );
 
@@ -57,7 +56,6 @@ export class ProductDetailsComponent {
       (data) => {
         this.CategoryValue = data[0];
         this.productDetails.categoryValue = this.CategoryValue.name;
-        console.log(data);
       }
     );
 
@@ -85,11 +83,10 @@ export class ProductDetailsComponent {
   }
 
   addToBasket(product: Product) {
-    debugger;
     let basketItems: BasketItem[] = [];
 
-    if (localStorage.getItem("basket")) {
-      basketItems = JSON.parse(localStorage.getItem("basket"));
+    if (localStorage.getItem("basketItems")) {
+      basketItems = JSON.parse(localStorage.getItem("basketItems"));
     }
 
     let index = basketItems.map((i) => i.id).indexOf(product.id)
@@ -108,7 +105,7 @@ export class ProductDetailsComponent {
       basketItems.push(basketItem);
     }
 
-    localStorage.setItem("basket", JSON.stringify(basketItems));
+    localStorage.setItem("basketItems", JSON.stringify(basketItems));
     this.eventService.emit('BASKET_ITEMS');
   }
 }

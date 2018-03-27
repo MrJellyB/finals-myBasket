@@ -32,7 +32,6 @@ export class AddOrUpdateProductComponent {
     this.product.id = 0;
     this.getCategories();
     this.select = new EventEmitter();
-    debugger;
 
     this.route.params.subscribe(params => {
       let id: number = +params['id'];

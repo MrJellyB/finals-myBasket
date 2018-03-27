@@ -5,12 +5,11 @@ import { BasketItem, Product } from 'app/interface/entities.interface';
 @Injectable()
 export class BasketService {
   static getBasket(): BasketItem[] {
-    debugger;
-    return JSON.parse(localStorage.getItem("basket"));
+    return JSON.parse(localStorage.getItem("basketItems"));
   }
 
   static setBasket(basket: BasketItem[]) {
-    localStorage.setItem("basket", JSON.stringify(basket));
+    localStorage.setItem("basketItems", JSON.stringify(basket));
   }
 
   static addItem(product: Product) {
@@ -23,44 +22,44 @@ export class BasketService {
       else
         tmpBasket.push({ id: product.id, name: product.name, image: "", price: product.price, amount: 1 });
 
-      localStorage.setItem("basket", JSON.stringify(tmpBasket));
+      localStorage.setItem("basketItems", JSON.stringify(tmpBasket));
     }
     else {
-      let tmpBasket : BasketItem[] = [];
+      let tmpBasket: BasketItem[] = [];
       tmpBasket.push({ id: product.id, name: product.name, image: "", price: product.price, amount: 1 });
-      localStorage.setItem("basket", JSON.stringify(tmpBasket));
+      localStorage.setItem("basketItems", JSON.stringify(tmpBasket));
     }
   }
 
   static removeItem(product: Product) {
-    let tmpBasket: BasketItem[] = JSON.parse(localStorage.getItem("basket"));
+    let tmpBasket: BasketItem[] = JSON.parse(localStorage.getItem("basketItems"));
     let index = tmpBasket.map((i) => i.id).indexOf(product.id)
     if (index != -1)
       tmpBasket[index].amount -= 1;
     else
       tmpBasket.splice(index, 1);
 
-    localStorage.setItem("basket", JSON.stringify(tmpBasket));
+    localStorage.setItem("basketItems", JSON.stringify(tmpBasket));
   }
 
   static removeItemIndex(index: number) {
-    let tmpBasket: BasketItem[] = JSON.parse(localStorage.getItem("basket"));
+    let tmpBasket: BasketItem[] = JSON.parse(localStorage.getItem("basketItems"));
     tmpBasket.splice(index, 1);
 
-    localStorage.setItem("basket", JSON.stringify(tmpBasket));
+    localStorage.setItem("basketItems", JSON.stringify(tmpBasket));
   }
 
   static setItemAmount(productID: number, amount: number) {
-    let tmpBasket: BasketItem[] = JSON.parse(localStorage.getItem("basket"));
+    let tmpBasket: BasketItem[] = JSON.parse(localStorage.getItem("basketItems"));
     let index = tmpBasket.map((i) => i.id).indexOf(productID);
     if (index != -1)
       tmpBasket[index].amount = amount;
 
-    localStorage.setItem("basket", JSON.stringify(tmpBasket));
+    localStorage.setItem("basketItems", JSON.stringify(tmpBasket));
   }
 
   static setItemAmountStable(product: Product, amount: number) {
-    let tmpBasket: BasketItem[] = JSON.parse(localStorage.getItem("basket"));
+    let tmpBasket: BasketItem[] = JSON.parse(localStorage.getItem("basketItems"));
 
     let index = tmpBasket.map((i) => i.id).indexOf(product.id);
 
@@ -83,7 +82,7 @@ export class BasketService {
           });
     }
 
-    localStorage.setItem("basket", JSON.stringify(tmpBasket));
+    localStorage.setItem("basketItems", JSON.stringify(tmpBasket));
   }
 
   static getAllAmount(): any {
@@ -98,7 +97,7 @@ export class BasketService {
   }
 
   getAllAmount(): any {
-    let tmpBasket: BasketItem[] = JSON.parse(localStorage.getItem("basket"));
+    let tmpBasket: BasketItem[] = JSON.parse(localStorage.getItem("basketItems"));
 
     if (!tmpBasket || tmpBasket.length == 0) {
       return 0;
@@ -119,7 +118,7 @@ export class BasketService {
 
   static addToBasket(product: Product) {
     //this.module.addToBaket(product);
-    let tmpBasket: BasketItem[] = JSON.parse(localStorage.getItem("basket"));
+    let tmpBasket: BasketItem[] = JSON.parse(localStorage.getItem("basketItems"));
     let index = tmpBasket.map((i) => i.id).indexOf(product.id)
     if (index != -1)
       tmpBasket[index].amount += 1;
@@ -132,18 +131,18 @@ export class BasketService {
         amount: 1
       });
 
-    localStorage.setItem("basket", JSON.stringify(tmpBasket));
+    localStorage.setItem("basketItems", JSON.stringify(tmpBasket));
   }
 
   static removeItemByID(id: number) {
-    let tmpBasket: BasketItem[] = JSON.parse(localStorage.getItem("basket"));
+    let tmpBasket: BasketItem[] = JSON.parse(localStorage.getItem("basketItems"));
     let index = tmpBasket.map((i) => i.id).indexOf(id)
     if (index != -1)
       tmpBasket[index].amount -= 1;
     else
       tmpBasket.splice(index, 1);
 
-    localStorage.setItem("basket", JSON.stringify(tmpBasket));
+    localStorage.setItem("basketItems", JSON.stringify(tmpBasket));
   }
 
   static isBasketEmpty() {

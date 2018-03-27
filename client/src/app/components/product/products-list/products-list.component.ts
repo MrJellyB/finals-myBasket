@@ -7,6 +7,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { ProductService } from 'app/services/product.service';
 import { UsersService } from 'app/services/users.service';
 import { BasketService } from "app/services/basket-service.service";
+import { EventService } from "../../../services/event.service";
 
 @Component({
   selector: 'app-products-list',
@@ -24,6 +25,7 @@ export class ProductsListComponent {
   constructor(private productService: ProductService,
     private router: Router,
     private route: ActivatedRoute,
+    private eventService: EventService,
     private UsersService: UsersService) { }
 
   ngOnInit() {
@@ -59,21 +61,23 @@ export class ProductsListComponent {
 
   addToBasket(product: Product, input: any) {
     //BasketService.setItemAmountStable(product, +(input.value || 0) + 1);
-    debugger;
     BasketService.addItem(product);
+    this.eventService.emit('BASKET_ITEMS');
   }
 
   removeFromBasket(productID: number, input: any) {
     BasketService.removeItemByID(productID);
+    this.eventService.emit('BASKET_ITEMS');
   }
 
   deleteFromBasket(product: Product, input: any) {
     BasketService.setItemAmountStable(product, 0);
+    this.eventService.emit('BASKET_ITEMS');
   }
 
   setItemAmount(product: Product, event: any) {
-    debugger;
     BasketService.setItemAmountStable(product, +event.target.value);
+    this.eventService.emit('BASKET_ITEMS');
   }
 
   getItemAmount(productID: number): any {

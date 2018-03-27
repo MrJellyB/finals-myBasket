@@ -29,11 +29,11 @@ export class BasketHandleService {
   }
 
   updateBasket(data: Basket): Observable<Response> {
-    return this.httpService.http.post(url + '/updateBasket', { data }, this.httpService.getOptions()).map((data) => data.json());
+    return this.httpService.http.post(url + '/updateBasket', { data }).map((res) => res.json());
   }
 
   getBasket(id: number): Observable<Response> {
-    return this.httpService.http.get(url + '/getBasket/' + id).map((data) => data.json());
+    return this.httpService.http.get(url + '/getBasket/' + id).map((res) => res.json());
   }
 
   getBasketByUser(userName: string): Observable<Response> {

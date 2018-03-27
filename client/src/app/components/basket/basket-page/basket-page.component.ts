@@ -156,13 +156,17 @@ export class BasketPageComponent {
     this.basket.totalPrice = this.getTotalPrice();
     this.basket.streetName = this.currentStreetName;
 
-    if (!localStorage.getItem("hasBasketInDB")) {
+    const basketId = localStorage.getItem("basketId");
+    if (!basketId) {
       this.basketHandleService.saveBasket(this.basket).subscribe((res) => {
         localStorage.setItem("hasBasketInDB", "true");
         alert('הסל נשמר בהצלחה');
+        console.log(res);
       });
     } else {
+      this.basket.id = +basketId;
       this.basketHandleService.updateBasket(this.basket).subscribe((res) => {
+        console.log(res);
         alert('הסל עודכן בהצלחה');
       });
     }
@@ -184,7 +188,7 @@ export class BasketPageComponent {
         if (this.basket) {
           this.basketItems = this.basket.basketItems;
           this.currentStreetName = this.basket.streetName
-          localStorage.setItem("basket", JSON.stringify(this.basketItems));
+          localStorage.setItem("basketItems", JSON.stringify(this.basketItems));
 
           this.bAfterBasketLoaded = true;
 

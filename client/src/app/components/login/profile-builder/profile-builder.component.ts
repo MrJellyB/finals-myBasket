@@ -22,7 +22,6 @@ export class ProfileBuilderComponent {
     this.select = new EventEmitter();
     this.createProfileBuilderObject();
     this.getAllCities();
-    debugger;
     this.userName = this.getDisplayUserName();
   }
 
@@ -53,7 +52,6 @@ export class ProfileBuilderComponent {
   }
 
   saveProfileBuilder() {
-    debugger;
     this.usersService.saveProfileBuilder(this.profileBuilder, this.userName).subscribe(
       (data: any) => {
 
@@ -81,14 +79,12 @@ export class ProfileBuilderComponent {
   }
 
   selectItem(value) {
-    debugger;
     this.select.emit(value);
     this.selectedCity = +value;
     this.profileBuilder.address.city = +value;
   }
 
   checkAvoidness(e: any, avoid: number) {
-    debugger;
     let value = e.target.checked;
 
     switch (avoid) {
@@ -143,7 +139,6 @@ export class ProfileBuilderComponent {
   }
 
   checkPreferences(e: any, pref: number) {
-    debugger;
     let value = e.target.checked;
 
     switch (pref) {
