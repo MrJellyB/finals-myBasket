@@ -18,7 +18,7 @@
     app.post('/changeUserTypeStatus', basketModule.changeUserTypeStatus);
     app.post('/resetPassword', basketModule.resetPassword);
     app.post('/authorize', basketModule.authorizeTwitter);
-    //app.post
+    app.post('/saveProfileBuilder', basketModule.createProfileToUser)
     app.get('/getCategories', basketModule.getCategories);
     app.get('/getProductDetails/:id', basketModule.getProductDetails);
     app.get('/getCategory/:id', basketModule.getCategoryById);

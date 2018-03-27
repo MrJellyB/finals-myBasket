@@ -192,6 +192,10 @@ exports.resetPassword = function (userName, callback) {
     db.users.update({ 'userName': userName }, { $set: { "password": "123456" } }, callback);
 }
 
+exports.addProfileToUser = function (userName, profile, callback) {
+    db.users.update({ 'userName': userName }, { $set: { 'profile': profile } }, callback);
+}
+
 exports.updateBasket = function (data, callback) {
     var filterQuery = { 'id': data.id }
     var updateQuery = {

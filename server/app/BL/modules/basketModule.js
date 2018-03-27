@@ -95,6 +95,23 @@ exports.resetPassword = function (req, res) {
         res.send(true);
     })
 }
+
+exports.createProfileToUser = function (req, res) {
+    var profile = req.body.data;
+    var userName = req.body.userName;
+
+    //dbUtils.getUserByUserName(userName, function (err, data) {
+    //    var user = data[0];
+
+    dbUtils.addProfileToUser(userName, profile, function (err, data) {
+        console.log("after inserted to mongodb");
+        if (err) return false;
+        if (data) return true;
+        return false;
+    })
+    //})
+}
+
 // =============================================
 
 // CATEGORIES

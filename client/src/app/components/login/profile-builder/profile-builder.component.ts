@@ -138,7 +138,6 @@ export class ProfileBuilderComponent {
         {
           break;
         }
-
     }
   }
 

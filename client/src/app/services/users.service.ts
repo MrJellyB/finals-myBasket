@@ -68,7 +68,7 @@ export class UsersService {
   }
 
   saveProfileBuilder(data: any, userName: string) {
-    return this.http.post(url + '/saveProfileBuilder', { data }, this.httpService.getOptions()).map((data) => data.json());
+    return this.http.post(url + '/saveProfileBuilder', { data, userName }, this.httpService.getOptions()).map((data) => data.json());
   }
 
   changeUserTypeStatus(userName: string, statusToChange: number): Observable<Response> {
