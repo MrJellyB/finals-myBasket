@@ -80,22 +80,58 @@
           </div>
           <div class="form-group">
               <div class="col-md-6">
-              <label class="control-label" for="vegan"> מוצרים צמחוניים בלבד?</label>
+              <label class="control-label" for="Veggie"> מוצרים צמחוניים בלבד?</label>
                <input name="veggie" type="checkbox" (change)="checkPreferences($event, ePreferencesEnum.Veggie)" [checked]="profileBuilder.preferences.veggie">
               </div>
           </div>
           <div class="form-group">
             <b>הסל שלי יהיה ללא המוצרים הבאים:</b>
-            <br>
-            ביצים <input name="eggs" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Eggs)" [checked]="profileBuilder.avoidness.eggs">
-            מוצרי חלב <input name="milk" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Milk)" [checked]="profileBuilder.avoidness.milk">
-            גלוטן <input name="gluten" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Gluten)" [checked]="profileBuilder.avoidness.gluten">
-            סויה <input name="soy" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Soy)" [checked]="profileBuilder.avoidness.soy">
-            אגוזים <input name="nuts" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Nuts)" [checked]="profileBuilder.avoidness.nuts">
-            בוטנים <input name="peanuts" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Peanuts)" [checked]="profileBuilder.avoidness.peanuts">
-            פול <input name="ful" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Ful)" [checked]="profileBuilder.avoidness.ful">
           </div>
-          <br>
+
+          <div class="form-group">
+            <div class="col-md-6">
+              <label class="control-label" for="Eggs">ביצים</label>
+              <input name="eggs" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Eggs)" [checked]="profileBuilder.avoidness.eggs">
+            </div>
+          </div>
+          <div class="form-group">
+              <div class="col-md-6">
+                <label class="control-label" for="Milk">מוצרי חלב </label>
+                <input name="milk" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Milk)" [checked]="profileBuilder.avoidness.milk">
+              </div>
+          </div>
+          <div class="form-group">
+              <div class="col-md-6">
+                <label class="control-label" for="Gluten">גלוטן </label>
+                <input name="gluten" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Gluten)" [checked]="profileBuilder.avoidness.gluten">
+            </div>
+          </div>
+
+          <div class="form-group">
+              <div class="col-md-6">
+                <label class="control-label" for="Soy">סויה </label>
+                <input name="soy" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Soy)" [checked]="profileBuilder.avoidness.soy">
+             </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-6">
+              <label class="control-label" for="Nuts">אגוזים </label>
+              <input name="nuts" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Nuts)" [checked]="profileBuilder.avoidness.nuts">
+            </div>
+          </div>
+        <div class="form-group">
+          <div class="col-md-6">
+            <label class="control-label" for="Peanuts">בוטנים </label>
+            <input name="peanuts" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Peanuts)" [checked]="profileBuilder.avoidness.peanuts">
+          </div>
+        </div>
+        <div class="form-group">
+         <div class="col-md-6">
+            <label class="control-label" for="Peanuts">פול </label>
+            <input name="ful" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Ful)" [checked]="profileBuilder.avoidness.ful">
+          </div>
+        </div>
 
           <div class="form-group">
             <div class="col-md-12">
