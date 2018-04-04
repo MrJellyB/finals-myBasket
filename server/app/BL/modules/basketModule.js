@@ -13,7 +13,7 @@ exports.setup = function (db) {
 
 // USERS
 // =============================================
-// ==========
+// =
 
 exports.getUsers = function (req, res) {
     dbUtils.getUsers(function (err, results) {
