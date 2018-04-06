@@ -20,12 +20,13 @@ export interface Product {
   company: string;
   categoryValue: string;
   oldPrice: number;
-  image?: any;
   ManufacturerItemDescription: string;
   UnitQty: string;
   UnitOfMeasure: string;
   UnitOfMeasurePrice: number;
   Quantity: number;
+  comments: string[];
+  image?: any;
 }
 
 export interface Store {

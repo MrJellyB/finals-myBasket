@@ -1,2 +1,0 @@
-mongoimport --db test --collection product --drop --file "PATH\product.json" --jsonArray
-mongoimport --db test --collection stores --drop --file "PATH\stores.json" --jsonArray

@@ -49,7 +49,6 @@
       <button style="margin-top:5%" class="button-style" [disabled]="!f.valid || currentCategory == 0" *ngIf="this.product.id == 0" (click)="actionCodeToAdd()">הוספת מוצר</button>
       <button style="margin-top:5%" class="button-style" [disabled]="!f.valid" *ngIf="this.product.id != 0" (click)="actionCodeToUpdate()">עדכן מוצר</button>
       <button style="margin-top:5%" class="button-style" *ngIf="this.product.id != 0" (click)="actionCodeToDelete()">מחיקת מוצר</button>
-
     </fieldset>
   </form>
 </div>

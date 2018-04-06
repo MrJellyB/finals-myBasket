@@ -47,7 +47,7 @@ export class ProductService {
     formData.append('company', data.company);
     formData.append('categoryValue', data.categoryValue);
     formData.append('oldPrice', data.oldPrice.toString());
-    formData.append('comments', data.comments);
+    // formData.append('comments', data.comments);
     formData.append('image', data.image, data.image.name);
     return this.httpClient.post(url + '/updateProdct', formData, this.httpService.getOptions());
   }

@@ -44,7 +44,6 @@ export class AddOrUpdateProductComponent {
 
   selectItem(value) {
     this.select.emit(value);
-    console.log(value);
     this.currentCategory = +value;
     this.product.category = +value;
   }

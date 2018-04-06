@@ -1,0 +1,11 @@
+For previous data
+=================
+1. open mongo shell 
+2. Run otherCollections.json
+3. Run city.json 
+
+For new product structure
+==========================
+1. Run product_data
+
+if doesn't work check that mongo/bin is within your path environment. 
