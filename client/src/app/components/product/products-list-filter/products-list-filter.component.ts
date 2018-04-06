@@ -11,7 +11,7 @@ import { UsersService } from 'app/services/users.service';
   styleUrls: ['./products-list-filter.component.css']
 })
 export class ProductsListFilterComponent {
-  loading = false; W
+  loading = false;
   total = 0;
   page = 1;
   limit = 10000;

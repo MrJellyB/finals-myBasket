@@ -40,10 +40,13 @@
               <span class="feature-title">ארץ ייצור:</span> {{product.createCountry}}
             </li>
             <li>
-              <span class="feature-title">קלוריות:</span> {{product.calories}} קל'
+              <span class="feature-title">מחיר:</span> {{product.price}} ₪
             </li>
             <li>
-              <span class="feature-title">מחיר:</span> {{product.price}} ₪
+              <span class="feature-title">כמות:</span> {{product.Quantity}} {{product.UnitQty}}
+            </li>
+            <li>
+              <span class="feature-title">מחיר ליחידת מידה:</span> {{product.UnitOfMeasurePrice}} ₪ / {{product.UnitOfMeasure}}
             </li>
           </ul>
           <button class="btn btn-primary float-right" (click)="showDetails(product.id)">פרטים נוספים</button>
