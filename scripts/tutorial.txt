@@ -6,6 +6,6 @@ For previous data
 
 For new product structure
 ==========================
-1. Run product_data
+1. Run product_data.bat
 
 if doesn't work check that mongo/bin is within your path environment. 
