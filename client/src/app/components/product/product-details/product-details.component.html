@@ -38,6 +38,11 @@
       <input tabindex="6" name="company" type="text" [(ngModel)]="productDetails.company" #company="ngModel" disabled />
     </fieldset>
 
+    <fieldset class="row">
+      יחידת מידה:
+      <input tabindex="7" name="UnitQty" type="text" [(ngModel)]="productDetails.UnitQty" #UnitQty="ngModel" disabled />
+    </fieldset>
+
     <div *ngIf="productDetails.comments">
       <fieldset class="row">
         רשימת תגובות
