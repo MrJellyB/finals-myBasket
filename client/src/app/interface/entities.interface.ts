@@ -20,7 +20,7 @@ export interface Product {
   company: string;
   categoryValue: string;
   oldPrice: number;
-  image: any;
+  image?: any;
   ManufacturerItemDescription: string;
   UnitQty: string;
   UnitOfMeasure: string;

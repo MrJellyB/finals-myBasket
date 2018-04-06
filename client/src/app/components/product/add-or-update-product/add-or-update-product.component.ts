@@ -11,17 +11,17 @@ import { UsersService } from 'app/services/users.service';
   styleUrls: ['./add-or-update-product.component.css']
 })
 export class AddOrUpdateProductComponent {
-  public product: Product;
-  public categories: Category[];
-  public currentCategory: number = 0;
+  product: Product;
+  categories: Category[];
+  currentCategory: number = 0;
   // 1 = addss
   // 2 = updates
   // 3 = delete
-  public actionCode: number = 1;
+  actionCode: number = 1;
   select: EventEmitter<string>;
-  public CategoryValue: any;
-  public isNeedToRouter: boolean = false;
-  public buttonText: string = "הוסף מוצר";
+  CategoryValue: any;
+  isNeedToRouter: boolean = false;
+  buttonText: string = "הוסף מוצר";
   constructor(private productService: ProductService,
     private router: Router,
     private route: ActivatedRoute,
@@ -57,13 +57,13 @@ export class AddOrUpdateProductComponent {
   }
 
   onSubmit(f: any, event: Event) {
-    if (this.actionCode == 1) {
+    if (this.actionCode === 1) {
       this.saveProduct();
     }
-    else if (this.actionCode == 2) {
+    else if (this.actionCode === 2) {
       this.updateTheProduct();
     }
-    else if (this.actionCode == 3) {
+    else if (this.actionCode === 3) {
       this.deleteProduct();
     }
   }
@@ -71,10 +71,8 @@ export class AddOrUpdateProductComponent {
   getProductDetails(productId: number): any {
     this.productService.getProductDetails(productId).subscribe(
       (data) => {
-        ;
         if (data[0] != undefined) {
           this.product = data[0];
-          ;
           this.currentCategory = this.product.category;
           this.getCategoryById(this.product.category);
           console.log(this.product);
@@ -96,7 +94,6 @@ export class AddOrUpdateProductComponent {
   getCategoryById(categoryId: number): any {
     this.productService.getCategory(categoryId).subscribe(
       (data) => {
-        ;
         this.CategoryValue = data[0];
         this.product.categoryValue = this.CategoryValue.name;
         console.log(data);
@@ -105,7 +102,6 @@ export class AddOrUpdateProductComponent {
   }
 
   saveProduct() {
-    ;
     this.product.calories = +this.product.calories;
     this.product.price = +this.product.price;
     this.productService.saveProduct(this.product).subscribe((results) => {
@@ -113,22 +109,23 @@ export class AddOrUpdateProductComponent {
       this.actionCode = 2;
       alert('שמירת המוצר בוצעה בהצלחה, הינך עובר למסך עריכה');
       this.router.navigate(['/add-or-update-product/' + this.product.id]);
-    })
+    });
   }
 
   updateTheProduct() {
+    console.log(this.product);
     this.product.price = +this.product.price;
     this.productService.updateProduct(this.product).subscribe((results) => {
       alert('עדכון המוצר בוצע בהצלחה, הינך עובר לדף הראשי');
       this.router.navigate(['/']);
-    })
+    });
   }
 
   deleteProduct() {
     this.productService.deleteProduct(this.product).subscribe((results) => {
       alert('מחיקת המוצר בוצעה בהצלחה, הינך עובר לדף הראשי');
       this.router.navigate(['/']);
-    })
+    });
   }
 
   userName() {
@@ -142,4 +139,9 @@ export class AddOrUpdateProductComponent {
   checkManager() {
     return this.userName() != null && this.userType() == "2";
   }
+
+  handleFileChange(files: FileList) {
+    this.product.image = files.item(0);
+  }
+
 }

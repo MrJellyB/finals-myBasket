@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { HttpHeaders } from '@angular/common/http';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Headers, Http, Response, RequestOptions, RequestOptionsArgs } from '@angular/http';
 import { url } from 'app/utils/consts';
 import { Product, CommentToProduct } from 'app/interface/entities.interface';
@@ -10,7 +10,7 @@ import { HttpService } from 'app/services/http.service';
 @Injectable()
 export class ProductService {
 
-  constructor(private httpService: HttpService, private http: Http) { }
+  constructor(private httpService: HttpService, private http: Http, private httpClient: HttpClient) { }
 
   getProductDetails(id: number): Observable<Response> {
     return this.http.get(url + '/getProductDetails/' + id).map((data) => data.json());
@@ -36,8 +36,20 @@ export class ProductService {
     return this.http.get(url + '/getProductsPaging/' + page + '/' + limit).map((data) => data.json())
   }
 
-  updateProduct(data: Product): Observable<Response> {
-    return this.http.post(url + '/updateProdct', { data }, this.httpService.getOptions()).map((data) => data.json());
+  updateProduct(data: Product) {
+    const formData: FormData = new FormData();
+
+    formData.append('id', data.id.toString());
+    formData.append('name', data.name);
+    formData.append('price', data.price.toString());
+    formData.append('category', data.category.toString());
+    formData.append('createCountry', data.createCountry);
+    formData.append('company', data.company);
+    formData.append('categoryValue', data.categoryValue);
+    formData.append('oldPrice', data.oldPrice.toString());
+    formData.append('comments', data.comments);
+    formData.append('image', data.image, data.image.name);
+    return this.httpClient.post(url + '/updateProdct', formData, this.httpService.getOptions());
   }
 
   deleteProduct(data: Product): Observable<Response> {
