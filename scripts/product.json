@@ -243,7 +243,8 @@
         "price":  17.90,
         "UnitOfMeasurePrice":  3.58,
         "AllowDiscount":  1,
-        "ItemStatus":  1
+        "ItemStatus":  1,
+        "category": 8
     },
     {
         "PriceUpdateDate":  "2018-03-06 10:32",
@@ -261,7 +262,8 @@
         "price":  19.90,
         "UnitOfMeasurePrice":  23.41,
         "AllowDiscount":  1,
-        "ItemStatus":  1
+        "ItemStatus":  1,
+        "category": 12
     },
     {
         "PriceUpdateDate":  "2018-01-02 06:33",
@@ -279,7 +281,8 @@
         "price":  10.20,
         "UnitOfMeasurePrice":  1.24,
         "AllowDiscount":  1,
-        "ItemStatus":  1
+        "ItemStatus":  1,
+        "category": 3
     },
     {
         "PriceUpdateDate":  "2015-10-06 08:51",
@@ -297,7 +300,8 @@
         "price":  8.40,
         "UnitOfMeasurePrice":  8.40,
         "AllowDiscount":  1,
-        "ItemStatus":  1
+        "ItemStatus":  1,
+        "category": 5
     },
     {
         "PriceUpdateDate":  "2015-10-06 08:51",
@@ -315,7 +319,8 @@
         "price":  8.40,
         "UnitOfMeasurePrice":  8.40,
         "AllowDiscount":  1,
-        "ItemStatus":  1
+        "ItemStatus":  1,
+        "category": 5
     },
     {
         "PriceUpdateDate":  "2018-03-06 08:19",
@@ -333,7 +338,8 @@
         "price":  13.70,
         "UnitOfMeasurePrice":  2.69,
         "AllowDiscount":  1,
-        "ItemStatus":  1
+        "ItemStatus":  1,
+        "category": 8
     },
     {
         "PriceUpdateDate":  "2018-03-05 17:15",
@@ -369,7 +375,8 @@
         "price":  30.00,
         "UnitOfMeasurePrice":  30.00,
         "AllowDiscount":  1,
-        "ItemStatus":  1
+        "ItemStatus":  1,
+        "category": 12
     },
     {
         "PriceUpdateDate":  "2018-01-02 06:37",
