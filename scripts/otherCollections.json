@@ -2,6 +2,10 @@ db.counters.createCollection("counters");
 db.counters.insert({_id: "productId",seq: 200})	
 db.counters.insert({_id: "basketId",seq: 200})	
 
+db.gender.insert({id:1, value: "male"})
+db.gender.insert({id:2, value: "female"})
+
+
 
 
 
