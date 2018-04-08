@@ -23,8 +23,8 @@
       </div>
     </div>
   </div>
-
-  <div>
+  <div class="loader" *ngIf="!isDataLoaded"></div>
+  <div *ngIf="isDataLoaded">
     <table style="width:100%;background-color:white">
       <tr>
         <th class="title-right">מזהה מוצר</th>
