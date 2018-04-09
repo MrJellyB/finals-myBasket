@@ -11,16 +11,17 @@ var db = {};
 
 // consts
 var MONGO_URL = 'mongodb://localhost:27017';
+//var MONGO_URL = 'mongodb://11:22@193.106.55.172:5555/test';
 
 // get the app from the express
 var app = express();
 
 // config app to use post api
-app.use( bodyParser.json());
+app.use(bodyParser.json());
 // app.use( bodyParser.options());aa
 app.use(express.static(__dirname + "/src"));
 
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
 
