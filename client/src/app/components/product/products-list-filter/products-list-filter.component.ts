@@ -11,10 +11,11 @@ import { UsersService } from 'app/services/users.service';
   styleUrls: ['./products-list-filter.component.css']
 })
 export class ProductsListFilterComponent {
-  loading = false; W
+  loading = false;
   total = 0;
   page = 1;
-  limit = 10000;
+  limit = 1000000;
+  public isDataLoaded = false;
   public name: string;
   public products: Product[];
   public productPaging: Product[];
@@ -39,6 +40,7 @@ export class ProductsListFilterComponent {
   getProductsPaging(): void {
     this.loading = true;
     this.productService.getProductsPaging(this.page, this.limit).subscribe((products: any) => {
+      this.isDataLoaded = true;
       this.productPaging = products;
       console.log(products);
       this.getCategories();

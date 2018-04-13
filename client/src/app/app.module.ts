@@ -14,16 +14,18 @@ import { HttpService } from 'app/services/http.service';
 import { BasketModule } from 'app/modules/basket.module';
 import { EventService } from './services/event.service';
 import { LocalStorageService } from './services/localStorageService';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     BrowserModule,
     LoginModule,
+    HttpClientModule,
     HttpModule,
     ProductModule,
     BasketModule,
     FormsModule,
-    AppRouting
+    AppRouting,
   ],
   declarations: [
     AppComponent,

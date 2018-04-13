@@ -9,7 +9,7 @@ export class NamePipe implements PipeTransform {
     if (args == "") {
       return items;
     }
-    return items.filter(item => item.name == args);
+    return items.filter(item => item.name.includes(args));
   }
 
 }

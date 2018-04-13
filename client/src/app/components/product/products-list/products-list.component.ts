@@ -39,8 +39,6 @@ export class ProductsListComponent {
         this.products = data;
         this.productsByCategory = data;
         this.productsGroups = _.chunk(data, 3);
-
-        console.log(this.products);
         this.route.params.subscribe(params => {
           let id: number = +params['id'];
           if (id) {

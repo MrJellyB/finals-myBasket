@@ -5,26 +5,26 @@
     </h3>
     <div class="form-group">
       <div class="form-inline">
-        <h5 class="form-control">קטגוריה:   </h5>
+        <div class="form-control">קטגוריה:   </div>
         <select (change)="selectItem($event.target.value)" class="form-control">
           <option *ngFor="let currCategory of categories" value={{currCategory.id}}>{{currCategory.name}}</option>
         </select>
       </div>
       <div class="form-inline" style="margin-top:20px">
-        <h5 class="form-control">שם: </h5>
+        <div class="form-control">שם: </div>
         <input type="text" class="form-control" name="name" [(ngModel)]="name" />
       </div>
 
       <div class="form-inline" style="margin-top:20px">
-        <h5 class="form-control">ממחיר </h5>
+        <div class="form-control">מחיר </div>
         <input type="text" class="form-control" name="bigPrice" [(ngModel)]="bigPrice" />
-        <h5 class="form-control">עד מחיר </h5>
+        <div class="form-control">עד מחיר </div>
         <input type="text" class="form-control" name="price" [(ngModel)]="price" />
       </div>
     </div>
   </div>
-
-  <div>
+  <div class="loader" *ngIf="!isDataLoaded"></div>
+  <div *ngIf="isDataLoaded">
     <table style="width:100%;background-color:white">
       <tr>
         <th class="title-right">מזהה מוצר</th>

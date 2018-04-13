@@ -5,13 +5,18 @@
 
     <fieldset class="row">
       שם מוצר:
-      <input tabindex="1" name="name" type="text" [(ngModel)]="productDetails.name" #name="ngModel" disabled/>
+      <input tabindex="1" name="name" type="text" [(ngModel)]="productDetails.name" #name="ngModel" disabled />
     </fieldset>
 
-      <fieldset class="row">
-        מחיר:
-        <input tabindex="2" name="price" type="text" [(ngModel)]="productDetails.price" #price="ngModel" disabled />
-      </fieldset>
+    <fieldset class="row">
+      מחיר:
+      <input tabindex="2" name="price" type="text" [(ngModel)]="productDetails.price" #price="ngModel" disabled />
+    </fieldset>
+
+    <fieldset class="row">
+      תיאור:
+      <input tabindex="7" name="desc" type="text" [(ngModel)]="productDetails.ManufacturerItemDescription" #ManufacturerItemDescription="ngModel" disabled />
+    </fieldset>
 
     <fieldset class="row">
       קטגוריה:
@@ -31,6 +36,11 @@
     <fieldset class="row">
       יצרן:
       <input tabindex="6" name="company" type="text" [(ngModel)]="productDetails.company" #company="ngModel" disabled />
+    </fieldset>
+
+    <fieldset class="row">
+      יחידת מידה:
+      <input tabindex="7" name="UnitQty" type="text" [(ngModel)]="productDetails.UnitQty" #UnitQty="ngModel" disabled />
     </fieldset>
 
     <div *ngIf="productDetails.comments">
@@ -56,7 +66,7 @@
           <option *ngFor="let currGrade of grades" value={{currGrade}}>{{currGrade}}</option>
         </select>
       </div>
-     </fieldset>
+    </fieldset>
 
     <fieldset style="margin-top:5%">
       <button style="margin-top:5%" class="button-style" (click)="addComment()">הוסף תגובה</button>

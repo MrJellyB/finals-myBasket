@@ -1,0 +1,35 @@
+db.counters.createCollection("counters");
+db.counters.insert({_id: "productId",seq: 200})	
+db.counters.insert({_id: "basketId",seq: 200})	
+
+db.gender.insert({id:1, value: "male"})
+db.gender.insert({id:2, value: "female"})
+
+
+
+
+
+db.category.createCollection("category");
+db.category.insert({ "_id" : 0, "id" : 0, "name" : "בחר ערך" })
+db.category.insert({ "_id" : 1, "id" : 1, "name" : "חלב וביצים" })
+db.category.insert({ "_id" : 2, "id" : 2, "name" : "דברי מאפה" })
+db.category.insert({ "_id" : 3, "id" : 3, "name" : "פירות וירקות" })
+db.category.insert({ "_id" : 4, "id" : 4, "name" : "בשר ודגים" })
+db.category.insert({ "_id" : 5, "id" : 5, "name" : "חטיפים וממתקים" })
+db.category.insert({ "_id" : 6, "id" : 6, "name" : "דגנים וקטניות" })
+db.category.insert({ "_id" : 7, "id" : 7, "name" : "מעדניה וקפואים" })
+db.category.insert({ "_id" : 8, "id" : 8, "name" : "שימורים, בישול ואפיה" })
+db.category.insert({ "_id" : 9, "id" : 9, "name" : "נייר וניקיון" })
+db.category.insert({ "_id" : 10, "id" : 10, "name" : "בית ובעלי חיים" })
+db.category.insert({ "_id" : 11, "id" : 11, "name" : "בריאות ואורגני" })
+db.category.insert({ "_id" : 12, "id" : 12, "name" : "טיפוח ותינוקות" })
+
+
+
+db.users.createCollection("users");
+db.users.insert({"firstName" : "admin","lastName" : "admin","email" : "admin","gender" : 1,"password" : "111111","userName" : "admin",
+        "userType" : 2,
+		"_id":1
+})
+
+db.product.createCollection("product");

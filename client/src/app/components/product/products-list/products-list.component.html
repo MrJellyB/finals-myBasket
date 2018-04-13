@@ -3,7 +3,7 @@
 <div class="products row justify-content-center">
   <div class="col-sm-3 py-2" *ngFor="let product of productsByCategory; let i = index">
     <div class="product card" (mouseenter)="enterCard(i)" (mouseleave)="leaveCard(i)">
-      <div class="d-flex justify-content-between align-middle" *ngIf="getItemAmount(product.id) === 0" [ngClass]="i == hoverIndex ? 'showControl' : 'hideControl'">
+      <div class="d-flex justify-content-between align-middle" *ngIf="!getItemAmount(product.id)" [ngClass]="i == hoverIndex ? 'showControl' : 'hideControl'">
         <div>
           <button type="button" class="btn btn-link" (click)="addToBasket(product, amountInput)"><i class="fas fa-plus-circle"></i></button>
         </div>
@@ -14,9 +14,6 @@
           <input type="text" #amountInput [value]="getItemAmount(product.id)" (input)="setItemAmount(product, $event)" class="form-control item-amount-input">
           <button type="button" class="btn btn-link" (click)="removeFromBasket(product.id, amountInput)"><i class="fas fa-minus-circle"></i></button>
         </div>
-        <!--<div class="align-self-center">
-
-        </div>-->
         <div class="align-self-center">
           <button type="button" class="btn btn-link" (click)="updateOrDelete(product.id)" *ngIf="checkManager()">
             <i class="fas fa-wrench"></i>
@@ -40,10 +37,13 @@
               <span class="feature-title">ארץ ייצור:</span> {{product.createCountry}}
             </li>
             <li>
-              <span class="feature-title">קלוריות:</span> {{product.calories}} קל'
+              <span class="feature-title">מחיר:</span> {{product.price}} ₪
             </li>
             <li>
-              <span class="feature-title">מחיר:</span> {{product.price}} ₪
+              <span class="feature-title">כמות:</span> {{product.Quantity}} {{product.UnitQty}}
+            </li>
+            <li>
+              <span class="feature-title">מחיר ליחידת מידה:</span> {{product.UnitOfMeasurePrice}} ₪ / {{product.UnitOfMeasure}}
             </li>
           </ul>
           <button class="btn btn-primary float-right" (click)="showDetails(product.id)">פרטים נוספים</button>

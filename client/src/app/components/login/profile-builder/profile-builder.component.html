@@ -1,65 +1,148 @@
-<div class="col-md-5 col-md-offset-2">
-  <form name="profileBuilder">
-    <header>
-      <h2>הרכבת פרופיל אישי</h2>
-    </header>
-    <br>
-    <b>היי, משתמש!</b>
-    <p>נצטרך כמה פרטים עליכם, כדי לבנות עבורכם את סל הקניות האולטימטיבי</p>
-  </form>
+
+
+<div id="wrapper" class="container">
+  
+  <h2>הרכבת פרופיל אישי</h2>
+  <p>נצטרך כמה פרטים עליכם, כדי לבנות עבורכם את סל הקניות האולטימטיבי</p>
+
+    <form id="form-work" name="form" #f="ngForm" novalidate>
+      
+      <fieldset>
+      
+        <div class="form-group">
+          <div class="col-md-6">
+            <label class="control-label" for="birthDate">תאריך לידה</label>
+            <input class="form-control" type="date" name="birthdate" [(ngModel)]="profileBuilder.birthdate" #birthdate="ngModel" required>
+            </div>
+          </div>
+
+        <div class="form-group">
+            <div class="col-md-6">
+              <label class="control-label" for="street">רחוב</label>
+              <input class="form-control" name="street" [(ngModel)]="profileBuilder.address.street" #street="ngModel" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-6">
+              <label class="control-label" for="city">עיר</label>
+              <div class="input-group">
+                <select (change)="selectItem($event.target.value)" class="form-control">
+                  <option *ngFor="let currCity of cities" [selected]="currCity._id == selectedCity" value={{currCity._id}}>{{currCity.cityName}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          
+
+          <div class="form-group">
+            <div class="col-md-6">
+              <label class="control-label" for="adultsNum">מספר מבוגרים</label>
+              <div class="input-group">
+                <input  class="form-control" type="number" name="adults" [(ngModel)]="profileBuilder.peopleAmount.adults" #adults="ngModel" min="0" (keypress)="_keyPress($event)" required/>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-6">
+              <label class="control-label" for="kidsNum">מספר ילדים</label>
+              <div class="input-group">
+                <input  class="form-control" type="number" name="kids" [(ngModel)]="profileBuilder.peopleAmount.kids" #kids="ngModel" min="0" (keypress)="_keyPress($event)" required/>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-6">
+              <label class="control-label" for="babiesNum">מספר תינוקות</label>
+              <div class="input-group">
+                <input  class="form-control" type="number" name="babies" [(ngModel)]="profileBuilder.peopleAmount.babies" #babies="ngModel" min="0" (keypress)="_keyPress($event)" required/>
+              </div>
+            </div>
+          </div>
+
+          <br>
+          <div class="form-group">
+            <b>העדפות והמנעויות</b>
+          </div>
+          <div class="form-group">
+              <div class="col-md-6">
+                <label class="control-label" for="kosherLabel">    מוצרים כשרים בלבד?</label>
+                <input name="kosher" type="checkbox" (change)="checkPreferences($event, ePreferencesEnum.Kosher)" [checked]="profileBuilder.preferences.kosher">
+              </div>
+          </div>
+          <div class="form-group">
+              <div class="col-md-6">
+              <label class="control-label" for="vegan">מוצרים טבעוניים בלבד?</label>
+               <input name="vegan" type="checkbox" (change)="checkPreferences($event, ePreferencesEnum.Vegan)" [checked]="profileBuilder.preferences.vegan">
+              </div>
+          </div>
+          <div class="form-group">
+              <div class="col-md-6">
+              <label class="control-label" for="Veggie"> מוצרים צמחוניים בלבד?</label>
+               <input name="veggie" type="checkbox" (change)="checkPreferences($event, ePreferencesEnum.Veggie)" [checked]="profileBuilder.preferences.veggie">
+              </div>
+          </div>
+          <div class="form-group">
+            <b>הסל שלי יהיה ללא המוצרים הבאים:</b>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-6">
+              <label class="control-label" for="Eggs">ביצים</label>
+              <input name="eggs" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Eggs)" [checked]="profileBuilder.avoidness.eggs">
+            </div>
+          </div>
+          <div class="form-group">
+              <div class="col-md-6">
+                <label class="control-label" for="Milk">מוצרי חלב </label>
+                <input name="milk" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Milk)" [checked]="profileBuilder.avoidness.milk">
+              </div>
+          </div>
+          <div class="form-group">
+              <div class="col-md-6">
+                <label class="control-label" for="Gluten">גלוטן </label>
+                <input name="gluten" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Gluten)" [checked]="profileBuilder.avoidness.gluten">
+            </div>
+          </div>
+
+          <div class="form-group">
+              <div class="col-md-6">
+                <label class="control-label" for="Soy">סויה </label>
+                <input name="soy" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Soy)" [checked]="profileBuilder.avoidness.soy">
+             </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-6">
+              <label class="control-label" for="Nuts">אגוזים </label>
+              <input name="nuts" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Nuts)" [checked]="profileBuilder.avoidness.nuts">
+            </div>
+          </div>
+        <div class="form-group">
+          <div class="col-md-6">
+            <label class="control-label" for="Peanuts">בוטנים </label>
+            <input name="peanuts" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Peanuts)" [checked]="profileBuilder.avoidness.peanuts">
+          </div>
+        </div>
+        <div class="form-group">
+         <div class="col-md-6">
+            <label class="control-label" for="Peanuts">פול </label>
+            <input name="ful" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Ful)" [checked]="profileBuilder.avoidness.ful">
+          </div>
+        </div>
+
+          <div class="form-group">
+            <div class="col-md-12">
+                <button name="save" (click)="saveProfileBuilder()" [disabled]="!f.valid || selectedCity == 0 || (profileBuilder.peopleAmount.adults + profileBuilder.peopleAmount.kids + profileBuilder.peopleAmount.babies) < 1" class="btn btn-primary btn-lg btn-block info">שמור פרטים</button>
+            </div>
+          </div>    
+           
+      </fieldset> 
+    </form>
 </div>
-<div class="col-md-4 col-md-offset-2">
-  <form name="form" #f="ngForm" novalidate>
-    <div class="form-group">
-      תאריך לידה:<input class="form-control" type="date" name="birthdate" [(ngModel)]="profileBuilder.birthdate" #birthdate="ngModel" required>
-    </div>
-    <br>
-    <div class="form-group">
-      <b>כתובת מגורים</b>
-    </div>
-    רחוב: <input class="form-control" name="street" [(ngModel)]="profileBuilder.address.street" #street="ngModel" required>
-    <br>
-    עיר: 
-    <select (change)="selectItem($event.target.value)" class="form-control">
-      <option *ngFor="let currCity of cities" [selected]="currCity._id == selectedCity" value={{currCity._id}}>{{currCity.cityName}}</option>
-    </select>
-    <br>
-    <br>
-    <div class="form-group">
-      <b>כמה אנשים מתגוררים בבית?</b>
-      <br>
-      מבוגרים
-      <input  type="number" name="adults" [(ngModel)]="profileBuilder.peopleAmount.adults" #adults="ngModel" min="0" (keypress)="_keyPress($event)" required/>
-      <br>
-      ילדים 
-      <input  type="number" name="kids" [(ngModel)]="profileBuilder.peopleAmount.kids" #kids="ngModel" min="0" (keypress)="_keyPress($event)" required/>
-      <br>
-      תינוקות
-      <input  type="number" name="babies" [(ngModel)]="profileBuilder.peopleAmount.babies" #babies="ngModel" min="0" (keypress)="_keyPress($event)" required/>
-    </div>
-    <br>
-    <div class="form-group">
-      <b>העדפות והמנעויות</b>
-      <br>
-      מוצרים כשרים בלבד? <input name="kosher" type="checkbox" (change)="checkPreferences($event, ePreferencesEnum.Kosher)" [checked]="profileBuilder.preferences.kosher">
-      <br>
-      מוצרים טבעוניים בלבד? <input name="vegan" type="checkbox" (change)="checkPreferences($event, ePreferencesEnum.Vegan)" [checked]="profileBuilder.preferences.vegan">
-      <br>
-      מוצרים צמחוניים בלבד? <input name="veggie" type="checkbox" (change)="checkPreferences($event, ePreferencesEnum.Veggie)" [checked]="profileBuilder.preferences.veggie">
-    </div>
-    <br>
-    <div class="form-group">
-      <b>הסל שלי יהיה ללא המוצרים הבאים:</b>
-      <br>
-      ביצים <input name="eggs" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Eggs)" [checked]="profileBuilder.avoidness.eggs">
-      מוצרי חלב <input name="milk" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Milk)" [checked]="profileBuilder.avoidness.milk">
-      גלוטן <input name="gluten" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Gluten)" [checked]="profileBuilder.avoidness.gluten">
-      סויה <input name="soy" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Soy)" [checked]="profileBuilder.avoidness.soy">
-      אגוזים <input name="nuts" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Nuts)" [checked]="profileBuilder.avoidness.nuts">
-      בוטנים <input name="peanuts" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Peanuts)" [checked]="profileBuilder.avoidness.peanuts">
-      פול <input name="ful" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Ful)" [checked]="profileBuilder.avoidness.ful">
-    </div>
-    <br>
-    <button name="save" (click)="saveProfileBuilder()" [disabled]="!f.valid || selectedCity == 0 || (profileBuilder.peopleAmount.adults + profileBuilder.peopleAmount.kids + profileBuilder.peopleAmount.babies) < 1" class="btn btn-primary">שמור פרטים</button>
-  </form>
-</div>
+
+
+ 
+          
