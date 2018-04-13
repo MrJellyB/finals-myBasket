@@ -19,6 +19,7 @@ import { StatisticsMainPageComponent } from 'app/components/product/statistics-m
 import { FormsModule } from '@angular/forms';
 import { ProductService } from 'app/services/product.service';
 import { PagerService } from 'app/components/product/products-list/pager.service';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { PagerService } from 'app/components/product/products-list/pager.service
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
   ],
   providers: [
     ProductService,
