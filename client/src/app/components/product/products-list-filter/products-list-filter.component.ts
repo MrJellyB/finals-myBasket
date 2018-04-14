@@ -14,7 +14,7 @@ export class ProductsListFilterComponent {
   loading = false;
   total = 0;
   page = 1;
-  limit = 1000;
+  limit = 6100;
   public isDataLoaded = false;
   public name: string;
   public products: Product[];
@@ -24,6 +24,7 @@ export class ProductsListFilterComponent {
   select: EventEmitter<string>;
   public bigger: string;
   public smaller: string;
+  public productSize: number;
 
   constructor(private productService: ProductService,
     private router: Router,
@@ -33,6 +34,7 @@ export class ProductsListFilterComponent {
   ngOnInit() {
     this.select = new EventEmitter();
     this.name = "";
+    this.getProductSize();
     this.getProductsPaging();
     this.getCategories();
   }
@@ -40,6 +42,7 @@ export class ProductsListFilterComponent {
   getProductsPaging(): void {
     this.loading = true;
     this.productService.getProductsPaging(this.page, this.limit).subscribe((products: any) => {
+      debugger;
       this.isDataLoaded = true;
       this.productPaging = products;
       console.log(products);
@@ -97,5 +100,25 @@ export class ProductsListFilterComponent {
 
   checkManager() {
     return this.userName() != null && this.userType() == "2";
+  }
+
+  pageChanged(event) {
+    if (event > this.page) {
+      this.onNext();
+    }
+    if (event < this.page) {
+      this.onPrev();
+    }
+  }
+
+  getProductSize() {
+    this.productService.getProductSize().subscribe((size: any) => {
+      debugger;
+      if (size) {
+        if (size[0]) {
+          this.productSize = size[0].count;
+        }
+      }
+    })
   }
 }

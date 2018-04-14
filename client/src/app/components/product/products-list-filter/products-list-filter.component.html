@@ -39,7 +39,7 @@
         <th class="title-right" *ngIf="checkManager()">עדכן/ מחק מוצר</th>
       </tr>
       <!--
-      <tr *ngFor="let currProduct of (productPaging | paginate: { itemsPerPage:5, currentPage: p} )">
+      <tr *ngFor="let currProduct of productPaging | paginate: { itemsPerPage:limit, currentPage: p,totalItems: productSize}  | category:currCategory | name:name | biggerThen:bigPrice | smallerThen:price">
       -->
       <tr *ngFor="let currProduct of productPaging | category:currCategory | name:name | biggerThen:bigPrice | smallerThen:price">
          
@@ -55,8 +55,11 @@
         <td class="title-right" *ngIf="checkManager()"><button class="btn btn-primary" (click)="updateOrDelete(currProduct.id)">עריכת מוצר</button></td>
 
       </tr>
-
-      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+<!--
+      <pagination-controls (pageChange)="pageChanged(p =$event)" 
+                            previousLabel="לאחור"
+                            nextLabel="הבא"
+                            maxSize="9"></pagination-controls>-->
     </table>
   </div>
 </div>
@@ -64,7 +67,4 @@
 <div *ngIf="!userName()">
   <h1>אין לך הרשאות להגיע לדף זה </h1>
 </div>
-
-
-(...)
 

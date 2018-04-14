@@ -31,4 +31,5 @@
     app.get('/getAllStores', basketModule.getAllStores);
     app.get('/getIsraelTweets', basketModule.getIsraelTweets);
     app.get('/getCities', basketModule.getCities);
+    app.get('/getProductSize', basketModule.getProductSize);
 }

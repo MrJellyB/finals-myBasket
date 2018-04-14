@@ -208,6 +208,12 @@ exports.getCheapestProductByCategory = function (req, res) {
     })
 }
 
+exports.getProductSize = function (req, res) {
+    dbUtils.getProductSize(function (err, data) {
+        res.send(data);
+    })
+}
+
 // BASKETS METHODS
 // =============================================
 exports.saveBasket = function (req, res) {

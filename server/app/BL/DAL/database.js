@@ -80,6 +80,12 @@ exports.getCategoryById = function (id, callback) {
     db.category.find({ "id": idToSearch }).toArray(callback);
 }
 
+exports.getProductSize = function (callback) {
+    db.product.aggregate([
+        { $group: { _id: null, count: { $sum: 1 } } }
+    ]).toArray(callback);
+}
+
 exports.saveProduct = function (data, callback) {
     db.product.insert(data, callback);
 }

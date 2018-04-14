@@ -60,6 +60,10 @@ export class ProductService {
     return this.http.post(url + '/addCommentToProduct', { data }, this.httpService.getOptions()).map((data) => data.json());
   }
 
+  getProductSize(): Observable<Response> {
+    return this.http.get(url + '/getProductSize').map((data) => data.json())
+  }
+
   getCheapestProductByCategory(data: number): Observable<Response> {
     return this.http.get(url + '/getCheapestProductByCategory/' + data).map((data) => data.json());
   }
