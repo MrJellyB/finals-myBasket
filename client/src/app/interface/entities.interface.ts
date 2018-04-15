@@ -132,3 +132,10 @@ export interface City {
   _id: number;
   cityName: string;
 }
+
+export interface QueryProduct {
+  productName: string;
+  fromPrice: number;
+  toPrice: number;
+  category: number;
+}

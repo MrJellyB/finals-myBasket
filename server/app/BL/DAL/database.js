@@ -116,6 +116,21 @@ exports.getProductsPaging = function (page, limit, callback) {
         .toArray(callback);
 }
 
+exports.getProductsWithParamsAndPaging = function (page, limit, params, callback) {
+    var perPage = limit;
+    var query = {};
+
+    if (params.productName) {
+        query = ({ "name": { $regex: ".*" + params.productName + ".*" } });
+    }
+
+    db.product
+        .find(query)
+        .skip((perPage * page) - perPage)
+        .limit(perPage)
+        .toArray(callback);
+}
+
 exports.updateProduct = function (idProduct, productToUpdate, callback) {
     var filterQuery = { 'id': idProduct }
     var updateQuery = {

@@ -1,6 +1,6 @@
 import { Component, EventEmitter } from '@angular/core'; ``
 import { Router, ActivatedRoute } from '@angular/router';
-import { Product, Category } from '../../../interface/entities.interface';
+import { Product, Category, QueryProduct } from '../../../interface/entities.interface';
 import { ProductService } from 'app/services/product.service';
 import { UsersService } from 'app/services/users.service';
 
@@ -14,9 +14,11 @@ export class ProductsListFilterComponent {
   loading = false;
   total = 0;
   page = 1;
-  limit = 6100;
+  limit = 5;
   public isDataLoaded = false;
   public name: string;
+  public fromPrice: number;
+  public toPrice: number;
   public products: Product[];
   public productPaging: Product[];
   public currCategory: number;
@@ -60,26 +62,31 @@ export class ProductsListFilterComponent {
     this.productService.getCategories().subscribe((results: any) => {
       this.categories = results;
 
-      for (var i = 0; i < this.productPaging.length; i++) {
-        let currValue = this.categories.find(x => +x.id == this.productPaging[i].category).name
-        this.productPaging[i].categoryValue = currValue;
+      if (this.productPaging) {
+        for (var i = 0; i < this.productPaging.length; i++) {
+          let currValue = this.categories.find(x => +x.id == this.productPaging[i].category).name
+          this.productPaging[i].categoryValue = currValue;
+        }
       }
     })
   }
 
   goToPage(n: number): void {
     this.page = n;
-    this.getProductsPaging();
+    //this.getProductsPaging();
+    this.getProductsWithParamsAndPaging(this.page);
   }
 
   onNext(): void {
     this.page++;
-    this.getProductsPaging();
+    //this.getProductsPaging();
+    this.getProductsWithParamsAndPaging(this.page);
   }
 
   onPrev(): void {
     this.page--;
-    this.getProductsPaging();
+    //this.getProductsPaging();
+    this.getProductsWithParamsAndPaging(this.page);
   }
 
   showDetails(productID: number) {
@@ -103,11 +110,15 @@ export class ProductsListFilterComponent {
   }
 
   pageChanged(event) {
-    if (event > this.page) {
+    let dif = event - this.page;
+    if (dif == 1) {
       this.onNext();
     }
-    if (event < this.page) {
+    if (dif == -1) {
       this.onPrev();
+    }
+    else {
+      this.goToPage(event);
     }
   }
 
@@ -120,5 +131,23 @@ export class ProductsListFilterComponent {
         }
       }
     })
+  }
+
+  onClickfindProducts() {
+    this.getProductsWithParamsAndPaging(1);
+  }
+
+
+  getProductsWithParamsAndPaging(page: number): void {
+    debugger;
+    let params = <QueryProduct>{};
+    params.productName = this.name;
+    params.toPrice = this.toPrice;
+    params.fromPrice = this.fromPrice;
+    params.category = this.currCategory;
+    this.productService.getProductsWithParamsAndPaging(page, this.limit, params).subscribe((products: any) => {
+      this.productPaging = products;
+      this.getCategories();
+    });
   }
 }

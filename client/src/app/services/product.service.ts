@@ -36,6 +36,12 @@ export class ProductService {
     return this.http.get(url + '/getProductsPaging/' + page + '/' + limit).map((data) => data.json())
   }
 
+  getProductsWithParamsAndPaging(page, limit, params): Observable<Response> {
+    let data = { page: page, limit: limit, params: params };
+    // send the params
+    return this.http.post(url + '/getProductsWithParamsAndPaging', { data }, this.httpService.getOptions()).map((data) => data.json());
+  }
+
   updateProduct(data: Product) {
     const formData: FormData = new FormData();
 

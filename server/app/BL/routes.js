@@ -19,6 +19,7 @@
     app.post('/resetPassword', basketModule.resetPassword);
     app.post('/authorize', basketModule.authorizeTwitter);
     app.post('/saveProfileBuilder', basketModule.createProfileToUser)
+    app.post('/getProductsWithParamsAndPaging', basketModule.getProductsWithParamsAndPaging);
     app.get('/getCategories', basketModule.getCategories);
     app.get('/getProductDetails/:id', basketModule.getProductDetails);
     app.get('/getCategory/:id', basketModule.getCategoryById);

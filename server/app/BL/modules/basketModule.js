@@ -165,6 +165,26 @@ exports.getProductsPaging = function (req, res) {
     })
 }
 
+exports.getProductsWithParamsAndPaging = function (req, res) {
+
+    if (req.body.data) {
+        var page = +req.body.data.page;
+        var limit = +req.body.data.limit;
+        var params = req.body.data.params;
+        //var productName = req.body.data.params.productName;
+        //var toPrice = req.body.data.params.toPrice;
+        //var fromPrice = req.body.data.params.fromPrice;
+        //var category = req.body.data.params.category;
+
+        //console.log("params and paging");
+        //console.log(page + " " + limit + " " + productName + " " + fromPrice + " " + toPrice + " " + category);
+
+        dbUtils.getProductsWithParamsAndPaging(page, limit, params, function (err, data) {
+            res.send(data);
+        })
+    }
+}
+
 exports.updateProduct = function (req, res) {
     var productToUpdate = req.body.data;
     var productId = req.body.data.id;
