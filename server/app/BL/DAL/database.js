@@ -142,24 +142,24 @@ queryProductFilter = function (params) {
     var and_clauses = [];
 
     if (params.productName) {
-        //query = ({ "name": { $regex: ".*" + params.productName + ".*" } });
         and_clauses.push({ "name": { $regex: ".*" + params.productName + ".*" } });
     }
 
     if (params.toPrice) {
-        //{ b : { $gt :  4, $lt : 6}}
+        and_clauses.push({ "price": { $lt: +params.toPrice } });
     }
 
     if (params.fromPrice) {
-
+        and_clauses.push({ "price": { $gte: +params.fromPrice } });
     }
 
-    if (params.category) {
-
+    if (params.category && params.category != 0) {
+        and_clauses.push({ "category": +params.category });
     }
 
     if (and_clauses.length > 0) {
-        conditions['$and'] = and_clauses; // filter the search by any criteria given by the user
+        // filter the search by any criteria given by the user
+        conditions['$and'] = and_clauses;
     }
 
     return conditions;

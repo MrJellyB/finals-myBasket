@@ -168,13 +168,6 @@ exports.getProductsWithParamsAndPaging = function (req, res) {
         var page = +req.body.data.page;
         var limit = +req.body.data.limit;
         var params = req.body.data.params;
-        //var productName = req.body.data.params.productName;
-        //var toPrice = req.body.data.params.toPrice;
-        //var fromPrice = req.body.data.params.fromPrice;
-        //var category = req.body.data.params.category;
-
-        //console.log("params and paging");
-        //console.log(page + " " + limit + " " + productName + " " + fromPrice + " " + toPrice + " " + category);
 
         dbUtils.getProductsWithParamsAndPaging(page, limit, params, function (err, productPaging) {
             dbUtils.getProductSizeByParams(params, function (err, totalCountProducts) {

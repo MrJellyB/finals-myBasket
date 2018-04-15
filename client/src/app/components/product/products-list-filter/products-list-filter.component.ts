@@ -64,8 +64,11 @@ export class ProductsListFilterComponent {
 
       if (this.productPaging) {
         for (var i = 0; i < this.productPaging.length; i++) {
-          let currValue = this.categories.find(x => +x.id == this.productPaging[i].category).name
-          this.productPaging[i].categoryValue = currValue;
+          let category = this.categories.find(x => +x.id == this.productPaging[i].category);
+          if (category) {
+            let currValue = category.name;
+            this.productPaging[i].categoryValue = currValue;
+          }
         }
       }
     })
@@ -154,7 +157,7 @@ export class ProductsListFilterComponent {
         if (products.totalCountProducts[0]) {
           this.productSize = products.totalCountProducts[0].count;
         }
-        this.getCategories();
+        this.page = 1;
       }
     });
   }
