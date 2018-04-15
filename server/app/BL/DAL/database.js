@@ -107,6 +107,16 @@ exports.getProducts = function (callback) {
     db.product.find().toArray(callback);
 }
 
+exports.getProductSizeByParams = function (params, callback) {
+
+    query = queryProductFilter(params);
+
+    db.product.aggregate([
+        { $match: query },
+        { $group: { _id: null, count: { $sum: 1 } } }
+    ]).toArray(callback);
+}
+
 exports.getProductsPaging = function (page, limit, callback) {
     var perPage = limit;
     db.product
@@ -118,17 +128,41 @@ exports.getProductsPaging = function (page, limit, callback) {
 
 exports.getProductsWithParamsAndPaging = function (page, limit, params, callback) {
     var perPage = limit;
-    var query = {};
-
-    if (params.productName) {
-        query = ({ "name": { $regex: ".*" + params.productName + ".*" } });
-    }
+    var query = queryProductFilter(params);
 
     db.product
         .find(query)
         .skip((perPage * page) - perPage)
         .limit(perPage)
         .toArray(callback);
+}
+
+queryProductFilter = function (params) {
+    var conditions = {};
+    var and_clauses = [];
+
+    if (params.productName) {
+        //query = ({ "name": { $regex: ".*" + params.productName + ".*" } });
+        and_clauses.push({ "name": { $regex: ".*" + params.productName + ".*" } });
+    }
+
+    if (params.toPrice) {
+        //{ b : { $gt :  4, $lt : 6}}
+    }
+
+    if (params.fromPrice) {
+
+    }
+
+    if (params.category) {
+
+    }
+
+    if (and_clauses.length > 0) {
+        conditions['$and'] = and_clauses; // filter the search by any criteria given by the user
+    }
+
+    return conditions;
 }
 
 exports.updateProduct = function (idProduct, productToUpdate, callback) {

@@ -14,7 +14,7 @@ export class ProductsListFilterComponent {
   loading = false;
   total = 0;
   page = 1;
-  limit = 5;
+  limit = 15;
   public isDataLoaded = false;
   public name: string;
   public fromPrice: number;
@@ -146,8 +146,16 @@ export class ProductsListFilterComponent {
     params.fromPrice = this.fromPrice;
     params.category = this.currCategory;
     this.productService.getProductsWithParamsAndPaging(page, this.limit, params).subscribe((products: any) => {
-      this.productPaging = products;
-      this.getCategories();
+      if (products) {
+        if (products.productPaging) {
+          this.productPaging = products.productPaging;
+        }
+
+        if (products.totalCountProducts[0]) {
+          this.productSize = products.totalCountProducts[0].count;
+        }
+        this.getCategories();
+      }
     });
   }
 }

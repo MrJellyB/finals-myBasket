@@ -101,9 +101,6 @@ exports.createProfileToUser = function (req, res) {
     var profile = req.body.data;
     var userName = req.body.userName;
 
-    //dbUtils.getUserByUserName(userName, function (err, data) {
-    //    var user = data[0];
-
     dbUtils.addProfileToUser(userName, profile, function (err, data) {
         if (err) return res.send(false);
         if (data) return res.send(true);
@@ -179,8 +176,11 @@ exports.getProductsWithParamsAndPaging = function (req, res) {
         //console.log("params and paging");
         //console.log(page + " " + limit + " " + productName + " " + fromPrice + " " + toPrice + " " + category);
 
-        dbUtils.getProductsWithParamsAndPaging(page, limit, params, function (err, data) {
-            res.send(data);
+        dbUtils.getProductsWithParamsAndPaging(page, limit, params, function (err, productPaging) {
+            dbUtils.getProductSizeByParams(params, function (err, totalCountProducts) {
+                var productData = { totalCountProducts, productPaging };
+                res.send(productData);
+            })
         })
     }
 }
@@ -219,7 +219,6 @@ exports.addCommentToProduct = function (req, res) {
         res.send(true);
     })
 }
-
 
 exports.getCheapestProductByCategory = function (req, res) {
     var id = req.params.id;
