@@ -5,7 +5,7 @@ import { Headers, Http, Response, RequestOptions, RequestOptionsArgs } from '@an
 import { url } from 'app/utils/consts';
 import { Product, CommentToProduct } from 'app/interface/entities.interface';
 import { HttpService } from 'app/services/http.service';
-// OREN PUSH TEST
+
 
 @Injectable()
 export class ProductService {
