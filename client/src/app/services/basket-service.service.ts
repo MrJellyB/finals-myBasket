@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BasketItem, Product } from 'app/interface/entities.interface';
 import { LocalStorageService } from './localStorageService';
+import { EventService } from './event.service';
 
 // TODO: Merge with the other service / get rid
 @Injectable()
 export class BasketService {
-  constructor(private localStorageService: LocalStorageService) {
+  constructor(private localStorageService: LocalStorageService,
+    private eventService: EventService) {
 
   }
 
@@ -35,6 +37,8 @@ export class BasketService {
       tmpBasket.push({ id: product.id, name: product.name, image: "", price: product.price, amount: 1 });
       this.setBasket(tmpBasket);
     }
+
+    this.eventService.emit('BASKET_ITEMS');
   }
 
   removeItem(product: Product) {
@@ -86,6 +90,7 @@ export class BasketService {
     }
 
     this.setBasket(tmpBasket);
+    this.eventService.emit('BASKET_ITEMS');
   }
 
   getAllAmount(): any {
@@ -132,7 +137,9 @@ export class BasketService {
     } else {
       tmpBasket.splice(index, 1);
     }
+
     this.setBasket(tmpBasket);
+    this.eventService.emit('BASKET_ITEMS');
   }
 
   isBasketEmpty() {

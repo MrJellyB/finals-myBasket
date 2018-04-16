@@ -14,7 +14,7 @@ export class ProductsListFilterComponent {
   loading = false;
   total = 0;
   page = 1;
-  limit = 15;
+  limit = 10;
   public isDataLoaded = false;
   public name: string;
   public fromPrice: number;
