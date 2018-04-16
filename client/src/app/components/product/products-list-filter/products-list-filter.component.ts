@@ -158,6 +158,7 @@ export class ProductsListFilterComponent {
           this.productSize = products.totalCountProducts[0].count;
         }
         this.page = 1;
+        this.getCategories();
       }
     });
   }
