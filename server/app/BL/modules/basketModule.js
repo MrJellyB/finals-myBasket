@@ -277,60 +277,11 @@ exports.getAllStores = function (req, res) {
 // =============================================
 
 
-
 // STORES CITIES
 // =============================================
 exports.getCities = function (req, res) {
     dbUtils.getCities(function (err, data) {
         res.send(data);
     });
-}
-// =============================================
-
-
-
-
-// FOR DELETES
-// =============================================
-var twitterSettings = {
-    consumerkey: 'm5wDu8TeKAEiW743bR2dE8QJw',
-    consumersecret: 'uh6QbbWQXJ84PgLnEKMZam6adMu0Im1HnocEjlS0jCaDuhP0Q7',
-    bearertoken: ''
-};
-
-exports.authorizeTwitter = function (req, res) {
-
-    var header = twitterSettings.consumerkey + ':' + twitterSettings.consumersecret;
-    var encheader = new Buffer(header).toString('base64');
-    var finalheader = 'Basic ' + encheader;
-
-    request.post('https://api.twitter.com/oauth2/token', {
-        form: { 'grant_type': 'client_credentials' },
-        headers: { Authorization: finalheader }
-    }, function (error, response, body) {
-        if (error)
-            console.log(error);
-        else {
-            twitterSettings.bearertoken = JSON.parse(body).access_token;
-
-            res.json({ success: true, data: twitterSettings.bearertoken });
-        }
-
-    })
-}
-
-exports.getIsraelTweets = function (req, res) {
-
-    var searchquery = req.body.query;
-    var encsearchquery = encodeURIComponent(searchquery);
-    var bearerheader = 'Bearer ' + twitterSettings.bearertoken;
-    request.get('https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=Israel&count=10' + encsearchquery +
-        '&result_type=recent', { headers: { Authorization: bearerheader } }, function (error, body, response) {
-            if (error) {
-            }
-            else {
-                res.json({ success: true, data: JSON.parse(body.body) });
-            }
-        });
 }
 // =============================================
