@@ -278,10 +278,10 @@ exports.getCities = function (callback) {
 exports.getAllStores = function (callback) {
     db.store.find({}).toArray(callback);
 }
-
+/*
 // For genetic algorithm 
 exports.getRandomProducts = function (amount, callback) {
     db.product.aggregate(
         { $sample: { size: amount } }
     ).toArray(callback);
-}
+}*/

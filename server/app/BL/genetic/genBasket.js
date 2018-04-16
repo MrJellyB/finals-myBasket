@@ -1,5 +1,5 @@
 // import db 
-export default class GenBasket {
+/*export default class GenBasket {
     products = [];
     grade;
 
@@ -12,4 +12,4 @@ export default class GenBasket {
     }
 
 
-}
+}*/
