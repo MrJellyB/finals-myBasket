@@ -17,8 +17,8 @@
     app.post('/removeUser', basketModule.removeUser);
     app.post('/changeUserTypeStatus', basketModule.changeUserTypeStatus);
     app.post('/resetPassword', basketModule.resetPassword);
-    app.post('/authorize', basketModule.authorizeTwitter);
     app.post('/saveProfileBuilder', basketModule.createProfileToUser)
+    app.post('/getProductsWithParamsAndPaging', basketModule.getProductsWithParamsAndPaging);
     app.get('/getCategories', basketModule.getCategories);
     app.get('/getProductDetails/:id', basketModule.getProductDetails);
     app.get('/getCategory/:id', basketModule.getCategoryById);
@@ -29,6 +29,6 @@
     app.get('/getUserByUserName/:userName', basketModule.getUserByUserName);
     app.get('/getBasketByUser', basketModule.getBasketByUser);
     app.get('/getAllStores', basketModule.getAllStores);
-    app.get('/getIsraelTweets', basketModule.getIsraelTweets);
     app.get('/getCities', basketModule.getCities);
+    app.get('/getProductSize', basketModule.getProductSize);
 }

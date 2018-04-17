@@ -80,6 +80,12 @@ exports.getCategoryById = function (id, callback) {
     db.category.find({ "id": idToSearch }).toArray(callback);
 }
 
+exports.getProductSize = function (callback) {
+    db.product.aggregate([
+        { $group: { _id: null, count: { $sum: 1 } } }
+    ]).toArray(callback);
+}
+
 exports.saveProduct = function (data, callback) {
     db.product.insert(data, callback);
 }
@@ -101,6 +107,16 @@ exports.getProducts = function (callback) {
     db.product.find().toArray(callback);
 }
 
+exports.getProductSizeByParams = function (params, callback) {
+
+    query = queryProductFilter(params);
+
+    db.product.aggregate([
+        { $match: query },
+        { $group: { _id: null, count: { $sum: 1 } } }
+    ]).toArray(callback);
+}
+
 exports.getProductsPaging = function (page, limit, callback) {
     var perPage = limit;
     db.product
@@ -108,6 +124,45 @@ exports.getProductsPaging = function (page, limit, callback) {
         .skip((perPage * page) - perPage)
         .limit(perPage)
         .toArray(callback);
+}
+
+exports.getProductsWithParamsAndPaging = function (page, limit, params, callback) {
+    var perPage = limit;
+    var query = queryProductFilter(params);
+
+    db.product
+        .find(query)
+        .skip((perPage * page) - perPage)
+        .limit(perPage)
+        .toArray(callback);
+}
+
+queryProductFilter = function (params) {
+    var conditions = {};
+    var and_clauses = [];
+
+    if (params.productName) {
+        and_clauses.push({ "name": { $regex: ".*" + params.productName + ".*" } });
+    }
+
+    if (params.toPrice) {
+        and_clauses.push({ "price": { $lt: +params.toPrice } });
+    }
+
+    if (params.fromPrice) {
+        and_clauses.push({ "price": { $gte: +params.fromPrice } });
+    }
+
+    if (params.category && params.category != 0) {
+        and_clauses.push({ "category": +params.category });
+    }
+
+    if (and_clauses.length > 0) {
+        // filter the search by any criteria given by the user
+        conditions['$and'] = and_clauses;
+    }
+
+    return conditions;
 }
 
 exports.updateProduct = function (idProduct, productToUpdate, callback) {
@@ -223,3 +278,10 @@ exports.getCities = function (callback) {
 exports.getAllStores = function (callback) {
     db.store.find({}).toArray(callback);
 }
+/*
+// For genetic algorithm 
+exports.getRandomProducts = function (amount, callback) {
+    db.product.aggregate(
+        { $sample: { size: amount } }
+    ).toArray(callback);
+}*/

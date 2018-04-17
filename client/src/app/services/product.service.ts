@@ -36,6 +36,12 @@ export class ProductService {
     return this.http.get(url + '/getProductsPaging/' + page + '/' + limit).map((data) => data.json())
   }
 
+  getProductsWithParamsAndPaging(page, limit, params): Observable<Response> {
+    let data = { page: page, limit: limit, params: params };
+    // send the params
+    return this.http.post(url + '/getProductsWithParamsAndPaging', { data }, this.httpService.getOptions()).map((data) => data.json());
+  }
+
   updateProduct(data: Product) {
     const formData: FormData = new FormData();
 
@@ -58,6 +64,10 @@ export class ProductService {
 
   addCommentToProduct(data: CommentToProduct): Observable<Response> {
     return this.http.post(url + '/addCommentToProduct', { data }, this.httpService.getOptions()).map((data) => data.json());
+  }
+
+  getProductSize(): Observable<Response> {
+    return this.http.get(url + '/getProductSize').map((data) => data.json())
   }
 
   getCheapestProductByCategory(data: number): Observable<Response> {
