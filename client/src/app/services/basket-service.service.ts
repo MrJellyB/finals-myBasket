@@ -4,6 +4,7 @@ import { LocalStorageService } from './localStorageService';
 import { EventService } from './event.service';
 
 // TODO: Merge with the other service / get rid
+// Takes the basket data from the localStorage here, not db 
 @Injectable()
 export class BasketService {
   constructor(private localStorageService: LocalStorageService,
@@ -13,6 +14,10 @@ export class BasketService {
 
   getBasket() {
     return this.localStorageService.get("basketItems");
+  }
+
+  getBasketAddress() {
+    return this.localStorageService.get("streetName");
   }
 
   setBasket(basket: BasketItem[]) {

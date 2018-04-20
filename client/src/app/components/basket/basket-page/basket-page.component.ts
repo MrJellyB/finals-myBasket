@@ -25,7 +25,7 @@ export class BasketPageComponent {
   lat: number = 32.678418;
   lng: number = 35.409007;
   zoom: number = 15;
-  currentStreetName: string;
+  currentStreetName: string = this.basketService.getBasketAddress();
   marker: Marker;
   currStore: Store;
   select: EventEmitter<string>;
@@ -158,8 +158,10 @@ export class BasketPageComponent {
     this.basket.basketItems = this.basketItems;
     this.basket.totalPrice = this.getTotalPrice();
     this.basket.streetName = this.currentStreetName;
-
     const basketId = this.localStorageService.get("basketId");
+    this.localStorageService.set("streetName", this.currentStreetName);
+
+
     if (!basketId) {
       this.basketHandleService.saveBasket(this.basket).subscribe((res) => {
         this.localStorageService.set("basketId", res);
@@ -188,7 +190,7 @@ export class BasketPageComponent {
         this.basket = data[0];
         if (this.basket) {
           this.basketItems = this.basket.basketItems;
-          this.currentStreetName = this.basket.streetName
+          this.currentStreetName = this.basket.streetName;
           this.localStorageService.set("basketItems", this.basketItems);
           this.bAfterBasketLoaded = true;
 

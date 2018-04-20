@@ -39,6 +39,8 @@ export class UserLoginComponent {
             if (b && b.basketItems) {
               this.localStorageService.set("basketItems", b.basketItems);
               this.localStorageService.set("basketId", b.id);
+              this.localStorageService.set("streetName", b.streetName);
+
               this.eventService.emit('BASKET_ITEMS');
             }
           });
