@@ -43,20 +43,23 @@ export class ProductService {
   }
 
   updateProduct(data: Product) {
-    const formData: FormData = new FormData();
+    return this.http.post(url + '/updateProdct', { data }, this.httpService.getOptions()).map((data) => data.json());
 
-    formData.append('id', data.id.toString());
-    formData.append('name', data.name);
-    formData.append('price', data.price.toString());
-    formData.append('category', data.category.toString());
-    formData.append('createCountry', data.createCountry);
-    formData.append('company', data.company);
-    formData.append('categoryValue', data.categoryValue);
-    formData.append('oldPrice', data.oldPrice.toString());
-    // formData.append('comments', data.comments);
-    formData.append('image', data.image, data.image.name);
-    return this.httpClient.post(url + '/updateProdct', formData, this.httpService.getOptions());
+    // The below code doesn't work - it's a draft for uploading a product with a picture
+    // const formData: FormData = new FormData();
+    // formData.append('id', data.id.toString());
+    // formData.append('name', data.name);
+    // formData.append('price', data.price.toString());
+    // formData.append('category', data.category.toString());
+    // formData.append('createCountry', data.createCountry);
+    // formData.append('company', data.company);
+    // formData.append('categoryValue', data.categoryValue);
+    // formData.append('oldPrice', data.oldPrice.toString());
+    // // formData.append('comments', data.comments);
+    // formData.append('image', data.image, data.image.name);
+    // return this.httpClient.post(url + '/updateProdct', formData, this.httpService.getOptions());
   }
+
 
   deleteProduct(data: Product): Observable<Response> {
     return this.http.post(url + '/deleteProduct', { data }, this.httpService.getOptions()).map((data) => data.json());
