@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27004.2008
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "Server", "Server\Server.njsproj", "{26FE97BD-FC09-4567-B8AB-F1DC494B919D}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Client(1)", "Client\", "{D0B6D4AC-E197-4C97-858A-6646D5AD8FE9}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "client", "client\", "{D0B6D4AC-E197-4C97-858A-6646D5AD8FE9}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_56669"

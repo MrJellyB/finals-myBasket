@@ -15,6 +15,7 @@ export class RegisterUserComponent {
   loading = false;
   user: User;
   passIndication = true;
+  emailPattern = /^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$/;
 
   constructor(private router: Router,
     private userService: UsersService) { }
@@ -26,6 +27,28 @@ export class RegisterUserComponent {
 
   userName() {
     return this.userService.userName();
+  }
+
+  validate() {
+    if (this.model.password != this.model.repeatPassword) {
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+
+  _keyPressEmail(event: any) {
+    //const pattern = /^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$/;
+    //let inputChar = String.fromCharCode(event.charCode);
+
+    //this.checkPattern(pattern, inputChar);
+  }
+
+  checkPattern(pattern, inputChar) {
+    //if (!pattern.test(inputChar)) {
+    //  event.preventDefault();
+    //}
   }
 
   onSubmit(f: any, event: Event) {

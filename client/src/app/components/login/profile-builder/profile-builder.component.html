@@ -28,7 +28,7 @@
               <label class="control-label" for="city">עיר</label>
               <div class="input-group">
                 <select (change)="selectItem($event.target.value)" class="form-control">
-                  <option *ngFor="let currCity of cities" [selected]="currCity._id == selectedCity" value={{currCity._id}}>{{currCity.cityName}}</option>
+                  <option *ngFor="let currCity of cities" [selected]="currCity._id == selectedCity">{{currCity.cityName}}</option>
                 </select>
               </div>
             </div>

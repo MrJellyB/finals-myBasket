@@ -13,7 +13,7 @@
       <input placeholder="שם משתמש" type="text" name="userName" [(ngModel)]="model.userName" #userName="ngModel"tabindex="3" required>
     </fieldset>
     <fieldset>
-      <input placeholder="אימייל" type="email" name="email" [(ngModel)]="model.email" #email="ngModel" tabindex="4" required>
+      <input placeholder="אימייל" type="email" name="email" [pattern]="emailPattern" [(ngModel)]="model.email" #email="ngModel" tabindex="4" required>
     </fieldset>
      <fieldset>
         <select name="gender" [(ngModel)]="model.gender" #gender="ngModel" class="form-control">
@@ -28,7 +28,7 @@
       <input placeholder="חזור על הסיסמא" type="password" name="repeatPassword" [(ngModel)]="model.repeatPassword" #repeatPassword="ngModel" tabindex="6" required>
     </fieldset>
     <fieldset>
-      <button class="button-style" [disabled]="!f.valid" type="submit">שלח :)</button>
+      <button class="button-style" [disabled]="!f.valid || !validate()" type="submit">שלח :)</button>
 
     </fieldset>
   </form>
