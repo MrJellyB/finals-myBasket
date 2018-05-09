@@ -24,6 +24,7 @@
     app.get('/getCategory/:id', basketModule.getCategoryById);
     app.get('/getProducts', basketModule.getProducts);
     app.get('/getProductsPaging/:page/:limit', basketModule.getProductsPaging);
+    app.get('/getProductsPagingByCategory/:category/:page/:limit', basketModule.getProductsPagingByCategory);
     app.get('/getCheapestProductByCategory/:id', basketModule.getCheapestProductByCategory);
     app.get('/getBasket/:id', basketModule.getBasket);
     app.get('/getUserByUserName/:userName', basketModule.getUserByUserName);

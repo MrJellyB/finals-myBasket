@@ -20,6 +20,11 @@ export class ProductsListComponent {
   productsByCategory: Product[];
   productsGroups: Product[][];
 
+  total = 0;
+  page = 1;
+  limit = 10;
+  public productPaging: Product[];
+
   hoverIndex: number = null;
 
   constructor(private productService: ProductService,

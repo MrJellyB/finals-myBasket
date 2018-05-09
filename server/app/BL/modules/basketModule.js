@@ -21,14 +21,12 @@ exports.getUsers = function (req, res) {
             for (var index = 0; index < results.length; index++) {
                 if (results[index].gender == genders[0].id) {
                     results[index].genderValue = genders[0].value;
-                }
-                else if (results[index].gender == genders[1].id) {
+                } else if (results[index].gender == genders[1].id) {
                     results[index].genderValue = genders[1].value;
                 }
                 if (results[index].userType == 1) {
                     results[index].userTypeValue = "אורח"
-                }
-                else if (results[index].userType == 2) {
+                } else if (results[index].userType == 2) {
                     results[index].userTypeValue = "מנהל"
                 }
             }
@@ -51,10 +49,11 @@ exports.loginWithAuthenticate = function (req, res) {
     var password = req.body.password;
     dbUtils.loginWithAuthenticate(email, password, function (err, data) {
         if (data && data.length != 0) {
-            data.token = jwt.sign({ sub: data._id }, 'darksecret')
+            data.token = jwt.sign({
+                sub: data._id
+            }, 'darksecret')
             res.send(data);
-        }
-        else {
+        } else {
             res.send(false);
         }
     })
@@ -62,7 +61,9 @@ exports.loginWithAuthenticate = function (req, res) {
 
 exports.register = function (req, res) {
     var data = req.body.data;
-    dbUtils.register(data, function (err, data) { res.send(true) });
+    dbUtils.register(data, function (err, data) {
+        res.send(true)
+    });
 }
 
 exports.getUserByUserName = function (req, res) {
@@ -114,7 +115,9 @@ exports.createProfileToUser = function (req, res) {
 // CATEGORIES
 // =============================================
 exports.getCategories = function (req, res) {
-    dbUtils.getCategories(function (err, data) { res.send(data); });
+    dbUtils.getCategories(function (err, data) {
+        res.send(data);
+    });
 }
 
 exports.getCategoryById = function (req, res) {
@@ -162,6 +165,17 @@ exports.getProductsPaging = function (req, res) {
     })
 }
 
+exports.getProductsPagingByCategory = function (req, res) {
+    var page = +req.params.page;
+    var limit = +req.params.limit;
+    var category = +req.params.category;
+
+
+    dbUtils.getProductsPagingByCategory(category, page, limit, function (err, data) {
+        res.send(data);
+    })
+}
+
 exports.getProductsWithParamsAndPaging = function (req, res) {
 
     if (req.body.data) {
@@ -171,7 +185,10 @@ exports.getProductsWithParamsAndPaging = function (req, res) {
 
         dbUtils.getProductsWithParamsAndPaging(page, limit, params, function (err, productPaging) {
             dbUtils.getProductSizeByParams(params, function (err, totalCountProducts) {
-                var productData = { totalCountProducts, productPaging };
+                var productData = {
+                    totalCountProducts,
+                    productPaging
+                };
                 res.send(productData);
             })
         })
