@@ -1,18 +1,22 @@
-
-
 <div class="products row justify-content-center">
   <div class="col-sm-3 py-2" *ngFor="let product of productsByCategory; let i = index">
     <div class="product card" (mouseenter)="enterCard(i)" (mouseleave)="leaveCard(i)">
       <div class="d-flex justify-content-between align-middle" *ngIf="!getItemAmount(product.id)" [ngClass]="i == hoverIndex ? 'showControl' : 'hideControl'">
         <div>
-          <button type="button" class="btn btn-link" (click)="addToBasket(product, amountInput)"><i class="fas fa-plus-circle"></i></button>
+          <button type="button" class="btn btn-link" (click)="addToBasket(product, amountInput)">
+            <i class="fas fa-plus-circle"></i>
+          </button>
         </div>
       </div>
       <div class="d-flex justify-content-between align-middle" *ngIf="getItemAmount(product.id) !== 0">
         <div>
-          <button type="button" class="btn btn-link" (click)="addToBasket(product, amountInput)"><i class="fas fa-plus-circle"></i></button>
+          <button type="button" class="btn btn-link" (click)="addToBasket(product, amountInput)">
+            <i class="fas fa-plus-circle"></i>
+          </button>
           <input type="text" #amountInput [value]="getItemAmount(product.id)" (input)="setItemAmount(product, $event)" class="form-control item-amount-input">
-          <button type="button" class="btn btn-link" (click)="removeFromBasket(product.id, amountInput)"><i class="fas fa-minus-circle"></i></button>
+          <button type="button" class="btn btn-link" (click)="removeFromBasket(product.id, amountInput)">
+            <i class="fas fa-minus-circle"></i>
+          </button>
         </div>
         <div class="align-self-center">
           <button type="button" class="btn btn-link" (click)="updateOrDelete(product.id)" *ngIf="checkManager()">
@@ -23,7 +27,7 @@
           </button>
         </div>
       </div>
-      <img class="card-img-top" [src]="getProdutImage(product.id)" onError="this.src='assets/img/product/placeholder.png';"  alt="Card image cap">
+      <img class="card-img-top" [src]="getProdutImage(product.id)" onError="this.src='assets/img/product/placeholder.png';" alt="Card image cap">
       <div class="card-body" style="padding-top: 0px;">
         <h5 class="card-title">
           {{product.name}}
@@ -54,4 +58,3 @@
 </div>
 <div *ngIf="userName()">
 </div>
-

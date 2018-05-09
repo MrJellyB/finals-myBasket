@@ -24,7 +24,9 @@ app.use(bodyParser.json());
 // app.use( bodyParser.options());aa
 app.use(express.static(__dirname + "/src"));
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 app.use(cors());
 
 
@@ -43,5 +45,3 @@ dbUtils.setupDB(MONGO_URL, consts, route, function (p_db) {
         console.log("Express server listening on port 8080");
     });
 })
-
-
