@@ -12,15 +12,15 @@
     "name": "liorstrongxd"
   },
   "dependencies": {
-    "jsonwebtoken": "^8.1.1",
-    "mongodb": "^3.0.2",
-    "socket.io": "^2.0.4"
+    "jsonwebtoken": "^8.2.1",
+    "mongodb": "^3.0.8",
+    "socket.io": "^2.1.0"
   },
   "devDependencies": {
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
-    "express": "^4.16.2",
-    "nodemon": "^1.17.2",
-    "request": "^2.83.0"
+    "express": "^4.16.3",
+    "nodemon": "^1.17.4",
+    "request": "^2.85.0"
   }
 }
