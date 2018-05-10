@@ -23,6 +23,7 @@ export class ProductsListComponent {
   total = 0;
   page = 1;
   limit = 10;
+
   public productPaging: Product[];
 
   hoverIndex: number = null;
@@ -43,7 +44,7 @@ export class ProductsListComponent {
       (data: any) => {
         this.products = data;
         this.productsByCategory = data;
-        this.productsGroups = _.chunk(data, 3);
+        this.productsGroups = _.chunk(data, 4);
         this.route.params.subscribe(params => {
           let id: number = +params['id'];
           if (id) {
@@ -114,4 +115,18 @@ export class ProductsListComponent {
   getProdutImage(productID: number): string {
     return "assets/img/product/" + productID + ".jpg";
   }
+
+  /*
+  pageChanged(event) {
+    let dif = event - this.page;
+    if (dif == 1) {
+      this.onNext();
+    }
+    if (dif == -1) {
+      this.onPrev();
+    }
+    else {
+      this.goToPage(event);
+    }
+  }*/
 }

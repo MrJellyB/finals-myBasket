@@ -1,7 +1,8 @@
 /*@import "node_modules/bootstrap/scss/variables";*/
+
 @import '../node_modules/bootstrap/scss/functions';
 @import "../node_modules/bootstrap/scss/variables";
-
+@import "node_modules/bootstrap/scss/mixins";
 $nav-color-1: #e3482c;
 $nav-color-2: #ec7523;
 $nav-color-3: #ffed1b;
@@ -15,7 +16,6 @@ $nav-color-10: #66342d;
 $nav-color-11: #133340;
 $nav-color-12: #d0ad9a;
 $nav-color-13: #7d8e9e;
-
 body {
   background: url("https://thenypost.files.wordpress.com/2018/01/grocery-store.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -39,8 +39,10 @@ i.icon {
 
 .nav-text-container {
   display: flex;
-  justify-content: center; /* align horizontal */
-  align-items: flex-start; /* align vertical */
+  justify-content: center;
+  /* align horizontal */
+  align-items: flex-start;
+  /* align vertical */
 }
 
 i.milk {
@@ -83,7 +85,6 @@ i.bread {
   background-image: url('/assets/icons/bread.svg');
 }
 
-
 i.toilet-paper {
   background-image: url('/assets/icons/toilet-paper.svg');
 }
@@ -100,7 +101,7 @@ i.water-bottle {
   background-image: url('/assets/icons/water-bottle.svg');
 }
 
-.dropdown:hover > .dropdown-menu {
+.dropdown:hover>.dropdown-menu {
   display: block;
 }
 
@@ -110,43 +111,34 @@ i.water-bottle {
     @mixin nav-item($nav-color) {
       text-align: center;
       vertical-align: central;
-
       &:hover {
         background-color: $nav-color;
-
         a {
           color: white;
         }
-
         a.nav-link svg {
           fill: white;
         }
       }
-
       a {
         color: $nav-color;
       }
-
       a.nav-link svg {
         fill: $nav-color;
       }
-
       a.nav-link span {
         margin-left: 5px;
       }
-
       .dropdown-menu {
         border-bottom: solid 8px;
         border-top: solid 8px;
         border-color: $nav-color;
       }
-
       .dropdown-menu {
         margin-top: 0px;
         border-top-left-radius: 0px;
         border-top-right-radius: 0px;
       }
-
       .dropdown-menu:before {
         content: '';
         left: 50%;
@@ -158,25 +150,21 @@ i.water-bottle {
         border-left: solid 8px transparent;
         border-right: solid 8px transparent;
       }
-
       a {
         cursor: pointer;
       }
     }
-
     &:nth-child(n) {
       font-weight: bold;
-      font-size: 12px;
+      font-size: 16px;
       border-left: 0.1px solid;
       background-color: white;
       border-color: lightgray;
       text-align: center;
     }
-
     &:first-child {
       @include nav-item($nav-color-1);
     }
-
     &:nth-child(2) {
       @include nav-item($nav-color-2);
     }
@@ -192,39 +180,30 @@ i.water-bottle {
     &:nth-child(4) {
       @include nav-item($nav-color-4);
     }
-
     &:nth-child(5) {
       @include nav-item($nav-color-5);
     }
-
     &:nth-child(6) {
       @include nav-item($nav-color-6);
     }
-
     &:nth-child(7) {
       @include nav-item($nav-color-7);
     }
-
     &:nth-child(8) {
       @include nav-item($nav-color-8);
     }
-
     &:nth-child(9) {
       @include nav-item($nav-color-9);
     }
-
     &:nth-child(10) {
       @include nav-item($nav-color-10);
     }
-
     &:nth-child(11) {
       @include nav-item($nav-color-11);
     }
-
     &:nth-child(12) {
       @include nav-item($nav-color-12);
     }
-
     &:nth-child(13) {
       @include nav-item($nav-color-13);
     }
@@ -237,10 +216,8 @@ i.water-bottle {
     &:last-child {
       border-left: 0;
     }
-
     .dropdown {
-      border-bottom: 10px solid;
-      //border-color:
+      border-bottom: 10px solid; //border-color:
     }
   }
 }
@@ -249,10 +226,9 @@ i.water-bottle {
   column-count: 2;
 }
 
-.subcategory-cards > .card {
+.subcategory-cards>.card {
   border: unset;
 }
-
 
 .navbar-nav {
   border: 0.1px solid;
@@ -260,16 +236,58 @@ i.water-bottle {
 }
 
 .products.card-deck {
-
   .card {
     margin-left: 5px;
     margin-right: 5px;
   }
-
   .product-amount {
     width: 30%;
   }
 }
+
+// @media (min-width: map-get($grid-breakpoints,
+// md)) {
+//   .products {
+//     [class*="col-"] {
+//       padding-right: 5px;
+//       padding-left: 5px;
+//     }
+//   }
+// }
+@media (min-width: map-get($grid-breakpoints,
+xs)) {
+  .products {
+    [class*="col-"] {
+      padding-right: 5px;
+      padding-left: 5px;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1500px !important;
+  }
+}
+
 /*.category-navigation .nav-item:nth-child(2) {
         border-color: #ec7523;
       }*/
+
+// .card-columns {
+//   @include media-breakpoint-only(md) {
+//     column-count: 6;
+//   }
+//   @include media-breakpoint-only(lg) {
+//     column-count: 6;
+//   }
+//   @include media-breakpoint-only(xl) {
+//     column-count: 7;
+//   }
+// }
+// @media (min-width: 1200px) {
+//   .container {
+//     padding-left: 10px !important;
+//     padding-right: 10px !important;
+//   }
+// }

@@ -30,7 +30,7 @@ tr:nth-child(even) {
   width: 60px;
   height: 30px;
   display: inline-block;
-  text-align:center;
+  text-align: center;
 }
 
 .card .feature-title {
@@ -44,5 +44,14 @@ tr:nth-child(even) {
 
 .card-title {
   text-align: center;
-  font-size: 25px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.card-img-top {
+  width: 100%;
+  /* or any custom size */
+  height: 100%;
+  object-fit: contain;
+  max-height: 150px;
 }

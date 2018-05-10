@@ -1,6 +1,28 @@
-#welcomeCanvas:hover {
-  cursor: pointer;
-}
 .nav-item {
   cursor: pointer;
+}
+
+.category-navigation ul {
+  padding-left: 0px;
+}
+
+.navbar-collapse.show li.col,
+.navbar-collapse.collapsing li.col {
+  -ms-flex-preferred-size: unset;
+  flex-basis: unset;
+  -webkit-box-flex: unset;
+  -ms-flex-positive: unset;
+  flex-grow: unset;
+  max-width: unset;
+}
+
+.category-navigation {
+  padding: 0px;
+  border-color: lightgray;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.toolbar {
+  background-color: white;
 }

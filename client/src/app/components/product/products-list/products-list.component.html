@@ -1,5 +1,5 @@
 <div class="products row justify-content-center">
-  <div class="col-sm-3 py-2" *ngFor="let product of productsByCategory; let i = index">
+  <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 py-2" *ngFor="let product of productsByCategory; let i = index">
     <div class="product card" (mouseenter)="enterCard(i)" (mouseleave)="leaveCard(i)">
       <div class="d-flex justify-content-between align-middle" *ngIf="!getItemAmount(product.id)" [ngClass]="i == hoverIndex ? 'showControl' : 'hideControl'">
         <div>
@@ -27,18 +27,21 @@
           </button>
         </div>
       </div>
-      <img class="card-img-top" [src]="getProdutImage(product.id)" onError="this.src='assets/img/product/placeholder.png';" alt="Card image cap">
+      <img [src]="getProdutImage(product.id)" onError="this.src='assets/img/product/placeholder.png';" alt="Card image cap" class="card-img-top rounded">
       <div class="card-body" style="padding-top: 0px;">
-        <h5 class="card-title">
+        <div class="card-title">
           {{product.name}}
-        </h5>
+        </div>
         <div class="card-text">
           <ul class="feature-list">
             <li>
               <span class="feature-title">ספק/יצרן:</span> {{product.company}}
             </li>
             <li>
-              <span class="feature-title">ארץ ייצור:</span> {{product.createCountry}}
+
+              <span class="feature-title">ארץ ייצור:</span>
+              <span class="flag-icon {{'flag-icon-' + product.createCountry | lowercase}}"></span>
+
             </li>
             <li>
               <span class="feature-title">מחיר:</span> {{product.price}} ₪
@@ -55,6 +58,8 @@
       </div>
     </div>
   </div>
+
+  <pagination-controls (pageChange)="pageChanged(p = $event)" previousLabel="לאחור" nextLabel="הבא" maxSize="9"></pagination-controls>
 </div>
 <div *ngIf="userName()">
 </div>
