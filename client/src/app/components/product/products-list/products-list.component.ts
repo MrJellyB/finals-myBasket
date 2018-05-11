@@ -36,8 +36,8 @@ export class ProductsListComponent {
     private UsersService: UsersService, ) { }
 
   ngOnInit() {
-    this.getProducts();
-    //this.getProductsPaging();
+    //this.getProducts();
+    this.getProductsPaging();
   }
 
   getProductsPaging(): any {

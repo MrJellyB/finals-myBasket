@@ -32,4 +32,5 @@
     app.get('/getAllStores', basketModule.getAllStores);
     app.get('/getCities', basketModule.getCities);
     app.get('/getProductSize', basketModule.getProductSize);
+    app.get('/getProductSizeByCategory/:category', basketModule.getProductSizeByCategory);
 }

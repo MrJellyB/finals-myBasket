@@ -243,6 +243,13 @@ exports.getProductSize = function (req, res) {
     })
 }
 
+exports.getProductSizeByCategory = function (req, res) {
+    var category = req.params.category;
+    dbUtils.getProductSizeByCategory(category, function (err, data) {
+        res.send(data);
+    })
+}
+
 // BASKETS METHODS
 // =============================================
 exports.saveBasket = function (req, res) {
