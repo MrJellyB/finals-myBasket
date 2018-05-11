@@ -27,33 +27,64 @@
           </button>
         </div>
       </div>
-      <img [src]="getProdutImage(product.id)" onError="this.src='assets/img/product/placeholder.png';" alt="Card image cap" class="card-img-top rounded">
+      <img [src]="getProdutImage(product.id)" onError="this.src='assets/img/product/placeholder.png';" alt="Card image cap" class="card-img-top rounded"
+        (click)="showDetails(product.id)">
       <div class="card-body" style="padding-top: 0px;">
         <div class="card-title">
           {{product.name}}
         </div>
         <div class="card-text">
           <ul class="feature-list">
+            <div class="product-quantity">{{product.Quantity}} {{product.UnitQty}}</div>
             <li>
-              <span class="feature-title">ספק/יצרן:</span> {{product.company}}
+              <div class="row">
+                <div class="col-3">
+                  <span class="feature-title">ספק:</span>
+                </div>
+                <div class="col-1">
+                </div>
+                <div class="col">
+                  {{product.company}}
+                </div>
+              </div>
             </li>
             <li>
-
-              <span class="feature-title">ארץ ייצור:</span>
-              <span class="flag-icon {{'flag-icon-' + product.createCountry | lowercase}}"></span>
-
+              <div class="row">
+                <div class="col-3">
+                  <span class="feature-title">א. ייצור:</span>
+                </div>
+                <div class="col-1">
+                </div>
+                <div class="col">
+                  <span class="flag-icon {{'flag-icon-' + product.createCountry | lowercase}}"></span>
+                </div>
+              </div>
             </li>
             <li>
-              <span class="feature-title">מחיר:</span> {{product.price}} ₪
+              <div class="d-flex flex-row">
+                <div>
+                  <span class="feature-title">מחיר:</span>
+                </div>
+                <div class="ml-auto">
+                  <span class="product-price ml-auto">
+                    {{product.price}} ₪
+                  </span>
+                </div>
+              </div>
+              <!-- <span class="feature-title">מחיר:</span>
+              <span class="product-price ml-auto">
+                {{product.price}} ₪
+              </span> -->
             </li>
             <li>
-              <span class="feature-title">כמות:</span> {{product.Quantity}} {{product.UnitQty}}
-            </li>
-            <li>
-              <span class="feature-title">מחיר ליחידת מידה:</span> {{product.UnitOfMeasurePrice}} ₪ / {{product.UnitOfMeasure}}
+              <div class="d-flex flex-row">
+                <div class="product-price-per-unit ml-auto">
+                  {{product.UnitOfMeasurePrice}} ₪ / {{product.UnitOfMeasure}}
+                </div>
+              </div>
             </li>
           </ul>
-          <button class="btn btn-primary float-right" (click)="showDetails(product.id)">פרטים נוספים</button>
+          <!-- <button class="btn btn-primary float-right" (click)="showDetails(product.id)">פרטים נוספים</button> -->
         </div>
       </div>
     </div>
