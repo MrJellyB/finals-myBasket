@@ -20,6 +20,7 @@ export class ProductsListComponent {
   productsByCategory: Product[];
   productsGroups: Product[][];
   public productSize: number;
+  public categoryProp: number;
   total = 0;
   page = 1;
   limit = 12;
@@ -44,6 +45,7 @@ export class ProductsListComponent {
   getProductSize() {
     this.route.params.subscribe(params => {
       let category: number = +params['id'];
+      this.categoryProp = category;
       this.productService.getProductSizeByCategory(category).subscribe((size: any) => {
         debugger;
         if (size) {
@@ -154,7 +156,6 @@ export class ProductsListComponent {
     return "assets/img/product/" + productID + ".jpg";
   }
 
-  /*
   pageChanged(event) {
     let dif = event - this.page;
     if (dif == 1) {
@@ -166,5 +167,37 @@ export class ProductsListComponent {
     else {
       this.goToPage(event);
     }
-  }*/
+  }
+
+  goToPage(n: number): void {
+    this.page = n;
+    this.getProductPagingByPage(this.page);
+  }
+
+  onNext(): void {
+    this.page++;
+    this.getProductPagingByPage(this.page);
+  }
+
+  onPrev(): void {
+    this.page--;
+    this.getProductPagingByPage(this.page);
+  }
+
+  getProductPagingByPage(page: number) {
+    this.productService.getProductsPagingByCategory(this.categoryProp, page, this.limit).subscribe(
+      (data: any) => {
+        this.products = data;
+        this.productsByCategory = data;
+        this.productsGroups = _.chunk(data, 4);
+
+        this.productsByCategory = new Array<Product>();
+        for (var i = 0; i < this.products.length; i++) {
+          if (this.products[i].category == this.categoryProp) {
+            this.productsByCategory.push(this.products[i]);
+          }
+        }
+      }
+    )
+  }
 }
