@@ -29,3 +29,12 @@ td, th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+
+.example .pagination>li>a,
+.example .pagination>li>span {
+  border: 1px solid purple;
+}
+.pagination>li.active>a {
+  background: purple;
+  color: #fff;
+}
