@@ -77,6 +77,10 @@ export class ProductService {
     return this.http.get(url + '/getProductSize').map((data) => data.json())
   }
 
+  getProductSizeByCategory(category: number): Observable<Response> {
+    return this.http.get(url + '/getProductSizeByCategory/' + category).map((data) => data.json())
+  }
+
   getCheapestProductByCategory(data: number): Observable<Response> {
     return this.http.get(url + '/getCheapestProductByCategory/' + data).map((data) => data.json());
   }

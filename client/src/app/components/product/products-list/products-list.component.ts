@@ -19,7 +19,7 @@ export class ProductsListComponent {
   products: Product[];
   productsByCategory: Product[];
   productsGroups: Product[][];
-
+  public productSize: number;
   total = 0;
   page = 1;
   limit = 12;
@@ -37,7 +37,22 @@ export class ProductsListComponent {
 
   ngOnInit() {
     //this.getProducts();
+    this.getProductSize();
     this.getProductsPaging();
+  }
+
+  getProductSize() {
+    this.route.params.subscribe(params => {
+      let category: number = +params['id'];
+      this.productService.getProductSizeByCategory(category).subscribe((size: any) => {
+        debugger;
+        if (size) {
+          if (size[0]) {
+            this.productSize = size[0].count;
+          }
+        }
+      })
+    })
   }
 
   getProductsPaging(): any {
