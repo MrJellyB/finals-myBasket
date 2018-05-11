@@ -22,7 +22,7 @@ export class ProductsListComponent {
 
   total = 0;
   page = 1;
-  limit = 10;
+  limit = 12;
 
   public productPaging: Product[];
 
@@ -37,6 +37,29 @@ export class ProductsListComponent {
 
   ngOnInit() {
     this.getProducts();
+    //this.getProductsPaging();
+  }
+
+  getProductsPaging(): any {
+    this.route.params.subscribe(params => {
+      let category: number = +params['id'];
+      if (category) {
+        this.productService.getProductsPagingByCategory(category, this.page, this.limit).subscribe(
+          (data: any) => {
+            this.products = data;
+            this.productsByCategory = data;
+            this.productsGroups = _.chunk(data, 4);
+
+            this.productsByCategory = new Array<Product>();
+            for (var i = 0; i < this.products.length; i++) {
+              if (this.products[i].category == category) {
+                this.productsByCategory.push(this.products[i]);
+              }
+            }
+          }
+        )
+      }
+    })
   }
 
   getProducts(): any {
