@@ -8,6 +8,8 @@ import { ProductService } from 'app/services/product.service';
 import { UsersService } from 'app/services/users.service';
 import { BasketService } from "app/services/basket-service.service";
 import { EventService } from "app/services/event.service";
+import { CurrencyPipe } from '@angular/common';
+
 declare var $;
 
 @Component({
@@ -48,7 +50,6 @@ export class ProductsListComponent {
       let category: number = +params['id'];
       this.categoryProp = category;
       this.productService.getProductSizeByCategory(category).subscribe((size: any) => {
-        debugger;
         if (size) {
           if (size[0]) {
             this.productSize = size[0].count;
@@ -154,7 +155,7 @@ export class ProductsListComponent {
   }
 
   showDetails(productID: number) {
-    this.router.navigate(['/product-details/' + productID]);
+    this.router.navigate(['/product-list/' + this.categoryProp + "/details/" + productID]);
   }
 
   getProdutImage(productID: number): string {

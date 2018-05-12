@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, AfterViewInit } from '@angular/core';
+import { Component, Input, EventEmitter, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 import { Product, BasketItem, CommentToProduct, Category } from 'app/interface/entities.interface';
@@ -31,6 +31,7 @@ export class ProductDetailsComponent {
   actionCode: number = 1;
   categories: Category[];
   currentCategory: number = 0;
+  @ViewChild('modal') modal: ElementRef;
 
   constructor(private productService: ProductService,
     private usersService: UsersService,
@@ -45,9 +46,13 @@ export class ProductDetailsComponent {
     this.comm = "";
     this.commentToSave = <CommentToProduct>{};
     this.sub = this.route.params.subscribe(params => {
-      this.id = +params['id'];
-      this.isEdit = params['edit'] ? true : false
-      this.getProductDetails(this.id);
+      this.id = +params['productId'];
+      this.isEdit = params['edit'] ? true : false;
+
+      if (this.id) {
+        this.getProductDetails(this.id);
+        $(this.modal.nativeElement).modal('show');
+      }
     })
     this.getCategories();
   }

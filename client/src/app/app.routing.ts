@@ -22,11 +22,10 @@ export const routes: Routes = [
     { path: '', component: MainPageComponent },
     { path: 'login', component: UserLoginComponent },
     { path: 'register', component: RegisterUserComponent },
-    { path: 'product-details/:id', component: ProductDetailsComponent },
+    { path: 'product-details/:idProduct', component: ProductDetailsComponent },
     { path: 'add-or-update-product', component: AddOrUpdateProductComponent },
     { path: 'add-or-update-product/:id', component: AddOrUpdateProductComponent },
     { path: 'product-list', component: ProductsListComponent },
-    { path: 'product-list/:id', component: ProductsListComponent },
     { path: 'main-page', component: MainPageComponent },
     { path: 'basket', component: BasketPageComponent },
     { path: 'basket/:id', component: BasketPageComponent },
@@ -39,7 +38,9 @@ export const routes: Routes = [
     { path: 'product-list-filter', component: ProductsListFilterComponent },
     { path: 'statistics', component: StatisticsMainPageComponent },
     { path: 'profile-builder', component: ProfileBuilderComponent },
-    { path: 'product-details/:id/:edit', component: ProductDetailsComponent },
+    { path: 'product-list/:id/details/:productId/:edit', component: ProductsListComponent },
+    { path: 'product-list/:id/details/:productId', component: ProductsListComponent },
+    { path: 'product-list/:id', component: ProductsListComponent },
 ];
 
 export const AppRouting: ModuleWithProviders = RouterModule.forRoot(routes);

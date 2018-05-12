@@ -81,7 +81,7 @@
                 </div>
                 <div class="col">
                   <span class="product-price d-flex justify-content-end">
-                    {{product.price}} ₪
+                    {{ +product.price | currency:'ILS':'symbol':'1.2-3'}}
                   </span>
                 </div>
               </div>
@@ -94,7 +94,7 @@
               <div class="row">
                 <div class="col">
                   <div class="product-price-per-unit d-flex justify-content-end">
-                    {{product.UnitOfMeasurePrice}} ₪ / {{product.UnitOfMeasure}}
+                    {{ +product.UnitOfMeasurePrice | currency:'ILS':'symbol':'1.2-3' }} / {{product.UnitOfMeasure}}
                   </div>
                 </div>
               </div>
@@ -105,8 +105,13 @@
       </div>
     </div>
   </div>
+  <div class="row">
+    <div class="col">
+      <pagination-controls (pageChange)="pageChanged(p = $event)" previousLabel="לאחור" nextLabel="הבא" maxSize="9"></pagination-controls>
 
-  <pagination-controls (pageChange)="pageChanged(p = $event)" previousLabel="לאחור" nextLabel="הבא" maxSize="9"></pagination-controls>
+    </div>
+  </div>
+  <app-product-details></app-product-details>
 </div>
 <div *ngIf="userName()">
 </div>

@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button> -->
 
 <!-- <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
@@ -19,7 +19,7 @@
     </div>
   </div>
 </div> -->
-<div class="modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: block;">
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" #modal>
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <!-- <div class="modal-header">
@@ -40,18 +40,18 @@
                 </div>
               </div>
               <div class="product-tags">
-                <img src="assets/img/GlutenFree.png" *ngIf="product.Tags.GlutenFree" alt="ללא גלוטן" title="ללא גלוטן" data-toggle="tooltip"
+                <img src="assets/img/GlutenFree.png" *ngIf="product.GlutenFree" alt="ללא גלוטן" title="ללא גלוטן" data-toggle="tooltip"
                   data-placement="bottom" />
-                <img src="assets/img/Kashrut.png" *ngIf="product.Tags.Kashrut" alt="{{ product.Tags.Kashrut }}" title="{{ product.Tags.Kashrut }}"
+                <img src="assets/img/Kashrut.png" *ngIf="product.Kashrut" alt="{{ product.Kashrut }}" title="{{ product.Kashrut }}"
                   data-toggle="tooltip" data-placement="bottom" />
-                <img src="assets/img/Justice.png" *ngIf="product.Tags.ControlledPrice" alt="{{ product.Tags.ControlledPrice }}" data-toggle="tooltip"
+                <img src="assets/img/Justice.png" *ngIf="product.ControlledPrice" alt="{{ product.ControlledPrice }}" data-toggle="tooltip"
                   data-placement="bottom" />
-                <img src="assets/img/Organic.png" *ngIf="product.Tags.Organic" alt="ללא גלוטן" title="מחיר מפוקח: {{ product.Tags.ControlledPrice }} ש&quot;ח"
-                  title="מחיר מפוקח: {{ product.Tags.ControlledPrice }} ש&quot;ח" data-toggle="tooltip" data-placement="bottom"
+                <img src="assets/img/Organic.png" *ngIf="product.Organic" alt="ללא גלוטן" title="מחיר מפוקח: {{ product.ControlledPrice }} ש&quot;ח"
+                  title="מחיר מפוקח: {{ product.ControlledPrice }} ש&quot;ח" data-toggle="tooltip" data-placement="bottom"
                 />
-                <img src="assets/img/VeganFriendly.png" *ngIf="product.Tags.VeganFriendly" alt="טבעוני" title="טבעוני" data-toggle="tooltip"
+                <img src="assets/img/VeganFriendly.png" *ngIf="product.VeganFriendly" alt="טבעוני" title="טבעוני" data-toggle="tooltip"
                   data-placement="bottom" />
-                <img src="assets/img/EfshariBari.png" *ngIf="product.Tags.EfshariBari" alt="אפשרי בריא" title="אפשרי בריא" data-toggle="tooltip"
+                <img src="assets/img/EfshariBari.png" *ngIf="product.EfshariBari" alt="אפשרי בריא" title="אפשרי בריא" data-toggle="tooltip"
                   data-placement="bottom" />
                 <div>
                   ציון:
@@ -144,7 +144,7 @@
                   <span class="feature-title">מחיר:</span>
                 </div>
                 <div class="col" *ngIf="!this.isEdit">
-                  {{product.price}} ₪
+                  {{ product.price | currency:'ILS':'symbol':'1.2-3' }}
                 </div>
                 <div class="col" *ngIf="this.isEdit">
                   <input class="form-control" tabindex="2" name="price" type="text" [(ngModel)]="product.price" #price="ngModel" />
@@ -155,7 +155,7 @@
                   <span class="feature-title">מחיר ליחידת מידה:</span>
                 </div>
                 <div class="col" *ngIf="!this.isEdit">
-                  {{product.UnitOfMeasurePrice}} ₪ / {{product.UnitOfMeasure}}
+                  {{product.UnitOfMeasurePrice | currency:'ILS':'symbol':'1.2-3'}} / {{product.UnitOfMeasure}}
                 </div>
                 <div class="col" *ngIf="this.isEdit">
                   <input class="form-control" tabindex="5" name="UnitOfMeasurePrice" type="text" [(ngModel)]="product.UnitOfMeasurePrice" #UnitOfMeasurePrice="ngModel"
@@ -214,15 +214,13 @@
               </div>
             </div>
           </div>
-          <div class="row">
+          <div class="row" *ngIf="this.isEdit">
             <div class="col">
-              <p>Modal body text goes here.</p>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary" [disabled]="!f.valid || currentCategory == 0" *ngIf="this.product.id == 0"
                   (click)="actionCodeToAdd()">הוספת מוצר</button>
-                <button type="submit" class="btn btn-primary" [disabled]="!f.valid" *ngIf="this.product.id != 0 && this.isEdit" (click)="actionCodeToUpdate()">עדכן מוצר</button>
-                <button type="submit" class="btn btn-primary" *ngIf="this.product.id != 0 && this.isEdit" (click)="actionCodeToDelete()">מחיקת מוצר</button>
+                <button type="submit" class="btn btn-primary" [disabled]="!f.valid" *ngIf="this.product.id != 0" (click)="actionCodeToUpdate()">עדכן מוצר</button>
+                <button type="submit" class="btn btn-primary" *ngIf="this.product.id != 0" (click)="actionCodeToDelete()">מחיקת מוצר</button>
               </div>
             </div>
           </div>
