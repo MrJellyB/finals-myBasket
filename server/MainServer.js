@@ -10,8 +10,8 @@ var basketModule = require('./app/BL/modules/basketModule.js');
 var db = {};
 
 // consts
-var MONGO_URL = 'mongodb://localhost:27017';
-//var MONGO_URL = 'mongodb://11:22@193.106.55.172:8888/test';
+//var MONGO_URL = 'mongodb://localhost:27017';
+var MONGO_URL = 'mongodb://11:22@193.106.55.172:8888/test';
 //var MONGO_URL = 'mongodb://193.106.55.172:8888/test';
 //var MONGO_URL = 'mongodb://11:22@localhost:5555/test';
 

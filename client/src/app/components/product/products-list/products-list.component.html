@@ -36,20 +36,18 @@
           </div>
           <div class="product-quantity">{{ +product.Quantity }} {{product.UnitQty}}</div>
           <div class="product-tags">
-            <img src="assets/img/GlutenFree.png" *ngIf="product.Tags.GlutenFree" alt="ללא גלוטן" title="ללא גלוטן" data-toggle="tooltip"
-              data-placement="bottom" />
-            <img src="assets/img/Kashrut.png" *ngIf="product.Tags.Kashrut" alt="{{ product.Tags.Kashrut }}" title="{{ product.Tags.Kashrut }}"
-              data-toggle="tooltip" data-placement="bottom" />
-            <img src="assets/img/Justice.png" *ngIf="product.Tags.ControlledPrice" alt="{{ product.Tags.ControlledPrice }}" data-toggle="tooltip"
-              data-placement="bottom" />
-            <img src="assets/img/Organic.png" *ngIf="product.Tags.Organic" alt="ללא גלוטן" title="מחיר מפוקח: {{ product.Tags.ControlledPrice }} ש&quot;ח"
-              title="מחיר מפוקח: {{ product.Tags.ControlledPrice }} ש&quot;ח" data-toggle="tooltip" data-placement="bottom"
+            <img src="assets/img/GlutenFree.png" *ngIf="product.GlutenFree" alt="ללא גלוטן" title="ללא גלוטן" data-toggle="tooltip" data-placement="bottom"
             />
-            <img src="assets/img/VeganFriendly.png" *ngIf="product.Tags.VeganFriendly" alt="טבעוני" title="טבעוני" data-toggle="tooltip"
+            <img src="assets/img/Kashrut.png" *ngIf="product.Kashrut" alt="{{ product.Kashrut }}" title="{{ product.Kashrut }}" data-toggle="tooltip"
               data-placement="bottom" />
-            <img src="assets/img/EfshariBari.png" *ngIf="product.Tags.EfshariBari" alt="אפשרי בריא" title="אפשרי בריא" data-toggle="tooltip"
+            <img src="assets/img/Justice.png" *ngIf="product.ControlledPrice" alt="{{ product.ControlledPrice }}" data-toggle="tooltip"
               data-placement="bottom" />
-
+            <img src="assets/img/Organic.png" *ngIf="product.Organic" alt="ללא גלוטן" title="מחיר מפוקח: {{ product.ControlledPrice }} ש&quot;ח"
+              title="מחיר מפוקח: {{ product.ControlledPrice }} ש&quot;ח" data-toggle="tooltip" data-placement="bottom" />
+            <img src="assets/img/VeganFriendly.png" *ngIf="product.VeganFriendly" alt="טבעוני" title="טבעוני" data-toggle="tooltip" data-placement="bottom"
+            />
+            <img src="assets/img/EfshariBari.png" *ngIf="product.EfshariBari" alt="אפשרי בריא" title="אפשרי בריא" data-toggle="tooltip"
+              data-placement="bottom" />
           </div>
         </div>
         <div class="card-text">
