@@ -58,7 +58,7 @@
         <td class="title-right">{{currProduct.calories}}</td>
         <td class="title-right">{{currProduct.createCountry}}</td>
         <td class="title-right">{{currProduct.company}}</td>
-        <td class="title-right"><button class="btn btn-primary" (click)="showDetails(currProduct.id)">הצג פרטים</button></td>
+        <td class="title-right"><button class="btn btn-primary" (click)="showDetails(currProduct.id, currProduct.category)">הצג פרטים</button></td>
         <td class="title-right"><button class="btn btn-primary" (click)="addToBasket(currProduct)">הוסף לסל</button></td>
         <td class="title-right" *ngIf="checkManager()"><button class="btn btn-primary" (click)="updateOrDelete(currProduct.id)">עריכת מוצר</button></td>
 
