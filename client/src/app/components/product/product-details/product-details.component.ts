@@ -28,6 +28,10 @@ export class ProductDetailsComponent {
   grades = [1, 2, 3, 4, 5]
   isEdit: boolean = false;
 
+  // Code 1: for add product
+  // code 2: for update product
+  // code 3: for delete product
+  // code 4: for add comment or add to basket
   actionCode: number = 1;
   categories: Category[];
   currentCategory: number = 0;
@@ -116,6 +120,7 @@ export class ProductDetailsComponent {
   }
 
   addComment() {
+    this.actionCode = 4;
     this.commentToSave.prodctId = this.product.id;
     this.commentToSave.comment = this.comm;
     this.commentToSave.grade = this.currGrade;
@@ -127,6 +132,7 @@ export class ProductDetailsComponent {
   }
 
   addToBasket(product: Product) {
+    this.actionCode = 4;
     let basketItems: BasketItem[] = [];
 
     if (this.localStorageService.get("basketItems")) {
