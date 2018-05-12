@@ -323,6 +323,8 @@ exports.getCheapestProductByCategory = function (categoryId, callback) {
 }
 
 exports.saveBasket = function (data, callback) {
+    var currentTime = new Date();
+    data.createdTime = currentTime;
     db.basket.insert(data, callback);
 }
 
@@ -379,10 +381,15 @@ exports.updateBasket = function (data, callback) {
     var filterQuery = {
         'id': data.id
     }
+
+    var currentTime = new Date();
+    data.createdTime = currentTime;
+
     var updateQuery = {
         "basketItems": data.basketItems,
         "totalPrice": data.totalPrice,
-        "streetName": data.streetName
+        "streetName": data.streetName,
+        "createdTime": data.createdTime
     };
     var options = {
         upsert: true

@@ -78,7 +78,7 @@ export class ProductDetailsComponent {
     this.productService.getCategory(categoryId).subscribe(
       (data) => {
         this.CategoryValue = data[0];
-        this.product.categoryValue = this.CategoryValue.name;
+        //this.product.categoryValue = this.CategoryValue.name;
       }
     );
 
