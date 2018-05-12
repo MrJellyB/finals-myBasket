@@ -159,3 +159,10 @@ fieldset {
 :-ms-input-placeholder {
   color: #888;
 } */
+
+
+.container {
+  background-color: white;
+  width: 70%;
+}
+

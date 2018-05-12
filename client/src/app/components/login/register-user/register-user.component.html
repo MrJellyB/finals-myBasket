@@ -1,34 +1,65 @@
 
 <div class="container" *ngIf="!userName()">
   <form id="contact" name="form" (ngSubmit)="f.form.valid && onSubmit(f,$event)" #f="ngForm" novalidate>
-    <h3>הרשמה לאתר</h3>
-    <h4>פרטים בסיסיים</h4>
+    <div class="row justify-content-center">
+      <h2>הרשמה לאתר</h2>
+    </div>
+    <div class="row justify-content-center">
+      <h4>פרטים בסיסיים</h4>
+    </div>
     <fieldset>
-      <input placeholder="שם פרטי" type="text" tabindex="1" required autofocus name="firstName" [(ngModel)]="model.firstName" #firstName="ngModel" required>
-    </fieldset>
-    <fieldset>
-      <input placeholder="שם משפחה" type="text" name="lastName" [(ngModel)]="model.lastName" #lastName="ngModel" tabindex="2" required>
-    </fieldset>
-    <fieldset>
-      <input placeholder="שם משתמש" type="text" name="userName" [(ngModel)]="model.userName" #userName="ngModel"tabindex="3" required>
-    </fieldset>
-    <fieldset>
-      <input placeholder="אימייל" type="email" name="email" [pattern]="emailPattern" [(ngModel)]="model.email" #email="ngModel" tabindex="4" required>
-    </fieldset>
-     <fieldset>
-        <select name="gender" [(ngModel)]="model.gender" #gender="ngModel" class="form-control">
-          <option value="1" selected>זכר</option>
-          <option value="2">נקבה</option>
-        </select>
-      </fieldset>
-    <fieldset>
-      <input placeholder="סיסמא" type="password" name="password" [(ngModel)]="model.password" #password="ngModel" tabindex="5" required>
-    </fieldset>
-    <fieldset>
-      <input placeholder="חזור על הסיסמא" type="password" name="repeatPassword" [(ngModel)]="model.repeatPassword" #repeatPassword="ngModel" tabindex="6" required>
-    </fieldset>
-    <fieldset>
-      <button class="button-style" [disabled]="!f.valid || !validate()" type="submit">שלח :)</button>
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-8">
+          <label class="control-label">שם פרטי</label>
+            <input placeholder="שם פרטי" class="form-control" type="text" tabindex="1" required autofocus name="firstName" [(ngModel)]="model.firstName" #firstName="ngModel" required>
+        </div>
+        </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-8">
+          <label class="control-label">שם משפחה</label>
+            <input placeholder="שם משפחה" class="form-control" type="text" name="lastName" [(ngModel)]="model.lastName" #lastName="ngModel" tabindex="2" required>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+          <div class="col-lg-4 col-8">
+            <label class="control-label">שם משתמש</label>
+            <input placeholder="שם משתמש" type="text" class="form-control" name="userName" [(ngModel)]="model.userName" #userName="ngModel"tabindex="3" required>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+          <div class="col-lg-4 col-8">
+            <label class="control-label">אימייל</label>
+              <input placeholder="אימייל" type="email" class="form-control"  name="email" [pattern]="emailPattern" [(ngModel)]="model.email" #email="ngModel" tabindex="4" required>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+          <div class="col-lg-4 col-8">
+              <label class="control-label" for="city">מין</label>
+              <div class="input-group">
+                <select name="gender" [(ngModel)]="model.gender" #gender="ngModel" class="form-control">
+                  <option value="1" selected>זכר</option>
+                  <option value="2">נקבה</option>
+                </select>
+              </div>
+          </div>
+      </div>
+      <div class="row justify-content-center">
+          <div class="col-lg-4 col-8">
+              <label class="control-label">סיסמא</label>
+            <input placeholder="סיסמא" class="form-control" type="password" name="password" [(ngModel)]="model.password" #password="ngModel" tabindex="5" required>
+          </div>
+      </div>
+      <div class="row justify-content-center">
+          <div class="col-lg-4 col-8">
+              <label class="control-label">חזור על סיסמא</label>
+            <input placeholder="חזור על הסיסמא" class="form-control" type="password" name="repeatPassword" [(ngModel)]="model.repeatPassword" #repeatPassword="ngModel" tabindex="6" required>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+          <div class="col-lg-4 col-8">
+            <button class="btn btn-primary btn-lg btn-block info" [disabled]="!f.valid || !validate()" type="submit">שלח :)</button>
+          </div>
+      </div>
 
     </fieldset>
   </form>
