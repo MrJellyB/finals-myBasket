@@ -26,6 +26,7 @@ export class ProductDetailsComponent {
   currGrade: number = 1;
   commentToSave: CommentToProduct;
   grades = [1, 2, 3, 4, 5]
+  isEdit: boolean = false;
 
   actionCode: number = 1;
   categories: Category[];
@@ -45,6 +46,7 @@ export class ProductDetailsComponent {
     this.commentToSave = <CommentToProduct>{};
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id'];
+      this.isEdit = params['edit'] ? true : false
       this.getProductDetails(this.id);
     })
     this.getCategories();

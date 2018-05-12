@@ -38,7 +38,8 @@ export const routes: Routes = [
     { path: 'preferred-product', component: PreferredProductComponent },
     { path: 'product-list-filter', component: ProductsListFilterComponent },
     { path: 'statistics', component: StatisticsMainPageComponent },
-    { path: 'profile-builder', component: ProfileBuilderComponent }
+    { path: 'profile-builder', component: ProfileBuilderComponent },
+    { path: 'product-details/:id/:edit', component: ProductDetailsComponent },
 ];
 
 export const AppRouting: ModuleWithProviders = RouterModule.forRoot(routes);
