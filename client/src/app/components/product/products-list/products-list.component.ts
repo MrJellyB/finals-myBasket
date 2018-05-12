@@ -20,10 +20,11 @@ export class ProductsListComponent {
   products: Product[];
   productsByCategory: Product[];
   productsGroups: Product[][];
-
+  public productSize: number;
+  public categoryProp: number;
   total = 0;
   page = 1;
-  limit = 10;
+  limit = 12;
 
   public productPaging: Product[];
 
@@ -37,7 +38,46 @@ export class ProductsListComponent {
     private UsersService: UsersService, ) { }
 
   ngOnInit() {
-    this.getProducts();
+    //this.getProducts();
+    this.getProductSize();
+    this.getProductsPaging();
+  }
+
+  getProductSize() {
+    this.route.params.subscribe(params => {
+      let category: number = +params['id'];
+      this.categoryProp = category;
+      this.productService.getProductSizeByCategory(category).subscribe((size: any) => {
+        debugger;
+        if (size) {
+          if (size[0]) {
+            this.productSize = size[0].count;
+          }
+        }
+      })
+    })
+  }
+
+  getProductsPaging(): any {
+    this.route.params.subscribe(params => {
+      let category: number = +params['id'];
+      if (category) {
+        this.productService.getProductsPagingByCategory(category, this.page, this.limit).subscribe(
+          (data: any) => {
+            this.products = data;
+            this.productsByCategory = data;
+            this.productsGroups = _.chunk(data, 4);
+
+            this.productsByCategory = new Array<Product>();
+            for (var i = 0; i < this.products.length; i++) {
+              if (this.products[i].category == category) {
+                this.productsByCategory.push(this.products[i]);
+              }
+            }
+          }
+        )
+      }
+    })
   }
 
   getProducts(): any {
@@ -121,7 +161,6 @@ export class ProductsListComponent {
     return "assets/img/product/" + productID + ".jpg";
   }
 
-  /*
   pageChanged(event) {
     let dif = event - this.page;
     if (dif == 1) {
@@ -133,5 +172,37 @@ export class ProductsListComponent {
     else {
       this.goToPage(event);
     }
-  }*/
+  }
+
+  goToPage(n: number): void {
+    this.page = n;
+    this.getProductPagingByPage(this.page);
+  }
+
+  onNext(): void {
+    this.page++;
+    this.getProductPagingByPage(this.page);
+  }
+
+  onPrev(): void {
+    this.page--;
+    this.getProductPagingByPage(this.page);
+  }
+
+  getProductPagingByPage(page: number) {
+    this.productService.getProductsPagingByCategory(this.categoryProp, page, this.limit).subscribe(
+      (data: any) => {
+        this.products = data;
+        this.productsByCategory = data;
+        this.productsGroups = _.chunk(data, 4);
+
+        this.productsByCategory = new Array<Product>();
+        for (var i = 0; i < this.products.length; i++) {
+          if (this.products[i].category == this.categoryProp) {
+            this.productsByCategory.push(this.products[i]);
+          }
+        }
+      }
+    )
+  }
 }

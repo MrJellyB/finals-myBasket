@@ -85,3 +85,13 @@ tr:nth-child(even) {
 .product-tags img {
   max-height: 25px;
 }
+
+.example .pagination>li>a,
+.example .pagination>li>span {
+  border: 1px solid purple;
+}
+
+.pagination>li.active>a {
+  background: purple;
+  color: #fff;
+}

@@ -36,6 +36,10 @@ export class ProductService {
     return this.http.get(url + '/getProductsPaging/' + page + '/' + limit).map((data) => data.json())
   }
 
+  getProductsPagingByCategory(category, page, limit): Observable<Response> {
+    return this.http.get(url + '/getProductsPagingByCategory/' + category + '/' + page + '/' + limit).map((data) => data.json())
+  }
+
   getProductsWithParamsAndPaging(page, limit, params): Observable<Response> {
     let data = { page: page, limit: limit, params: params };
     // send the params
@@ -71,6 +75,10 @@ export class ProductService {
 
   getProductSize(): Observable<Response> {
     return this.http.get(url + '/getProductSize').map((data) => data.json())
+  }
+
+  getProductSizeByCategory(category: number): Observable<Response> {
+    return this.http.get(url + '/getProductSizeByCategory/' + category).map((data) => data.json())
   }
 
   getCheapestProductByCategory(data: number): Observable<Response> {

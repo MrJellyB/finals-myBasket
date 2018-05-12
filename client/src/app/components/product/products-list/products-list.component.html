@@ -1,5 +1,5 @@
 <div class="products row justify-content-center">
-  <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 py-2" *ngFor="let product of productsByCategory; let i = index">
+  <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 py-2" *ngFor="let product of productsByCategory | paginate: { itemsPerPage:limit, currentPage: p,totalItems: productSize}; let i = index">
     <div class="product card" (mouseenter)="enterCard(i)" (mouseleave)="leaveCard(i)">
       <div class="d-flex justify-content-between align-middle" *ngIf="!getItemAmount(product.id)" [ngClass]="i == hoverIndex ? 'showControl' : 'hideControl'">
         <div>
