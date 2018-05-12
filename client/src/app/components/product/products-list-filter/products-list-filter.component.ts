@@ -92,8 +92,8 @@ export class ProductsListFilterComponent {
     this.getProductsWithParamsAndPaging(this.page);
   }
 
-  showDetails(productID: number) {
-    this.router.navigate(['/product-details/' + productID]);
+  showDetails(productID: number, category: number) {
+    this.router.navigate(['/product-list/' + category + '/details/' + productID]);
   }
 
   updateOrDelete(productID: number) {
