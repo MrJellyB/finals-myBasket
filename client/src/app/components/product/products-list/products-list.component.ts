@@ -8,6 +8,7 @@ import { ProductService } from 'app/services/product.service';
 import { UsersService } from 'app/services/users.service';
 import { BasketService } from "app/services/basket-service.service";
 import { EventService } from "app/services/event.service";
+declare var $;
 
 @Component({
   selector: 'app-products-list',
@@ -54,6 +55,10 @@ export class ProductsListComponent {
                 this.productsByCategory.push(this.products[i]);
               }
             }
+
+            $(function () {
+              $('[data-toggle="tooltip"]').tooltip();
+            });
           }
         })
       }

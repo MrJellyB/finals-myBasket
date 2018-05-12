@@ -1,6 +1,6 @@
-canvas {
+/* canvas {
     border: solid 1px #000;
-}
+} */
 
 /*.footer {
   bottom: 0;
@@ -46,7 +46,7 @@ canvas {
 }
   */
 
-* {
+/* * {
     margin: 0;
 }
 
@@ -57,23 +57,25 @@ html, body {
 .page-wrap {
     min-height: 100vh;
 
-    /* equal to footer height */
-    margin-bottom: -17px;
+
+margin-bottom: -17px;
 }
 
 .page-wrap:after {
-    content: "";
-    display: block;
+  content: "";
+  display: block;
 }
 
-.footer, .page-wrap:after {
-    /* .push must be the same height as footer */
-    margin-top: 4px;
-    height: 13px;
+.footer,
+.page-wrap:after {
+  margin-top: 4px;
+  height: 13px;
 }
 
 .footer {
-    background-color: #f5f5f5;
-    text-align: center;
-    font-size: 9px;
+  background-color: #f5f5f5;
+  text-align: center;
+  font-size: 9px;
 }
+
+*/

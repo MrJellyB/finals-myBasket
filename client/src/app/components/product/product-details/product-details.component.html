@@ -1,55 +1,285 @@
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>
 
-<div class="container" *ngIf="productDetails">
+<!-- <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Modal body text goes here.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div class="modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: block;">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <!-- <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5> 
+
+      </div> -->
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <form (ngSubmit)="f.form.valid && onSubmit(f,$event)" #f="ngForm" novalidate>
+          <div class="row">
+            <div class="col-3">
+              <div class="product-title">
+                <img [src]="getProdutImage(product.id)" onError="this.src='assets/img/product/placeholder.png';" alt="Card image cap" class="rounded">
+                <div class="product-name">
+                  {{product.name}}
+                </div>
+              </div>
+              <div class="product-tags">
+                <img src="assets/img/GlutenFree.png" *ngIf="product.Tags.GlutenFree" alt="ללא גלוטן" title="ללא גלוטן" data-toggle="tooltip"
+                  data-placement="bottom" />
+                <img src="assets/img/Kashrut.png" *ngIf="product.Tags.Kashrut" alt="{{ product.Tags.Kashrut }}" title="{{ product.Tags.Kashrut }}"
+                  data-toggle="tooltip" data-placement="bottom" />
+                <img src="assets/img/Justice.png" *ngIf="product.Tags.ControlledPrice" alt="{{ product.Tags.ControlledPrice }}" data-toggle="tooltip"
+                  data-placement="bottom" />
+                <img src="assets/img/Organic.png" *ngIf="product.Tags.Organic" alt="ללא גלוטן" title="מחיר מפוקח: {{ product.Tags.ControlledPrice }} ש&quot;ח"
+                  title="מחיר מפוקח: {{ product.Tags.ControlledPrice }} ש&quot;ח" data-toggle="tooltip" data-placement="bottom"
+                />
+                <img src="assets/img/VeganFriendly.png" *ngIf="product.Tags.VeganFriendly" alt="טבעוני" title="טבעוני" data-toggle="tooltip"
+                  data-placement="bottom" />
+                <img src="assets/img/EfshariBari.png" *ngIf="product.Tags.EfshariBari" alt="אפשרי בריא" title="אפשרי בריא" data-toggle="tooltip"
+                  data-placement="bottom" />
+                <div>
+                  ציון:
+                  <select (change)="SelectedGrade($event.target.value)" class="form-control">
+                    <option *ngFor="let currGrade of grades" value={{currGrade}}>{{currGrade}}</option>
+                  </select>
+                </div>
+                <div>
+                  <button style="margin-top:5%" class="button-style" (click)="addToBasket(product)">הוסף לסל</button>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="row">
+                <div class="col-3">
+                  <span class="feature-title">שם המוצר:</span>
+                </div>
+                <div class="col">
+                  {{product.name}}
+                </div>
+                <div class="col">
+                  <input class="form-control" tabindex="1" name="name" type="text" [(ngModel)]="product.name" #name="ngModel" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-3">
+                  <span class="feature-title">כמות:</span>
+                </div>
+                <div class="col">
+                  <div class="product-quantity">{{ +product.Quantity }} {{product.UnitQty}}</div>
+                </div>
+                <div class="col">
+                  <input class="form-control" tabindex="7" name="Quantity" type="text" [(ngModel)]="product.Quantity" #Quantity="ngModel" />
+                  <input class="form-control" tabindex="7" name="UnitQty" type="text" [(ngModel)]="product.UnitQty" #UnitQty="ngModel" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-3">
+                  <span class="feature-title">קטגוריה:</span>
+                </div>
+                <div class="col">
+                  {{this.product.categoryValue}}
+                </div>
+                <div class="col">
+                  <select (change)="selectItem($event.target.value)" class="form-control">
+                    <option *ngFor="let currCategory of categories" [selected]="currCategory.id == currentCategory" value={{currCategory.id}}>{{currCategory.name}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-3">
+                  <span class="feature-title">ספק/יצרן:</span>
+                </div>
+                <div class="col">
+                  {{product.company}}
+                </div>
+                <div class="col">
+                  <input class="form-control" tabindex="6" name="company" type="text" [(ngModel)]="product.company" #company="ngModel" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-3">
+                  <span class="feature-title">ארץ ייצור:</span>
+                </div>
+                <div class="col">
+                  <span class="flag-icon {{'flag-icon-' + product.createCountry | lowercase}}" title="{{product.createCountry}}" data-toggle="tooltip"
+                    data-placement="right" tabindex="0"></span>
+                </div>
+                <div class="col">
+                  <input class="form-control" tabindex="5" name="createCountry" type="text" [(ngModel)]="product.createCountry" #createCountry="ngModel"
+                  />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-3">
+                  <span class="feature-title">תיאור:</span>
+                </div>
+                <div class="col">
+                  {{product.ManufacturerItemDescription }}
+                </div>
+                <div class="col">
+                  <input class="form-control" tabindex="5" name="ManufacturerItemDescription" type="text" [(ngModel)]="product.ManufacturerItemDescription"
+                    #ManufacturerItemDescription="ngModel" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-3">
+                  <span class="feature-title">מחיר:</span>
+                </div>
+                <div class="col">
+                  {{product.price}} ₪
+                </div>
+                <div class="col">
+                  <input class="form-control" tabindex="2" name="price" type="text" [(ngModel)]="product.price" #price="ngModel" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-3">
+                  <span class="feature-title">מחיר ליחידת מידה:</span>
+                </div>
+                <div class="col">
+                  {{product.UnitOfMeasurePrice}} ₪ / {{product.UnitOfMeasure}}
+                </div>
+                <div class="col">
+                  <input class="form-control" tabindex="5" name="UnitOfMeasurePrice" type="text" [(ngModel)]="product.UnitOfMeasurePrice" #UnitOfMeasurePrice="ngModel"
+                  />
+                  <input class="form-control" tabindex="5" name="UnitOfMeasure" type="text" [(ngModel)]="product.UnitOfMeasure" #UnitOfMeasure="ngModel"
+                  />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-3">
+                  <span class="feature-title">ברקוד:</span>
+                </div>
+                <div class="col">
+                  {{product.id}}
+                </div>
+                <div class="col">
+                  <input class="form-control" tabindex="5" name="id" type="text" [(ngModel)]="product.id" #id="ngModel" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-3">
+                  <span class="feature-title">תאריך עידכון אחרון:</span>
+                </div>
+                <div class="col">
+                  {{product.PriceUpdateDate}}
+                </div>
+                <div class="col">
+                  <input class="form-control" tabindex="5" name="PriceUpdateDate" type="text" [(ngModel)]="product.PriceUpdateDate" #PriceUpdateDate="ngModel"
+                  />
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  תגובות:
+                  <button (click)="addComment()">הוסף תגובה</button>
+                </div>
+                <div class="col">
+                  <div *ngIf="product.comments">
+                    <ul>
+                      <li *ngFor="let currComment of product.comments" style="margin-left:50px">
+                        תגובה: {{ currComment.comment }} עם ציון {{ currComment.grade}}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                </div>
+                <div class="col">
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <p>Modal body text goes here.</p>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" [disabled]="!f.valid || currentCategory == 0" *ngIf="this.product.id == 0"
+                  (click)="actionCodeToAdd()">הוספת מוצר</button>
+                <button type="submit" class="btn btn-primary" [disabled]="!f.valid" *ngIf="this.product.id != 0" (click)="actionCodeToUpdate()">עדכן מוצר</button>
+                <button type="submit" class="btn btn-primary" *ngIf="this.product.id != 0" (click)="actionCodeToDelete()">מחיקת מוצר</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- 
+  
+<div class="container" *ngIf="product">
   <form id="contact" name="form" (ngSubmit)="f.form.valid && onSubmit(f,$event)" #f="ngForm" novalidate>
     <h3>פרטי מוצר</h3>
 
     <fieldset class="row">
       שם מוצר:
-      <input tabindex="1" name="name" type="text" [(ngModel)]="productDetails.name" #name="ngModel" disabled />
+      <input class="form-control" tabindex="1" name="name" type="text" [(ngModel)]="product.name" #name="ngModel" />
     </fieldset>
 
     <fieldset class="row">
       מחיר:
-      <input tabindex="2" name="price" type="text" [(ngModel)]="productDetails.price" #price="ngModel" disabled />
+      <input class="form-control" tabindex="2" name="price" type="text" [(ngModel)]="product.price" #price="ngModel" />
     </fieldset>
 
     <fieldset class="row">
       תיאור:
-      <input tabindex="7" name="desc" type="text" [(ngModel)]="productDetails.ManufacturerItemDescription" #ManufacturerItemDescription="ngModel" disabled />
+      <input class="form-control" tabindex="7" name="desc" type="text" [(ngModel)]="product.ManufacturerItemDescription" #ManufacturerItemDescription="ngModel" />
     </fieldset>
 
     <fieldset class="row">
       קטגוריה:
-      <input tabindex="3" name="categoryValue" type="text" [(ngModel)]="productDetails.categoryValue" #categoryValue="ngModel" disabled />
+      <input class="form-control" tabindex="3" name="categoryValue" type="text" [(ngModel)]="product.categoryValue" #categoryValue="ngModel" />
     </fieldset>
 
     <fieldset class="row">
       קלוריות:
-      <input tabindex="4" name="calories" type="text" [(ngModel)]="productDetails.calories" #calories="ngModel" disabled />
+      <input class="form-control" tabindex="4" name="calories" type="text" [(ngModel)]="product.calories" #calories="ngModel" />
     </fieldset>
 
     <fieldset class="row">
       מדינת יצור:
-      <input tabindex="5" name="createCountry" type="text" [(ngModel)]="productDetails.createCountry" #createCountry="ngModel" disabled />
+      <input class="form-control" tabindex="5" name="createCountry" type="text" [(ngModel)]="product.createCountry" #createCountry="ngModel" />
     </fieldset>
 
     <fieldset class="row">
       יצרן:
-      <input tabindex="6" name="company" type="text" [(ngModel)]="productDetails.company" #company="ngModel" disabled />
+      <input class="form-control" tabindex="6" name="company" type="text" [(ngModel)]="product.company" #company="ngModel" />
     </fieldset>
 
     <fieldset class="row">
       יחידת מידה:
-      <input tabindex="7" name="UnitQty" type="text" [(ngModel)]="productDetails.UnitQty" #UnitQty="ngModel" disabled />
+      <input class="form-control" tabindex="7" name="UnitQty" type="text" [(ngModel)]="product.UnitQty" #UnitQty="ngModel" />
     </fieldset>
 
-    <div *ngIf="productDetails.comments">
+    <div *ngIf="product.comments">
       <fieldset class="row">
         רשימת תגובות
         <ul>
-          <li *ngFor="let currComment of productDetails.comments" style="margin-left:50px">
+          <li *ngFor="let currComment of product.comments" style="margin-left:50px">
             תגובה: {{ currComment.comment }} עם ציון {{ currComment.grade}}
-          </li>
+          </div>
         </ul>
       </fieldset>
     </div>
@@ -70,7 +300,7 @@
 
     <fieldset style="margin-top:5%">
       <button style="margin-top:5%" class="button-style" (click)="addComment()">הוסף תגובה</button>
-      <button style="margin-top:5%" class="button-style" (click)="addToBasket(productDetails)">הוסף לסל</button>
+      <button style="margin-top:5%" class="button-style" (click)="addToBasket(product)">הוסף לסל</button>
     </fieldset>
   </form>
-</div>
+</div> -->

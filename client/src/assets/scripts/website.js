@@ -1,4 +1,6 @@
 $(document).ready(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+
   $('body').on('mouseenter mouseleave', '.dropdown', function (e) {
     var _d = $(e.target).closest('.dropdown'); _d.addClass('show');
     setTimeout(function () {

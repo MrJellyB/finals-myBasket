@@ -4,7 +4,7 @@
       <canvas id="welcomeCanvas" width="400" height="60" dir="rtl" (click)="setMainPage()" style="vertical-align: bottom;">
         Your browser does not support the HTML5 canvas tag.
       </canvas>-->
-    <button type="button" class="btn btn-info" (click)="basketView()">
+    <!-- <button type="button" class="btn btn-info" (click)="basketView()">
       <i class="fas fa-shopping-cart"></i>הסל שלי ({{basketItemsAmount}})</button>
     <button type="button" class="btn btn-warning" routerLink="/statistics">
       <i class="fas fa-chart-bar"></i>סטטיסטיקות</button>
@@ -29,56 +29,71 @@
             <i class="fas fa-power-off"></i>התנתקות</button>
         </div>
       </div>
-    </div>
-    <!-- <div class="col-auto">
-    <h1>
-      LOGO
-    </h1>
-  </div>
-  <div class="col-auto ml-auto">
-    <i class="fas fa-chart-bar"></i>
-    סטטיסטיקות
-  </div>
-  <div class="col-auto mr-md-5 mr-sm-0">
-    <i class="fas fa-star"></i>
-    מועדפים
-  </div>
-  <div class="col-auto">
-    <i class="fas fa-wrench"></i>
-    ממשק ניהול
-  </div>
-
-  <div class="col-auto">
-    <i class="fas fa-user"></i>
-    <b>
-      Or Forte
-    </b>
-  </div>
-  <div class="col-auto">
-    <i class="fas fa-sign-in-alt"></i>
-    כניסה
-  </div>
-  <div class="col-auto" hidden>
-    <i class="fas fa-sign-out-alt"></i>
-    התנתק
-  </div> -->
-    <!-- <div class="col-auto">
-      הרשמה
     </div> -->
+    <div class="col-auto">
+      <h1>
+        LOGO
+      </h1>
+    </div>
+    <div class="col-auto ml-auto">
+      <span routerLink="/statistics">
+        <i class="fas fa-chart-bar"></i>
+        סטטיסטיקות
+      </span>
+    </div>
+    <div class="col-auto mr-md-5 mr-sm-0">
+      <i class="fas fa-star"></i>
+      מועדפים
+    </div>
+
+    <div class="col-auto" *ngIf="checkManager()">
+      <span (click)="managerView()">
+        <i class="fas fa-wrench"></i>
+        ממשק ניהול
+      </span>
+    </div>
+
+    <div class="col-auto" *ngIf="userName()">
+      <span routerLink="/profile-builder">
+        <i class="fas fa-user"></i>
+        <b>
+          Or Forte
+        </b>
+      </span>
+    </div>
+
+    <div class="col-auto" *ngIf="!userName()">
+      <span routerLink="/login">
+        <i class="fas fa-sign-in-alt"></i>
+        כניסה
+      </span>
+    </div>
+
+    <div class="col-auto" *ngIf="userName()">
+      <span (click)="logOff()">
+        <i class="fas fa-sign-out-alt"></i>
+        התנתק
+      </span>
+    </div>
+    <div class="col-auto" *ngIf="!userName()">
+      <span routerLink="/register">
+        הרשמה
+      </span>
+    </div>
   </div>
 
   <div class="row">
     <nav class="navbar navbar-expand-xl category-navigation container-fluid">
-      <div class="navbar-toggler">
-        <button class="btn btn-danger" type="button" data-toggle="collapse" data-target="#navbarNavDropdown2" aria-controls="navbarNavDropdown2"
+      <div class="navbar-toggler w-100 p-0">
+        <button class="btn btn-danger w-100" type="button" data-toggle="collapse" data-target="#navbarNavDropdown2" aria-controls="navbarNavDropdown2"
           aria-expanded="false" aria-label="Toggle navigation">
           <i class="fas fa-bars"></i>
           קטגוריות
         </button>
       </div>
-      <div class="collapse navbar-collapse " id="navbarNavDropdown2">
+      <div class="collapse navbar-collapse" id="navbarNavDropdown2">
         <ul class="navbar-nav container-fluid">
-          <li class="nav-item col active " (click)="getProductsByCategory(1) ">
+          <li class="nav-item col active" (click)="getProductsByCategory(1) ">
             <a class="nav-link ">
               <div class="nav-text-container ">
                 <span>

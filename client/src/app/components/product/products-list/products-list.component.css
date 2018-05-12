@@ -44,8 +44,6 @@ tr:nth-child(even) {
 
 .card-title {
   text-align: center;
-  font-size: 18px;
-  font-weight: bold;
 }
 
 .card-img-top {
@@ -77,4 +75,13 @@ tr:nth-child(even) {
 .product-price {
   font-weight: bold;
   font-size: 17px;
+}
+
+.product-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.product-tags img {
+  max-height: 25px;
 }

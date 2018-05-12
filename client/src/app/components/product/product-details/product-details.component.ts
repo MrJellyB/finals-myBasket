@@ -1,11 +1,13 @@
-import { Component, Input, EventEmitter } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, Input, EventEmitter, AfterViewInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
-import { Product, BasketItem, CommentToProduct } from 'app/interface/entities.interface';
+import { Product, BasketItem, CommentToProduct, Category } from 'app/interface/entities.interface';
 import { ProductService } from 'app/services/product.service';
 import { UsersService } from '../../../services/users.service';
 import { EventService } from 'app/services/event.service';
 import { LocalStorageService } from 'app/services/localStorageService';
+
+declare var $;
 
 @Component({
   selector: 'app-product-details',
@@ -15,7 +17,7 @@ import { LocalStorageService } from 'app/services/localStorageService';
 export class ProductDetailsComponent {
   @Input() productIdToShow: number;
 
-  productDetails: Product;
+  product: Product;
   sub: any;
   id: number;
   CategoryValue: any;
@@ -25,8 +27,13 @@ export class ProductDetailsComponent {
   commentToSave: CommentToProduct;
   grades = [1, 2, 3, 4, 5]
 
+  actionCode: number = 1;
+  categories: Category[];
+  currentCategory: number = 0;
+
   constructor(private productService: ProductService,
     private usersService: UsersService,
+    private router: Router,
     private route: ActivatedRoute,
     private eventService: EventService,
     private localStorageService: LocalStorageService
@@ -40,41 +47,56 @@ export class ProductDetailsComponent {
       this.id = +params['id'];
       this.getProductDetails(this.id);
     })
+    this.getCategories();
   }
 
   getProductDetails(productId: number): any {
     this.productService.getProductDetails(productId).subscribe(
       (data) => {
-        this.productDetails = data[0];
-        this.getCategoryById(this.productDetails.category);
+        this.product = data[0];
+        this.currentCategory = +this.product.category;
+        this.getCategoryById(+this.product.category);
+        //  this.product.oldPrice = this.product.price;
+
+        $(function () {
+          $('[data-toggle="tooltip"]').tooltip();
+        });
       }
     );
 
-    return this.productDetails;
+    return this.product;
   }
 
   getCategoryById(categoryId: number): any {
     this.productService.getCategory(categoryId).subscribe(
       (data) => {
         this.CategoryValue = data[0];
-        this.productDetails.categoryValue = this.CategoryValue.name;
+        this.product.categoryValue = this.CategoryValue.name;
       }
     );
 
-    return this.productDetails;
+    return this.product;
   }
 
   SelectedGrade(value) {
     this.currGrade = +value;
     this.select.emit(value);
-    console.log(value);
   }
 
   onSubmit(f: any, event: Event) {
+    if (this.actionCode === 1) {
+      this.saveProduct();
+    }
+    else if (this.actionCode === 2) {
+      this.updateTheProduct();
+    }
+    else if (this.actionCode === 3) {
+      this.deleteProduct();
+    }
   }
 
   addComment() {
-    this.commentToSave.prodctId = this.productDetails.id;
+    this.commentToSave.prodctId = this.product.id;
     this.commentToSave.comment = this.comm;
     this.commentToSave.grade = this.currGrade;
     this.productService.addCommentToProduct(this.commentToSave).subscribe(
@@ -98,10 +120,10 @@ export class ProductDetailsComponent {
     else {
       const basketItem: BasketItem =
         {
-          id: this.productDetails.id,
-          name: this.productDetails.name,
+          id: this.product.id,
+          name: this.product.name,
           image: "",
-          price: this.productDetails.price,
+          price: this.product.price,
           amount: 1
         }
       basketItems.push(basketItem);
@@ -109,5 +131,63 @@ export class ProductDetailsComponent {
 
     this.localStorageService.set("basketItems", basketItems);
     this.eventService.emit('BASKET_ITEMS');
+  }
+
+  getProdutImage(productID: number): string {
+    return "assets/img/product/" + productID + ".jpg";
+  }
+
+  getCategories() {
+    this.productService.getCategories().subscribe((results: any) => {
+      this.categories = results
+      console.log(this.categories);
+    })
+  }
+
+  actionCodeToAdd() { this.actionCode = 1 }
+  actionCodeToUpdate() { this.actionCode = 2 }
+  actionCodeToDelete() { this.actionCode = 3 }
+
+  saveProduct() {
+    this.product.calories = +this.product.calories;
+    this.product.price = +this.product.price;
+    this.productService.saveProduct(this.product).subscribe((results) => {
+      this.product.id = +results;
+      this.actionCode = 2;
+      alert('שמירת המוצר בוצעה בהצלחה, הינך עובר למסך עריכה');
+      this.router.navigate(['/add-or-update-product/' + this.product.id]);
+    });
+  }
+
+  updateTheProduct() {
+    console.log(this.product);
+    this.product.price = +this.product.price;
+    this.productService.updateProduct(this.product).subscribe((results) => {
+      alert('עדכון המוצר בוצע בהצלחה, הינך עובר לדף הראשי');
+      this.router.navigate(['/']);
+    });
+  }
+
+  deleteProduct() {
+    this.productService.deleteProduct(this.product).subscribe((results) => {
+      alert('מחיקת המוצר בוצעה בהצלחה, הינך עובר לדף הראשי');
+      this.router.navigate(['/']);
+    });
+  }
+
+  userName() {
+    return this.usersService.userName();
+  }
+
+  userType() {
+    return this.usersService.getUserStatus();
+  }
+
+  checkManager() {
+    return this.userName() != null && this.userType() == "2";
+  }
+
+  handleFileChange(files: FileList) {
+    this.product.image = files.item(0);
   }
 }
