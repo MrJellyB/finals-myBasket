@@ -7,6 +7,14 @@
     <p>נצטרך כמה פרטים עליכם, כדי לבנות עבורכם את סל הקניות האולטימטיבי</p>
   </div>
 
+          <!--
+          <div class="form-check checkbox-slider--default">
+            <label>
+              <input type="checkbox">
+              <span>TiTaToggle</span>
+            </label>
+          </div>-->
+
   <form id="form-work" name="form" #f="ngForm" novalidate>
     <fieldset>
       <div class="row justify-content-center">
@@ -73,69 +81,117 @@
             </label>
           </div>
 
-          <div class="form-check checkbox-slider--default">
-            <label>
-              <input type="checkbox">
-              <span>TiTaToggle</span>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+          <div class="col-lg-4 col-8">
+            <div class="form-check checkbox-slider--b-flat">
+              <label>
+              <input name="vegan" type="checkbox" (change)="checkPreferences($event, ePreferencesEnum.Vegan)" [checked]="profileBuilder.preferences.vegan">
+                <span>
+                    מוצרים טבעוניים בלבד?
+                </span>
             </label>
           </div>
         </div>
       </div>
       <div class="row justify-content-center">
         <div class="col-lg-4 col-8">
-          <label class="control-label" for="vegan">מוצרים טבעוניים בלבד?</label>
-          <input name="vegan" type="checkbox" (change)="checkPreferences($event, ePreferencesEnum.Vegan)" [checked]="profileBuilder.preferences.vegan">
-        </div>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-lg-4 col-8">
-          <label class="control-label" for="Veggie"> מוצרים צמחוניים בלבד?</label>
-          <input name="veggie" type="checkbox" (change)="checkPreferences($event, ePreferencesEnum.Veggie)" [checked]="profileBuilder.preferences.veggie">
+            <div class="form-check checkbox-slider--b-flat">
+              <label>
+              <input name="veggie" type="checkbox" (change)="checkPreferences($event, ePreferencesEnum.Veggie)" [checked]="profileBuilder.preferences.veggie">
+              <span>
+                  מוצרים צמחוניים בלבד?
+              </span>
+              </label>
+            </div>
         </div>
       </div>
       <div class="row justify-content-center">
         <b>הסל שלי יהיה ללא המוצרים הבאים:</b>
       </div>
       <div class="row justify-content-center">
-        <div class="col-lg-4 col-8">
-          <label class="control-label" for="Eggs">ביצים</label>
-          <input name="eggs" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Eggs)" [checked]="profileBuilder.avoidness.eggs">
+          <div class="col-lg-4 col-8">
+            <div class="form-check checkbox-slider--b-flat">
+              <label>
+                <input name="eggs" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Eggs)" [checked]="profileBuilder.avoidness.eggs">
+                <span>
+                  ביצים
+                </span>
+              </label>
+            </div>
         </div>
       </div>
       <div class="row justify-content-center">
         <div class="col-lg-4 col-8">
-          <label class="control-label" for="Milk">מוצרי חלב </label>
-          <input name="milk" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Milk)" [checked]="profileBuilder.avoidness.milk">
+          <div class="form-check checkbox-slider--b-flat">
+            <label>
+            <input name="milk" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Milk)" [checked]="profileBuilder.avoidness.milk">
+            <span>
+                מוצרי חלב 
+            </span>
+            </label>
+          </div>
         </div>
       </div>
       <div class="row justify-content-center">
         <div class="col-lg-4 col-8">
-          <label class="control-label" for="Gluten">גלוטן </label>
-          <input name="gluten" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Gluten)" [checked]="profileBuilder.avoidness.gluten">
+            <div class="form-check checkbox-slider--b-flat">
+              <label>
+              <input name="gluten" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Gluten)" [checked]="profileBuilder.avoidness.gluten">
+              <span>
+                  גלוטן
+              </span>
+              </label>
+          </div>
         </div>
       </div>
       <div class="row justify-content-center">
         <div class="col-lg-4 col-8">
-          <label class="control-label" for="Soy">סויה </label>
-          <input name="soy" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Soy)" [checked]="profileBuilder.avoidness.soy">
+            <div class="form-check checkbox-slider--b-flat">
+            <label>
+            <input name="soy" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Soy)" [checked]="profileBuilder.avoidness.soy">
+            <span>
+                סויה
+            </span>
+            </label>
+          </div>
         </div>
       </div>
       <div class="row justify-content-center">
         <div class="col-lg-4 col-8">
-          <label class="control-label" for="Nuts">אגוזים </label>
-          <input name="nuts" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Nuts)" [checked]="profileBuilder.avoidness.nuts">
+            <div class="form-check checkbox-slider--b-flat">
+              <label>
+                <input name="nuts" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Nuts)" [checked]="profileBuilder.avoidness.nuts">
+                <span>
+                  אגוזים
+                </span>
+              </label>
+            </div>
         </div>
       </div>
       <div class="row justify-content-center">
         <div class="col-lg-4 col-8">
-          <label class="control-label" for="Peanuts">בוטנים </label>
-          <input name="peanuts" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Peanuts)" [checked]="profileBuilder.avoidness.peanuts">
+            <div class="form-check checkbox-slider--b-flat">
+              <label>
+              <input name="peanuts" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Peanuts)" [checked]="profileBuilder.avoidness.peanuts">
+              <span>
+                  בוטנים
+              </span>
+            </label>
+            </div>
         </div>
       </div>
       <div class="row justify-content-center">
         <div class="col-lg-4 col-8">
-          <label class="control-label" for="Peanuts">פול </label>
-          <input name="ful" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Ful)" [checked]="profileBuilder.avoidness.ful">
+            <div class="form-check checkbox-slider--b-flat">
+              <label>
+              <input name="ful" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Ful)" [checked]="profileBuilder.avoidness.ful">
+              <span>
+                  פול
+              </span>
+              </label>
+            </div>
         </div>
       </div>
       <div class="row justify-content-center">
