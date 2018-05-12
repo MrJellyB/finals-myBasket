@@ -92,7 +92,7 @@
                   <span class="feature-title">קטגוריה:</span>
                 </div>
                 <div class="col" *ngIf="!this.isEdit">
-                  {{this.product.categoryValue}}
+                  {{this.CategoryValue.name}}
                 </div>
                 <div class="col" *ngIf="this.isEdit">
                   <select (change)="selectItem($event.target.value)" class="form-control">

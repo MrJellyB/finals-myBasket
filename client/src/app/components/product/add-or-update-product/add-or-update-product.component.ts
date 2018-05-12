@@ -94,13 +94,14 @@ export class AddOrUpdateProductComponent {
     this.productService.getCategory(categoryId).subscribe(
       (data) => {
         this.CategoryValue = data[0];
-        this.product.categoryValue = this.CategoryValue.name;
+        //this.product.categoryValue = this.CategoryValue.name;
         console.log(data);
       }
     );
   }
 
   saveProduct() {
+    debugger;
     this.product.calories = +this.product.calories;
     this.product.price = +this.product.price;
     this.productService.saveProduct(this.product).subscribe((results) => {

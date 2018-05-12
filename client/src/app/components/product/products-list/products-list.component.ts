@@ -107,7 +107,8 @@ export class ProductsListComponent {
   }
 
   updateOrDelete(productID: number) {
-    this.router.navigate(['/add-or-update-product/' + productID]);
+    this.router.navigate(['/product-list/' + this.categoryProp + "/details/" + productID + "/edit"]);
+    //this.router.navigate(['/add-or-update-product/' + productID]);
   }
 
   addToBasket(product: Product, input: any) {
