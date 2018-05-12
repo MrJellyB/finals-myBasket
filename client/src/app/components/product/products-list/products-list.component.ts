@@ -9,6 +9,7 @@ import { UsersService } from 'app/services/users.service';
 import { BasketService } from "app/services/basket-service.service";
 import { EventService } from "app/services/event.service";
 import { CurrencyPipe } from '@angular/common';
+import { Subscription } from "rxjs";
 
 declare var $;
 
@@ -28,6 +29,9 @@ export class ProductsListComponent {
   page = 1;
   limit = 12;
 
+  basketItemsAmount: number;
+  subs: Subscription[] = [];
+
   public productPaging: Product[];
 
   hoverIndex: number = null;
@@ -43,6 +47,12 @@ export class ProductsListComponent {
     //this.getProducts();
     this.getProductSize();
     this.getProductsPaging();
+
+    this.basketItemsAmount = this.basketService.getAllAmount();
+    this.subs.push(
+      this.eventService.observe('BASKET_ITEMS').subscribe(() => {
+        this.basketItemsAmount = this.basketService.getAllAmount();
+      }));
   }
 
   getProductSize() {
@@ -206,5 +216,9 @@ export class ProductsListComponent {
         }
       }
     )
+  }
+
+  basketView() {
+    this.router.navigate(['/basket'])
   }
 }

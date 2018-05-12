@@ -46,6 +46,7 @@
     "rxjs": "^5.5.10",
     "sha256": "^0.2.0",
     "socket.io-client": "^2.1.0",
+    "titatoggle": "^2.1.2",
     "yarn": "^1.6.0",
     "yarn-install": "^0.5.1",
     "zone.js": "^0.8.26"
