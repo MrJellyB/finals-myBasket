@@ -38,9 +38,21 @@ export const routes: Routes = [
     { path: 'product-list-filter', component: ProductsListFilterComponent },
     { path: 'statistics', component: StatisticsMainPageComponent },
     { path: 'profile-builder', component: ProfileBuilderComponent },
-    { path: 'product-list/:id/details/:productId/:edit', component: ProductsListComponent },
-    { path: 'product-list/:id/details/:productId', component: ProductsListComponent },
-    { path: 'product-list/:id', component: ProductsListComponent },
+    // { path: 'product-list/:id/details/:productId/:edit', component: ProductsListComponent },
+    // { path: 'product-list/:id/details/:productId', component: ProductsListComponent },
+    {
+        path: 'product-list/:id',
+        component: ProductsListComponent,
+        children: [{
+            path: 'details/:productId',
+            component: ProductDetailsComponent
+        },
+        {
+            path: 'details/:productId/:edit',
+            component: ProductDetailsComponent
+        },
+        ]
+    }
 ];
 
 export const AppRouting: ModuleWithProviders = RouterModule.forRoot(routes);

@@ -41,6 +41,13 @@ export class ProductDetailsComponent {
     private localStorageService: LocalStorageService
   ) { }
 
+  ngAfterViewInit() {
+    if (this.id) {
+      $(this.modal.nativeElement).modal('show');
+      $(this.modal.nativeElement).on('hidden.bs.modal', () => this.returnToCategory());
+    }
+  }
+
   ngOnInit() {
     this.select = new EventEmitter();
     this.comm = "";
@@ -51,10 +58,16 @@ export class ProductDetailsComponent {
 
       if (this.id) {
         this.getProductDetails(this.id);
-        $(this.modal.nativeElement).modal('show');
       }
     })
     this.getCategories();
+  }
+
+  returnToCategory(): any {
+    if (this.isEdit)
+      this.router.navigate(['../../../'], { relativeTo: this.route });
+    else
+      this.router.navigate(['../../'], { relativeTo: this.route });
   }
 
   getProductDetails(productId: number): any {

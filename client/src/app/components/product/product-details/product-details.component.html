@@ -40,24 +40,21 @@
                 </div>
               </div>
               <div class="product-tags">
-                <img src="assets/img/GlutenFree.png" *ngIf="product.GlutenFree" alt="ללא גלוטן" title="ללא גלוטן" data-toggle="tooltip"
+                <img src="assets/img/GlutenFree.png" *ngIf="product.GlutenFree" alt="ללא גלוטן" title="ללא גלוטן" data-toggle="tooltip" data-placement="bottom"
+                />
+                <img src="assets/img/Kashrut.png" *ngIf="product.Kashrut" alt="{{ product.Kashrut }}" title="{{ product.Kashrut }}" data-toggle="tooltip"
                   data-placement="bottom" />
-                <img src="assets/img/Kashrut.png" *ngIf="product.Kashrut" alt="{{ product.Kashrut }}" title="{{ product.Kashrut }}"
-                  data-toggle="tooltip" data-placement="bottom" />
                 <img src="assets/img/Justice.png" *ngIf="product.ControlledPrice" alt="{{ product.ControlledPrice }}" data-toggle="tooltip"
                   data-placement="bottom" />
                 <img src="assets/img/Organic.png" *ngIf="product.Organic" alt="ללא גלוטן" title="מחיר מפוקח: {{ product.ControlledPrice }} ש&quot;ח"
                   title="מחיר מפוקח: {{ product.ControlledPrice }} ש&quot;ח" data-toggle="tooltip" data-placement="bottom"
                 />
-                <img src="assets/img/VeganFriendly.png" *ngIf="product.VeganFriendly" alt="טבעוני" title="טבעוני" data-toggle="tooltip"
-                  data-placement="bottom" />
+                <img src="assets/img/VeganFriendly.png" *ngIf="product.VeganFriendly" alt="טבעוני" title="טבעוני" data-toggle="tooltip" data-placement="bottom"
+                />
                 <img src="assets/img/EfshariBari.png" *ngIf="product.EfshariBari" alt="אפשרי בריא" title="אפשרי בריא" data-toggle="tooltip"
                   data-placement="bottom" />
                 <div>
-                  ציון:
-                  <select (change)="SelectedGrade($event.target.value)" class="form-control">
-                    <option *ngFor="let currGrade of grades" value={{currGrade}}>{{currGrade}}</option>
-                  </select>
+
                 </div>
                 <div>
                   <button style="margin-top:5%" class="button-style" (click)="addToBasket(product)">הוסף לסל</button>
@@ -191,9 +188,8 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col">
+                <div class="col-3">
                   תגובות:
-                  <button (click)="addComment()">הוסף תגובה</button>
                 </div>
                 <div class="col">
                   <div *ngIf="product.comments">
@@ -202,6 +198,25 @@
                         תגובה: {{ currComment.comment }} עם ציון {{ currComment.grade}}
                       </li>
                     </ul>
+                  </div>
+                  <div *ngIf="!product.comments">
+                    אין תגובות.
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <textarea class="form-control" name="comment" [(ngModel)]="comm" #comment="ngModel"></textarea>
+                </div>
+                <div class="col">
+                  <div class="form-group row">
+                    ציון:
+                    <div class="col-md-3">
+                      <select (change)="SelectedGrade($event.target.value)" class="form-control">
+                        <option *ngFor="let currGrade of grades" value={{currGrade}}>{{currGrade}}</option>
+                      </select>
+                    </div>
+                    <button (click)="addComment()">הוסף תגובה</button>
                   </div>
                 </div>
               </div>

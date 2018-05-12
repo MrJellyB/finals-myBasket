@@ -20,6 +20,7 @@ import { FormsModule } from '@angular/forms';
 import { ProductService } from 'app/services/product.service';
 import { PagerService } from 'app/components/product/products-list/pager.service';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AppRouting } from '../app.routing';
 
 @NgModule({
   declarations: [
@@ -38,12 +39,13 @@ import { NgxPaginationModule } from 'ngx-pagination';
     BiggerThenPipe,
     SmallerThenPipe,
     ProductsListFilterComponent,
-    StatisticsMainPageComponent
+    StatisticsMainPageComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    AppRouting
   ],
   providers: [
     ProductService,
