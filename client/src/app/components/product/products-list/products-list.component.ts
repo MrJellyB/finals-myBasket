@@ -1,14 +1,11 @@
-import * as _ from "lodash";
 import { Component } from '@angular/core';
-import { Router, ActivatedRoute } from "@angular/router";
-import { EventEmitter } from '@angular/core';
-import { Pipe, PipeTransform } from '@angular/core';
-import { Product, Category, BasketItem } from 'app/interface/entities.interface';
-import { ProductService } from 'app/services/product.service';
-import { UsersService } from 'app/services/users.service';
+import { ActivatedRoute, Router } from "@angular/router";
+import { Product } from 'app/interface/entities.interface';
 import { BasketService } from "app/services/basket-service.service";
 import { EventService } from "app/services/event.service";
-import { CurrencyPipe } from '@angular/common';
+import { ProductService } from 'app/services/product.service';
+import { UsersService } from 'app/services/users.service';
+import * as _ from "lodash";
 import { Subscription } from "rxjs";
 
 declare var $;
@@ -57,6 +54,7 @@ export class ProductsListComponent {
 
   getProductSize() {
     this.route.params.subscribe(params => {
+      this['p'] = 0;
       let category: number = +params['id'];
       this.categoryProp = category;
       this.productService.getProductSizeByCategory(category).subscribe((size: any) => {

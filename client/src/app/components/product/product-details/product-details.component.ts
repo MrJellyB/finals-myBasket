@@ -1,11 +1,10 @@
-import { Component, Input, EventEmitter, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup } from '@angular/forms';
-import { Product, BasketItem, CommentToProduct, Category } from 'app/interface/entities.interface';
-import { ProductService } from 'app/services/product.service';
-import { UsersService } from '../../../services/users.service';
+import { BasketItem, Category, CommentToProduct, Product } from 'app/interface/entities.interface';
 import { EventService } from 'app/services/event.service';
 import { LocalStorageService } from 'app/services/localStorageService';
+import { ProductService } from 'app/services/product.service';
+import { UsersService } from '../../../services/users.service';
 
 declare var $;
 
@@ -16,6 +15,7 @@ declare var $;
 })
 export class ProductDetailsComponent {
   @Input() productIdToShow: number;
+
 
   product: Product;
   sub: any;
