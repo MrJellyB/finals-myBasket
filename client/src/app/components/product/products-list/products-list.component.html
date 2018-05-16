@@ -103,20 +103,20 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col">
-      <pagination-controls (pageChange)="pageChanged(p = $event)" previousLabel="לאחור" nextLabel="הבא" maxSize="9"></pagination-controls>
-
-    </div>
-  </div>
-  <router-outlet></router-outlet>
-  <div class="fixed-bottom">
-    <!-- <div class="d-flex align-items-end flex-column"> -->
-    <button type=" button " class="btn btn-info " (click)="basketView() ">
-      <i class="fas fa-shopping-cart "></i>הסל שלי ({{basketItemsAmount}})</button>
-    <!-- </div> -->
-  </div>
-  <!-- <app-product-details></app-product-details> -->
 </div>
+<div class="row">
+  <div class="col">
+    <pagination-controls (pageChange)="pageChanged(p = $event)" previousLabel="לאחור" nextLabel="הבא" maxSize="9"></pagination-controls>
+
+  </div>
+</div>
+<router-outlet></router-outlet>
+<div class="fixed-bottom">
+  <!-- <div class="d-flex align-items-end flex-column"> -->
+  <button type=" button " class="btn btn-info " (click)="basketView() ">
+    <i class="fas fa-shopping-cart "></i>הסל שלי ({{basketItemsAmount}})</button>
+  <!-- </div> -->
+</div>
+<!-- <app-product-details></app-product-details> -->
 <div *ngIf="userName() ">
 </div>

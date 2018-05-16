@@ -25,6 +25,7 @@ export class ProductsListComponent {
   productsGroups: Product[][];
   public productSize: number;
   public categoryProp: number;
+  
   total = 0;
   page = 1;
   limit = 12;
