@@ -1,8 +1,8 @@
 import { Component, EventEmitter } from '@angular/core';
-import { ProfileBuilder, City, UserAddress, FamilyData, Preferences, Avoidness, User } from 'app/interface/entities.interface';
-import { UsersService } from 'app/services/users.service';
-import { ePreferences, eAvoidness } from 'app/utils/enums';
+import { Avoidness, City, FamilyData, Preferences, ProfileBuilder, User, UserAddress } from 'app/interface/entities.interface';
 import { LocalStorageService } from 'app/services/localStorageService';
+import { UsersService } from 'app/services/users.service';
+import { eAvoidness, ePreferences } from 'app/utils/enums';
 
 @Component({
   selector: 'app-profile-builder',
@@ -32,7 +32,6 @@ export class ProfileBuilderComponent {
   getUserProfile() {
     this.usersService.getUserTypeByUserName(this.userName).subscribe(
       (userData: any) => {
-        debugger;
         this.user = userData[0];
         if (this.user && this.user.profile) {
           this.profileBuilder = this.user.profile;
@@ -74,10 +73,8 @@ export class ProfileBuilderComponent {
   }
 
   saveProfileBuilder() {
-    debugger;
     this.usersService.saveProfileBuilder(this.profileBuilder, this.userName).subscribe(
       (data: any) => {
-        debugger;
         alert("הרכבת פרופיל נשמר בהצלחה");
       }
     )
