@@ -1,11 +1,11 @@
-import { Component, Renderer2, OnInit, Inject, ViewChild, ElementRef } from '@angular/core';
+import { Component, Inject, Renderer2 } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { UsersService } from 'app/services/users.service';
 import { BasketService } from 'app/services/basket-service.service';
 import { EventService } from 'app/services/event.service';
-import { Subscription } from 'rxjs';
 import { LocalStorageService } from 'app/services/localStorageService';
+import { UsersService } from 'app/services/users.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({

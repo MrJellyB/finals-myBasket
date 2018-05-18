@@ -28,6 +28,7 @@ export class BasketService {
     let tmpBasket: BasketItem[] = this.getBasket();
 
     if (tmpBasket) {
+
       let index = tmpBasket.map((i) => i.id).indexOf(product.id)
       if (index != -1) {
         tmpBasket[index].amount = +tmpBasket[index].amount + 1;
@@ -157,11 +158,9 @@ export class BasketService {
 
   isProductInBasket(id: number): boolean {
     let tmpBasket: BasketItem[] = this.getBasket();
-    let index = tmpBasket.map((i) => i.id).indexOf(id)
-    if (index != -1) {
-      if (tmpBasket[index].amount > 0)
-        return true;
+    if (tmpBasket) {
+      let index = tmpBasket.map((i) => i.id).indexOf(id)
+      return !!(index != -1 && tmpBasket[index].amount > 0);
     }
-    return false;
   }
 }

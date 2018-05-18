@@ -30,52 +30,52 @@
         </div>
       </div>
     </div> -->
-    <div class="col-auto">
-      <h1>
+    <div class="col-auto pointer">
+      <h1 routerLink="/">
         LOGO
       </h1>
     </div>
-    <div class="col-auto ml-auto">
+    <div class="col-auto ml-auto pointer">
       <span routerLink="/statistics">
         <i class="fas fa-chart-bar"></i>
         סטטיסטיקות
       </span>
     </div>
-    <div class="col-auto mr-md-5 mr-sm-0">
+    <div class="col-auto mr-md-5 mr-sm-0 pointer">
       <i class="fas fa-star"></i>
       מועדפים
     </div>
 
-    <div class="col-auto" *ngIf="checkManager()">
+    <div class="col-auto pointer" *ngIf="checkManager()">
       <span (click)="managerView()">
         <i class="fas fa-wrench"></i>
         ממשק ניהול
       </span>
     </div>
 
-    <div class="col-auto" *ngIf="userName()">
+    <div class="col-auto pointer" *ngIf="userName()">
       <span routerLink="/profile-builder">
         <i class="fas fa-user"></i>
         <b>
-          Or Forte
+          {{ userName() }}
         </b>
       </span>
     </div>
 
-    <div class="col-auto" *ngIf="!userName()">
+    <div class="col-auto pointer" *ngIf="!userName()">
       <span routerLink="/login">
         <i class="fas fa-sign-in-alt"></i>
         כניסה
       </span>
     </div>
 
-    <div class="col-auto" *ngIf="userName()">
+    <div class="col-auto pointer" *ngIf="userName()">
       <span (click)="logOff()">
         <i class="fas fa-sign-out-alt"></i>
         התנתק
       </span>
     </div>
-    <div class="col-auto" *ngIf="!userName()">
+    <div class="col-auto pointer" *ngIf="!userName()">
       <span routerLink="/register">
         הרשמה
       </span>
