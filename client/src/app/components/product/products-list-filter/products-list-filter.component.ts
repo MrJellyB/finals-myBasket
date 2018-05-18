@@ -1,8 +1,9 @@
-import { Component, EventEmitter } from '@angular/core'; ``
-import { Router, ActivatedRoute } from '@angular/router';
-import { Product, Category, QueryProduct } from '../../../interface/entities.interface';
+import { Component, EventEmitter } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'app/services/product.service';
 import { UsersService } from 'app/services/users.service';
+import { Category, Product, QueryProduct } from '../../../interface/entities.interface';
+``
 
 
 @Component({
@@ -44,7 +45,6 @@ export class ProductsListFilterComponent {
   getProductsPaging(): void {
     this.loading = true;
     this.productService.getProductsPaging(this.page, this.limit).subscribe((products: any) => {
-      debugger;
       this.isDataLoaded = true;
       this.productPaging = products;
       console.log(products);
@@ -127,7 +127,6 @@ export class ProductsListFilterComponent {
 
   getProductSize() {
     this.productService.getProductSize().subscribe((size: any) => {
-      debugger;
       if (size) {
         if (size[0]) {
           this.productSize = size[0].count;
