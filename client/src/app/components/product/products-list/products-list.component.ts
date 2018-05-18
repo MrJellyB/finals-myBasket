@@ -22,7 +22,7 @@ export class ProductsListComponent {
   productsGroups: Product[][];
   public productSize: number;
   public categoryProp: number;
-  
+
   total = 0;
   page = 1;
   limit = 12;
@@ -105,10 +105,6 @@ export class ProductsListComponent {
                 this.productsByCategory.push(this.products[i]);
               }
             }
-
-            $(function () {
-              $('[data-toggle="tooltip"]').tooltip();
-            });
           }
         })
       }
@@ -183,6 +179,10 @@ export class ProductsListComponent {
     else {
       this.goToPage(event);
     }
+
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    });
   }
 
   goToPage(n: number): void {

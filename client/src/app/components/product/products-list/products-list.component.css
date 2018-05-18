@@ -86,12 +86,32 @@ tr:nth-child(even) {
   max-height: 25px;
 }
 
-.example .pagination>li>a,
-.example .pagination>li>span {
-  border: 1px solid purple;
+.product-list-pager ::ng-deep ul.ngx-pagination {
+  background-color: white;
+  width: fit-content;
+  border-radius: 20px;
+  /* -webkit-padding-start: 40px; */
+  padding: 0px;
 }
 
-.pagination>li.active>a {
-  background: purple;
-  color: #fff;
+.card-options .btn {
+  padding-right: 6px;
+  padding-left: 6px;
+}
+
+.product-image {
+  position: relative;
+}
+
+img.white-opacity {
+  background: white;
+  opacity: 0.3;
+}
+
+.product-in-cart-icon {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  color: #28CE28;
+  transform: translate(50%, -50%);
 }

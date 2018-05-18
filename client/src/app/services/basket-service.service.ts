@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BasketItem, Product } from 'app/interface/entities.interface';
-import { LocalStorageService } from './localStorageService';
 import { EventService } from './event.service';
+import { LocalStorageService } from './localStorageService';
 
 // TODO: Merge with the other service / get rid
 // Takes the basket data from the localStorage here, not db 
@@ -152,6 +152,16 @@ export class BasketService {
       return true;
     }
 
+    return false;
+  }
+
+  isProductInBasket(id: number): boolean {
+    let tmpBasket: BasketItem[] = this.getBasket();
+    let index = tmpBasket.map((i) => i.id).indexOf(id)
+    if (index != -1) {
+      if (tmpBasket[index].amount > 0)
+        return true;
+    }
     return false;
   }
 }

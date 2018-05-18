@@ -34,7 +34,8 @@
           <div class="row">
             <div class="col-3">
               <div class="product-title">
-                <img [src]="getProdutImage(product.id)" onError="this.src='assets/img/product/placeholder.png';" alt="Card image cap" class="rounded">
+                <img [src]="getProdutImage(product.id)" onError="this.src='assets/img/product/placeholder.png';" alt="{{ product.ManufacturerItemDescription }}"
+                  class="rounded">
                 <div class="product-name">
                   {{product.name}}
                 </div>
