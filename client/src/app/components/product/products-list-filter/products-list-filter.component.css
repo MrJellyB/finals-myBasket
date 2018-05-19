@@ -9,32 +9,27 @@
     margin-top: 10%;
 }
 
-@keyframes spin {
+ @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
 
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
+.filter-form {
+    margin: 20px 0;
+    font-weight: bold;
+    /* display: flex; */
+    /* justify-content: space-between; */
 }
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: right;
-  padding: 8px;
+.form-group {
+    margin: 0 10px;
 }
 
-tr:nth-child(even) {
-  background-color: #dddddd;
+.table {
+  background: white;
 }
 
-.example .pagination>li>a,
-.example .pagination>li>span {
-  border: 1px solid purple;
-}
-.pagination>li.active>a {
-  background: purple;
-  color: #fff;
-}
+.pager ::ng-deep ul.ngx-pagination {
+    background-color: white;
+    padding: 0px;
+  }

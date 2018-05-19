@@ -110,8 +110,8 @@
 </div>
 <div class="row">
   <div class="col d-flex justify-content-center">
-    <pagination-controls (pageChange)="pageChanged(p = $event)" previousLabel="" nextLabel="" maxSize="7" class="product-list-pager"></pagination-controls>
-
+    <pagination-controls class="pager" (pageChange)="pageChanged(p = $event)" previousLabel="" nextLabel="" maxSize="7">
+    </pagination-controls>
   </div>
 </div>
 <router-outlet></router-outlet>

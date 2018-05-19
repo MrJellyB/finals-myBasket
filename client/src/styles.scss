@@ -17,8 +17,7 @@ $nav-color-11: #133340;
 $nav-color-12: #d0ad9a;
 $nav-color-13: #7d8e9e;
 .page-wrap {
-  background: url("https://thenypost.files.wordpress.com/2018/01/grocery-store.jpg") no-repeat center center fixed;
-  //background: no-repeat center center fixed;
+  background: url("https://thenypost.files.wordpress.com/2018/01/grocery-store.jpg") no-repeat center center fixed; //background: no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -26,8 +25,7 @@ $nav-color-13: #7d8e9e;
   height: 100%;
   position: relative;
   margin: 0;
-  min-height: 100vh;
-  // animation-name: example;
+  min-height: 100vh; // animation-name: example;
   // animation-duration: 1s;
   // animation-timing-function: ease-in-out;
   // transition: opacity 1s ease-in-out;
@@ -37,8 +35,12 @@ $nav-color-13: #7d8e9e;
 }
 
 @keyframes example {
-  0%   {opacity: 0;}
-  100% {opacity: 1;}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 i.icon {
@@ -330,4 +332,14 @@ xs)) {
 // }
 .pointer {
   cursor: pointer;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
 }
