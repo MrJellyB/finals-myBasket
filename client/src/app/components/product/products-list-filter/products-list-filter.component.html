@@ -1,78 +1,85 @@
 <div *ngIf="userName()">
-  <div class="col-md-12">
+  <div>
     <h3>
       פלטר לפי:
     </h3>
-    <div class="form-group">
-      <div class="form-inline">
-        <div class="form-control">קטגוריה:   </div>
+    <form class="filter-form form-inline">
+      <div class="form-group">
+        <label class="mr-2">קטגוריה: </label>
         <select (change)="selectItem($event.target.value)" class="form-control">
           <option *ngFor="let currCategory of categories" value={{currCategory.id}}>{{currCategory.name}}</option>
         </select>
       </div>
-      <div class="form-inline" style="margin-top:20px">
-        <div class="form-control">שם: </div>
-        <input type="text" class="form-control" name="name" [(ngModel)]="name" />
+      <div class="form-group">
+        <label class="mr-2">שם: </label>
+        <input class="form-control" name="name" [(ngModel)]="name" />
       </div>
-
-      <div class="form-inline" style="margin-top:20px">
-        <div class="form-control">מחיר </div>
-        <input type="text" class="form-control" name="fromPrice" [(ngModel)]="fromPrice" />
-        <div class="form-control">עד מחיר </div>
-        <input type="text" class="form-control" name="toPrice" [(ngModel)]="toPrice" />
+      <div class="form-group">
+        <label class="mr-2">מחיר: </label>
+        <input class="form-control" type="number" name="fromPrice" [(ngModel)]="fromPrice" />
       </div>
-      <button type="button" class="btn btn-primary" (click)="onClickfindProducts()">בצע חיפוש</button>
-    </div>
+      <div class="form-group">
+          <label class="mr-2">עד מחיר: </label>
+          <input class="form-control" type="number" name="toPrice" [(ngModel)]="toPrice" />
+      </div>
+      <div class="form-group">
+        <!-- TODO CONTINUE -->
+        <button class="btn btn-primary form-control" (click)="onClickfindProducts()">בצע חיפוש</button>
+      </div>
+    </form>
   </div>
   <div class="loader" *ngIf="!isDataLoaded"></div>
-  <div *ngIf="isDataLoaded">
-    <table style="width:100%;background-color:white">
-      <tr>
-        <th class="title-right">מזהה מוצר</th>
-        <th class="title-right">שם מוצר</th>
-        <th class="title-right">מחיר</th>
-        <th class="title-right">קטגוריה</th>
-        <th class="title-right">קלוריות</th>
-        <th class="title-right">מדינת יצור</th>
-        <th class="title-right">יצרן</th>
-        <th class="title-right">הצג פרטים</th>
-        <th class="title-right">הוסף מוצר לסל</th>
-        <th class="title-right" *ngIf="checkManager()">עדכן/ מחק מוצר</th>
-      </tr>
-      <!--
-      <tr *ngFor="let currProduct of productPaging | paginate: { itemsPerPage:limit, currentPage: p,totalItems: productSize}  | category:currCategory | name:name | biggerThen:bigPrice | smallerThen:price">
-      -->
-
-      <tr *ngFor="let currProduct of productPaging | paginate: { itemsPerPage:limit, currentPage: p,totalItems: productSize} ">
-
-      <!--
-      <tr *ngFor="let currProduct of productPaging | category:currCategory | name:name | biggerThen:fromPrice | smallerThen:toPrice">
-      -->
-
-      <!--
-      <tr *ngFor="let currProduct of productPaging">-->
-        <td class="title-right">{{currProduct.id}}</td>
-        <td class="title-right">{{currProduct.name}}</td>
-        <td class="title-right">{{currProduct.price}}</td>
-        <td class="title-right">{{currProduct.categoryValue}}</td>
-        <td class="title-right">{{currProduct.calories}}</td>
-        <td class="title-right">{{currProduct.createCountry}}</td>
-        <td class="title-right">{{currProduct.company}}</td>
-        <td class="title-right"><button class="btn btn-primary" (click)="showDetails(currProduct.id, currProduct.category)">הצג פרטים</button></td>
-        <td class="title-right"><button class="btn btn-primary" (click)="addToBasket(currProduct)">הוסף לסל</button></td>
-        <td class="title-right" *ngIf="checkManager()"><button class="btn btn-primary" (click)="updateOrDelete(currProduct.id)">עריכת מוצר</button></td>
-
-      </tr>
-
-      <pagination-controls (pageChange)="pageChanged(p =$event)" 
-                            previousLabel="לאחור"
-                            nextLabel="הבא"
-                            maxSize="9"></pagination-controls>
+  <div *ngIf="isDataLoaded" class="table-responsive">
+    <table class="table table-hover table-sm">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">מזהה מוצר</th>
+          <th scope="col">שם מוצר</th>
+          <th scope="col">מחיר</th>
+          <th scope="col">קטגוריה</th>
+          <th scope="col">קלוריות</th>
+          <th scope="col">מדינת יצור</th>
+          <th scope="col">יצרן</th>
+          <th scope="col">הצג פרטים</th>
+          <th scope="col">הוסף מוצר לסל</th>
+          <th scope="col" *ngIf="checkManager()">עדכן/ מחק מוצר</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let currProduct of productPaging | paginate: { itemsPerPage:limit, currentPage: p,totalItems: productSize} ">
+          <td>{{currProduct.id}}</td>
+          <td>{{currProduct.name}}</td>
+          <td>{{currProduct.price}}</td>
+          <td>{{currProduct.categoryValue}}</td>
+          <td>{{currProduct.calories}}</td>
+          <td>{{currProduct.createCountry}}</td>
+          <td>{{currProduct.company}}</td>
+          <td>
+            <button class="btn btn-primary" (click)="showDetails(currProduct.id, currProduct.category)">הצג פרטים</button>
+          </td>
+          <td>
+            <button class="btn btn-primary" (click)="addToBasket(currProduct)">הוסף לסל</button>
+          </td>
+          <td *ngIf="checkManager()">
+            <button class="btn btn-primary" (click)="updateOrDelete(currProduct.id)">עריכת מוצר</button>
+          </td>
+      </tbody>
     </table>
   </div>
+  <div class="row">
+    <div class="col d-flex justify-content-center">
+      <pagination-controls 
+        class="pager"
+        (pageChange)="pageChanged(p =$event)"
+        previousLabel=""
+        nextLabel=""
+        maxSize="7">
+      </pagination-controls>
+    </div>
+  </div>
 </div>
+
 
 <div *ngIf="!userName()">
   <h1>אין לך הרשאות להגיע לדף זה </h1>
 </div>
-

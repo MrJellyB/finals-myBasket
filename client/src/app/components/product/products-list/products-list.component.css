@@ -86,14 +86,6 @@ tr:nth-child(even) {
   max-height: 25px;
 }
 
-.product-list-pager ::ng-deep ul.ngx-pagination {
-  background-color: white;
-  width: fit-content;
-  border-radius: 20px;
-  /* -webkit-padding-start: 40px; */
-  padding: 0px;
-}
-
 .card-options .btn {
   padding-right: 6px;
   padding-left: 6px;
@@ -114,4 +106,9 @@ img.white-opacity {
   right: 50%;
   color: #28CE28;
   transform: translate(50%, -50%);
+}
+
+.pager ::ng-deep ul.ngx-pagination {
+  background-color: white;
+  padding: 0px;
 }
