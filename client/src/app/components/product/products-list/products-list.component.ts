@@ -56,6 +56,7 @@ export class ProductsListComponent {
   getProductSize() {
     this.route.params.subscribe(params => {
       this['p'] = 0;
+      this.page = 1;
       let category: number = +params['id'];
       this.categoryProp = category;
       this.productService.getProductSizeByCategory(category).subscribe((size: any) => {
