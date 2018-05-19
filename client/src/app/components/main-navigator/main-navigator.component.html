@@ -30,53 +30,55 @@
         </div>
       </div>
     </div> -->
-    <div class="col-auto pointer">
-      <h1 routerLink="/">
+    <div class="col-auto">
+      <h1 routerLink="/" class="pointer">
         LOGO
       </h1>
     </div>
-    <div class="col-auto ml-auto pointer">
-      <span routerLink="/statistics">
+    <div class="col-auto ml-auto">
+      <span routerLink="/statistics" class="pointer">
         <i class="fas fa-chart-bar"></i>
         סטטיסטיקות
       </span>
     </div>
-    <div class="col-auto mr-md-5 mr-sm-0 pointer">
-      <i class="fas fa-star"></i>
-      מועדפים
+    <div class="col-auto mr-md-5 mr-sm-0">
+      <span class="pointer">
+        <i class="fas fa-star"></i>
+        מועדפים
+      </span>
     </div>
 
-    <div class="col-auto pointer" *ngIf="checkManager()">
-      <span (click)="managerView()">
+    <div class="col-auto" *ngIf="checkManager()">
+      <span (click)="managerView()" class="pointer">
         <i class="fas fa-wrench"></i>
         ממשק ניהול
       </span>
     </div>
 
-    <div class="col-auto pointer" *ngIf="userName()">
-      <span routerLink="/profile-builder">
+    <div class="col-auto" *ngIf="userName()">
+      <span routerLink="/profile-builder" class="pointer">
         <i class="fas fa-user"></i>
         <b>
-          {{ userName() }}
+          {{ getDisplayUserName() }}
         </b>
       </span>
     </div>
 
-    <div class="col-auto pointer" *ngIf="!userName()">
-      <span routerLink="/login">
+    <div class="col-auto" *ngIf="!userName()">
+      <span routerLink="/login" class="pointer">
         <i class="fas fa-sign-in-alt"></i>
         כניסה
       </span>
     </div>
 
-    <div class="col-auto pointer" *ngIf="userName()">
-      <span (click)="logOff()">
+    <div class="col-auto" *ngIf="userName()">
+      <span (click)="logOff()" class="pointer">
         <i class="fas fa-sign-out-alt"></i>
         התנתק
       </span>
     </div>
-    <div class="col-auto pointer" *ngIf="!userName()">
-      <span routerLink="/register">
+    <div class="col-auto" *ngIf="!userName()">
+      <span routerLink="/register" class="pointer">
         הרשמה
       </span>
     </div>
@@ -236,7 +238,7 @@
 
           </li>
 
-          <li class="nav-item col mr-auto" routerLink="/product-list-filter">
+          <li class="nav-item col mr-auto" (click)="getProductListFilter()">
             <a class="nav-link ">
               <div class="nav-text-container ">
                 <span>

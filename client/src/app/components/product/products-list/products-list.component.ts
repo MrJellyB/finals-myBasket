@@ -87,7 +87,11 @@ export class ProductsListComponent {
           }
         )
       }
-    })
+    }).add(() =>
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      })
+    )
   }
 
   getProducts(): any {
@@ -180,9 +184,6 @@ export class ProductsListComponent {
       this.goToPage(event);
     }
 
-    $(function () {
-      $('[data-toggle="tooltip"]').tooltip();
-    });
   }
 
   goToPage(n: number): void {
@@ -214,6 +215,10 @@ export class ProductsListComponent {
           }
         }
       }
+    ).add(() =>
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      })
     )
   }
 

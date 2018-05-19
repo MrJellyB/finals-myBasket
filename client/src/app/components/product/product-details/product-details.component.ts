@@ -5,6 +5,7 @@ import { EventService } from 'app/services/event.service';
 import { LocalStorageService } from 'app/services/localStorageService';
 import { ProductService } from 'app/services/product.service';
 import { UsersService } from '../../../services/users.service';
+import { BasketService } from "app/services/basket-service.service";
 
 declare var $;
 
@@ -42,7 +43,8 @@ export class ProductDetailsComponent {
     private router: Router,
     private route: ActivatedRoute,
     private eventService: EventService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private basketService: BasketService,
   ) { }
 
   ngAfterViewInit() {
@@ -131,32 +133,28 @@ export class ProductDetailsComponent {
     );
   }
 
-  addToBasket(product: Product) {
-    this.actionCode = 4;
-    let basketItems: BasketItem[] = [];
-
-    if (this.localStorageService.get("basketItems")) {
-      basketItems = this.localStorageService.get("basketItems");
-    }
-
-    let index = basketItems.map((i) => i.id).indexOf(product.id)
-    if (index != -1) {
-      basketItems[index].amount += 1;
-    }
-    else {
-      const basketItem: BasketItem =
-        {
-          id: this.product.id,
-          name: this.product.name,
-          image: "",
-          price: this.product.price,
-          amount: 1
-        }
-      basketItems.push(basketItem);
-    }
-
-    this.localStorageService.set("basketItems", basketItems);
+  addToBasket(product: Product, input: any) {
+    this.basketService.addItem(product);
     this.eventService.emit('BASKET_ITEMS');
+  }
+
+  removeFromBasket(productID: number, input: any) {
+    this.basketService.removeItemByID(productID);
+    this.eventService.emit('BASKET_ITEMS');
+  }
+
+  deleteFromBasket(product: Product, input: any) {
+    this.basketService.setItemAmountStable(product, 0);
+    this.eventService.emit('BASKET_ITEMS');
+  }
+
+  setItemAmount(product: Product, event: any) {
+    this.basketService.setItemAmountStable(product, +event.target.value);
+    this.eventService.emit('BASKET_ITEMS');
+  }
+
+  getItemAmount(productID: number): any {
+    return this.basketService.getItemAmount(productID);
   }
 
   getProdutImage(productID: number): string {
@@ -215,5 +213,10 @@ export class ProductDetailsComponent {
 
   handleFileChange(files: FileList) {
     this.product.image = files.item(0);
+  }
+
+  updateOrDelete(productID: number) {
+    this.router.navigate(['/product-list/' + this.product.category + "/details/" + productID + "/edit"]);
+    //this.router.navigate(['/add-or-update-product/' + productID]);
   }
 }

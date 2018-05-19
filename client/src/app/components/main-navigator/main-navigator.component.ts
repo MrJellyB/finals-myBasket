@@ -7,6 +7,7 @@ import { LocalStorageService } from 'app/services/localStorageService';
 import { UsersService } from 'app/services/users.service';
 import { Subscription } from 'rxjs';
 
+declare var $;
 
 @Component({
   selector: 'app-main-navigator',
@@ -96,7 +97,6 @@ export class MainNavigatorComponent {
   logOff() {
     this.usersService.logout();
   }
-
   HistoryOneView() {
     this.router.navigate(['/history-one-d3js/' + this.productId])
   }
@@ -122,7 +122,7 @@ export class MainNavigatorComponent {
   }
 
   getProductsByCategory(id) {
-    this.router.navigate(['/product-list/' + id])
+    this.router.navigate(['/product-list/' + id]).then(() => $("#navbarNavDropdown2").collapse('hide'));
   }
 
   userName() {
@@ -136,5 +136,10 @@ export class MainNavigatorComponent {
   checkManager() {
     return this.userName() != null && this.userType() == "2";
   }
+
+  getProductListFilter() {
+    this.router.navigate(['/product-list-filter']).then(() => $("#navbarNavDropdown2").collapse('hide'));
+  }
+
 }
 

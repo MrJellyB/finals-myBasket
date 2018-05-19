@@ -11,6 +11,26 @@
   cursor: pointer;
 }
 
+.product-top-info {
+  color: lightgray;
+  font-size: 0.8em;
+}
+
+.item-amount-input {
+  width: 60px;
+  height: 30px;
+  display: inline-block;
+  text-align: center;
+}
+
+.product-basket .btn-link {
+  padding: 0;
+}
+
+.product-top-info .btn-link {
+  padding-left: 0;
+}
+
 /* @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,600,400italic);
 
 nav {

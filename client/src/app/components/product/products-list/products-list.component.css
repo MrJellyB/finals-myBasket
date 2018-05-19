@@ -101,6 +101,7 @@ tr:nth-child(even) {
 
 .product-image {
   position: relative;
+  cursor: pointer;
 }
 
 img.white-opacity {

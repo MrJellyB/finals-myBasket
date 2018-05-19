@@ -1,21 +1,21 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { AppComponent } from './app.component';
-import { HttpModule } from '@angular/http';
-import { MainPageComponent } from './components/main-page/main-page.component';
-import { ErrorPageComponent } from './components/error-page/error-page.component'
 import { FormsModule } from '@angular/forms';
-import { AuthGuardService } from './shared/services/AuthGuard/auth-guard.service';
-import { MainNavigatorComponent } from './components/main-navigator/main-navigator.component';
-import { AppRouting } from './app.routing';
+import { HttpModule } from '@angular/http';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BasketModule } from 'app/modules/basket.module';
 import { LoginModule } from 'app/modules/login.module';
 import { ProductModule } from 'app/modules/product.module';
 import { HttpService } from 'app/services/http.service';
-import { BasketModule } from 'app/modules/basket.module';
+import { AppComponent } from './app.component';
+import { AppRouting } from './app.routing';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
+import { MainNavigatorComponent } from './components/main-navigator/main-navigator.component';
+import { MainPageComponent } from './components/main-page/main-page.component';
 import { EventService } from './services/event.service';
 import { LocalStorageService } from './services/localStorageService';
-import { HttpClientModule } from '@angular/common/http';
-
+import { AuthGuardService } from './shared/services/AuthGuard/auth-guard.service';
 @NgModule({
   imports: [
     BrowserModule,
@@ -26,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     BasketModule,
     FormsModule,
     AppRouting,
+    BrowserAnimationsModule
   ],
   declarations: [
     AppComponent,

@@ -31,40 +31,66 @@
           <span aria-hidden="true">&times;</span>
         </button>
         <form (ngSubmit)="f.form.valid && onSubmit(f,$event)" #f="ngForm" novalidate>
+          <div class="row product-top-info">
+            <div class="col-auto" *ngIf="!this.isEdit">
+              <button type="button" class="btn btn-link" (click)="updateOrDelete(product.id)" *ngIf="checkManager()">
+                <i class="fas fa-wrench"></i>
+              </button>
+            </div>
+            <div class="col-auto align-self-center">
+              עדכון אחרון: {{product.PriceUpdateDate}} |
+            </div>
+            <div class="col-auto align-self-center">
+              ברקוד: {{product.id}}
+            </div>
+          </div>
           <div class="row">
-            <div class="col-3">
-              <div class="product-title">
+            <div class="col-4">
+              <div class="product-title row">
                 <img [src]="getProdutImage(product.id)" onError="this.src='assets/img/product/placeholder.png';" alt="{{ product.ManufacturerItemDescription }}"
                   class="rounded">
                 <div class="product-name">
                   {{product.name}}
                 </div>
               </div>
-              <div class="product-tags">
+              <div class="product-tags row">
                 <img src="assets/img/GlutenFree.png" *ngIf="product.GlutenFree" alt="ללא גלוטן" title="ללא גלוטן" data-toggle="tooltip" data-placement="bottom"
                 />
                 <img src="assets/img/Kashrut.png" *ngIf="product.Kashrut" alt="{{ product.Kashrut }}" title="{{ product.Kashrut }}" data-toggle="tooltip"
                   data-placement="bottom" />
-                <img src="assets/img/Justice.png" *ngIf="product.ControlledPrice" alt="{{ product.ControlledPrice }}" data-toggle="tooltip"
-                  data-placement="bottom" />
-                <img src="assets/img/Organic.png" *ngIf="product.Organic" alt="ללא גלוטן" title="מחיר מפוקח: {{ product.ControlledPrice }} ש&quot;ח"
+                <img src="assets/img/Justice.png" *ngIf="product.ControlledPrice" alt="{{ product.ControlledPrice }}" title="מחיר מפוקח: {{ product.ControlledPrice }} ש&quot;ח"
                   title="מחיר מפוקח: {{ product.ControlledPrice }} ש&quot;ח" data-toggle="tooltip" data-placement="bottom"
+                />
+                <img src="assets/img/Organic.png" *ngIf="product.Organic" alt="אורגני" title="אורגני" data-toggle="tooltip" data-placement="bottom"
                 />
                 <img src="assets/img/VeganFriendly.png" *ngIf="product.VeganFriendly" alt="טבעוני" title="טבעוני" data-toggle="tooltip" data-placement="bottom"
                 />
                 <img src="assets/img/EfshariBari.png" *ngIf="product.EfshariBari" alt="אפשרי בריא" title="אפשרי בריא" data-toggle="tooltip"
                   data-placement="bottom" />
-                <div>
-
+              </div>
+              <div class="product-basket row d-flex justify-content-around align-middle flex-wrap">
+                <div class="d-flex justify-content-between align-middle" *ngIf="!getItemAmount(product.id)">
+                  <button style="margin-top:5%" class="button-style" (click)="addToBasket(product)" type="button" class="btn btn-primary">הוסף לסל</button>
                 </div>
-                <div>
-                  <button style="margin-top:5%" class="button-style" (click)="addToBasket(product)">הוסף לסל</button>
+                <div class="col-auto" *ngIf="getItemAmount(product.id) !== 0">
+                  <button type="button" class="btn btn-link" (click)="addToBasket(product, amountInput)">
+                    <i class="fas fa-plus-circle"></i>
+                  </button>
+                  <input type="text" #amountInput [value]="getItemAmount(product.id)" (input)="setItemAmount(product, $event)" class="form-control item-amount-input">
+                  <button type="button" class="btn btn-link" (click)="removeFromBasket(product.id, amountInput)">
+                    <i class="fas fa-minus-circle"></i>
+                  </button>
+                </div>
+                <div class="align-self-center col-auto" *ngIf="getItemAmount(product.id) !== 0">
+                  <button type="button" class="btn btn-link" (click)="deleteFromBasket(product, 0)">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
                 </div>
               </div>
             </div>
             <div class="col">
               <div class="row">
-                <div class="col-3">
+                <div class="col-4">
                   <span class="feature-title">שם המוצר:</span>
                 </div>
                 <div class="col" *ngIf="!this.isEdit">
@@ -75,7 +101,7 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-3">
+                <div class="col-4">
                   <span class="feature-title">כמות:</span>
                 </div>
                 <div class="col" *ngIf="!this.isEdit">
@@ -89,7 +115,7 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-3">
+                <div class="col-4">
                   <span class="feature-title">קטגוריה:</span>
                 </div>
                 <div class="col" *ngIf="!this.isEdit">
@@ -102,7 +128,7 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-3">
+                <div class="col-4">
                   <span class="feature-title">ספק/יצרן:</span>
                 </div>
                 <div class="col" *ngIf="!this.isEdit">
@@ -113,7 +139,7 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-3">
+                <div class="col-4">
                   <span class="feature-title">ארץ ייצור:</span>
                 </div>
                 <div class="col" *ngIf="!this.isEdit">
@@ -126,7 +152,7 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-3">
+                <div class="col-4">
                   <span class="feature-title">תיאור:</span>
                 </div>
                 <div class="col" *ngIf="!this.isEdit">
@@ -138,7 +164,7 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-3">
+                <div class="col-4">
                   <span class="feature-title">מחיר:</span>
                 </div>
                 <div class="col" *ngIf="!this.isEdit">
@@ -149,7 +175,7 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-3">
+                <div class="col-4">
                   <span class="feature-title">מחיר ליחידת מידה:</span>
                 </div>
                 <div class="col" *ngIf="!this.isEdit">
@@ -164,8 +190,8 @@
                   />
                 </div>
               </div>
-              <div class="row">
-                <div class="col-3">
+              <div class="row" *ngIf="this.isEdit">
+                <div class="col-4">
                   <span class="feature-title">ברקוד:</span>
                 </div>
                 <div class="col" *ngIf="!this.isEdit">
@@ -175,8 +201,8 @@
                   <input class="form-control" tabindex="5" name="id" type="text" [(ngModel)]="product.id" #id="ngModel" />
                 </div>
               </div>
-              <div class="row">
-                <div class="col-3">
+              <div class="row" *ngIf="this.isEdit">
+                <div class="col-4">
                   <span class="feature-title">תאריך עידכון אחרון:</span>
                 </div>
                 <div class="col" *ngIf="!this.isEdit">
@@ -189,9 +215,11 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-3">
+                <div class="col-4">
                   תגובות:
                 </div>
+              </div>
+              <div class="row">
                 <div class="col">
                   <div *ngIf="product.comments">
                     <ul>
@@ -212,12 +240,12 @@
                 <div class="col">
                   <div class="form-group row">
                     ציון:
-                    <div class="col-md-3">
+                    <div class="col-lg-4 col-md-7">
                       <select (change)="SelectedGrade($event.target.value)" class="form-control">
-                        <option *ngFor="let currGrade of grades" value={{currGrade}}>{{currGrade}}</option>
+                        <option *ngFor="let currGrade of grades; let i = index;" value={{currGrade}} [selected]="i == 0">{{currGrade}}</option>
                       </select>
                     </div>
-                    <button (click)="addComment()">הוסף תגובה</button>
+                    <button type="button" class="btn btn-primary" (click)="addComment()">הוסף תגובה</button>
                   </div>
                 </div>
               </div>
