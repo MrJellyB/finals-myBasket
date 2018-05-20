@@ -1,7 +1,7 @@
 {
-    // "editor.codeActionsOnSave": {
-    //     "source.organizeImports": true
-    // },
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+    },
     "editor.formatOnSave": true,
     "html.format.enable": false,
     "git.ignoreLimitWarning": true
