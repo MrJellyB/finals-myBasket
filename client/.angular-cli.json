@@ -3,51 +3,54 @@
   "project": {
     "name": "website"
   },
-  "apps": [{
-    "root": "src",
-    "outDir": "dist",
-    "assets": [
-      "assets",
-      "favicon.ico"
-    ],
-    "index": "index.html",
-    "main": "main.ts",
-    "polyfills": "polyfills.ts",
-    "test": "test.ts",
-    "tsconfig": "tsconfig.app.json",
-    "testTsconfig": "tsconfig.spec.json",
-    "prefix": "app",
-    "styles": [
-      "assets/scripts/rtlcss/css/rtl/bootstrap.min.css",
-      "assets/scripts/rtlcss/css/rtl/bootstrap-reboot.min.css",
-      "assets/scripts/rtlcss/css/rtl/bootstrap-grid.min.css",
-      "../node_modules/@fortawesome/fontawesome-free-webfonts/css/fontawesome.css",
-      "../node_modules/@fortawesome/fontawesome-free-webfonts/css/fa-solid.css",
-      "../node_modules/@fortawesome/fontawesome-free-webfonts/css/fa-regular.css",
-      "../node_modules/@fortawesome/fontawesome-free-webfonts/css/fa-brands.css",
-      "../node_modules/flag-icon-css/css/flag-icon.min.css",
-      "../node_modules/titatoggle/dist/titatoggle-dist-min.css",
-      "styles.scss"
-    ],
-    "scripts": [
-      "../node_modules/jquery/dist/jquery.min.js",
-      "../node_modules/popper.js/dist/umd/popper.min.js",
-      "assets/scripts/rtlcss/js/bootstrap.min.js",
-      "assets/scripts/rtlcss/js/bootstrap.bundle.min.js",
-      "assets/scripts/website.js"
-    ],
-    "environmentSource": "environments/environment.ts",
-    "environments": {
-      "dev": "environments/environment.ts",
-      "prod": "environments/environment.prod.ts"
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "dist",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        "assets/scripts/rtlcss/css/rtl/bootstrap.min.css",
+        "assets/scripts/rtlcss/css/rtl/bootstrap-reboot.min.css",
+        "assets/scripts/rtlcss/css/rtl/bootstrap-grid.min.css",
+        "../node_modules/@fortawesome/fontawesome-free-webfonts/css/fontawesome.css",
+        "../node_modules/@fortawesome/fontawesome-free-webfonts/css/fa-solid.css",
+        "../node_modules/@fortawesome/fontawesome-free-webfonts/css/fa-regular.css",
+        "../node_modules/@fortawesome/fontawesome-free-webfonts/css/fa-brands.css",
+        "../node_modules/flag-icon-css/css/flag-icon.min.css",
+        "../node_modules/titatoggle/dist/titatoggle-dist-min.css",
+        "styles.scss"
+      ],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/popper.js/dist/umd/popper.min.js",
+        "assets/scripts/rtlcss/js/bootstrap.min.js",
+        "assets/scripts/rtlcss/js/bootstrap.bundle.min.js",
+        "assets/scripts/website.js"
+      ],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
     }
-  }],
+  ],
   "e2e": {
     "protractor": {
       "config": "./protractor.conf.js"
     }
   },
-  "lint": [{
+  "lint": [
+    {
       "project": "src/tsconfig.app.json",
       "exclude": "**/node_modules/**"
     },
@@ -66,7 +69,7 @@
     }
   },
   "defaults": {
-    "styleExt": "scss",
+    "styleExt": "css",
     "component": {
       "spec": false
     },
