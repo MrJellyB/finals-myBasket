@@ -343,3 +343,27 @@ input[type="number"]::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+html {
+  font-size: 1rem;
+}
+
+@include media-breakpoint-up(xs) {
+  html {
+    font-size: 0.9rem;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  html {
+    font-size: unset;
+  }
+}
+
+.access-denied {
+  width: 50%;
+  background: #133340;
+  color: white;
+  height: 50%;
+  height: 400px;
+}

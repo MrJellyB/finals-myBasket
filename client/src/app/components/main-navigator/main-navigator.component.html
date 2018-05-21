@@ -49,6 +49,11 @@
     </div>
 
     <div class="col-auto" *ngIf="checkManager()">
+      <button type="button" class="btn btn-info add-product-button" (click)="newProduct()">
+        <i class="fas fa-plus-circle"></i>מוצר חדש</button>
+    </div>
+
+    <div class="col-auto" *ngIf="checkManager()">
       <span (click)="managerView()" class="pointer">
         <i class="fas fa-wrench"></i>
         ממשק ניהול

@@ -1,6 +1,6 @@
 import { Component, Inject, Renderer2 } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { BasketService } from 'app/services/basket-service.service';
 import { EventService } from 'app/services/event.service';
 import { LocalStorageService } from 'app/services/localStorageService';
@@ -18,8 +18,10 @@ export class MainNavigatorComponent {
   productId: string;
   basketItemsAmount: number;
   subs: Subscription[] = [];
+  currentCategory: number;
 
   constructor(private router: Router,
+    private route: ActivatedRoute,
     private _renderer2: Renderer2,
     private usersService: UsersService,
     private basketService: BasketService,
@@ -52,6 +54,14 @@ export class MainNavigatorComponent {
     //     `;
 
     // this._renderer2.appendChild(this._document.body, script);
+
+
+    this.router.events
+      .filter((event) => event instanceof NavigationEnd)
+      .subscribe((event) => {
+        this.currentCategory = +(event as NavigationEnd).url.split('/')[2]
+      });
+
     this.basketItemsAmount = this.basketService.getAllAmount();
     this.subs.push(
       this.eventService.observe('BASKET_ITEMS').subscribe(() => {
@@ -79,6 +89,13 @@ export class MainNavigatorComponent {
 
   basketView() {
     this.router.navigate(['/basket'])
+  }
+
+  newProduct() {
+    if (this.currentCategory)
+      this.router.navigate(['/product-list/' + this.currentCategory + '/new']);
+    else
+      this.router.navigate(['/product-list-filter/new']);
   }
 
   getDisplayUserName() {

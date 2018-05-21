@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container py-3 py-md-4 my-4 my-md-5 rounded">
   <form id="contact" name="form" (ngSubmit)="f.form.valid && onSubmit(f,$event)" #f="ngForm" novalidate>
     <div class="row justify-content-center">
       <h2>התחברות לאתר</h2>
@@ -7,25 +7,27 @@
       <h4>הכנס את פרטיך</h4>
     </div>
     <fieldset>
-        <div class="row justify-content-center">
-            <div class="col-lg-4 col-8">
-              <label class="control-label" >שם משתמש</label>
-              <input placeholder="משתמש..." class="form-control" type="text" tabindex="1" required autofocus name="userName" [(ngModel)]="model.userName" #userName="ngModel">
-           </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-8 form-group">
+          <label class="control-label">שם משתמש</label>
+          <input placeholder="משתמש..." class="form-control" type="text" tabindex="1" required autofocus name="userName" [(ngModel)]="model.userName"
+            #userName="ngModel">
         </div>
-        <div class="row justify-content-center">
-            <div class="col-lg-4 col-8">
-              <label class="control-label" >סיסמא</label>
-                <input placeholder="סיסמא..." type="password" class="form-control" tabindex="2" required name="password" [(ngModel)]="model.password" #password="ngModel">
-            </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-8 form-group">
+          <label class="control-label">סיסמא</label>
+          <input placeholder="סיסמא..." type="password" class="form-control" tabindex="2" required name="password" [(ngModel)]="model.password"
+            #password="ngModel">
         </div>
-        <div class="row justify-content-center">
-            <div class="col-lg-4 col-8">
-              <button class="btn btn-success btn-lg btn-block" name="submit" type="submit" id="contact-submit" data-submit="...Sending">התחבר לאתר</button>
-            </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-4 col-8 form-group">
+          <button class="btn btn-success btn-lg btn-block" name="submit" type="submit" id="contact-submit" data-submit="...Sending">התחבר לאתר</button>
         </div>
+      </div>
     </fieldset>
-    </form>
+  </form>
 </div>
 
 <!-- <div class="container" *ngIf="userName()">

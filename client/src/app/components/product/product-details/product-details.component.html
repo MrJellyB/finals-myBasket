@@ -32,7 +32,7 @@
         </button>
         <form (ngSubmit)="f.form.valid && onSubmit(f,$event)" #f="ngForm" novalidate>
           <div class="row product-top-info">
-            <div class="col-auto" *ngIf="!this.isEdit">
+            <div class="col-auto" *ngIf="!this.isEdit && !this.isNew">
               <button type="button" class="btn btn-link" (click)="updateOrDelete(product.id)" *ngIf="checkManager()">
                 <i class="fas fa-wrench"></i>
               </button>
@@ -93,10 +93,10 @@
                 <div class="col-4">
                   <span class="feature-title">שם המוצר:</span>
                 </div>
-                <div class="col" *ngIf="!this.isEdit">
+                <div class="col" *ngIf="!this.isEdit && !this.isNew">
                   {{product.name}}
                 </div>
-                <div class="col" *ngIf="this.isEdit">
+                <div class="col" *ngIf="this.isEdit || this.isNew">
                   <input class="form-control" tabindex="1" name="name" type="text" [(ngModel)]="product.name" #name="ngModel" />
                 </div>
               </div>
@@ -104,13 +104,13 @@
                 <div class="col-4">
                   <span class="feature-title">כמות:</span>
                 </div>
-                <div class="col" *ngIf="!this.isEdit">
+                <div class="col" *ngIf="!this.isEdit && !this.isNew">
                   <div class="product-quantity">{{ +product.Quantity }} {{product.UnitQty}}</div>
                 </div>
-                <div class="col" *ngIf="this.isEdit">
+                <div class="col" *ngIf="this.isEdit || this.isNew">
                   <input class="form-control" tabindex="7" name="Quantity" type="text" [(ngModel)]="product.Quantity" #Quantity="ngModel" />
                 </div>
-                <div class="col" *ngIf="this.isEdit">
+                <div class="col" *ngIf="this.isEdit || this.isNew">
                   <input class="form-control" tabindex="7" name="UnitQty" type="text" [(ngModel)]="product.UnitQty" #UnitQty="ngModel" />
                 </div>
               </div>
@@ -118,10 +118,10 @@
                 <div class="col-4">
                   <span class="feature-title">קטגוריה:</span>
                 </div>
-                <div class="col" *ngIf="!this.isEdit">
-                  {{this.CategoryValue.name}}
+                <div class="col" *ngIf="!this.isEdit && !this.isNew">
+                  {{this.CategoryValue ? this.CategoryValue.name : ""}}
                 </div>
-                <div class="col" *ngIf="this.isEdit">
+                <div class="col" *ngIf="this.isEdit || this.isNew">
                   <select (change)="selectItem($event.target.value)" class="form-control">
                     <option *ngFor="let currCategory of categories" [selected]="currCategory.id == currentCategory" value={{currCategory.id}}>{{currCategory.name}}</option>
                   </select>
@@ -131,10 +131,10 @@
                 <div class="col-4">
                   <span class="feature-title">ספק/יצרן:</span>
                 </div>
-                <div class="col" *ngIf="!this.isEdit">
+                <div class="col" *ngIf="!this.isEdit && !this.isNew">
                   {{product.company}}
                 </div>
-                <div class="col" *ngIf="this.isEdit">
+                <div class="col" *ngIf="this.isEdit || this.isNew">
                   <input class="form-control" tabindex="6" name="company" type="text" [(ngModel)]="product.company" #company="ngModel" />
                 </div>
               </div>
@@ -142,11 +142,11 @@
                 <div class="col-4">
                   <span class="feature-title">ארץ ייצור:</span>
                 </div>
-                <div class="col" *ngIf="!this.isEdit">
+                <div class="col" *ngIf="!this.isEdit && !this.isNew">
                   <span class="flag-icon {{'flag-icon-' + product.createCountry | lowercase}}" title="{{product.createCountry}}" data-toggle="tooltip"
                     data-placement="right" tabindex="0"></span>
                 </div>
-                <div class="col" *ngIf="this.isEdit">
+                <div class="col" *ngIf="this.isEdit || this.isNew">
                   <input class="form-control" tabindex="5" name="createCountry" type="text" [(ngModel)]="product.createCountry" #createCountry="ngModel"
                   />
                 </div>
@@ -155,10 +155,10 @@
                 <div class="col-4">
                   <span class="feature-title">תיאור:</span>
                 </div>
-                <div class="col" *ngIf="!this.isEdit">
+                <div class="col" *ngIf="!this.isEdit && !this.isNew">
                   {{product.ManufacturerItemDescription }}
                 </div>
-                <div class="col" *ngIf="this.isEdit">
+                <div class="col" *ngIf="this.isEdit || this.isNew">
                   <input class="form-control" tabindex="5" name="ManufacturerItemDescription" type="text" [(ngModel)]="product.ManufacturerItemDescription"
                     #ManufacturerItemDescription="ngModel" />
                 </div>
@@ -167,10 +167,10 @@
                 <div class="col-4">
                   <span class="feature-title">מחיר:</span>
                 </div>
-                <div class="col" *ngIf="!this.isEdit">
+                <div class="col" *ngIf="!this.isEdit && !this.isNew">
                   {{ product.price | currency:'ILS':'symbol':'1.2-3' }}
                 </div>
-                <div class="col" *ngIf="this.isEdit">
+                <div class="col" *ngIf="this.isEdit || this.isNew">
                   <input class="form-control" tabindex="2" name="price" type="text" [(ngModel)]="product.price" #price="ngModel" />
                 </div>
               </div>
@@ -178,37 +178,37 @@
                 <div class="col-4">
                   <span class="feature-title">מחיר ליחידת מידה:</span>
                 </div>
-                <div class="col" *ngIf="!this.isEdit">
+                <div class="col" *ngIf="!this.isEdit && !this.isNew">
                   {{product.UnitOfMeasurePrice | currency:'ILS':'symbol':'1.2-3'}} / {{product.UnitOfMeasure}}
                 </div>
-                <div class="col" *ngIf="this.isEdit">
+                <div class="col" *ngIf="this.isEdit || this.isNew">
                   <input class="form-control" tabindex="5" name="UnitOfMeasurePrice" type="text" [(ngModel)]="product.UnitOfMeasurePrice" #UnitOfMeasurePrice="ngModel"
                   />
                 </div>
-                <div class="col" *ngIf="this.isEdit">
+                <div class="col" *ngIf="this.isEdit || this.isNew">
                   <input class="form-control" tabindex="5" name="UnitOfMeasure" type="text" [(ngModel)]="product.UnitOfMeasure" #UnitOfMeasure="ngModel"
                   />
                 </div>
               </div>
-              <div class="row" *ngIf="this.isEdit">
+              <div class="row" *ngIf="this.isEdit || this.isNew">
                 <div class="col-4">
                   <span class="feature-title">ברקוד:</span>
                 </div>
-                <div class="col" *ngIf="!this.isEdit">
+                <div class="col" *ngIf="!this.isEdit && !this.isNew">
                   {{product.id}}
                 </div>
-                <div class="col" *ngIf="this.isEdit">
+                <div class="col" *ngIf="this.isEdit || this.isNew">
                   <input class="form-control" tabindex="5" name="id" type="text" [(ngModel)]="product.id" #id="ngModel" />
                 </div>
               </div>
-              <div class="row" *ngIf="this.isEdit">
+              <div class="row" *ngIf="this.isEdit || this.isNew">
                 <div class="col-4">
                   <span class="feature-title">תאריך עידכון אחרון:</span>
                 </div>
-                <div class="col" *ngIf="!this.isEdit">
+                <div class="col" *ngIf="!this.isEdit && !this.isNew">
                   {{product.PriceUpdateDate}}
                 </div>
-                <div class="col" *ngIf="this.isEdit">
+                <div class="col" *ngIf="this.isEdit || this.isNew">
                   <input class="form-control" tabindex="5" name="PriceUpdateDate" type="text" [(ngModel)]="product.PriceUpdateDate" #PriceUpdateDate="ngModel"
                   />
 
@@ -240,7 +240,7 @@
                 <div class="col">
                   <div class="form-group row">
                     ציון:
-                    <div class="col-lg-4 col-md-7">
+                    <div class="col-lg-4 col-md-7 col-9">
                       <select (change)="SelectedGrade($event.target.value)" class="form-control">
                         <option *ngFor="let currGrade of grades; let i = index;" value={{currGrade}} [selected]="i == 0">{{currGrade}}</option>
                       </select>
@@ -258,13 +258,12 @@
               </div>
             </div>
           </div>
-          <div class="row" *ngIf="this.isEdit">
+          <div class="row" *ngIf="this.isEdit || this.isNew">
             <div class="col">
               <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" [disabled]="!f.valid || currentCategory == 0" *ngIf="this.product.id == 0"
-                  (click)="actionCodeToAdd()">הוספת מוצר</button>
-                <button type="submit" class="btn btn-primary" [disabled]="!f.valid" *ngIf="this.product.id != 0" (click)="actionCodeToUpdate()">עדכן מוצר</button>
-                <button type="submit" class="btn btn-primary" *ngIf="this.product.id != 0" (click)="actionCodeToDelete()">מחיקת מוצר</button>
+                <button type="submit" class="btn btn-primary" [disabled]="!f.valid || currentCategory == 0" *ngIf="this.isNew" (click)="actionCodeToAdd()">הוספת מוצר</button>
+                <button type="submit" class="btn btn-primary" [disabled]="!f.valid" *ngIf="this.isEdit" (click)="actionCodeToUpdate()">עדכן מוצר</button>
+                <button type="submit" class="btn btn-primary" *ngIf="this.isEdit" (click)="actionCodeToDelete()">מחיקת מוצר</button>
               </div>
             </div>
           </div>

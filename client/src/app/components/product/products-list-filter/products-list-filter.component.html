@@ -19,8 +19,8 @@
         <input class="form-control" type="number" name="fromPrice" [(ngModel)]="fromPrice" />
       </div>
       <div class="form-group">
-          <label class="mr-2">עד מחיר: </label>
-          <input class="form-control" type="number" name="toPrice" [(ngModel)]="toPrice" />
+        <label class="mr-2">עד מחיר: </label>
+        <input class="form-control" type="number" name="toPrice" [(ngModel)]="toPrice" />
       </div>
       <div class="form-group">
         <!-- TODO CONTINUE -->
@@ -68,18 +68,29 @@
   </div>
   <div class="row">
     <div class="col d-flex justify-content-center">
-      <pagination-controls 
-        class="pager"
-        (pageChange)="pageChanged(p =$event)"
-        previousLabel=""
-        nextLabel=""
-        maxSize="7">
+      <pagination-controls class="pager" (pageChange)="pageChanged(p =$event)" previousLabel="" nextLabel="" maxSize="7">
       </pagination-controls>
     </div>
   </div>
+
+  <router-outlet></router-outlet>
+
 </div>
 
 
-<div *ngIf="!userName()">
-  <h1>אין לך הרשאות להגיע לדף זה </h1>
-</div>
+<div *ngIf="!checkManager()">
+  <div class="container access-denied py-3 py-md-4 my-4 my-md-5 rounded">
+    <div class="d-flex h-100 flex-column justify-content-center">
+      <div class="align-self-center text-center">
+        <div class="pb-3">
+          <h1>
+            <i class="fas fa-exclamation-triangle"></i>
+            הגישה נדחתה
+          </h1>
+        </div>
+        <div>
+          <h3>אין לך מספיק הרשאות</h3>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -35,7 +35,16 @@ export const routes: Routes = [
     { path: 'history-two-chart-bar', component: BarChartProuctPriceComponent },
     { path: 'manager-page', component: ManagerPageComponent },
     { path: 'preferred-product', component: PreferredProductComponent },
-    { path: 'product-list-filter', component: ProductsListFilterComponent },
+    {
+        path: 'product-list-filter',
+        component: ProductsListFilterComponent,
+        children: [
+            {
+                path: 'new',
+                component: ProductDetailsComponent
+            }
+        ]
+    },
     { path: 'statistics', component: StatisticsMainPageComponent },
     { path: 'profile-builder', component: ProfileBuilderComponent },
     // { path: 'product-list/:id/details/:productId/:edit', component: ProductsListComponent },
@@ -43,14 +52,19 @@ export const routes: Routes = [
     {
         path: 'product-list/:id',
         component: ProductsListComponent,
-        children: [{
-            path: 'details/:productId',
-            component: ProductDetailsComponent
-        },
-        {
-            path: 'details/:productId/:edit',
-            component: ProductDetailsComponent
-        },
+        children: [
+            {
+                path: 'new',
+                component: ProductDetailsComponent
+            },
+            {
+                path: 'details/:productId',
+                component: ProductDetailsComponent
+            },
+            {
+                path: 'details/:productId/:edit',
+                component: ProductDetailsComponent
+            }
         ]
     }
 ];

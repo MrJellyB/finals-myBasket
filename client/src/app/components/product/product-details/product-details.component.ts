@@ -28,7 +28,7 @@ export class ProductDetailsComponent {
   commentToSave: CommentToProduct;
   grades = [1, 2, 3, 4, 5]
   isEdit: boolean = false;
-
+  isNew: boolean = false;
   // Code 1: for add product
   // code 2: for update product
   // code 3: for delete product
@@ -48,30 +48,75 @@ export class ProductDetailsComponent {
   ) { }
 
   ngAfterViewInit() {
-    if (this.id) {
-      $(this.modal.nativeElement).modal('show');
-      $(this.modal.nativeElement).on('hidden.bs.modal', () => this.returnToCategory());
-    }
+    $(this.modal.nativeElement).modal('show');
+    $(this.modal.nativeElement).on('hidden.bs.modal', () => this.returnToCategory());
   }
 
   ngOnInit() {
     this.select = new EventEmitter();
     this.comm = "";
     this.commentToSave = <CommentToProduct>{};
+
+    this.product = <Product>{};
+    this.product.id = 0;
+
+    this.route.url.subscribe(url => {
+      this.isNew = url[0].path == "new" ? true : false;
+
+      if (this.isNew) {
+        this.actionCodeToAdd();
+      }
+    });
+
+    this.route.parent.params.subscribe(params => {
+      if (params['id']) {
+        this.product.category = +params['id']
+        this.currentCategory = +params['id'];
+        this.getCategoryById(+params['id']);
+      }
+    })
+
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['productId'];
       this.isEdit = params['edit'] ? true : false;
 
+      if (this.isEdit) {
+        this.actionCodeToUpdate();
+      }
+
       if (this.id) {
         this.getProductDetails(this.id);
       }
-    })
+    });
+
     this.getCategories();
   }
+
+  ngOnDestroy() {
+    $('.modal').modal('hide')
+  }
+
+  onSubmit(f: any, event: Event) {
+    if (this.actionCode === 1) {
+      this.saveProduct();
+    }
+    else if (this.actionCode === 2) {
+      this.updateProduct();
+    }
+    else if (this.actionCode === 3) {
+      this.deleteProduct();
+    }
+  }
+
+  actionCodeToAdd() { this.actionCode = 1 }
+  actionCodeToUpdate() { this.actionCode = 2 }
+  actionCodeToDelete() { this.actionCode = 3 }
 
   returnToCategory(): any {
     if (this.isEdit)
       this.router.navigate(['../../../'], { relativeTo: this.route });
+    else if (this.isNew)
+      this.router.navigate(['../'], { relativeTo: this.route });
     else
       this.router.navigate(['../../'], { relativeTo: this.route });
   }
@@ -109,18 +154,6 @@ export class ProductDetailsComponent {
     this.select.emit(value);
   }
 
-  onSubmit(f: any, event: Event) {
-    if (this.actionCode === 1) {
-      this.saveProduct();
-    }
-    else if (this.actionCode === 2) {
-      this.updateTheProduct();
-    }
-    else if (this.actionCode === 3) {
-      this.deleteProduct();
-    }
-  }
-
   addComment() {
     this.actionCode = 4;
     this.commentToSave.prodctId = this.product.id;
@@ -128,7 +161,7 @@ export class ProductDetailsComponent {
     this.commentToSave.grade = this.currGrade;
     this.productService.addCommentToProduct(this.commentToSave).subscribe(
       (data) => {
-        this.getProductDetails(this.id);
+        this.getProductDetails(this.product.id);
       }
     );
   }
@@ -164,38 +197,34 @@ export class ProductDetailsComponent {
   getCategories() {
     this.productService.getCategories().subscribe((results: any) => {
       this.categories = results
-      console.log(this.categories);
+      //console.log(this.categories);
     })
   }
-
-  actionCodeToAdd() { this.actionCode = 1 }
-  actionCodeToUpdate() { this.actionCode = 2 }
-  actionCodeToDelete() { this.actionCode = 3 }
 
   saveProduct() {
     this.product.calories = +this.product.calories;
     this.product.price = +this.product.price;
     this.productService.saveProduct(this.product).subscribe((results) => {
       this.product.id = +results;
-      this.actionCode = 2;
-      alert('שמירת המוצר בוצעה בהצלחה, הינך עובר למסך עריכה');
-      this.router.navigate(['/add-or-update-product/' + this.product.id]);
+      alert('המוצר נשמר בהצלחה');
+      this.returnToCategory();
+      //this.actionCode = 2;
+      //this.router.navigate(['/product-details/' + this.product.id]);
     });
   }
 
-  updateTheProduct() {
-    console.log(this.product);
+  updateProduct() {
     this.product.price = +this.product.price;
     this.productService.updateProduct(this.product).subscribe((results) => {
-      alert('עדכון המוצר בוצע בהצלחה, הינך עובר לדף הראשי');
-      this.router.navigate(['/']);
+      alert('המוצר עודכן בהצלחה');
+      //this.router.navigate(['/']);
     });
   }
 
   deleteProduct() {
     this.productService.deleteProduct(this.product).subscribe((results) => {
-      alert('מחיקת המוצר בוצעה בהצלחה, הינך עובר לדף הראשי');
-      this.router.navigate(['/']);
+      alert('המוצר נמחק בהצלחה');
+      this.returnToCategory()
     });
   }
 
@@ -216,7 +245,10 @@ export class ProductDetailsComponent {
   }
 
   updateOrDelete(productID: number) {
+    $('.modal').modal('hide')
     this.router.navigate(['/product-list/' + this.product.category + "/details/" + productID + "/edit"]);
     //this.router.navigate(['/add-or-update-product/' + productID]);
   }
+
+
 }

@@ -42,6 +42,8 @@ export class ProductsListComponent {
     private UsersService: UsersService, ) { }
 
   ngOnInit() {
+    console.log("Right1 route.outlet (ActivatedRoute) is:", this.route.outlet);
+
     //this.getProducts();
     this.getProductSize();
     this.getProductsPaging();
