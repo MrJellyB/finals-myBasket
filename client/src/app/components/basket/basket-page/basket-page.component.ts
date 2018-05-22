@@ -13,14 +13,15 @@ import { EventService } from 'app/services/event.service';
 import { Subscription } from 'rxjs';
 import { UsersService } from 'app/services/users.service';
 import { LocalStorageService } from 'app/services/localStorageService';
-
+import { Http } from '@angular/http';
+import * as consts from 'app/utils/consts';
 @Component({
   selector: 'app-basket-page',
   templateUrl: './basket-page.component.html',
   styleUrls: ['./basket-page.component.css']
 })
 export class BasketPageComponent {
-  basketItems: BasketItem[] = this.basketService.getBasket();
+  basketItems: BasketItem[];
   title: string = 'My first AGM project';
   lat: number = 32.678418;
   lng: number = 35.409007;
@@ -36,6 +37,7 @@ export class BasketPageComponent {
   isLoggedIn: boolean = this.userService.isLoggedIn;
 
   constructor(
+    private http: Http,
     private basketHandleService: BasketHandleService,
     private router: Router,
     private route: ActivatedRoute,
@@ -46,6 +48,9 @@ export class BasketPageComponent {
     private userService: UsersService) { }
 
   ngOnInit() {
+
+    this.basketItems = this.basketService.getBasket();
+
     this.marker = { lat: this.lat, lng: this.lng };
     this.basket = <Basket>{};
     this.getAllStores();
@@ -203,5 +208,17 @@ export class BasketPageComponent {
 
   isBasketEmpty(): boolean {
     return this.basketService.isBasketEmpty()
+  }
+
+  buildSmartBasket() {
+    const username = this.localStorageService.get('currentUser').userName;
+    if (username) {
+      this.http.get(`${consts.geneticAlgoUrl}/api/main/${username}`)
+        .map((data) => data.json())
+        .subscribe((data) => {
+          this.basketService.setBasket(data.basketItems);
+          this.basketItems = data.basketItems;
+        });
+    }
   }
 }

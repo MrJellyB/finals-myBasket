@@ -2,7 +2,7 @@
     "editor.formatOnSave": true,
     "html.format.enable": false,
     "git.ignoreLimitWarning": true,
-    "editor.codeActionsOnSave": {
-        "source.organizeImports": true
-    },
+    // "editor.codeActionsOnSave": {
+    //     "source.organizeImports": true
+    // },
 }

@@ -21,22 +21,27 @@ export class ProductDetailsComponent {
   product: Product;
   sub: any;
   id: number;
-  CategoryValue: any;
   comm: string;
   select: EventEmitter<number>;
+
   currGrade: number = 1;
   commentToSave: CommentToProduct;
   grades = [1, 2, 3, 4, 5]
-  isEdit: boolean = false;
-  isNew: boolean = false;
+
   // Code 1: for add product
   // code 2: for update product
   // code 3: for delete product
   // code 4: for add comment or add to basket
   actionCode: number = 1;
+
   categories: Category[];
   currentCategory: number = 0;
+  CategoryValue: any;
+
   @ViewChild('modal') modal: ElementRef;
+
+  isEdit: boolean = false;
+  isNew: boolean = false;
 
   constructor(private productService: ProductService,
     private usersService: UsersService,
@@ -191,6 +196,8 @@ export class ProductDetailsComponent {
   }
 
   getProdutImage(productID: number): string {
+    if (productID == 0)
+      return "assets/img/product/placeholder.png";
     return "assets/img/product/" + productID + ".jpg";
   }
 
@@ -204,7 +211,9 @@ export class ProductDetailsComponent {
   saveProduct() {
     this.product.calories = +this.product.calories;
     this.product.price = +this.product.price;
+    this.product.category = this.currentCategory;
     this.productService.saveProduct(this.product).subscribe((results) => {
+      //  this.
       this.product.id = +results;
       alert('המוצר נשמר בהצלחה');
       this.returnToCategory();
@@ -215,6 +224,7 @@ export class ProductDetailsComponent {
 
   updateProduct() {
     this.product.price = +this.product.price;
+    this.product.category = +this.currentCategory;
     this.productService.updateProduct(this.product).subscribe((results) => {
       alert('המוצר עודכן בהצלחה');
       //this.router.navigate(['/']);
@@ -245,10 +255,12 @@ export class ProductDetailsComponent {
   }
 
   updateOrDelete(productID: number) {
-    $('.modal').modal('hide')
     this.router.navigate(['/product-list/' + this.product.category + "/details/" + productID + "/edit"]);
     //this.router.navigate(['/add-or-update-product/' + productID]);
   }
 
-
+  selectItem(value: number) {
+    this.currentCategory = value;
+    this.getCategoryById(value);
+  }
 }

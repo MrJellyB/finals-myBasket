@@ -56,10 +56,10 @@ exports.loginWithAuthenticate = function (email, password, callback) {
         "userName": email,
         "password": password
     }, {
-            projection: {
-                "userName": 1
-            }
-        }, callback);
+        projection: {
+            "userName": 1
+        }
+    }, callback);
 }
 
 exports.register = function (data, callback) {
@@ -96,19 +96,19 @@ exports.getProductSize = function (callback) {
 }
 
 exports.getProductSizeByCategory = function (category, callback) {
-    console.log(category);
-    db.product.aggregate([
-        {
-            $match: { "category": +category }
+    //console.log(category);
+    db.product.aggregate([{
+        $match: {
+            "category": +category
         }
-        , {
-            $group: {
-                _id: null,
-                count: {
-                    $sum: 1
-                }
+    }, {
+        $group: {
+            _id: null,
+            count: {
+                $sum: 1
             }
-        }]).toArray(callback);
+        }
+    }]).toArray(callback);
 }
 
 exports.saveProduct = function (data, callback) {
@@ -127,12 +127,12 @@ exports.getNextSequence = function (name, callback) {
     var ret = db.counters.findAndModify({
         _id: name
     }, [
-            ['_id', 'asc']
-        ], {
-            $inc: {
-                seq: 1
-            }
-        }, callback);
+        ['_id', 'asc']
+    ], {
+        $inc: {
+            seq: 1
+        }
+    }, callback);
 }
 
 exports.getCurrentSeq = function (name, callback) {
@@ -150,16 +150,16 @@ exports.getProductSizeByParams = function (params, callback) {
     query = queryProductFilter(params);
 
     db.product.aggregate([{
-        $match: query
-    },
-    {
-        $group: {
-            _id: null,
-            count: {
-                $sum: 1
+            $match: query
+        },
+        {
+            $group: {
+                _id: null,
+                count: {
+                    $sum: 1
+                }
             }
         }
-    }
     ]).toArray(callback);
 }
 
@@ -243,10 +243,14 @@ exports.updateProduct = function (idProduct, productToUpdate, callback) {
     var updateQuery = {
         "name": productToUpdate.name,
         "price": productToUpdate.price,
-        "category": productToUpdate.category,
+        "category": +productToUpdate.category,
         "calories": productToUpdate.calories,
         "createCountry": productToUpdate.createCountry,
-        "company": productToUpdate.company
+        "company": productToUpdate.company,
+        "Quantity": productToUpdate.Quantity,
+        "UnitQty": productToUpdate.UnitQty,
+        "ManufacturerItemDescription": productToUpdate.ManufacturerItemDescription,
+        "UnitOfMeasurePrice": productToUpdate.UnitOfMeasurePrice
     };
     var options = {
         upsert: true
@@ -299,26 +303,26 @@ exports.addCommentToProduct = function (productId, comment, grade, callback) {
 
 exports.getCheapestProductByCategory = function (categoryId, callback) {
     db.product.aggregate([{
-        '$sort': {
-            'price': 1
-        }
-    },
-    {
-        "$group": {
-            "_id": "$category",
-            "value": {
-                $min: "$price"
-            },
-            "_productId": {
-                $first: '$id'
+            '$sort': {
+                'price': 1
+            }
+        },
+        {
+            "$group": {
+                "_id": "$category",
+                "value": {
+                    $min: "$price"
+                },
+                "_productId": {
+                    $first: '$id'
+                }
+            }
+        },
+        {
+            "$match": {
+                "_id": +categoryId
             }
         }
-    },
-    {
-        "$match": {
-            "_id": +categoryId
-        }
-    }
     ]).toArray(callback);
 }
 
@@ -350,10 +354,10 @@ exports.changeUserTypeStatus = function (userName, statusToChange, callback) {
     db.users.update({
         'userName': userName
     }, {
-            $set: {
-                "userType": statusToChange
-            }
-        }, callback);
+        $set: {
+            "userType": statusToChange
+        }
+    }, callback);
 }
 
 
@@ -361,20 +365,20 @@ exports.resetPassword = function (userName, callback) {
     db.users.update({
         'userName': userName
     }, {
-            $set: {
-                "password": "123456"
-            }
-        }, callback);
+        $set: {
+            "password": "123456"
+        }
+    }, callback);
 }
 
 exports.addProfileToUser = function (userName, profile, callback) {
     db.users.update({
         'userName': userName
     }, {
-            $set: {
-                'profile': profile
-            }
-        }, callback);
+        $set: {
+            'profile': profile
+        }
+    }, callback);
 }
 
 exports.updateBasket = function (data, callback) {
