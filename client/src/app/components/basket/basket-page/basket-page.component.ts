@@ -35,6 +35,7 @@ export class BasketPageComponent {
   basket: Basket;
   map: any;
   isLoggedIn: boolean = this.userService.isLoggedIn;
+  showSpinner: boolean;
 
   constructor(
     private http: Http,
@@ -49,6 +50,7 @@ export class BasketPageComponent {
 
   ngOnInit() {
 
+    this.showSpinner = false;
     this.basketItems = this.basketService.getBasket();
 
     this.marker = { lat: this.lat, lng: this.lng };
@@ -211,11 +213,14 @@ export class BasketPageComponent {
   }
 
   buildSmartBasket() {
+    this.showSpinner = true;
+
     const username = this.localStorageService.get('currentUser').userName;
     if (username) {
       this.http.get(`${consts.geneticAlgoUrl}/api/main/${username}`)
         .map((data) => data.json())
         .subscribe((data) => {
+          this.showSpinner = false;
           this.basketService.setBasket(data.basketItems);
           this.basketItems = data.basketItems;
         });

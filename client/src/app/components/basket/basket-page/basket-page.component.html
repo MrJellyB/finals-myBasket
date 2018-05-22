@@ -1,6 +1,6 @@
 <div class="row">
-  <div class="col-md-8 card-styling" *ngIf="!isBasketEmpty()">
-    <table class="table" *ngIf="!isBasketEmpty()">
+  <div class="col-md-8 card-styling" *ngIf="!isBasketEmpty() && !showSpinner">
+    <table class="table">
       <thead>
         <tr>
           <th scope="col">שם המוצר</th>
@@ -38,7 +38,11 @@
     </div>
   </div>
 
-  <div class="col-md-8 card-styling" *ngIf="isBasketEmpty()">
+  <div class="col-md-8 card-styling d-flex justify-content-center align-items-center" *ngIf="showSpinner">
+    <div class="lds-hourglass"></div>
+  </div>
+
+  <div class="col-md-8 card-styling" *ngIf="isBasketEmpty() && !showSpinner">
     <div>
       אין לך מוצרים בסל. אתם מוזמנים להוסיף מוצרים מהקטגוריות שבתפריט למעלה.
     </div>
@@ -46,7 +50,7 @@
 
   <div class="col-md-3 offset-md-1 card-styling">
     <div class="text-center">
-      <button type="button" class="btn btn-success" (click)="buildSmartBasket()">הרכב סל חכם</button>
+      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#confirmModal">הרכב סל חכם</button>
     </div>
     <div>
       <img src="https://www.shufersal.co.il/umbracoContent/images/logo_mobile.png" width="200" />
@@ -71,6 +75,27 @@
       <button *ngIf="this.isLoggedIn" type="button" class="btn btn-warning" style="float:left" (click)="saveBasket()">
         <i class="fas fa fa-save"></i>
       </button>
+    </div>
+  </div>
+
+  <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="confirmModalLabel">אזהרה</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          בניית סל חכם תגרום לכל המוצרים הקיימים לך בסל להימחק.
+          <br/> האם את/ה בטוח שברצונך להמשיך?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">חזרה</button>
+          <button type="button" class="btn btn-primary" (click)="buildSmartBasket()" data-dismiss="modal">המשך</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
