@@ -1,37 +1,37 @@
-<div style="background-color:white" *ngIf="checkManager()">
-  <table style="width:100%">
-    <tr>
-      <th class="title-right">שם משתמש</th>
-      <th class="title-right">שם משפחה</th>
-      <th class="title-right">שם פרטי</th>
-      <th class="title-right">אימייל</th>
-      <th class="title-right">מין</th>
-      <th class="title-right">סוג משתמש</th>
-      <th class="title-right">האם למחוק משתמש</th>
-      <th class="title-right">האם להפוך למנהל</th>
-      <th class="title-right">איפוס סיסמא</th>
-
+<div *ngIf="checkManager()" class="table-responsive">
+  <table  class="table table-hover table-sm">
+    <thead>
+      <tr class="thead-light">
+        <th class="title-right">שם משתמש</th>
+        <th class="title-right">שם משפחה</th>
+        <th class="title-right">שם פרטי</th>
+        <th class="title-right">אימייל</th>
+        <th class="title-right">מין</th>
+        <th class="title-right">סוג משתמש</th>
+        <th class="title-right">מחיקת משתמש</th>
+        <th class="title-right">הפיכה למנהל</th>
+        <th class="title-right">איפוס סיסמא</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let currUser of users">
+        <td class="title-right">{{currUser.userName}}</td>
+        <td class="title-right">{{currUser.firstName}}</td>
+        <td class="title-right">{{currUser.lastName}}</td>
+        <td class="title-right">{{currUser.email}}</td>
+        <td class="title-right">{{currUser.genderValue}}</td>
+        <td class="title-right">{{currUser.userTypeValue}}</td>
+        <td class="title-right">
+          <button class="btn btn-primary" (click)="isDeleteUser(currUser.userName)">מחק משתמש</button>
+        </td>
+        <td class="title-right">
+            <input type="checkbox" [checked]="currUser.isManagerChecked" (change)="isChangeAdmin($event, currUser.userName)">
+        </td>
+        <td class="title-right">
+          <button class="btn btn-primary" (click)="isResetPassword(currUser.userName)">אפס סיסמא</button>
+        </td>
     </tr>
-
-
-    <tr *ngFor="let currUser of users">
-      <td class="title-right">{{currUser.userName}}</td>
-      <td class="title-right">{{currUser.firstName}}</td>
-      <td class="title-right">{{currUser.lastName}}</td>
-      <td class="title-right">{{currUser.email}}</td>
-      <td class="title-right">{{currUser.genderValue}}</td>
-      <td class="title-right">{{currUser.userTypeValue}}</td>
-      <td class="title-right">
-        <button class="btn btn-primary" (click)="isDeleteUser(currUser.userName)">מחק משתמש</button>
-      </td>
-      <td class="title-right">
-        <label>
-          <input type="checkbox" [checked]="currUser.isManagerChecked" (change)="isChangeAdmin($event, currUser.userName)">מנהל/ לא מנהל</label>
-      </td>
-      <td class="title-right">
-        <button class="btn btn-primary" (click)="isResetPassword(currUser.userName)">אפס סיסמא</button>
-      </td>
-    </tr>
+  </tbody>
   </table>
 </div>
 
