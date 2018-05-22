@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="row toolbar">
+  <div class="row toolbar d-flex align-items-center">
     <!-- <div class="col-auto-md-8">
       <canvas id="welcomeCanvas" width="400" height="60" dir="rtl" (click)="setMainPage()" style="vertical-align: bottom;">
         Your browser does not support the HTML5 canvas tag.
@@ -49,8 +49,8 @@
     </div>
 
     <div class="col-auto" *ngIf="checkManager()">
-      <button type="button" class="btn btn-info add-product-button" (click)="newProduct()">
-        <i class="fas fa-plus-circle"></i>מוצר חדש</button>
+      <button type="button" class="btn btn-info add-product-button py-0" (click)="newProduct()">
+        <i class="fas fa-plus-circle"></i>&nbsp;מוצר חדש</button>
     </div>
 
     <div class="col-auto" *ngIf="checkManager()">
