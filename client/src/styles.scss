@@ -401,3 +401,14 @@ html {
     transform: rotate(1800deg);
   }
 }
+
+@include media-breakpoint-up(xs) {
+  .table-compact {
+    td,
+    th {
+      padding: .3rem
+    }
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+}
