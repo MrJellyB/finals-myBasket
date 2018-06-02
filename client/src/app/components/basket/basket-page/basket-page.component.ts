@@ -217,7 +217,7 @@ export class BasketPageComponent {
 
     const username = this.localStorageService.get('currentUser').userName;
     if (username) {
-      this.http.get(`${consts.geneticAlgoUrl}/api/main/${username}`)
+      this.http.get(`${consts.geneticAlgoUrl}/${username}`)
         .map((data) => data.json())
         .subscribe((data) => {
           this.showSpinner = false;
