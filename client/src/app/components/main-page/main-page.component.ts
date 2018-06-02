@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Http } from '@angular/http';
 import * as consts from 'app/utils/consts';
 import { LocalStorageService } from '../../services/localStorageService';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'app-main-page',
@@ -18,7 +19,7 @@ export class MainPageComponent {
     const username = this.localStorageService.get('currentUser').userName;
     if (username) {
       // TODO: Add a spinner 
-      return this.http.get(`${consts.geneticAlgoUrl}/api/main/${username}`)
+      return this.http.get(`${environment.geneticAlgoUrl}/api/main/GetBasket/${username}`)
         .map((data) => data.json())
         .subscribe((data) => console.log(data));
     }
