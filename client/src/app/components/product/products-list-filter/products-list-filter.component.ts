@@ -3,8 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'app/services/product.service';
 import { UsersService } from 'app/services/users.service';
 import { Category, Product, QueryProduct } from '../../../interface/entities.interface';
-``
-
 
 @Component({
   selector: 'app-products-list-filter',

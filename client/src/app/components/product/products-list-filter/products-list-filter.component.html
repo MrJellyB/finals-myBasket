@@ -1,4 +1,4 @@
-<div *ngIf="userName()">
+<div>
   <div>
     <h3>
       פלטר לפי:
@@ -75,21 +75,3 @@
   <router-outlet></router-outlet>
 
 </div>
-
-
-<div *ngIf="!checkManager()">
-  <div class="container access-denied py-3 py-md-4 my-4 my-md-5 rounded">
-    <div class="d-flex h-100 flex-column justify-content-center">
-      <div class="align-self-center text-center">
-        <div class="pb-3">
-          <h1>
-            <i class="fas fa-exclamation-triangle"></i>
-            הגישה נדחתה
-          </h1>
-        </div>
-        <div>
-          <h3>אין לך מספיק הרשאות</h3>
-        </div>
-      </div>
-    </div>
-  </div>

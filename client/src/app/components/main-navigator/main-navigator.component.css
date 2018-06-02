@@ -31,3 +31,72 @@
 .add-product-button {
   border-radius: 10rem;
 }
+
+.wrapper {
+  display: block;
+}
+
+/* #wrapper {
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  padding-left: 0;
+  transition: all 0.5s ease;
+} */
+
+#sidebar-wrapper.toggled {
+  width: 220px;
+}
+
+#sidebar-wrapper {
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  background: #1a1a1a;
+  height: 100%;
+  left: 220px;
+  margin-left: -220px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  transition: all 0.5s ease;
+  width: 0;
+  z-index: 1000;
+  /* &::-webkit-scrollbar {
+    display: none;
+  } */
+  padding: 0 !important;
+}
+
+.overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .4);
+  z-index: 1;
+}
+
+#sidebar-wrapper {
+  color: white;
+}
+
+#sidebar-wrapper ul {
+  list-style-type: none;
+  min-width: 200px;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+#sidebar-wrapper ul li {
+  padding: 10px;
+}
+
+.exit-submenu {
+  position: absolute;
+  right: 190px;
+  top: 10px;
+}

@@ -30,62 +30,76 @@
         </div>
       </div>
     </div> -->
-    <div class="col-auto">
+    <div class="col-5 d-flex flex-row">
+      <div class="col-auto d-md-none">
+        <span (click)="toggleSideMenu()" class="pointer">
+          <i class="fas fa-bars fa-2x"></i>
+        </span>
+      </div>
+
+      <div class="col-auto d-none d-md-block">
+        <span routerLink="/statistics" class="pointer">
+          <i class="fas fa-chart-bar"></i>
+          סטטיסטיקות
+        </span>
+      </div>
+
+      <div class="col-auto d-none d-md-block">
+        <span class="pointer">
+          <i class="fas fa-star"></i>
+          מועדפים
+        </span>
+      </div>
+    </div>
+
+
+    <div class="col-2 d-flex justify-content-center">
       <h1 routerLink="/" class="pointer">
-        LOGO
+        <img src="assets/img/logo.png" style="height: 46px;" />
       </h1>
     </div>
-    <div class="col-auto ml-auto">
-      <span routerLink="/statistics" class="pointer">
-        <i class="fas fa-chart-bar"></i>
-        סטטיסטיקות
-      </span>
-    </div>
-    <div class="col-auto mr-md-5 mr-sm-0">
-      <span class="pointer">
-        <i class="fas fa-star"></i>
-        מועדפים
-      </span>
-    </div>
 
-    <div class="col-auto" *ngIf="checkManager()">
-      <button type="button" class="btn btn-info add-product-button py-0" (click)="newProduct()">
-        <i class="fas fa-plus-circle"></i>&nbsp;מוצר חדש</button>
-    </div>
+    <div class="col-5 d-flex flex-row justify-content-end">
 
-    <div class="col-auto" *ngIf="checkManager()">
-      <span (click)="managerView()" class="pointer">
-        <i class="fas fa-wrench"></i>
-        ממשק ניהול
-      </span>
-    </div>
+      <div class="col-auto d-none d-md-block" *ngIf="checkManager()">
+        <button type="button" class="btn btn-info add-product-button py-0" (click)="newProduct()">
+          <i class="fas fa-plus-circle"></i>&nbsp;מוצר חדש</button>
+      </div>
 
-    <div class="col-auto" *ngIf="userName()">
-      <span routerLink="/profile-builder" class="pointer">
-        <i class="fas fa-user"></i>
-        <b>
-          {{ getDisplayUserName() }}
-        </b>
-      </span>
-    </div>
+      <div class="col-auto d-none d-md-block" *ngIf="checkManager()">
+        <span (click)="managerView()" class="pointer">
+          <i class="fas fa-wrench"></i>
+          ממשק ניהול
+        </span>
+      </div>
 
-    <div class="col-auto" *ngIf="!userName()">
-      <span routerLink="/login" class="pointer">
-        <i class="fas fa-sign-in-alt"></i>
-        כניסה
-      </span>
-    </div>
+      <div class="col-auto d-none d-md-block" *ngIf="userName()">
+        <span routerLink="/profile-builder" class="pointer">
+          <i class="fas fa-user"></i>
+          <b>
+            {{ getDisplayUserName() }}
+          </b>
+        </span>
+      </div>
 
-    <div class="col-auto" *ngIf="userName()">
-      <span (click)="logOff()" class="pointer">
-        <i class="fas fa-sign-out-alt"></i>
-        התנתק
-      </span>
-    </div>
-    <div class="col-auto" *ngIf="!userName()">
-      <span routerLink="/register" class="pointer">
-        הרשמה
-      </span>
+      <div class="col-auto d-none d-md-block" *ngIf="!userName()">
+        <span routerLink="/login" class="pointer">
+          <i class="fas fa-sign-in-alt"></i>
+          כניסה
+        </span>
+      </div>
+
+      <div class="col-auto d-none d-md-block" *ngIf="userName()">
+        <span (click)="logOff()" class="pointer">
+          <i class="fas fa-sign-out-alt"></i>
+          התנתק
+        </span>
+      </div>
+      <div class="col-auto d-none d-md-block" *ngIf="!userName()">
+        <span routerLink="/register" class="pointer">
+          הרשמה
+        </span>
+      </div>
     </div>
   </div>
 
@@ -100,142 +114,142 @@
       </div>
       <div class="collapse navbar-collapse" id="navbarNavDropdown2">
         <ul class="navbar-nav container-fluid">
-          <li class="nav-item col active" (click)="getProductsByCategory(1) ">
-            <a class="nav-link ">
-              <div class="nav-text-container ">
+          <li class="nav-item col active" (click)="getProductsByCategory(1)">
+            <a class="nav-link">
+              <div class="nav-text-container">
                 <span>
-                  <i class="icon milk "></i>
+                  <i class="icon milk"></i>
                 </span>
-                <!--<img src="https://image.freepik.com/free-icon/small-truck_318-73242.jpg " style="float:right " />-->
-                <!--<span style="float:right ">sdasd</span>-->
+                <!--<img src="https://image.freepik.com/free-icon/small-truck_318-73242.jpg" style="float:right" />-->
+                <!--<span style="float:right">sdasd</span>-->
                 <span>
                   חלב וביצים
                 </span>
               </div>
             </a>
           </li>
-          <li class="nav-item col " (click)="getProductsByCategory(2) ">
-            <a class="nav-link ">
-              <div class="nav-text-container ">
+          <li class="nav-item col" (click)="getProductsByCategory(2)">
+            <a class="nav-link">
+              <div class="nav-text-container">
                 <span>
-                  <i class="icon bread "></i>
+                  <i class="icon bread"></i>
                 </span>
                 <span> דברי מאפה</span>
               </div>
             </a>
           </li>
-          <li class="nav-item col " (click)="getProductsByCategory(3) ">
+          <li class="nav-item col" (click)="getProductsByCategory(3)">
 
-            <a class="nav-link ">
-              <div class="nav-text-container ">
+            <a class="nav-link">
+              <div class="nav-text-container">
                 <span>
-                  <i class="icon tomato "></i>
+                  <i class="icon tomato"></i>
                 </span>
                 <span> פירות וירקות</span>
               </div>
             </a>
           </li>
-          <li class="nav-item col " (click)="getProductsByCategory(4) ">
+          <li class="nav-item col" (click)="getProductsByCategory(4)">
 
-            <a class="nav-link ">
-              <div class="nav-text-container ">
+            <a class="nav-link">
+              <div class="nav-text-container">
                 <span>
-                  <i class="icon fish "></i>
+                  <i class="icon fish"></i>
                 </span>
                 <span> בשר ודגים</span>
               </div>
             </a>
 
           </li>
-          <li class="nav-item col " (click)="getProductsByCategory(5) ">
+          <li class="nav-item col" (click)="getProductsByCategory(5)">
 
-            <a class="nav-link ">
-              <div class="nav-text-container ">
+            <a class="nav-link">
+              <div class="nav-text-container">
                 <span>
-                  <i class="icon candy "></i>
+                  <i class="icon candy"></i>
                 </span>
                 <span> חטיפים וממתקים</span>
               </div>
             </a>
 
           </li>
-          <li class="nav-item col " (click)="getProductsByCategory(6) ">
+          <li class="nav-item col" (click)="getProductsByCategory(6)">
 
-            <a class="nav-link ">
-              <div class="nav-text-container ">
+            <a class="nav-link">
+              <div class="nav-text-container">
                 <span>
-                  <i class="icon wheat "></i>
+                  <i class="icon wheat"></i>
                 </span>
                 <span>דגנים וקטניות</span>
               </div>
             </a>
 
           </li>
-          <li class="nav-item col " (click)="getProductsByCategory(7) ">
+          <li class="nav-item col" (click)="getProductsByCategory(7)">
 
-            <a class="nav-link ">
-              <div class="nav-text-container ">
+            <a class="nav-link">
+              <div class="nav-text-container">
                 <span>
-                  <i class="icon cheese "></i>
+                  <i class="icon cheese"></i>
                 </span>
                 <span> מעדניה וקפואים</span>
               </div>
             </a>
 
           </li>
-          <li class="nav-item col ">
+          <li class="nav-item col">
 
-            <a class="nav-link " (click)="getProductsByCategory(8) ">
-              <div class="nav-text-container ">
+            <a class="nav-link" (click)="getProductsByCategory(8)">
+              <div class="nav-text-container">
                 <span>
-                  <i class="icon can "></i>
+                  <i class="icon can"></i>
                 </span>
                 <span> שימורים, בישול ואפיה</span>
               </div>
             </a>
 
           </li>
-          <li class="nav-item col " (click)="getProductsByCategory(9) ">
+          <li class="nav-item col" (click)="getProductsByCategory(9)">
 
-            <a class="nav-link ">
-              <div class="nav-text-container ">
+            <a class="nav-link">
+              <div class="nav-text-container">
                 <span>
-                  <i class="icon toilet-paper "></i>
+                  <i class="icon toilet-paper"></i>
                 </span>
                 <span> נייר וניקיון</span>
               </div>
             </a>
 
           </li>
-          <li class="nav-item col " (click)="getProductsByCategory(10) ">
+          <li class="nav-item col" (click)="getProductsByCategory(10)">
 
-            <a class="nav-link ">
-              <div class="nav-text-container ">
+            <a class="nav-link">
+              <div class="nav-text-container">
                 <span>
-                  <i class="icon house "></i>
+                  <i class="icon house"></i>
                 </span>
                 <span> בית ובעלי חיים</span>
               </div>
             </a>
 
           </li>
-          <li class="nav-item col " (click)="getProductsByCategory(11) ">
+          <li class="nav-item col" (click)="getProductsByCategory(11)">
 
-            <a class="nav-link ">
-              <div class="nav-text-container ">
+            <a class="nav-link">
+              <div class="nav-text-container">
                 <span>
-                  <i class="icon leaf "></i>
+                  <i class="icon leaf"></i>
                 </span>
                 <span> בריאות ואורגני</span>
               </div>
             </a>
 
           </li>
-          <li class="nav-item col " (click)="getProductsByCategory(12) ">
-            <a class="nav-link ">
-              <div class="nav-text-container ">
+          <li class="nav-item col" (click)="getProductsByCategory(12)">
+            <a class="nav-link">
+              <div class="nav-text-container">
                 <span>
-                  <i class="icon baby-bottle "></i>
+                  <i class="icon baby-bottle"></i>
                 </span>
                 <span> טיפוח ותינוקות</span>
               </div>
@@ -244,58 +258,58 @@
           </li>
 
           <li class="nav-item col mr-auto" (click)="getProductListFilter()">
-            <a class="nav-link ">
-              <div class="nav-text-container ">
+            <a class="nav-link">
+              <div class="nav-text-container">
                 <span>
                   כל המוצרים
                 </span>
               </div>
             </a>
           </li>
-          <!--<li class="nav-item col dropdown ">
-              <a class="nav-link dropdown-toggle " href="# " id="navbarDropdownMenuLink " data-toggle="dropdown
-      " aria-haspopup="true " aria-expanded="false ">
+          <!--<li class="nav-item col dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown
+     " aria-haspopup="true" aria-expanded="false">
                 Dropdown link
               </a>
-              <div class="dropdown-menu dropdown-menu-right ">
-                <div class="card-columns subcategory-cards ">
-                  <div class="card ">
-                    <div class="card-body ">
-                      <h6 class="card-title ">sdasdsadasda</h6>
-                      <p class="card-text ">sdasdsadasda</p>
+              <div class="dropdown-menu dropdown-menu-right">
+                <div class="card-columns subcategory-cards">
+                  <div class="card">
+                    <div class="card-body">
+                      <h6 class="card-title">sdasdsadasda</h6>
+                      <p class="card-text">sdasdsadasda</p>
                     </div>
                   </div>
-                  <div class="card ">
-                    <div class="card-body ">
-                      <h6 class="card-title ">sdasdsadasda</h6>
-                      <p class="card-text ">sdasdsadasda</p>
+                  <div class="card">
+                    <div class="card-body">
+                      <h6 class="card-title">sdasdsadasda</h6>
+                      <p class="card-text">sdasdsadasda</p>
                     </div>
                   </div>
-                  <div class="card ">
-                    <div class="card-body ">
-                      <h6 class="card-title ">sdasdsadasda</h6>
-                      <p class="card-text ">sdasdsadasda</p>
+                  <div class="card">
+                    <div class="card-body">
+                      <h6 class="card-title">sdasdsadasda</h6>
+                      <p class="card-text">sdasdsadasda</p>
                     </div>
                   </div>
-                  <div class="card ">
-                    <div class="card-body ">
-                      <h6 class="card-title ">sdasdsadasda</h6>
-                      <p class="card-text ">sdasdsadasda</p>
-                      <p class="card-text ">sdasdsadasda</p>
-                      <p class="card-text ">sdasdsadasda</p>
+                  <div class="card">
+                    <div class="card-body">
+                      <h6 class="card-title">sdasdsadasda</h6>
+                      <p class="card-text">sdasdsadasda</p>
+                      <p class="card-text">sdasdsadasda</p>
+                      <p class="card-text">sdasdsadasda</p>
       
                     </div>
                   </div>
-                  <div class="card ">
-                    <div class="card-body ">
-                      <h6 class="card-title ">sdasdsadasda</h6>
-                      <p class="card-text ">sdasdsadasda</p>
+                  <div class="card">
+                    <div class="card-body">
+                      <h6 class="card-title">sdasdsadasda</h6>
+                      <p class="card-text">sdasdsadasda</p>
                     </div>
                   </div>
-                  <div class="card ">
-                    <div class="card-body ">
-                      <h6 class="card-title ">sdasdsadasda</h6>
-                      <p class="card-text ">sdasdsadasda</p>
+                  <div class="card">
+                    <div class="card-body">
+                      <h6 class="card-title">sdasdsadasda</h6>
+                      <p class="card-text">sdasdsadasda</p>
                     </div>
                   </div>
                 </div>
@@ -310,7 +324,8 @@
     <div class="container-fluid">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent
+     " aria-controls="navbarSupportedContent"
           aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -326,7 +341,8 @@
               <a class="nav-link" href="#">Link</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown
+     " aria-haspopup="true"
                 aria-expanded="false">
                 Dropdown
               </a>
@@ -351,12 +367,73 @@
   </div> -->
 </div>
 
+<div class="overlay" (click)="toggleSideMenu()"></div>
+
+<!-- Sidebar -->
+<div class="container-fluid">
+  <nav class="navbar navbar-inverse fixed-top" id="sidebar-wrapper" role="navigation">
+    <span class="exit-submenu pointer" (click)="toggleSideMenu()">
+      <i class="fas fa-times fa-2x"></i>
+    </span>
+
+    <ul>
+      <li>
+        <span routerLink="/statistics" class="pointer" (click)="toggleSideMenu()">
+          <i class="fas fa-chart-bar"></i>
+          סטטיסטיקות
+        </span>
+      </li>
+      <li>
+        <span class="pointer">
+          <i class="fas fa-star"></i>
+          מועדפים
+        </span>
+      </li>
+      <li *ngIf="checkManager()">
+        <span (click)="managerView()" class="pointer" (click)="toggleSideMenu()">
+          <i class="fas fa-wrench"></i>
+          ממשק ניהול
+        </span>
+      </li>
+      <li *ngIf="checkManager()">
+        <button type="button" class="btn btn-info add-product-button py-0" (click)="newProduct()" (click)="toggleSideMenu()">
+          <i class="fas fa-plus-circle"></i>&nbsp;מוצר חדש</button>
+      </li>
+      <li *ngIf="userName()">
+        <span routerLink="/profile-builder" class="pointer" (click)="toggleSideMenu()">
+          <i class="fas fa-user"></i>
+          <b>
+            {{ getDisplayUserName() }}
+          </b>
+        </span>
+      </li>
+      <li *ngIf="!userName()">
+        <span routerLink="/login" class="pointer" (click)="toggleSideMenu()">
+          <i class="fas fa-sign-in-alt"></i>
+          כניסה
+        </span>
+      </li>
+      <li *ngIf="userName()">
+        <span (click)="logOff()" class="pointer" (click)="toggleSideMenu()">
+          <i class="fas fa-sign-out-alt"></i>
+          התנתק
+        </span>
+      </li>
+      <li *ngIf="!userName()">
+        <span routerLink="/register" class="pointer" (click)="toggleSideMenu()">
+          הרשמה
+        </span>
+      </li>
+    </ul>
+  </nav>
+</div>
+<!-- /#sidebar-wrapper -->
 <!-- <div class="row">
-    <div class="nav-item col active" (click)="getProductsByCategory(1) ">
-      <a class="nav-link ">
+    <div class="nav-item col active" (click)="getProductsByCategory(1)">
+      <a class="nav-link">
         <div class="nav-text-container">
           <span>
-            <i class="icon milk "></i>
+            <i class="icon milk"></i>
           </span>
   <span>
     חלב וביצים
@@ -364,137 +441,137 @@
 </div>
 </a>
 </div>
-<div class="nav-item col " (click)="getProductsByCategory(2) ">
-  <a class="nav-link ">
-    <div class="nav-text-container ">
+<div class="nav-item col" (click)="getProductsByCategory(2)">
+  <a class="nav-link">
+    <div class="nav-text-container">
       <span>
-        <i class="icon bread "></i>
+        <i class="icon bread"></i>
       </span>
       <span> דברי מאפה</span>
     </div>
   </a>
 </div>
-<div class="nav-item col " (click)="getProductsByCategory(3) ">
+<div class="nav-item col" (click)="getProductsByCategory(3)">
 
-  <a class="nav-link ">
-    <div class="nav-text-container ">
+  <a class="nav-link">
+    <div class="nav-text-container">
       <span>
-        <i class="icon tomato "></i>
+        <i class="icon tomato"></i>
       </span>
       <span> פירות וירקות</span>
     </div>
   </a>
 </div>
-<div class="nav-item col " (click)="getProductsByCategory(4) ">
+<div class="nav-item col" (click)="getProductsByCategory(4)">
 
-  <a class="nav-link ">
-    <div class="nav-text-container ">
+  <a class="nav-link">
+    <div class="nav-text-container">
       <span>
-        <i class="icon fish "></i>
+        <i class="icon fish"></i>
       </span>
       <span> בשר ודגים</span>
     </div>
   </a>
 
 </div>
-<div class="nav-item col " (click)="getProductsByCategory(5) ">
+<div class="nav-item col" (click)="getProductsByCategory(5)">
 
-  <a class="nav-link ">
-    <div class="nav-text-container ">
+  <a class="nav-link">
+    <div class="nav-text-container">
       <span>
-        <i class="icon candy "></i>
+        <i class="icon candy"></i>
       </span>
       <span> חטיפים וממתקים</span>
     </div>
   </a>
 
 </div>
-<div class="nav-item col " (click)="getProductsByCategory(6) ">
+<div class="nav-item col" (click)="getProductsByCategory(6)">
 
-  <a class="nav-link ">
-    <div class="nav-text-container ">
+  <a class="nav-link">
+    <div class="nav-text-container">
       <span>
-        <i class="icon wheat "></i>
+        <i class="icon wheat"></i>
       </span>
       <span>דגנים וקטניות</span>
     </div>
   </a>
 
 </div>
-<div class="nav-item col " (click)="getProductsByCategory(7) ">
+<div class="nav-item col" (click)="getProductsByCategory(7)">
 
-  <a class="nav-link ">
-    <div class="nav-text-container ">
+  <a class="nav-link">
+    <div class="nav-text-container">
       <span>
-        <i class="icon cheese "></i>
+        <i class="icon cheese"></i>
       </span>
       <span> מעדניה וקפואים</span>
     </div>
   </a>
 
 </div>
-<div class="nav-item col ">
+<div class="nav-item col">
 
-  <a class="nav-link " (click)="getProductsByCategory(8) ">
-    <div class="nav-text-container ">
+  <a class="nav-link" (click)="getProductsByCategory(8)">
+    <div class="nav-text-container">
       <span>
-        <i class="icon can "></i>
+        <i class="icon can"></i>
       </span>
       <span> שימורים, בישול ואפיה</span>
     </div>
   </a>
 
 </div>
-<div class="nav-item col " (click)="getProductsByCategory(9) ">
+<div class="nav-item col" (click)="getProductsByCategory(9)">
 
-  <a class="nav-link ">
-    <div class="nav-text-container ">
+  <a class="nav-link">
+    <div class="nav-text-container">
       <span>
-        <i class="icon toilet-paper "></i>
+        <i class="icon toilet-paper"></i>
       </span>
       <span> נייר וניקיון</span>
     </div>
   </a>
 
 </div>
-<div class="nav-item col " (click)="getProductsByCategory(10) ">
+<div class="nav-item col" (click)="getProductsByCategory(10)">
 
-  <a class="nav-link ">
-    <div class="nav-text-container ">
+  <a class="nav-link">
+    <div class="nav-text-container">
       <span>
-        <i class="icon house "></i>
+        <i class="icon house"></i>
       </span>
       <span> בית ובעלי חיים</span>
     </div>
   </a>
 
 </div>
-<div class="nav-item col " (click)="getProductsByCategory(11) ">
+<div class="nav-item col" (click)="getProductsByCategory(11)">
 
-  <a class="nav-link ">
-    <div class="nav-text-container ">
+  <a class="nav-link">
+    <div class="nav-text-container">
       <span>
-        <i class="icon leaf "></i>
+        <i class="icon leaf"></i>
       </span>
       <span> בריאות ואורגני</span>
     </div>
   </a>
 
 </div>
-<div class="nav-item col " (click)="getProductsByCategory(12) ">
-  <a class="nav-link ">
-    <div class="nav-text-container ">
+<div class="nav-item col" (click)="getProductsByCategory(12)">
+  <a class="nav-link">
+    <div class="nav-text-container">
       <span>
-        <i class="icon baby-bottle "></i>
+        <i class="icon baby-bottle"></i>
       </span>
       <span> טיפוח ותינוקות</span>
     </div>
   </a>
 
 </div>
-<div class="nav-item col mr-auto" routerLink="/product-list-filter ">
-  <a class="nav-link ">
-    <div class="nav-text-container ">
+<div class="nav-item col mr-auto" routerLink="/product-list-filter">
+  <a class="nav-link">
+    <div class="nav-text-container">
       <span>
         כל המוצרים
       </span>
@@ -507,7 +584,8 @@
     <div class="container-fluid">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent
+     " aria-controls="navbarSupportedContent"
           aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -523,7 +601,8 @@
               <a class="nav-link" href="#">Link</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown
+     " aria-haspopup="true"
                 aria-expanded="false">
                 Dropdown
               </a>
@@ -549,88 +628,89 @@
 
 <!-- <div class="row">
     <nav class="navbar navbar-expand-lg container-fluid navbar-light bg-light">
-      <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNavDropdown222" aria-controls="navbarNavDropdown222"
-        aria-expanded="false " aria-label="Toggle navigation ">
-        <span class="navbar-toggler-icon "></span>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown222
+     " aria-controls="navbarNavDropdown222"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown222">
         <ul class="navbar-nav container-fluid">
-          <li class="nav-item col active " (click)="getProductsByCategory(1) ">
-            <a class="nav-link ">
+          <li class="nav-item col active" (click)="getProductsByCategory(1)">
+            <a class="nav-link">
               <span>
                 חלב וביצים
               </span>
             </a>
           </li>
-          <li class="nav-item col " (click)="getProductsByCategory(2) ">
+          <li class="nav-item col" (click)="getProductsByCategory(2)">
             <span> דברי מאפה</span>
           </li>
-          <li class="nav-item col " (click)="getProductsByCategory(3) ">
+          <li class="nav-item col" (click)="getProductsByCategory(3)">
 
-            <a class="nav-link ">
+            <a class="nav-link">
               <span> פירות וירקות</span>
             </a>
           </li>
-          <li class="nav-item col " (click)="getProductsByCategory(4) ">
+          <li class="nav-item col" (click)="getProductsByCategory(4)">
 
-            <a class="nav-link ">
+            <a class="nav-link">
               <span> בשר ודגים</span>
             </a>
 
           </li>
-          <li class="nav-item col " (click)="getProductsByCategory(5) ">
+          <li class="nav-item col" (click)="getProductsByCategory(5)">
 
-            <a class="nav-link ">
+            <a class="nav-link">
               <span> חטיפים וממתקים</span>
             </a>
 
           </li>
-          <li class="nav-item col " (click)="getProductsByCategory(6) ">
+          <li class="nav-item col" (click)="getProductsByCategory(6)">
 
-            <a class="nav-link ">
+            <a class="nav-link">
               <span>דגנים וקטניות</span>
             </a>
 
           </li>
-          <li class="nav-item col " (click)="getProductsByCategory(7) ">
+          <li class="nav-item col" (click)="getProductsByCategory(7)">
 
-            <a class="nav-link ">
+            <a class="nav-link">
               <span> מעדניה וקפואים</span>
             </a>
 
           </li>
-          <li class="nav-item col ">
+          <li class="nav-item col">
 
-            <a class="nav-link " (click)="getProductsByCategory(8) ">
+            <a class="nav-link" (click)="getProductsByCategory(8)">
               <span> שימורים, בישול ואפיה</span>
             </a>
 
           </li>
-          <li class="nav-item col " (click)="getProductsByCategory(9) ">
+          <li class="nav-item col" (click)="getProductsByCategory(9)">
 
-            <a class="nav-link ">
+            <a class="nav-link">
               <span> נייר וניקיון</span>
             </a>
 
           </li>
-          <li class="nav-item col " (click)="getProductsByCategory(10) ">
+          <li class="nav-item col" (click)="getProductsByCategory(10)">
 
             <span> בית ובעלי חיים</span>
             s
           </li>
-          <li class="nav-item col " (click)="getProductsByCategory(11) ">
+          <li class="nav-item col" (click)="getProductsByCategory(11)">
 
             <span> בריאות ואורגני</span>
 
           </li>
-          <li class="nav-item col " (click)="getProductsByCategory(12) ">
+          <li class="nav-item col" (click)="getProductsByCategory(12)">
             <span>
-              <i class="icon baby-bottle "></i>
+              <i class="icon baby-bottle"></i>
             </span>
 
           </li>
 
-          <li class="nav-item col mr-auto" routerLink="/product-list-filter ">
+          <li class="nav-item col mr-auto" routerLink="/product-list-filter">
             <span>
               כל המוצרים
             </span>

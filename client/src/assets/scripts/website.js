@@ -2,15 +2,16 @@ $(document).ready(function () {
   $('[data-toggle="tooltip"]').tooltip();
 
   $('body').on('mouseenter mouseleave', '.dropdown', function (e) {
-    var _d = $(e.target).closest('.dropdown'); _d.addClass('show');
+    var _d = $(e.target).closest('.dropdown');
+    _d.addClass('show');
     setTimeout(function () {
       _d[_d.is(':hover') ? 'addClass' : 'removeClass']('show');
     }, 300);
   });
 
   /*
-* Replace all SVG images with inline SVG
-*/
+   * Replace all SVG images with inline SVG
+   */
   $('.category-navigation i.icon').each(function () {
     var $img = jQuery(this);
     var imgID = $img.attr('id');
@@ -47,4 +48,32 @@ $(document).ready(function () {
     }, 'xml');
 
   });
+
+  // $('[data-toggle="offcanvas"]').click(function () {
+  //   $('#sidebar-wrapper').toggleClass('toggled');
+  // });
+
+
+  // $("#sidebar").mCustomScrollbar({
+  //   theme: "minimal"
+  // });
+
+  // // when opening the sidebar
+  // $('#sidebarCollapse').on('click', function () {
+  //   // open sidebar
+  //   $('#sidebar').addClass('active');
+  //   // fade in the overlay
+  //   $('.overlay').fadeIn();
+  //   $('.collapse.in').toggleClass('in');
+  //   $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+  // });
+
+
+  // // if dismiss or overlay was clicked
+  // $('#dismiss, .overlay').on('click', function () {
+  //   // hide the sidebar
+  //   $('#sidebar').removeClass('active');
+  //   // fade out the overlay
+  //   $('.overlay').fadeOut();
+  // });
 });

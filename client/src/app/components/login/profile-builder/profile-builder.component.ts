@@ -73,8 +73,10 @@ export class ProfileBuilderComponent {
   }
 
   saveProfileBuilder() {
+    console.log("a");
     this.usersService.saveProfileBuilder(this.profileBuilder, this.userName).subscribe(
       (data: any) => {
+        console.log("a");
         alert("הרכבת פרופיל נשמר בהצלחה");
       }
     )

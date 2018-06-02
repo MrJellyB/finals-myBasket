@@ -6,5 +6,5 @@
 export const environment = {
   production: false,
   url: 'http://localhost:8080',
-  geneticAlgoUrl: 'http://localhost:50091'
+  geneticAlgoUrl: 'http://193.106.55.72:5000'
 };
