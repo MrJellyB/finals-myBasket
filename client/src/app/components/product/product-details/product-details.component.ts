@@ -211,7 +211,7 @@ export class ProductDetailsComponent {
   saveProduct() {
     this.product.calories = +this.product.calories;
     this.product.price = +this.product.price;
-    this.product.category = this.currentCategory;
+    this.product.category = +this.currentCategory;
     this.productService.saveProduct(this.product).subscribe((results) => {
       //  this.
       this.product.id = +results;

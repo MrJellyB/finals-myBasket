@@ -11,16 +11,5 @@ import { LocalStorageService } from '../../services/localStorageService';
 export class MainPageComponent {
   constructor(private http: Http,
     private localStorageService: LocalStorageService) {
-
-  }
-
-  getUltimateBasket() {
-    const username = this.localStorageService.get('currentUser').userName;
-    if (username) {
-      // TODO: Add a spinner 
-      return this.http.get(`${consts.geneticAlgoUrl}/api/main/${username}`)
-        .map((data) => data.json())
-        .subscribe((data) => console.log(data));
-    }
   }
 }

@@ -402,7 +402,12 @@ html {
   }
 }
 
-@include media-breakpoint-up(xs) {
+.container.main-content {
+  background-color: white;
+  width: 70%;
+}
+
+@include media-breakpoint-down(xs) {
   .table-compact {
     td,
     th {
@@ -411,4 +416,11 @@ html {
     padding-right: 0 !important;
     padding-left: 0 !important;
   }
+  .container.main-content {
+    width: 90%;
+  }
+}
+
+.modal.fade.show {
+  padding-right: 0px !important;
 }

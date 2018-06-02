@@ -45,7 +45,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-4">
+            <div class="col-md-4 col-12">
               <div class="product-title row">
                 <img [src]="getProdutImage(product.id)" onError="this.src='assets/img/product/placeholder.png';" alt="{{ product.ManufacturerItemDescription }}"
                   class="rounded">
@@ -68,7 +68,7 @@
                 <img src="assets/img/EfshariBari.png" *ngIf="product.EfshariBari" alt="אפשרי בריא" title="אפשרי בריא" data-toggle="tooltip"
                   data-placement="bottom" />
               </div>
-              <div class="product-basket row d-flex justify-content-around align-middle flex-wrap">
+              <div class="product-basket row d-flex justify-content-around align-middle flex-wrap" *ngIf="!this.isEdit && !this.isNew">
                 <div class="d-flex justify-content-between align-middle" *ngIf="!getItemAmount(product.id)">
                   <button style="margin-top:5%" class="button-style" (click)="addToBasket(product)" type="button" class="btn btn-primary">הוסף לסל</button>
                 </div>
@@ -214,12 +214,12 @@
 
                 </div>
               </div>
-              <div class="row">
+              <div class="row" *ngIf="!this.isEdit && !this.isNew">
                 <div class="col-4">
                   תגובות:
                 </div>
               </div>
-              <div class="row">
+              <div class="row" *ngIf="!this.isEdit && !this.isNew">
                 <div class="col">
                   <div *ngIf="product.comments">
                     <ul>
@@ -233,7 +233,7 @@
                   </div>
                 </div>
               </div>
-              <div class="row">
+              <div class="row" *ngIf="!this.isEdit && !this.isNew">
                 <div class="col">
                   <textarea class="form-control" name="comment" [(ngModel)]="comm" #comment="ngModel"></textarea>
                 </div>

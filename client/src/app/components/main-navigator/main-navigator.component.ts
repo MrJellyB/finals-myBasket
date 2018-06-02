@@ -6,6 +6,7 @@ import { EventService } from 'app/services/event.service';
 import { LocalStorageService } from 'app/services/localStorageService';
 import { UsersService } from 'app/services/users.service';
 import { Subscription } from 'rxjs';
+import * as websiteScript from 'assets/scripts/website.js';
 
 declare var $;
 
@@ -19,6 +20,7 @@ export class MainNavigatorComponent {
   basketItemsAmount: number;
   subs: Subscription[] = [];
   currentCategory: number;
+  isClosed = false;
 
   constructor(private router: Router,
     private route: ActivatedRoute,
@@ -67,6 +69,32 @@ export class MainNavigatorComponent {
       this.eventService.observe('BASKET_ITEMS').subscribe(() => {
         this.basketItemsAmount = this.basketService.getAllAmount();
       }));
+  }
+
+  ngAfterViewInit() {
+    // $('#btnTest').click(function () {
+    //   toggleSideMenu();
+    // });
+
+    // $(".overlay").click(function () {
+    //   toggleSideMenu();
+    // });
+
+    // $("#sidebar-wrapper span").click(function () {
+    //   toggleSideMenu();
+    // });
+  }
+
+  toggleSideMenu() {
+    if (this.isClosed == true) {
+      $('.overlay').hide();
+      this.isClosed = false;
+    } else {
+      $('.overlay').show();
+      this.isClosed = true;
+    }
+
+    $('#sidebar-wrapper').toggleClass('toggled');
   }
 
   ngOnDestroy() {
@@ -128,6 +156,7 @@ export class MainNavigatorComponent {
 
   cheapestProduct() {
     this.router.navigate(['/cheapest-product'])
+
   }
 
   preferredProduct() {
@@ -157,6 +186,5 @@ export class MainNavigatorComponent {
   getProductListFilter() {
     this.router.navigate(['/product-list-filter']).then(() => $("#navbarNavDropdown2").collapse('hide'));
   }
-
 }
 
