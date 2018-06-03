@@ -1,134 +1,134 @@
-<!-- <div class="row">
-  <div class="category-img">
-    <img src="https://images.pexels.com/photos/547114/pexels-photo-547114.jpeg?cs=srgb&dl=adventure-alps-background-547114.jpg&fm=jpg">
-
+<div class="row">
+  <div class="category-img slideshow">
+    <img *ngFor="let number of this.categoryImages[this.categoryProp]" [src]="getCategoryImage(number)" [ngStyle]="{'display': number > 1 ? 'none' : 'block'}"
+      alt="{{number > 1}}">
   </div>
 </div>
-<div class="container"> -->
-<div class="products row justify-content-center">
-  <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 py-2" *ngFor="let product of productsByCategory | paginate: { itemsPerPage:limit, currentPage: p,totalItems: productSize}; let i = index">
-    <div class="product card h-100" (mouseenter)="enterCard(i)" (mouseleave)="leaveCard(i)">
-      <div class="d-flex justify-content-between align-middle" *ngIf="!getItemAmount(product.id)" [ngClass]="showAlways ? 'showControl' : (i == hoverIndex ? 'showControl' : 'hideControl')">
-        <div>
-          <button type="button" class="btn btn-link" (click)="addToBasket(product, amountInput)">
-            <i class="fas fa-plus-circle"></i>
-          </button>
-        </div>
-      </div>
-      <div class="d-flex justify-content-between align-middle card-options" *ngIf="getItemAmount(product.id) !== 0">
-        <div>
-          <button type="button" class="btn btn-link" (click)="addToBasket(product, amountInput)">
-            <i class="fas fa-plus-circle"></i>
-          </button>
-          <input type="text" #amountInput [value]="getItemAmount(product.id)" (input)="setItemAmount(product, $event)" class="form-control item-amount-input">
-          <button type="button" class="btn btn-link" (click)="removeFromBasket(product.id, amountInput)">
-            <i class="fas fa-minus-circle"></i>
-          </button>
-        </div>
-        <div class="align-self-center">
-          <button type="button" class="btn btn-link" (click)="updateOrDelete(product.id)" *ngIf="checkManager()">
-            <i class="fas fa-wrench"></i>
-          </button>
-          <button type="button" class="btn btn-link" (click)="deleteFromBasket(product, 0)">
-            <i class="fas fa-trash-alt"></i>
-          </button>
-        </div>
-      </div>
-      <div class="product-image" (click)="showDetails(product.id)">
-        <div></div>
-        <img [src]="getProdutImage(product.id)" onError="this.src='assets/img/product/placeholder.png';" alt="{{product.ManufacturerItemDescription}}"
-          class="card-img-top rounded" [ngClass]="{ 'white-opacity': this.basketService.isProductInBasket(product.id) }">
-        <i class="far fa-check-circle fa-4x product-in-cart-icon" *ngIf="this.basketService.isProductInBasket(product.id)"></i>
-      </div>
-      <div class="card-body" style="padding-top: 0px;">
-        <div class="card-title">
-          <div class="product-name">
-            {{product.ManufacturerItemDescription}}
-          </div>
-          <div class="product-quantity">{{ +product.Quantity }} {{product.UnitQty}}</div>
-          <div class="product-tags">
-            <img src="assets/img/GlutenFree.png" *ngIf="product.GlutenFree" alt="ללא גלוטן" title="ללא גלוטן" data-toggle="tooltip" data-placement="bottom"
-            />
-            <img src="assets/img/Kashrut.png" *ngIf="product.Kashrut" alt="{{ product.Kashrut }}" title="{{ product.Kashrut }}" data-toggle="tooltip"
-              data-placement="bottom" />
-            <img src="assets/img/Justice.png" *ngIf="product.ControlledPrice" alt="{{ product.ControlledPrice }}" title="מחיר מפוקח: {{ product.ControlledPrice }} ש&quot;ח"
-              title="מחיר מפוקח: {{ product.ControlledPrice }} ש&quot;ח" data-toggle="tooltip" data-placement="bottom" />
-            <img src="assets/img/Organic.png" *ngIf="product.Organic" alt="אורגני" title="אורגני" data-toggle="tooltip" data-placement="bottom"
-            />
-            <img src="assets/img/VeganFriendly.png" *ngIf="product.VeganFriendly" alt="טבעוני" title="טבעוני" data-toggle="tooltip" data-placement="bottom"
-            />
-            <img src="assets/img/EfshariBari.png" *ngIf="product.EfshariBari" alt="אפשרי בריא" title="אפשרי בריא" data-toggle="tooltip"
-              data-placement="bottom" />
+<div class="container">
+  <div class="products row justify-content-center">
+    <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 py-2" *ngFor="let product of productsByCategory | paginate: { itemsPerPage:limit, currentPage: p,totalItems: productSize}; let i = index">
+      <div class="product card h-100" (mouseenter)="enterCard(i)" (mouseleave)="leaveCard(i)">
+        <div class="d-flex justify-content-between align-middle" *ngIf="!getItemAmount(product.id)" [ngClass]="showAlways ? 'showControl' : (i == hoverIndex ? 'showControl' : 'hideControl')">
+          <div>
+            <button type="button" class="btn btn-link" (click)="addToBasket(product, amountInput)">
+              <i class="fas fa-plus-circle"></i>
+            </button>
           </div>
         </div>
-        <div class="card-text">
-          <ul class="feature-list">
-            <li>
-              <div class="row">
-                <div class="col-sm-4 col-4">
-                  <span class="feature-title">ספק:</span>
+        <div class="d-flex justify-content-between align-middle card-options" *ngIf="getItemAmount(product.id) !== 0">
+          <div>
+            <button type="button" class="btn btn-link" (click)="addToBasket(product, amountInput)">
+              <i class="fas fa-plus-circle"></i>
+            </button>
+            <input type="text" #amountInput [value]="getItemAmount(product.id)" (input)="setItemAmount(product, $event)" class="form-control item-amount-input">
+            <button type="button" class="btn btn-link" (click)="removeFromBasket(product.id, amountInput)">
+              <i class="fas fa-minus-circle"></i>
+            </button>
+          </div>
+          <div class="align-self-center">
+            <button type="button" class="btn btn-link" (click)="updateOrDelete(product.id)" *ngIf="checkManager()">
+              <i class="fas fa-wrench"></i>
+            </button>
+            <button type="button" class="btn btn-link" (click)="deleteFromBasket(product, 0)">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </div>
+        </div>
+        <div class="product-image" (click)="showDetails(product.id)">
+          <div></div>
+          <img [src]="getProdutImage(product.id)" onError="this.src='assets/img/product/placeholder.png';" alt="{{product.ManufacturerItemDescription}}"
+            class="card-img-top rounded" [ngClass]="{ 'white-opacity': this.basketService.isProductInBasket(product.id) }">
+          <i class="far fa-check-circle fa-4x product-in-cart-icon" *ngIf="this.basketService.isProductInBasket(product.id)"></i>
+        </div>
+        <div class="card-body" style="padding-top: 0px;">
+          <div class="card-title">
+            <div class="product-name">
+              {{product.ManufacturerItemDescription}}
+            </div>
+            <div class="product-quantity">{{ +product.Quantity }} {{product.UnitQty}}</div>
+            <div class="product-tags">
+              <img src="assets/img/GlutenFree.png" *ngIf="product.GlutenFree" alt="ללא גלוטן" title="ללא גלוטן" data-toggle="tooltip" data-placement="bottom"
+              />
+              <img src="assets/img/Kashrut.png" *ngIf="product.Kashrut" alt="{{ product.Kashrut }}" title="{{ product.Kashrut }}" data-toggle="tooltip"
+                data-placement="bottom" />
+              <img src="assets/img/Justice.png" *ngIf="product.ControlledPrice" alt="{{ product.ControlledPrice }}" title="מחיר מפוקח: {{ product.ControlledPrice }} ש&quot;ח"
+                title="מחיר מפוקח: {{ product.ControlledPrice }} ש&quot;ח" data-toggle="tooltip" data-placement="bottom" />
+              <img src="assets/img/Organic.png" *ngIf="product.Organic" alt="אורגני" title="אורגני" data-toggle="tooltip" data-placement="bottom"
+              />
+              <img src="assets/img/VeganFriendly.png" *ngIf="product.VeganFriendly" alt="טבעוני" title="טבעוני" data-toggle="tooltip" data-placement="bottom"
+              />
+              <img src="assets/img/EfshariBari.png" *ngIf="product.EfshariBari" alt="אפשרי בריא" title="אפשרי בריא" data-toggle="tooltip"
+                data-placement="bottom" />
+            </div>
+          </div>
+          <div class="card-text">
+            <ul class="feature-list">
+              <li>
+                <div class="row">
+                  <div class="col-sm-4 col-4">
+                    <span class="feature-title">ספק:</span>
+                  </div>
+                  <div class="col-sm-8 col">
+                    {{product.company}}
+                  </div>
                 </div>
-                <div class="col-sm-8 col">
-                  {{product.company}}
+              </li>
+              <li>
+                <div class="row">
+                  <div class="col-sm-4 col-4">
+                    <span class="feature-title">א. ייצור:</span>
+                  </div>
+                  <div class="col-sm-8 col">
+                    <span class="flag-icon {{'flag-icon-' + product.createCountry | lowercase}}"></span>
+                  </div>
                 </div>
-              </div>
-            </li>
-            <li>
-              <div class="row">
-                <div class="col-sm-4 col-4">
-                  <span class="feature-title">א. ייצור:</span>
+              </li>
+              <li>
+                <div class="row">
+                  <div class="col-4">
+                    <span class="feature-title">מחיר:</span>
+                  </div>
+                  <div class="col">
+                    <span class="product-price d-flex justify-content-end">
+                      {{ +product.price | currency:'ILS':'symbol':'1.2-3'}}
+                    </span>
+                  </div>
                 </div>
-                <div class="col-sm-8 col">
-                  <span class="flag-icon {{'flag-icon-' + product.createCountry | lowercase}}"></span>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="row">
-                <div class="col-4">
-                  <span class="feature-title">מחיר:</span>
-                </div>
-                <div class="col">
-                  <span class="product-price d-flex justify-content-end">
-                    {{ +product.price | currency:'ILS':'symbol':'1.2-3'}}
-                  </span>
-                </div>
-              </div>
-              <!-- <span class="feature-title">מחיר:</span>
+                <!-- <span class="feature-title">מחיר:</span>
               <span class="product-price ml-auto">
                 {{product.price}} ₪
               </span> -->
-            </li>
-            <li>
-              <div class="row">
-                <div class="col">
-                  <div class="product-price-per-unit d-flex justify-content-end">
-                    {{ +product.UnitOfMeasurePrice | currency:'ILS':'symbol':'1.2-3' }} / {{product.UnitOfMeasure}}
+              </li>
+              <li>
+                <div class="row">
+                  <div class="col">
+                    <div class="product-price-per-unit d-flex justify-content-end">
+                      {{ +product.UnitOfMeasurePrice | currency:'ILS':'symbol':'1.2-3' }} / {{product.UnitOfMeasure}}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </li>
-          </ul>
-          <!-- <button class="btn btn-primary float-right" (click)="showDetails(product.id)">פרטים נוספים</button> -->
+              </li>
+            </ul>
+            <!-- <button class="btn btn-primary float-right" (click)="showDetails(product.id)">פרטים נוספים</button> -->
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<div class="row">
-  <div class="col d-flex justify-content-center">
-    <pagination-controls class="pager" (pageChange)="pageChanged(p = $event)" previousLabel="" nextLabel="" maxSize="7">
-    </pagination-controls>
+  <div class="row">
+    <div class="col d-flex justify-content-center">
+      <pagination-controls class="pager" (pageChange)="pageChanged(p = $event)" previousLabel="" nextLabel="" maxSize="7">
+      </pagination-controls>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+  <div class="fixed-bottom basket-widget">
+    <!-- <div class="d-flex align-items-end flex-column"> -->
+    <button type=" button " class="btn btn-info " (click)="basketView() ">
+      <i class="fas fa-shopping-cart "></i>הסל שלי ({{basketItemsAmount}})</button>
+    <!-- </div> -->
   </div>
 </div>
-<router-outlet></router-outlet>
-<div class="fixed-bottom basket-widget">
-  <!-- <div class="d-flex align-items-end flex-column"> -->
-  <button type=" button " class="btn btn-info " (click)="basketView() ">
-    <i class="fas fa-shopping-cart "></i>הסל שלי ({{basketItemsAmount}})</button>
-  <!-- </div> -->
-</div>
-<!-- </div> -->
 <!-- <app-product-details></app-product-details> -->
 <!-- <div *ngIf="userName() ">
 </div> -->

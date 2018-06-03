@@ -25,7 +25,9 @@
 }
 
 .toolbar {
-  background-color: white;
+  background-color: #77ae47;
+  color: white;
+  font-weight: bold;
 }
 
 .add-product-button {

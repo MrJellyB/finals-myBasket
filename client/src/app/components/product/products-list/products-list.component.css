@@ -119,13 +119,14 @@ img.white-opacity {
   position: relative;
   overflow: hidden;
   margin-bottom: 38px;
-  height: 200px;
+  height: 160px;
   min-width: 100%;
 }
 
 .category-img img {
-  height: auto;
-  max-width: 100%;
+  height: 100%;
   position: absolute;
-  top: -100%;
+  width: 100vw;
+  object-position: center;
+  object-fit: cover;
 }

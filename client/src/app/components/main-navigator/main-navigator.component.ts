@@ -62,6 +62,17 @@ export class MainNavigatorComponent {
       .filter((event) => event instanceof NavigationEnd)
       .subscribe((event) => {
         this.currentCategory = +(event as NavigationEnd).url.split('/')[2] || -1
+
+        clearInterval(this.refreshIntervalId);
+
+        this.refreshIntervalId = setInterval(function () {
+          $('.slideshow > img:first')
+            .fadeOut(1000)
+            .next()
+            .fadeIn(1000)
+            .end()
+            .appendTo('.slideshow');
+        }, 6000);
       });
 
     this.basketItemsAmount = this.basketService.getAllAmount();
@@ -70,7 +81,7 @@ export class MainNavigatorComponent {
         this.basketItemsAmount = this.basketService.getAllAmount();
       }));
   }
-
+  refreshIntervalId;
   ngAfterViewInit() {
     // $('#btnTest').click(function () {
     //   toggleSideMenu();

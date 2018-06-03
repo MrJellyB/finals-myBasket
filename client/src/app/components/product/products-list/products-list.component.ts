@@ -23,6 +23,7 @@ export class ProductsListComponent {
   public productSize: number;
   public categoryProp: number;
   showAlways: boolean = false;
+  categoryImages = [];
 
   total = 0;
   page = 1;
@@ -43,6 +44,19 @@ export class ProductsListComponent {
     private UsersService: UsersService, ) { }
 
   ngOnInit() {
+    this.categoryImages[1] = _.range(1, 9 + 1);
+    this.categoryImages[2] = _.range(1, 9 + 1);
+    this.categoryImages[3] = _.range(1, 6 + 1);
+    this.categoryImages[4] = _.range(1, 9 + 1);
+    this.categoryImages[5] = _.range(1, 11 + 1);
+    this.categoryImages[6] = _.range(1, 16 + 1);
+    this.categoryImages[7] = _.range(1, 1 + 1);
+    this.categoryImages[8] = _.range(1, 2 + 1);
+    this.categoryImages[9] = _.range(1, 4 + 1);
+    this.categoryImages[10] = _.range(1, 5 + 1);
+    this.categoryImages[11] = _.range(1, 4 + 1);
+    this.categoryImages[12] = _.range(1, 9 + 1);
+
     //this.getProducts();
     this.getProductSize();
     this.getProductsPaging();
@@ -229,6 +243,14 @@ export class ProductsListComponent {
   }
 
   basketView() {
-    this.router.navigate(['/basket'])
+    this.router.navigate(['/basket']);
+  }
+
+  getCategoryImage(i: number) {
+    return "assets/img/categories/" + this.categoryProp + "/" + i + ".jpg";
+  }
+
+  ngAfterViewInit() {
+    // $(".slideshow > img:gt(0)").hide();
   }
 }
