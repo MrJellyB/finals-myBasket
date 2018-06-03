@@ -4,5 +4,7 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  url: 'http://localhost:8080',
+  geneticAlgoUrl: 'http://193.106.55.72:5000'
 };

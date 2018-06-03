@@ -15,6 +15,7 @@ import { UsersService } from 'app/services/users.service';
 import { LocalStorageService } from 'app/services/localStorageService';
 import { Http } from '@angular/http';
 import * as consts from 'app/utils/consts';
+import { environment } from '../../../../environments/environment'
 @Component({
   selector: 'app-basket-page',
   templateUrl: './basket-page.component.html',
@@ -217,7 +218,7 @@ export class BasketPageComponent {
 
     const username = this.localStorageService.get('currentUser').userName;
     if (username) {
-      this.http.get(`${consts.geneticAlgoUrl}/${username}`)
+      this.http.get(`${environment.geneticAlgoUrl}/api/main/GetBasket/${username}`)
         .map((data) => data.json())
         .subscribe((data) => {
           this.showSpinner = false;
