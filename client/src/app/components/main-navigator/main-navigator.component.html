@@ -102,7 +102,6 @@
       </div>
     </div>
   </div>
-
   <div class="row">
     <nav class="navbar navbar-expand-xl category-navigation container-fluid">
       <div class="navbar-toggler w-100 p-0">
@@ -114,7 +113,7 @@
       </div>
       <div class="collapse navbar-collapse" id="navbarNavDropdown2">
         <ul class="navbar-nav container-fluid">
-          <li class="nav-item col active" (click)="getProductsByCategory(1)">
+          <li class="nav-item col active" (click)="getProductsByCategory(1)" [ngClass]="currentCategory == 1 ? 'selected' : ''">
             <a class="nav-link">
               <div class="nav-text-container">
                 <span>
@@ -128,7 +127,7 @@
               </div>
             </a>
           </li>
-          <li class="nav-item col" (click)="getProductsByCategory(2)">
+          <li class="nav-item col" (click)="getProductsByCategory(2)" [ngClass]="currentCategory == 2 ? 'selected' : ''">
             <a class="nav-link">
               <div class="nav-text-container">
                 <span>
@@ -138,7 +137,7 @@
               </div>
             </a>
           </li>
-          <li class="nav-item col" (click)="getProductsByCategory(3)">
+          <li class="nav-item col" (click)="getProductsByCategory(3)" [ngClass]="currentCategory == 3 ? 'selected' : ''">
 
             <a class="nav-link">
               <div class="nav-text-container">
@@ -149,7 +148,7 @@
               </div>
             </a>
           </li>
-          <li class="nav-item col" (click)="getProductsByCategory(4)">
+          <li class="nav-item col" (click)="getProductsByCategory(4)" [ngClass]="currentCategory == 4 ? 'selected' : ''">
 
             <a class="nav-link">
               <div class="nav-text-container">
@@ -161,7 +160,7 @@
             </a>
 
           </li>
-          <li class="nav-item col" (click)="getProductsByCategory(5)">
+          <li class="nav-item col" (click)="getProductsByCategory(5)" [ngClass]="currentCategory == 5 ? 'selected' : ''">
 
             <a class="nav-link">
               <div class="nav-text-container">
@@ -173,7 +172,7 @@
             </a>
 
           </li>
-          <li class="nav-item col" (click)="getProductsByCategory(6)">
+          <li class="nav-item col" (click)="getProductsByCategory(6)" [ngClass]="currentCategory == 6 ? 'selected' : ''">
 
             <a class="nav-link">
               <div class="nav-text-container">
@@ -185,7 +184,7 @@
             </a>
 
           </li>
-          <li class="nav-item col" (click)="getProductsByCategory(7)">
+          <li class="nav-item col" (click)="getProductsByCategory(7)" [ngClass]="currentCategory == 7 ? 'selected' : ''">
 
             <a class="nav-link">
               <div class="nav-text-container">
@@ -199,7 +198,7 @@
           </li>
           <li class="nav-item col">
 
-            <a class="nav-link" (click)="getProductsByCategory(8)">
+            <a class="nav-link" (click)="getProductsByCategory(8)" [ngClass]="currentCategory == 8 ? 'selected' : ''">
               <div class="nav-text-container">
                 <span>
                   <i class="icon can"></i>
@@ -209,7 +208,7 @@
             </a>
 
           </li>
-          <li class="nav-item col" (click)="getProductsByCategory(9)">
+          <li class="nav-item col" (click)="getProductsByCategory(9)" [ngClass]="currentCategory == 9 ? 'selected' : ''">
 
             <a class="nav-link">
               <div class="nav-text-container">
@@ -221,7 +220,7 @@
             </a>
 
           </li>
-          <li class="nav-item col" (click)="getProductsByCategory(10)">
+          <li class="nav-item col" (click)="getProductsByCategory(10)" [ngClass]="currentCategory == 10 ? 'selected' : ''">
 
             <a class="nav-link">
               <div class="nav-text-container">
@@ -233,7 +232,7 @@
             </a>
 
           </li>
-          <li class="nav-item col" (click)="getProductsByCategory(11)">
+          <li class="nav-item col" (click)="getProductsByCategory(11)" [ngClass]="currentCategory == 11 ? 'selected' : ''">
 
             <a class="nav-link">
               <div class="nav-text-container">
@@ -245,7 +244,7 @@
             </a>
 
           </li>
-          <li class="nav-item col" (click)="getProductsByCategory(12)">
+          <li class="nav-item col" (click)="getProductsByCategory(12)" [ngClass]="currentCategory == 12 ? 'selected' : ''">
             <a class="nav-link">
               <div class="nav-text-container">
                 <span>
@@ -257,7 +256,7 @@
 
           </li>
 
-          <li class="nav-item col mr-auto" (click)="getProductListFilter()">
+          <li class="nav-item col mr-auto" (click)="getProductListFilter()" [ngClass]="currentCategory == -1 ? 'selected' : ''">
             <a class="nav-link">
               <div class="nav-text-container">
                 <span>

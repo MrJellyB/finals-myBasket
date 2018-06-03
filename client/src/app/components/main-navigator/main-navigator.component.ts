@@ -61,7 +61,7 @@ export class MainNavigatorComponent {
     this.router.events
       .filter((event) => event instanceof NavigationEnd)
       .subscribe((event) => {
-        this.currentCategory = +(event as NavigationEnd).url.split('/')[2]
+        this.currentCategory = +(event as NavigationEnd).url.split('/')[2] || -1
       });
 
     this.basketItemsAmount = this.basketService.getAllAmount();

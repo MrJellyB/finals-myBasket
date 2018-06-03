@@ -1,10 +1,10 @@
-<div class="container main-content">
+<div class="container main-content py-3 py-md-4 my-4 my-md-5 rounded">
   <div class="row justify-content-center">
-    <h2>הרכבת פרופיל אישי</h2>
+    <h2>פרופיל אישי</h2>
   </div>
 
   <div class="row justify-content-center">
-    <p>נצטרך כמה פרטים עליכם, כדי לבנות עבורכם את סל הקניות האולטימטיבי</p>
+    על מנת שהמערכת תדע לבנות עבורכם סל קניות אוטמטי ומותאם אישית, עליכם למלא מספר פרטים:
   </div>
 
   <!--
@@ -197,7 +197,7 @@
       <div class="row justify-content-center">
         <div class="col-lg-4 col-8">
           <button (click)="saveProfileBuilder()" [disabled]="!f.valid || selectedCity == 0 || (profileBuilder.peopleAmount.adults + profileBuilder.peopleAmount.kids + profileBuilder.peopleAmount.babies) < 1"
-          class="btn btn-primary btn-lg btn-block info pointer">שמור פרטים</button>
+            class="btn btn-primary btn-lg btn-block info pointer">שמור פרטים</button>
         </div>
       </div>
     </fieldset>

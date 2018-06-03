@@ -1,7 +1,14 @@
+<!-- <div class="row">
+  <div class="category-img">
+    <img src="https://images.pexels.com/photos/547114/pexels-photo-547114.jpeg?cs=srgb&dl=adventure-alps-background-547114.jpg&fm=jpg">
+
+  </div>
+</div>
+<div class="container"> -->
 <div class="products row justify-content-center">
   <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 py-2" *ngFor="let product of productsByCategory | paginate: { itemsPerPage:limit, currentPage: p,totalItems: productSize}; let i = index">
-    <div class="product card" (mouseenter)="enterCard(i)" (mouseleave)="leaveCard(i)">
-      <div class="d-flex justify-content-between align-middle" *ngIf="!getItemAmount(product.id)" [ngClass]="i == hoverIndex ? 'showControl' : 'hideControl'">
+    <div class="product card h-100" (mouseenter)="enterCard(i)" (mouseleave)="leaveCard(i)">
+      <div class="d-flex justify-content-between align-middle" *ngIf="!getItemAmount(product.id)" [ngClass]="showAlways ? 'showControl' : (i == hoverIndex ? 'showControl' : 'hideControl')">
         <div>
           <button type="button" class="btn btn-link" (click)="addToBasket(product, amountInput)">
             <i class="fas fa-plus-circle"></i>
@@ -121,6 +128,7 @@
     <i class="fas fa-shopping-cart "></i>הסל שלי ({{basketItemsAmount}})</button>
   <!-- </div> -->
 </div>
+<!-- </div> -->
 <!-- <app-product-details></app-product-details> -->
 <!-- <div *ngIf="userName() ">
 </div> -->

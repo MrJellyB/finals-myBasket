@@ -1,29 +1,39 @@
-<div>
+<div class="container main-content py-3 py-md-4 my-4 my-md-5 rounded" *ngIf="checkManager()">
+  <div class="row justify-content-center">
+    <h2>כל המוצרים</h2>
+  </div>
+
+  <div class="row justify-content-center">
+    בעמוד זה, ניתן לצפות בכל המוצרים הקיימים באתר בצורה נוחה וקומפקטית. בנוסף, ניתן בצע חיפושים מורכבים לפי קטגוריה, שם המוצר
+    וטווח מחיר - ולשלב ביניהם.
+  </div>
+
   <div>
-    <h3>
-      פלטר לפי:
-    </h3>
     <form class="filter-form form-inline col-xs-6 col-md-12">
-      <div class="form-group">
-        <label class="mr-2">קטגוריה: </label>
-        <select (change)="selectItem($event.target.value)" class="form-control">
-          <option *ngFor="let currCategory of categories" value={{currCategory.id}}>{{currCategory.name}}</option>
-        </select>
+      <div class="row">
+        <div class="form-group">
+          <label class="mr-2">קטגוריה: </label>
+          <select (change)="selectItem($event.target.value)" class="form-control">
+            <option *ngFor="let currCategory of categories" value={{currCategory.id}}>{{currCategory.name}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="mr-2">שם המוצר: </label>
+          <input class="form-control" name="name" [(ngModel)]="name" />
+        </div>
       </div>
-      <div class="form-group">
-        <label class="mr-2">שם: </label>
-        <input class="form-control" name="name" [(ngModel)]="name" />
-      </div>
-      <div class="form-group">
-        <label class="mr-2">מחיר: </label>
-        <input class="form-control" type="number" name="fromPrice" [(ngModel)]="fromPrice" />
-      </div>
-      <div class="form-group">
-        <label class="mr-2">עד מחיר: </label>
-        <input class="form-control" type="number" name="toPrice" [(ngModel)]="toPrice" />
-      </div>
-      <div class="form-group" style="margin-top: 5px;">
-        <button class="btn btn-primary form-control" (click)="onClickfindProducts()">בצע חיפוש</button>
+      <div class="row d-flex">
+        <div class="form-group">
+          <label class="mr-2">ממחיר: </label>
+          <input class="form-control" type="number" name="fromPrice" [(ngModel)]="fromPrice" />
+        </div>
+        <div class="form-group">
+          <label class="mr-2">עד מחיר: </label>
+          <input class="form-control" type="number" name="toPrice" [(ngModel)]="toPrice" />
+        </div>
+        <div class="form-group mr-auto" style="margin-top: 5px;">
+          <button class="btn btn-primary form-control" (click)="onClickfindProducts()">בצע חיפוש</button>
+        </div>
       </div>
     </form>
   </div>
@@ -73,5 +83,4 @@
   </div>
 
   <router-outlet></router-outlet>
-
 </div>

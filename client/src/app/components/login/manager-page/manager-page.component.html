@@ -1,40 +1,60 @@
-<div *ngIf="checkManager()" class="table-responsive">
-  <table  class="table table-hover table-sm">
-    <thead>
-      <tr class="thead-light">
-        <th class="title-right">שם משתמש</th>
-        <th class="title-right">שם משפחה</th>
-        <th class="title-right">שם פרטי</th>
-        <th class="title-right">אימייל</th>
-        <th class="title-right">מין</th>
-        <th class="title-right">סוג משתמש</th>
-        <th class="title-right">מחיקת משתמש</th>
-        <th class="title-right">הפיכה למנהל</th>
-        <th class="title-right">איפוס סיסמא</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let currUser of users">
-        <td class="title-right">{{currUser.userName}}</td>
-        <td class="title-right">{{currUser.firstName}}</td>
-        <td class="title-right">{{currUser.lastName}}</td>
-        <td class="title-right">{{currUser.email}}</td>
-        <td class="title-right">{{currUser.genderValue}}</td>
-        <td class="title-right">{{currUser.userTypeValue}}</td>
-        <td class="title-right">
-          <button class="btn btn-primary" (click)="isDeleteUser(currUser.userName)">מחק משתמש</button>
-        </td>
-        <td class="title-right">
-            <input type="checkbox" [checked]="currUser.isManagerChecked" (change)="isChangeAdmin($event, currUser.userName)">
-        </td>
-        <td class="title-right">
-          <button class="btn btn-primary" (click)="isResetPassword(currUser.userName)">אפס סיסמא</button>
-        </td>
-    </tr>
-  </tbody>
-  </table>
-</div>
+<div class="container main-content py-3 py-md-4 my-4 my-md-5 rounded" *ngIf="checkManager()">
+  <div class="row justify-content-center">
+    <h2>ממשק ניהול</h2>
+  </div>
 
+  <div class="row justify-content-center">
+    בעמוד זה, מנהלים יכולים לצפות במשתמשים הקיימים במערכת ולערוך עליהם שינויים כמו: מחיקה, עריכת פרטים והוספת הרשאות.
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover table-sm">
+      <thead>
+        <tr class="thead-light">
+          <th class="title-right">שם משתמש</th>
+          <th class="title-right">שם משפחה</th>
+          <th class="title-right">שם פרטי</th>
+          <th class="title-right">אימייל</th>
+          <th class="title-right">מין</th>
+          <th class="title-right">סוג משתמש</th>
+          <th class="title-right">מחיקת משתמש</th>
+          <th class="title-right">הפיכה למנהל</th>
+          <th class="title-right">איפוס סיסמא</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let currUser of users">
+          <td class="title-right">{{currUser.userName}}</td>
+          <td class="title-right">{{currUser.firstName}}</td>
+          <td class="title-right">{{currUser.lastName}}</td>
+          <td class="title-right">{{currUser.email}}</td>
+          <td class="title-right">{{currUser.genderValue}}</td>
+          <td class="title-right">
+            <i class="fas fa-crown" *ngIf="currUser.userTypeValue == 'מנהל'"></i>
+            {{currUser.userTypeValue}}
+          </td>
+          <td class="title-right">
+            <button class="btn btn-danger" (click)="isDeleteUser(currUser.userName)">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </td>
+          <td class="title-right">
+            <div class="form-check checkbox-slider--b-flat">
+              <label>
+                <input type="checkbox" [checked]="currUser.isManagerChecked" (change)="isChangeAdmin($event, currUser.userName)">
+                <span>
+                </span>
+              </label>
+            </div>
+          </td>
+          <td class="title-right">
+            <button class="btn btn-primary" (click)="isResetPassword(currUser.userName)">איפוס</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <div *ngIf="!checkManager()">
   <div class="container access-denied py-3 py-md-4 my-4 my-md-5 rounded">

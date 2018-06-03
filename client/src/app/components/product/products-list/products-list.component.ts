@@ -22,10 +22,11 @@ export class ProductsListComponent {
   productsGroups: Product[][];
   public productSize: number;
   public categoryProp: number;
+  showAlways: boolean = false;
 
   total = 0;
   page = 1;
-  limit = 12;
+  limit = 24;
 
   basketItemsAmount: number;
   subs: Subscription[] = [];
@@ -51,6 +52,10 @@ export class ProductsListComponent {
       this.eventService.observe('BASKET_ITEMS').subscribe(() => {
         this.basketItemsAmount = this.basketService.getAllAmount();
       }));
+
+    if (window.innerWidth < 500) {
+      this.showAlways = true;
+    }
   }
 
   getProductSize() {

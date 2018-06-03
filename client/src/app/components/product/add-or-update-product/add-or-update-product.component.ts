@@ -51,7 +51,7 @@ export class AddOrUpdateProductComponent {
   getCategories() {
     this.productService.getCategories().subscribe((results: any) => {
       this.categories = results
-      console.log(this.categories);
+      //console.log(this.categories);
     })
   }
 
@@ -74,7 +74,7 @@ export class AddOrUpdateProductComponent {
           this.product = data[0];
           this.currentCategory = this.product.category;
           this.getCategoryById(this.product.category);
-          console.log(this.product);
+          //console.log(this.product);
           this.product.oldPrice = this.product.price;
         }
         else {
@@ -95,7 +95,7 @@ export class AddOrUpdateProductComponent {
       (data) => {
         this.CategoryValue = data[0];
         //this.product.categoryValue = this.CategoryValue.name;
-        console.log(data);
+        //console.log(data);
       }
     );
   }
@@ -113,7 +113,7 @@ export class AddOrUpdateProductComponent {
   }
 
   updateTheProduct() {
-    console.log(this.product);
+    //console.log(this.product);
     this.product.price = +this.product.price;
     this.productService.updateProduct(this.product).subscribe((results) => {
       alert('עדכון המוצר בוצע בהצלחה, הינך עובר לדף הראשי');

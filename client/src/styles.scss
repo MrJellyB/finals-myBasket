@@ -128,7 +128,8 @@ i.water-bottle {
       padding-right: 0em;
       text-align: center;
       vertical-align: central;
-      &:hover {
+      &:hover,
+      &.selected {
         background-color: $nav-color;
         a {
           color: white;
@@ -418,6 +419,13 @@ html {
   }
   .container.main-content {
     width: 90%;
+  }
+  .card-options .btn {
+    padding-right: 5px !important;
+    padding-left: 5px !important;
+  }
+  .card-options .item-amount-input {
+    width: 40px !important;
   }
 }
 

@@ -31,6 +31,10 @@
   padding-left: 0;
 }
 
+.product-name {
+  text-align: center;
+}
+
 /* @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,600,400italic);
 
 nav {

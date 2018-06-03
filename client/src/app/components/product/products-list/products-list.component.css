@@ -56,6 +56,7 @@ tr:nth-child(even) {
 }
 
 .product-quantity {
+  font-size: 14px;
   text-align: center;
   color: gray;
 }
@@ -78,7 +79,7 @@ tr:nth-child(even) {
 }
 
 .product-name {
-  font-size: 18px;
+  font-size: 17px;
   font-weight: bold;
 }
 
@@ -112,4 +113,19 @@ img.white-opacity {
 .pager ::ng-deep ul.ngx-pagination {
   background-color: white;
   padding: 0px;
+}
+
+.category-img {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 38px;
+  height: 200px;
+  min-width: 100%;
+}
+
+.category-img img {
+  height: auto;
+  max-width: 100%;
+  position: absolute;
+  top: -100%;
 }
