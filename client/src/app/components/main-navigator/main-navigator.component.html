@@ -62,8 +62,11 @@
     <div class="col-5 d-flex flex-row justify-content-end">
 
       <div class="col-auto d-none d-md-block" *ngIf="checkManager()">
-        <button type="button" class="btn btn-info add-product-button py-0" (click)="newProduct()">
-          <i class="fas fa-plus-circle"></i>&nbsp;מוצר חדש</button>
+        <!-- <button type="button" class="btn btn-info add-product-button py-0" (click)="newProduct()"> -->
+        <span (click)="newProduct()" class="pointer">
+          <i class="fas fa-plus-circle"></i>&nbsp;מוצר חדש
+        </span>
+        <!-- </button> -->
       </div>
 
       <div class="col-auto d-none d-md-block" *ngIf="checkManager()">
@@ -395,8 +398,11 @@
         </span>
       </li>
       <li *ngIf="checkManager()">
-        <button type="button" class="btn btn-info add-product-button py-0" (click)="newProduct()" (click)="toggleSideMenu()">
-          <i class="fas fa-plus-circle"></i>&nbsp;מוצר חדש</button>
+        <span (click)="newProduct()" class="pointer">
+          <!-- <button type="button" class="btn btn-info add-product-button py-0" (click)="newProduct()" (click)="toggleSideMenu()"> -->
+          <i class="fas fa-plus-circle"></i>&nbsp;מוצר חדש
+          <!-- </button> -->
+        </span>
       </li>
       <li *ngIf="userName()">
         <span routerLink="/profile-builder" class="pointer" (click)="toggleSideMenu()">
