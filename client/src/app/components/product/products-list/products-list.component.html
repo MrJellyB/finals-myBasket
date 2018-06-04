@@ -1,4 +1,4 @@
-<div class="row">
+<div class="w-100">
   <div class="category-img slideshow">
     <img *ngFor="let number of this.categoryImages[this.categoryProp]" [src]="getCategoryImage(number)" [ngStyle]="{'display': number > 1 ? 'none' : 'block'}"
       alt="{{number > 1}}">
@@ -121,11 +121,16 @@
       </pagination-controls>
     </div>
   </div>
+  <div class="p-4">
+
+  </div>
   <router-outlet></router-outlet>
   <div class="fixed-bottom basket-widget">
     <!-- <div class="d-flex align-items-end flex-column"> -->
     <button type=" button " class="btn btn-info " (click)="basketView() ">
-      <i class="fas fa-shopping-cart "></i>הסל שלי ({{basketItemsAmount}})</button>
+      <span style="font-size: 1.1em; font-weight: bold;">
+        <i class="fas fa-shopping-cart"></i>הסל שלי ({{basketItemsAmount}})</span>
+    </button>
     <!-- </div> -->
   </div>
 </div>
