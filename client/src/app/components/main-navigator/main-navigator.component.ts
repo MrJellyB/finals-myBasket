@@ -131,7 +131,7 @@ export class MainNavigatorComponent {
   }
 
   newProduct() {
-    if (this.currentCategory)
+    if (this.currentCategory != -1)
       this.router.navigate(['/product-list/' + this.currentCategory + '/new']);
     else
       this.router.navigate(['/product-list-filter/new']);
