@@ -168,7 +168,11 @@ export class MainNavigatorComponent {
   }
 
   newProduct() {
+<<<<<<< HEAD
     if (this.currentCategory > 0)
+=======
+    if (this.currentCategory != -1)
+>>>>>>> 416728913a9b8ad49c14551db0a451ad9be0d4a1
       this.router.navigate(['/product-list/' + this.currentCategory + '/new']);
     else
       this.router.navigate(['/product-list-filter/new']);
