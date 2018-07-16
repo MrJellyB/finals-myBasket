@@ -18,9 +18,10 @@ declare var $;
 export class MainNavigatorComponent {
   productId: string;
   basketItemsAmount: number;
-  subs: Subscription[] = [];
+  subscriptions: Subscription[] = [];
   currentCategory: number;
-  isClosed = false;
+  isClosed: boolean = false;
+  refreshIntervalId: any;
 
   constructor(private router: Router,
     private route: ActivatedRoute,
@@ -57,11 +58,15 @@ export class MainNavigatorComponent {
 
     // this._renderer2.appendChild(this._document.body, script);
 
-
     this.router.events
       .filter((event) => event instanceof NavigationEnd)
       .subscribe((event) => {
-        this.currentCategory = +(event as NavigationEnd).url.split('/')[2] || -1
+        var urlParts = (event as NavigationEnd).url.split('/');
+        this.currentCategory = +(urlParts[2]) || -1;
+
+        if ((this.currentCategory == -1) && (urlParts[1] == "product-list-filter")) {
+          this.currentCategory = 0;
+        }
 
         clearInterval(this.refreshIntervalId);
 
@@ -76,12 +81,12 @@ export class MainNavigatorComponent {
       });
 
     this.basketItemsAmount = this.basketService.getAllAmount();
-    this.subs.push(
+    this.subscriptions.push(
       this.eventService.observe('BASKET_ITEMS').subscribe(() => {
         this.basketItemsAmount = this.basketService.getAllAmount();
       }));
   }
-  refreshIntervalId;
+
   ngAfterViewInit() {
     // $('#btnTest').click(function () {
     //   toggleSideMenu();
@@ -109,15 +114,47 @@ export class MainNavigatorComponent {
   }
 
   ngOnDestroy() {
-    this.subs.forEach(sub => sub.unsubscribe());
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
+  getDisplayUserName() {
+    let displayValue = this.localStorageService.get('currentUser').userName;
+    return displayValue;
+  }
+
+  getUserStatus() {
+    return this.localStorageService.get('userType');
+  }
+
+  logOff() {
+    this.usersService.logout();
+  }
+
+  getAmountInBasket(): number {
+    return this.basketService.getAllAmount();
+  }
+
+  userName() {
+    return this.usersService.userName();
+  }
+
+  userType() {
+    return this.usersService.getUserStatus();
+  }
+
+  checkManager() {
+    return this.userName() != null && this.userType() == "2";
+  }
+
+  // Router navigate
   addProductView() {
     this.router.navigate(['/add-or-update-product']);
   }
+
   loginView() {
     this.router.navigate(['/login'])
   }
+
   registerView() {
     this.router.navigate(['/register'])
   }
@@ -131,28 +168,16 @@ export class MainNavigatorComponent {
   }
 
   newProduct() {
-    if (this.currentCategory)
+    if (this.currentCategory > 0)
       this.router.navigate(['/product-list/' + this.currentCategory + '/new']);
     else
       this.router.navigate(['/product-list-filter/new']);
-  }
-
-  getDisplayUserName() {
-    let displayValue = this.localStorageService.get('currentUser').userName;
-    return displayValue;
-  }
-
-  getUserStatus() {
-    return this.localStorageService.get('userType');
   }
 
   managerView() {
     this.router.navigate(['/manager-page'])
   }
 
-  logOff() {
-    this.usersService.logout();
-  }
   HistoryOneView() {
     this.router.navigate(['/history-one-d3js/' + this.productId])
   }
@@ -167,31 +192,14 @@ export class MainNavigatorComponent {
 
   cheapestProduct() {
     this.router.navigate(['/cheapest-product'])
-
   }
 
   preferredProduct() {
     this.router.navigate(['/preferred-product'])
   }
 
-  getAmountInBasket(): number {
-    return this.basketService.getAllAmount();
-  }
-
   getProductsByCategory(id) {
     this.router.navigate(['/product-list/' + id]).then(() => $("#navbarNavDropdown2").collapse('hide'));
-  }
-
-  userName() {
-    return this.usersService.userName();
-  }
-
-  userType() {
-    return this.usersService.getUserStatus();
-  }
-
-  checkManager() {
-    return this.userName() != null && this.userType() == "2";
   }
 
   getProductListFilter() {

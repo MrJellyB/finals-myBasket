@@ -199,9 +199,9 @@
             </a>
 
           </li>
-          <li class="nav-item col">
+          <li class="nav-item col" (click)="getProductsByCategory(8)" [ngClass]="currentCategory == 8 ? 'selected' : ''">
 
-            <a class="nav-link" (click)="getProductsByCategory(8)" [ngClass]="currentCategory == 8 ? 'selected' : ''">
+            <a class="nav-link">
               <div class="nav-text-container">
                 <span>
                   <i class="icon can"></i>
@@ -259,7 +259,7 @@
 
           </li>
 
-          <li class="nav-item col mr-auto" (click)="getProductListFilter()" [ngClass]="currentCategory == -1 ? 'selected' : ''">
+          <li class="nav-item col mr-auto" (click)="getProductListFilter()" [ngClass]="currentCategory == 0 ? 'selected' : ''">
             <a class="nav-link">
               <div class="nav-text-container">
                 <span>

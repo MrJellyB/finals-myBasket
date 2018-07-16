@@ -110,10 +110,10 @@
                   <div class="product-quantity">{{ +product.Quantity }} {{product.UnitQty}}</div>
                 </div>
                 <div class="col" *ngIf="this.isEdit || this.isNew">
-                  <input class="form-control" tabindex="7" name="Quantity" type="text" [(ngModel)]="product.Quantity" #Quantity="ngModel" />
+                  <input class="form-control" tabindex="2" name="Quantity" type="text" [(ngModel)]="product.Quantity" #Quantity="ngModel" />
                 </div>
                 <div class="col" *ngIf="this.isEdit || this.isNew">
-                  <input class="form-control" tabindex="7" name="UnitQty" type="text" [(ngModel)]="product.UnitQty" #UnitQty="ngModel" />
+                  <input class="form-control" tabindex="3" name="UnitQty" type="text" [(ngModel)]="product.UnitQty" #UnitQty="ngModel" />
                 </div>
               </div>
               <div class="row">
@@ -124,7 +124,7 @@
                   {{this.CategoryValue ? this.CategoryValue.name : ""}}
                 </div>
                 <div class="col" *ngIf="this.isEdit || this.isNew">
-                  <select (change)="selectItem($event.target.value)" class="form-control">
+                  <select (change)="selectItem($event.target.value)" class="form-control" tabindex="4">
                     <option *ngFor="let currCategory of categories" [selected]="currCategory.id == currentCategory" value={{currCategory.id}}>{{currCategory.name}}</option>
                   </select>
                 </div>
@@ -137,7 +137,7 @@
                   {{product.company}}
                 </div>
                 <div class="col" *ngIf="this.isEdit || this.isNew">
-                  <input class="form-control" tabindex="6" name="company" type="text" [(ngModel)]="product.company" #company="ngModel" />
+                  <input class="form-control" tabindex="5" name="company" type="text" [(ngModel)]="product.company" #company="ngModel" />
                 </div>
               </div>
               <div class="row">
@@ -149,7 +149,7 @@
                     data-placement="right" tabindex="0"></span>
                 </div>
                 <div class="col" *ngIf="this.isEdit || this.isNew">
-                  <input class="form-control" tabindex="5" name="createCountry" type="text" [(ngModel)]="product.createCountry" #createCountry="ngModel"
+                  <input class="form-control" tabindex="6" name="createCountry" type="text" [(ngModel)]="product.createCountry" #createCountry="ngModel"
                   />
                 </div>
               </div>
@@ -161,7 +161,7 @@
                   {{product.ManufacturerItemDescription }}
                 </div>
                 <div class="col" *ngIf="this.isEdit || this.isNew">
-                  <input class="form-control" tabindex="5" name="ManufacturerItemDescription" type="text" [(ngModel)]="product.ManufacturerItemDescription"
+                  <input class="form-control" tabindex="7" name="ManufacturerItemDescription" type="text" [(ngModel)]="product.ManufacturerItemDescription"
                     #ManufacturerItemDescription="ngModel" />
                 </div>
               </div>
@@ -173,7 +173,7 @@
                   {{ product.price | currency:'ILS':'symbol':'1.2-3' }}
                 </div>
                 <div class="col" *ngIf="this.isEdit || this.isNew">
-                  <input class="form-control" tabindex="2" name="price" type="text" [(ngModel)]="product.price" #price="ngModel" />
+                  <input class="form-control" tabindex="8" name="price" type="text" [(ngModel)]="product.price" #price="ngModel" />
                 </div>
               </div>
               <div class="row">
@@ -184,11 +184,11 @@
                   {{product.UnitOfMeasurePrice | currency:'ILS':'symbol':'1.2-3'}} / {{product.UnitOfMeasure}}
                 </div>
                 <div class="col" *ngIf="this.isEdit || this.isNew">
-                  <input class="form-control" tabindex="5" name="UnitOfMeasurePrice" type="text" [(ngModel)]="product.UnitOfMeasurePrice" #UnitOfMeasurePrice="ngModel"
+                  <input class="form-control" tabindex="9" name="UnitOfMeasurePrice" type="text" [(ngModel)]="product.UnitOfMeasurePrice" #UnitOfMeasurePrice="ngModel"
                   />
                 </div>
                 <div class="col" *ngIf="this.isEdit || this.isNew">
-                  <input class="form-control" tabindex="5" name="UnitOfMeasure" type="text" [(ngModel)]="product.UnitOfMeasure" #UnitOfMeasure="ngModel"
+                  <input class="form-control" tabindex="10" name="UnitOfMeasure" type="text" [(ngModel)]="product.UnitOfMeasure" #UnitOfMeasure="ngModel"
                   />
                 </div>
               </div>
@@ -200,7 +200,7 @@
                   {{product.id}}
                 </div>
                 <div class="col" *ngIf="this.isEdit || this.isNew">
-                  <input class="form-control" tabindex="5" name="id" type="text" [(ngModel)]="product.id" #id="ngModel" />
+                  <input class="form-control" tabindex="11" name="id" type="text" [(ngModel)]="product.id" #id="ngModel" />
                 </div>
               </div>
               <div class="row" *ngIf="this.isEdit || this.isNew">
@@ -211,7 +211,7 @@
                   {{product.PriceUpdateDate}}
                 </div>
                 <div class="col" *ngIf="this.isEdit || this.isNew">
-                  <input class="form-control" tabindex="5" name="PriceUpdateDate" type="text" [(ngModel)]="product.PriceUpdateDate" #PriceUpdateDate="ngModel"
+                  <input class="form-control" tabindex="12" name="PriceUpdateDate" type="text" [(ngModel)]="product.PriceUpdateDate" #PriceUpdateDate="ngModel"
                   />
 
                 </div>

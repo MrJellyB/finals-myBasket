@@ -9,14 +9,13 @@ var dbUtils = require('./app/BL/DAL/database.js');
 var basketModule = require('./app/BL/modules/basketModule.js');
 var db = {};
 
-// consts
+// mongodb url
 //var MONGO_URL = 'mongodb://localhost:27017';
 var MONGO_URL = 'mongodb://11:22@193.106.55.172:8888/test';
 //var MONGO_URL = 'mongodb://193.106.55.172:8888/test';
 //var MONGO_URL = 'mongodb://11:22@localhost:5555/test';
 
-
-// get the app from the express
+// get app from express
 var app = express();
 
 // config app to use post api
@@ -29,8 +28,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cors());
 
-
-// set up to db
+// set up db
 dbUtils.setupDB(MONGO_URL, consts, route, function (p_db) {
 
     route.setupRoutes(app, p_db, dbUtils);

@@ -1,6 +1,3 @@
-
-
-
 <div class="container" *ngIf="checkManager()">
   <form id="contact" name="form" (ngSubmit)="f.form.valid && onSubmit(f,$event)" #f="ngForm" novalidate>
     <h3 *ngIf="actionCode === 1">הוספת מוצר חדש</h3>
@@ -8,36 +5,42 @@
     <h4>פרטים בסיסיים</h4>
     <fieldset class="row">
       <label for="file">בחר תמונה</label>
-      <input id="file" type="file"  accept="image/*" (change)="handleFileChange($event.target.files)"/>
+      <input id="file" type="file" accept="image/*" (change)="handleFileChange($event.target.files)" />
     </fieldset>
     <fieldset class="row">
       שם מוצר:
-      <input placeholder="שם מוצר..." tabindex="1" name="name" type="text" [(ngModel)]="product.name" #name="ngModel" required />
+      <input placeholder="שם מוצר..." tabindex="1" name="name" type="text" [(ngModel)]="product.name" #name="ngModel" required
+      />
     </fieldset>
 
     <fieldset class="row">
       מחיר מוצר:
-      <input placeholder="מחיר המוצר..." type="number" tabindex="2" name="price" [(ngModel)]="product.price" #price="ngModel" required />
+      <input placeholder="מחיר המוצר..." type="number" tabindex="2" name="price" [(ngModel)]="product.price" #price="ngModel" required
+      />
     </fieldset>
 
     <fieldset class="row">
       קלוריות:
-      <input placeholder="קלוריות..." type="number" tabindex="3" name="calories" [(ngModel)]="product.calories" #calories="ngModel" required />
+      <input placeholder="קלוריות..." type="number" tabindex="3" name="calories" [(ngModel)]="product.calories" #calories="ngModel"
+        required />
     </fieldset>
 
     <fieldset class="row">
       מדינת ייצור:
-      <input placeholder="מדינת יצור..." type="text" tabindex="4" name="createCountry" [(ngModel)]="product.createCountry" #createCountry="ngModel" required />
+      <input placeholder="מדינת יצור..." type="text" tabindex="4" name="createCountry" [(ngModel)]="product.createCountry" #createCountry="ngModel"
+        required />
     </fieldset>
 
     <fieldset class="row">
       ייצרן:
-      <input placeholder="ייצרן..." type="text" tabindex="5" name="company" [(ngModel)]="product.company" #company="ngModel" required />
+      <input placeholder="ייצרן..." type="text" tabindex="5" name="company" [(ngModel)]="product.company" #company="ngModel" required
+      />
     </fieldset>
 
     <fieldset class="row">
       תיאור:
-      <input placeholder="תיאור..." type="text" tabindex="6" name="desc" [(ngModel)]="product.ManufacturerItemDescription" #ManufacturerItemDescription="ngModel" required />
+      <input placeholder="תיאור..." type="text" tabindex="6" name="desc" [(ngModel)]="product.ManufacturerItemDescription" #ManufacturerItemDescription="ngModel"
+        required />
     </fieldset>
 
     <div class="form-group">
@@ -52,7 +55,8 @@
       <!--
     <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">שלח :)</button>
         -->
-      <button style="margin-top:5%" class="button-style" [disabled]="!f.valid || currentCategory == 0" *ngIf="this.product.id == 0" (click)="actionCodeToAdd()">הוספת מוצר</button>
+      <button style="margin-top:5%" class="button-style" [disabled]="!f.valid || currentCategory == 0" *ngIf="this.product.id == 0"
+        (click)="actionCodeToAdd()">הוספת מוצר</button>
       <button style="margin-top:5%" class="button-style" [disabled]="!f.valid" *ngIf="this.product.id != 0" (click)="actionCodeToUpdate()">עדכן מוצר</button>
       <button style="margin-top:5%" class="button-style" *ngIf="this.product.id != 0" (click)="actionCodeToDelete()">מחיקת מוצר</button>
     </fieldset>
