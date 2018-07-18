@@ -9,6 +9,7 @@ import { HttpService } from 'app/services/http.service';
 import { UsersService } from './users.service';
 
 
+// API Service for basket
 @Injectable()
 export class BasketHandleService {
 

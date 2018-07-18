@@ -15,7 +15,6 @@ import { MainNavigatorComponent } from './components/main-navigator/main-navigat
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { EventService } from './services/event.service';
 import { LocalStorageService } from './services/localStorageService';
-import { AuthGuardService } from './shared/services/AuthGuard/auth-guard.service';
 @NgModule({
   imports: [
     BrowserModule,
@@ -36,7 +35,6 @@ import { AuthGuardService } from './shared/services/AuthGuard/auth-guard.service
   ],
   providers: [
     HttpService,
-    AuthGuardService,
     EventService,
     LocalStorageService,
   ],
