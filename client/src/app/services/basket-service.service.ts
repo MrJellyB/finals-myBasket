@@ -3,6 +3,10 @@ import { BasketItem, Product } from 'app/interface/entities.interface';
 import { EventService } from './event.service';
 import { LocalStorageService } from './localStorageService';
 
+<<<<<<< HEAD
+=======
+// Takes the basket data from the localStorage here
+>>>>>>> b2c3ccd5fce50e94160c61832a170aa295befa58
 @Injectable()
 export class BasketService {
   constructor(private localStorageService: LocalStorageService,
