@@ -3,7 +3,6 @@ import { Product, Category } from 'app/interface/entities.interface';
 import { CategoryToProduct, ProductToGrades } from 'app/interface/entities.interface';
 import { ProductService } from 'app/services/product.service';
 
-
 @Component({
   selector: 'app-preferred-product',
   templateUrl: './preferred-product.component.html',

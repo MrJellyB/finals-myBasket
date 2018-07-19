@@ -10,11 +10,6 @@ exports.setup = function (db) {
     dbUtils = db;
 }
 
-
-// USERS
-// =============================================
-// =
-
 exports.getUsers = function (req, res) {
     dbUtils.getUsers(function (err, results) {
         dbUtils.getGenders(function (err, genders) {
@@ -107,13 +102,8 @@ exports.createProfileToUser = function (req, res) {
         if (data) return res.send(true);
         return res.send(false);
     })
-    //})
-}
+    }
 
-// =============================================
-
-// CATEGORIES
-// =============================================
 exports.getCategories = function (req, res) {
     dbUtils.getCategories(function (err, data) {
         res.send(data);
@@ -126,10 +116,7 @@ exports.getCategoryById = function (req, res) {
         res.send(data);
     })
 }
-// =============================================
 
-// PRODUCTS
-// =============================================
 exports.getProductDetails = function (req, res) {
     var id = req.params.id;
     dbUtils.getProductDetails(id, function (err, data) {
@@ -170,7 +157,6 @@ exports.getProductsPagingByCategory = function (req, res) {
     var limit = +req.params.limit;
     var category = +req.params.category;
 
-
     dbUtils.getProductsPagingByCategory(category, page, limit, function (err, data) {
         res.send(data);
     })
@@ -204,8 +190,7 @@ exports.updateProduct = function (req, res) {
         // the price is changed
         if (oldPrice != productToUpdate.price) {
             dbUtils.addOldPriceToArray(productId, oldPrice, function (err, data) {
-                //res.send(true);
-            })
+                            })
         }
 
         res.send(true);
@@ -250,8 +235,6 @@ exports.getProductSizeByCategory = function (req, res) {
     })
 }
 
-// BASKETS METHODS
-// =============================================
 exports.saveBasket = function (req, res) {
     var details = req.body.data;
     dbUtils.getNextSequence("basketId", function (err, nextSeqId) {
@@ -285,27 +268,16 @@ exports.getBasketByUser = function (req, res) {
         res.send(data);
     });
 }
-// =============================================
 
-// STORES METHODS
-// =============================================
 exports.getAllStores = function (req, res) {
     dbUtils.getAllStores(function (err, data) {
 
         res.send(data);
     });
 }
-// =============================================
 
-
-// =============================================
-
-
-// STORES CITIES
-// =============================================
 exports.getCities = function (req, res) {
     dbUtils.getCities(function (err, data) {
         res.send(data);
     });
 }
-// =============================================

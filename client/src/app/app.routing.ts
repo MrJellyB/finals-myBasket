@@ -47,9 +47,7 @@ export const routes: Routes = [
     },
     { path: 'statistics', component: StatisticsMainPageComponent },
     { path: 'profile-builder', component: ProfileBuilderComponent },
-    // { path: 'product-list/:id/details/:productId/:edit', component: ProductsListComponent },
-    // { path: 'product-list/:id/details/:productId', component: ProductsListComponent },
-    {
+            {
         path: 'product-list/:id',
         component: ProductsListComponent,
         children: [

@@ -39,17 +39,11 @@ export class RegisterUserComponent {
   }
 
   _keyPressEmail(event: any) {
-    //const pattern = /^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$/;
-    //let inputChar = String.fromCharCode(event.charCode);
-
-    //this.checkPattern(pattern, inputChar);
-  }
+        
+      }
 
   checkPattern(pattern, inputChar) {
-    //if (!pattern.test(inputChar)) {
-    //  event.preventDefault();
-    //}
-  }
+              }
 
   onSubmit(f: any, event: Event) {
     event.preventDefault();

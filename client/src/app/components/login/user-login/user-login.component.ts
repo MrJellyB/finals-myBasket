@@ -6,7 +6,6 @@ import { BasketHandleService } from 'app/services/basket.service';
 import { EventService } from 'app/services/event.service';
 import { LocalStorageService } from 'app/services/localStorageService';
 
-
 @Component({
   selector: 'app-user-login',
   templateUrl: './user-login.component.html',
@@ -26,10 +25,7 @@ export class UserLoginComponent {
     this.errorConnecting = false;
   }
 
-  // get userName() {
-  //   return this.userService.userName();
-  // }
-
+      
   onSubmit(userloginForm: any, event: Event) {
     event.preventDefault();
     this.userService.loginWithAuthenticate(this.model.userName, this.model.password).subscribe(

@@ -28,7 +28,6 @@ export class BarChartProuctPriceComponent {
   private svg: any;
   private g: any;
 
-
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
@@ -44,14 +43,12 @@ export class BarChartProuctPriceComponent {
         this.minPrice = this.products[0].price;
         this.maxPrice = this.products[0].price;
 
-
         for (var i = 0; i < this.products.length; i++) {
           this.data.push({ "name": this.products[i].name + " - " + i, "price": this.products[i].price })
 
           if (this.maxPrice < this.products[i].price) { this.maxPrice = this.products[i].price }
           if (this.minPrice > this.products[i].price) { this.minPrice = this.products[i].price }
         }
-
 
         for (var i = 0; i < this.data.length; i++) {
 

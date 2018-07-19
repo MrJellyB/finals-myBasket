@@ -40,11 +40,11 @@
           <th scope="col">שם מוצר</th>
           <th scope="col">מחיר</th>
           <th scope="col">קטגוריה</th>
-          <!-- <th scope="col">קלוריות</th> -->
+          
           <th scope="col">מדינת יצור</th>
           <th scope="col">יצרן</th>
           <th scope="col">הצג פרטים</th>
-          <!-- <th scope="col">הוסף מוצר לסל</th> -->
+          
           <th scope="col" *ngIf="checkManager()">עדכן/ מחק מוצר</th>
         </tr>
       </thead>
@@ -54,15 +54,13 @@
           <td>{{currProduct.name}}</td>
           <td>{{currProduct.price}}</td>
           <td>{{currProduct.categoryValue}}</td>
-          <!-- <td>{{currProduct.calories}}</td> -->
+          
           <td>{{currProduct.createCountry}}</td>
           <td>{{currProduct.company}}</td>
           <td>
             <button class="btn btn-primary" (click)="showDetails(currProduct.id, currProduct.category)">הצג פרטים</button>
           </td>
-          <!-- <td>
-            <button class="btn btn-primary" (click)="addToBasket(currProduct)">הוסף לסל</button>
-          </td> -->
+          
           <td *ngIf="checkManager()">
             <button class="btn btn-primary" (click)="updateOrDelete(currProduct.id, currProduct.category)">עריכת מוצר</button>
           </td>

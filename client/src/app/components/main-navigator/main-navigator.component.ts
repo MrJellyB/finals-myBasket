@@ -34,30 +34,6 @@ export class MainNavigatorComponent {
   ) { }
 
   ngOnInit() {
-    // let script = this._renderer2.createElement('script');
-    // script.type = "text/javascript";
-    // script.text = `
-    // var canvas = document.getElementById("welcomeCanvas");
-    // var x = canvas.width;
-    // var y = canvas.height;
-
-    // var ctx = canvas.getContext('2d');
-    // ctx.textAlign = "right"
-    // ctx.font = "50px Segoe UI";
-    // ctx.shadowColor = "rgb(190, 190, 190)";
-    // ctx.shadowOffsetX = 10;
-    // ctx.shadowOffsetY = 10
-    // ctx.shadowBlur = 10;
-
-    // var gradient = ctx.createLinearGradient(x, y, x-150, y-100);
-    // gradient.addColorStop(0, "rgb(97, 250, 97)");
-    // gradient.addColorStop(1, "rgb(110, 129, 255)");
-    // ctx.fillStyle = gradient;
-    // ctx.fillText("מערכת הסל שלי", x, y - 14);
-    //     `;
-
-    // this._renderer2.appendChild(this._document.body, script);
-
     this.router.events
       .filter((event) => event instanceof NavigationEnd)
       .subscribe((event) => {
@@ -88,17 +64,6 @@ export class MainNavigatorComponent {
   }
 
   ngAfterViewInit() {
-    // $('#btnTest').click(function () {
-    //   toggleSideMenu();
-    // });
-
-    // $(".overlay").click(function () {
-    //   toggleSideMenu();
-    // });
-
-    // $("#sidebar-wrapper span").click(function () {
-    //   toggleSideMenu();
-    // });
   }
 
   toggleSideMenu() {

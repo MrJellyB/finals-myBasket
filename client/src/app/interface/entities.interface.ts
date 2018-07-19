@@ -50,12 +50,10 @@ export interface User {
   userName: string;
   email: string;
   password: string;
-  //gender: 1 | 2;
-  gender: number;
+    gender: number;
   userTypeValue: string;
   genderValue: string;
-  role: string; // TODO: Change in script 
-  isManagerChecked: boolean;
+  role: string;   isManagerChecked: boolean;
   userType: number;
   profile: ProfileBuilder;
 }
@@ -86,7 +84,6 @@ export interface ProductToGrades {
   productId: number;
   TotalGrades: number
 }
-
 
 export interface CategoryToProduct {
   category: number;

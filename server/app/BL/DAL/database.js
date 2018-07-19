@@ -10,7 +10,6 @@ var consts = null;
 
 var collections = ['users', 'category', 'product', 'counters', 'basket', 'store', 'city', 'gender'];
 
-// log on to db
 exports.setupDB = function (dbUrl, con, p_db, callback) {
     consts = con;
 
@@ -96,7 +95,6 @@ exports.getProductSize = function (callback) {
 }
 
 exports.getProductSizeByCategory = function (category, callback) {
-    //console.log(category);
     db.product.aggregate([{
         $match: {
             "category": +category
@@ -360,7 +358,6 @@ exports.changeUserTypeStatus = function (userName, statusToChange, callback) {
     }, callback);
 }
 
-
 exports.resetPassword = function (userName, callback) {
     db.users.update({
         'userName': userName
@@ -413,15 +410,6 @@ exports.getCities = function (callback) {
     db.city.find({}).toArray(callback);
 }
 
-// STORES METHODS
-// =============================================
 exports.getAllStores = function (callback) {
     db.store.find({}).toArray(callback);
 }
-/*
-// For genetic algorithm 
-exports.getRandomProducts = function (amount, callback) {
-    db.product.aggregate(
-        { $sample: { size: amount } }
-    ).toArray(callback);
-}*/

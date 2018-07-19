@@ -81,7 +81,6 @@ export class UsersService {
     return this.http.post(url + '/resetPassword', { userName }, this.httpService.getOptions()).map((data) => data.json());
   }
 
-  // TODO: Complete
   loginWithAuthenticate(userName: string, password: string): Observable<boolean> {
     return this.http.post(url + '/loginWithAuthenticate', { "email": userName, "password": password }, this.httpService.getOptions())
       .pipe(map((response: Response) => {

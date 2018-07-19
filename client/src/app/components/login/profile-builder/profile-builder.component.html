@@ -7,13 +7,7 @@
     על מנת שהמערכת תדע לבנות עבורכם סל קניות אוטמטי ומותאם אישית, עליכם למלא מספר פרטים:
   </div>
 
-  <!--
-          <div class="form-check checkbox-slider--default">
-            <label>
-              <input type="checkbox">
-              <span>TiTaToggle</span>
-            </label>
-          </div>-->
+  
 
   <form id="form-work" name="form" #f="ngForm" novalidate>
     <fieldset>
@@ -110,18 +104,7 @@
       <div class="row justify-content-center">
         <b>הסל שלי יהיה ללא המוצרים הבאים:</b>
       </div>
-      <!-- <div class="row justify-content-center">
-        <div class="col-lg-4 col-8">
-          <div class="form-check checkbox-slider--b-flat">
-            <label>
-              <input name="eggs" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Eggs)" [checked]="profileBuilder.avoidness.eggs">
-              <span>
-                ביצים
-              </span>
-            </label>
-          </div>
-        </div>
-      </div> -->
+      
       <div class="row justify-content-center">
         <div class="col-lg-4 col-8">
           <div class="form-check checkbox-slider--b-flat">
@@ -158,42 +141,9 @@
           </div>
         </div>
       </div>
-      <!-- <div class="row justify-content-center">
-        <div class="col-lg-4 col-8">
-          <div class="form-check checkbox-slider--b-flat">
-            <label>
-              <input name="nuts" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Nuts)" [checked]="profileBuilder.avoidness.nuts">
-              <span>
-                אגוזים
-              </span>
-            </label>
-          </div>
-        </div>
-      </div> -->
-      <!-- <div class="row justify-content-center">
-        <div class="col-lg-4 col-8">
-          <div class="form-check checkbox-slider--b-flat">
-            <label>
-              <input name="peanuts" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Peanuts)" [checked]="profileBuilder.avoidness.peanuts">
-              <span>
-                בוטנים
-              </span>
-            </label>
-          </div>
-        </div>
-      </div> -->
-      <!-- <div class="row justify-content-center">
-        <div class="col-lg-4 col-8">
-          <div class="form-check checkbox-slider--b-flat">
-            <label>
-              <input name="ful" type="checkbox" (change)="checkAvoidness($event, eAvoidnessEnum.Ful)" [checked]="profileBuilder.avoidness.ful">
-              <span>
-                פול
-              </span>
-            </label>
-          </div>
-        </div>
-      </div> -->
+      
+      
+      
       <div class="row justify-content-center">
         <div class="col-lg-4 col-8">
           <button (click)="saveProfileBuilder()" [disabled]="!f.valid || selectedCity == 0 || (profileBuilder.peopleAmount.adults + profileBuilder.peopleAmount.kids + profileBuilder.peopleAmount.babies) < 1"

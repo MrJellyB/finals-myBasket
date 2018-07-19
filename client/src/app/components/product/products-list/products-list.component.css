@@ -1,22 +1,4 @@
-/*table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-
-.title-right {
-  text-align: right;
-}*/
 
 .card .showControl {
   visibility: visible;
@@ -48,7 +30,7 @@ tr:nth-child(even) {
 
 .card-img-top {
   width: 100%;
-  /* or any custom size */
+  
   height: 100%;
   object-fit: contain;
   max-height: 150px;

@@ -38,14 +38,6 @@
   display: block;
 }
 
-/* #wrapper {
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  -webkit-transition: all 0.5s ease;
-  padding-left: 0;
-  transition: all 0.5s ease;
-} */
-
 #sidebar-wrapper.toggled {
   width: 220px;
 }
@@ -63,9 +55,7 @@
   transition: all 0.5s ease;
   width: 0;
   z-index: 1000;
-  /* &::-webkit-scrollbar {
-    display: none;
-  } */
+  
   padding: 0 !important;
 }
 

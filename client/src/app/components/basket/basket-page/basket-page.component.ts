@@ -99,8 +99,7 @@ export class BasketPageComponent {
       if (status == google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
           place = results[i];
-          //createMarker(results[i]);
-        }
+                  }
       }
 
       //verify result
@@ -169,7 +168,6 @@ export class BasketPageComponent {
     const basketId = this.localStorageService.get("basketId");
     this.localStorageService.set("streetName", this.currentStreetName);
 
-
     if (!basketId) {
       this.basketHandleService.saveBasket(this.basket).subscribe((res) => {
         this.localStorageService.set("basketId", res);
@@ -186,8 +184,7 @@ export class BasketPageComponent {
   getAllStores() {
     this.basketHandleService.getAllStores().subscribe(
       (data: any) => {
-        //this.stores = Store.toStore(data)
-        this.stores = data
+                this.stores = data
       }
     )
   }

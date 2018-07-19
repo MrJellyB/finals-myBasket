@@ -1,12 +1,11 @@
 <div class="page-wrap" *ngIf="router.url !== '/page-404'" data-toggle="offcanvas">
-  <!-- [ngStyle]="{ 'background-image' : 'url(' + this.backgroundImage +')'}"
-  [@slideIn]> -->
+  
   <header>
     <app-main-navigator></app-main-navigator>
   </header>
   <div>
-    <!-- <div class="container"> -->
+    
     <router-outlet></router-outlet>
-    <!-- </div> -->
+    
   </div>
 </div>

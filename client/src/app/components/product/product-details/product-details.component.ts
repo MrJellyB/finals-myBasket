@@ -17,7 +17,6 @@ declare var $;
 export class ProductDetailsComponent {
   @Input() productIdToShow: number;
 
-
   product: Product;
   sub: any;
   id: number;
@@ -132,8 +131,7 @@ export class ProductDetailsComponent {
         this.product = data[0];
         this.currentCategory = +this.product.category;
         this.getCategoryById(+this.product.category);
-        //  this.product.oldPrice = this.product.price;
-
+        
         $(function () {
           $('[data-toggle="tooltip"]').tooltip();
         });
@@ -147,8 +145,7 @@ export class ProductDetailsComponent {
     this.productService.getCategory(categoryId).subscribe(
       (data) => {
         this.CategoryValue = data[0];
-        //this.product.categoryValue = this.CategoryValue.name;
-      }
+              }
     );
 
     return this.product;
@@ -204,8 +201,7 @@ export class ProductDetailsComponent {
   getCategories() {
     this.productService.getCategories().subscribe((results: any) => {
       this.categories = results
-      //console.log(this.categories);
-    })
+          })
   }
 
   saveProduct() {
@@ -213,13 +209,10 @@ export class ProductDetailsComponent {
     this.product.price = +this.product.price;
     this.product.category = +this.currentCategory;
     this.productService.saveProduct(this.product).subscribe((results) => {
-      //  this.
-      this.product.id = +results;
+            this.product.id = +results;
       alert('המוצר נשמר בהצלחה');
       this.returnToCategory();
-      //this.actionCode = 2;
-      //this.router.navigate(['/product-details/' + this.product.id]);
-    });
+                });
   }
 
   updateProduct() {
@@ -227,8 +220,7 @@ export class ProductDetailsComponent {
     this.product.category = +this.currentCategory;
     this.productService.updateProduct(this.product).subscribe((results) => {
       alert('המוצר עודכן בהצלחה');
-      //this.router.navigate(['/']);
-    });
+          });
   }
 
   deleteProduct() {
@@ -256,8 +248,7 @@ export class ProductDetailsComponent {
 
   updateOrDelete(productID: number) {
     this.router.navigate(['/product-list/' + this.product.category + "/details/" + productID + "/edit"]);
-    //this.router.navigate(['/add-or-update-product/' + productID]);
-  }
+      }
 
   selectItem(value: number) {
     this.currentCategory = value;

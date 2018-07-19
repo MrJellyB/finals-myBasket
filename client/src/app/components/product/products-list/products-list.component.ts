@@ -50,14 +50,13 @@ export class ProductsListComponent {
     this.categoryImages[4] = _.range(1, 9 + 1);
     this.categoryImages[5] = _.range(1, 11 + 1);
     this.categoryImages[6] = _.range(1, 16 + 1);
-    this.categoryImages[7] = _.range(1, 1 + 1);
+    this.categoryImages[7] = _.range(1, 4 + 1);
     this.categoryImages[8] = _.range(1, 2 + 1);
     this.categoryImages[9] = _.range(1, 4 + 1);
     this.categoryImages[10] = _.range(1, 5 + 1);
     this.categoryImages[11] = _.range(1, 4 + 1);
     this.categoryImages[12] = _.range(1, 9 + 1);
 
-    //this.getProducts();
     this.getProductSize();
     this.getProductsPaging();
 
@@ -137,7 +136,6 @@ export class ProductsListComponent {
 
   updateOrDelete(productID: number) {
     this.router.navigate(['/product-list/' + this.categoryProp + "/details/" + productID + "/edit"]);
-    //this.router.navigate(['/add-or-update-product/' + productID]);
   }
 
   addToBasket(product: Product, input: any) {
@@ -251,6 +249,5 @@ export class ProductsListComponent {
   }
 
   ngAfterViewInit() {
-    // $(".slideshow > img:gt(0)").hide();
   }
 }

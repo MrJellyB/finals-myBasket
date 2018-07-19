@@ -1,31 +1,9 @@
-<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button> -->
 
-<!-- <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Modal body text goes here.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Save changes</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div> -->
+
 <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" #modal>
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-      <!-- <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5> 
-
-      </div> -->
+      
       <div class="modal-body">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -223,20 +201,6 @@
               </div>
               <div class="row" *ngIf="!this.isEdit && !this.isNew">
                 <div class="col">
-                  <div *ngIf="product.comments">
-                    <ul>
-                      <li *ngFor="let currComment of product.comments" style="margin-left:50px">
-                        תגובה: {{ currComment.comment }} עם ציון {{ currComment.grade}}
-                      </li>
-                    </ul>
-                  </div>
-                  <div *ngIf="!product.comments">
-                    אין תגובות.
-                  </div>
-                </div>
-              </div>
-              <div class="row" *ngIf="!this.isEdit && !this.isNew">
-                <div class="col">
                   <textarea class="form-control" name="comment" [(ngModel)]="comm" #comment="ngModel"></textarea>
                 </div>
                 <div class="col">
@@ -248,6 +212,20 @@
                       </select>
                     </div>
                     <button type="button" class="btn btn-primary" (click)="addComment()">הוסף תגובה</button>
+                  </div>
+                </div>
+              </div>
+              <div class="row" *ngIf="!this.isEdit && !this.isNew">
+                <div class="col">
+                  <div *ngIf="product.comments">
+                    <ul>
+                      <li *ngFor="let currComment of product.comments" style="margin-left:50px">
+                        תגובה: {{ currComment.comment }} עם ציון {{ currComment.grade}}
+                      </li>
+                    </ul>
+                  </div>
+                  <div *ngIf="!product.comments">
+                    אין תגובות.
                   </div>
                 </div>
               </div>
@@ -273,80 +251,4 @@
       </div>
     </div>
 
-    <!-- 
-  
-<div class="container" *ngIf="product">
-  <form id="contact" name="form" (ngSubmit)="f.form.valid && onSubmit(f,$event)" #f="ngForm" novalidate>
-    <h3>פרטי מוצר</h3>
-
-    <fieldset class="row">
-      שם מוצר:
-      <input class="form-control" tabindex="1" name="name" type="text" [(ngModel)]="product.name" #name="ngModel" />
-    </fieldset>
-
-    <fieldset class="row">
-      מחיר:
-      <input class="form-control" tabindex="2" name="price" type="text" [(ngModel)]="product.price" #price="ngModel" />
-    </fieldset>
-
-    <fieldset class="row">
-      תיאור:
-      <input class="form-control" tabindex="7" name="desc" type="text" [(ngModel)]="product.ManufacturerItemDescription" #ManufacturerItemDescription="ngModel" />
-    </fieldset>
-
-    <fieldset class="row">
-      קטגוריה:
-      <input class="form-control" tabindex="3" name="categoryValue" type="text" [(ngModel)]="product.categoryValue" #categoryValue="ngModel" />
-    </fieldset>
-
-    <fieldset class="row">
-      קלוריות:
-      <input class="form-control" tabindex="4" name="calories" type="text" [(ngModel)]="product.calories" #calories="ngModel" />
-    </fieldset>
-
-    <fieldset class="row">
-      מדינת יצור:
-      <input class="form-control" tabindex="5" name="createCountry" type="text" [(ngModel)]="product.createCountry" #createCountry="ngModel" />
-    </fieldset>
-
-    <fieldset class="row">
-      יצרן:
-      <input class="form-control" tabindex="6" name="company" type="text" [(ngModel)]="product.company" #company="ngModel" />
-    </fieldset>
-
-    <fieldset class="row">
-      יחידת מידה:
-      <input class="form-control" tabindex="7" name="UnitQty" type="text" [(ngModel)]="product.UnitQty" #UnitQty="ngModel" />
-    </fieldset>
-
-    <div *ngIf="product.comments">
-      <fieldset class="row">
-        רשימת תגובות
-        <ul>
-          <li *ngFor="let currComment of product.comments" style="margin-left:50px">
-            תגובה: {{ currComment.comment }} עם ציון {{ currComment.grade}}
-          </div>
-        </ul>
-      </fieldset>
-    </div>
-
-    <fieldset class="row">
-      תגובה על מוצר:
-      <textarea name="comment" [(ngModel)]="comm" #comment="ngModel"></textarea>
-    </fieldset>
-
-    <fieldset class="row">
-      ציון:
-      <div>
-        <select (change)="SelectedGrade($event.target.value)" class="form-control">
-          <option *ngFor="let currGrade of grades" value={{currGrade}}>{{currGrade}}</option>
-        </select>
-      </div>
-    </fieldset>
-
-    <fieldset style="margin-top:5%">
-      <button style="margin-top:5%" class="button-style" (click)="addComment()">הוסף תגובה</button>
-      <button style="margin-top:5%" class="button-style" (click)="addToBasket(product)">הוסף לסל</button>
-    </fieldset>
-  </form>
-</div> -->
+    

@@ -18,7 +18,6 @@ export class MainPageComponent {
   getUltimateBasket() {
     const username = this.localStorageService.get('currentUser').userName;
     if (username) {
-      // TODO: Add a spinner 
       return this.http.get(`${environment.geneticAlgoUrl}/api/main/GetBasket/${username}`)
         .map((data) => data.json())
         .subscribe((data) => console.log(data));

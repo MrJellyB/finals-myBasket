@@ -6,7 +6,6 @@ import { url } from 'app/utils/consts';
 import { Product, CommentToProduct } from 'app/interface/entities.interface';
 import { HttpService } from 'app/services/http.service';
 
-
 @Injectable()
 export class ProductService {
 
@@ -63,7 +62,6 @@ export class ProductService {
     // formData.append('image', data.image, data.image.name);
     // return this.httpClient.post(url + '/updateProdct', formData, this.httpService.getOptions());
   }
-
 
   deleteProduct(data: Product): Observable<Response> {
     return this.http.post(url + '/deleteProduct', { data }, this.httpService.getOptions()).map((data) => data.json());

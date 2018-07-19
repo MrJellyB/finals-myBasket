@@ -21,7 +21,6 @@ tr:nth-child(even) {
   text-align: right;
 }
 
-
 nav {
   display: block;
 }
@@ -55,7 +54,6 @@ body {
   position: relative;
 }
 
-
 .button-style {
   font: 400 12px/16px "Roboto", Helvetica, Arial, sans-serif;
   cursor: pointer;
@@ -67,7 +65,6 @@ body {
   padding: 10px;
   font-size: 15px;
 }
-
 
 button:disabled,
 button[disabled] {

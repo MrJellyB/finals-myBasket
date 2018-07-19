@@ -9,14 +9,12 @@ import { Product } from 'app/interface/entities.interface';
 import { ProductService } from 'app/services/product.service';
 import * as d3Axis from 'd3-axis';
 
-
 @Component({
   selector: 'app-price-history-chart-with-d3js',
   templateUrl: './price-history-chart-with-d3js.component.html',
   styleUrls: ['./price-history-chart-with-d3js.component.css']
 })
 export class PriceHistoryChartWithD3jsComponent {
-
 
   public product: any;
   private margin = { top: 20, right: 20, bottom: 30, left: 50 };
@@ -26,12 +24,7 @@ export class PriceHistoryChartWithD3jsComponent {
   private y: any;
   private svg: any;
   private line: d3Shape.Line<[any, any]>;
-  /*
-  private data = [
-    {
-      name: 'מוצר ',
-      data: []
-    }];*/
+  
 
   private data = [];
 
@@ -56,7 +49,6 @@ export class PriceHistoryChartWithD3jsComponent {
         if (data[0] != undefined) {
           this.product = data[0];
           this.setChartData();
-
 
           this.initSvg();
           this.initAxis();

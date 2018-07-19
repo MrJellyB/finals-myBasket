@@ -25,7 +25,6 @@ export enum ePreferences {
     Veggie = 3
 };
 
-
 export enum eAvoidness {
     Eggs = 1,
     Milk = 2,
@@ -35,5 +34,4 @@ export enum eAvoidness {
     Peanuts = 6,
     Ful = 7
 };
-
 

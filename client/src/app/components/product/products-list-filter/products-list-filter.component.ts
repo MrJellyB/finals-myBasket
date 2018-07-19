@@ -45,8 +45,7 @@ export class ProductsListFilterComponent {
     this.productService.getProductsPaging(this.page, this.limit).subscribe((products: any) => {
       this.isDataLoaded = true;
       this.productPaging = products;
-      // console.log(products);
-      this.getCategories();
+            this.getCategories();
       this.loading = false;
     });
   }
@@ -74,20 +73,17 @@ export class ProductsListFilterComponent {
 
   goToPage(n: number): void {
     this.page = n;
-    //this.getProductsPaging();
-    this.getProductsWithParamsAndPaging(this.page);
+        this.getProductsWithParamsAndPaging(this.page);
   }
 
   onNext(): void {
     this.page++;
-    //this.getProductsPaging();
-    this.getProductsWithParamsAndPaging(this.page);
+        this.getProductsWithParamsAndPaging(this.page);
   }
 
   onPrev(): void {
     this.page--;
-    //this.getProductsPaging();
-    this.getProductsWithParamsAndPaging(this.page);
+        this.getProductsWithParamsAndPaging(this.page);
   }
 
   showDetails(productID: number, category: number) {
@@ -137,10 +133,8 @@ export class ProductsListFilterComponent {
     this.getProductsWithParamsAndPaging(1);
   }
 
-
   getProductsWithParamsAndPaging(page: number): void {
-    // debugger;
-    let params = <QueryProduct>{};
+        let params = <QueryProduct>{};
     params.productName = this.name;
     params.toPrice = this.toPrice;
     params.fromPrice = this.fromPrice;
