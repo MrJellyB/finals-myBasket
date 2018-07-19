@@ -8,11 +8,7 @@ import { url } from 'app/utils/consts';
 import { HttpService } from 'app/services/http.service';
 import { UsersService } from './users.service';
 
-<<<<<<< HEAD
-=======
-
 // API Service for basket
->>>>>>> b2c3ccd5fce50e94160c61832a170aa295befa58
 @Injectable()
 export class BasketHandleService {
 
